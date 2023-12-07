@@ -5,7 +5,6 @@ export interface ILanguage {
 
 export enum Languages {
   Ukrainian = 'uk',
-  Russian = 'ru',
   English = 'en',
 }
 
