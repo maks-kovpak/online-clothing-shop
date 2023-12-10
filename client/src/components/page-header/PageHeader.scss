@@ -1,6 +1,21 @@
 @import '@/styles/_variables';
 
-.ant-layout-header {
+header {
   background: $main-bg-color;
   padding: 1.5rem 6.25rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+
+  .navbar > ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+
+    color: #000;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 }

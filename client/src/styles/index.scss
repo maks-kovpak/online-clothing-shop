@@ -1,3 +1,6 @@
+@import '@/styles/_fonts';
+@import '@/styles/_variables';
+
 *,
 *::before,
 *::after {
@@ -7,4 +10,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $main-font;
+  background-color: $main-bg-color;
 }
