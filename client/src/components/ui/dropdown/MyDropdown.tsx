@@ -10,13 +10,7 @@ export const MyDropdown: FC<{
   props?: Omit<DropdownProps, 'menu' | 'placement' | 'arrow'>;
 }> = ({ children, items, menu, ...props }) => {
   return (
-    <Dropdown
-      menu={{ items, ...menu }}
-      placement="bottom"
-      className="sc-dropdown"
-      arrow={{ pointAtCenter: true }}
-      {...props}
-    >
+    <Dropdown menu={{ items, ...menu }} placement="bottom" arrow={{ pointAtCenter: true }} {...props}>
       <Space>
         {children}
 
