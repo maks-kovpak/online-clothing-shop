@@ -10,7 +10,7 @@ const router = createBrowserRouter(routes);
 
 const config: ThemeConfig = {
   token: {
-    fontFamily: "'Satoshi', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     fontSize: 16,
   },
 };

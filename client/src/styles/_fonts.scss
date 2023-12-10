@@ -3,77 +3,71 @@
 @font-face {
   font-family: 'Integral CF';
   src:
-    url('../assets/fonts/IntegralCF/Fonts/IntegralCF-Bold.woff2') format('woff2'),
-    url('../assets/fonts/IntegralCF/Fonts/IntegralCF-Bold.woff') format('woff'),
-    url('../assets/fonts/IntegralCF/Fonts/IntegralCF-Bold.ttf') format('truetype');
+    url('../assets/fonts/IntegralCF/IntegralCF-Bold.woff2') format('woff2'),
+    url('../assets/fonts/IntegralCF/IntegralCF-Bold.woff') format('woff'),
+    url('../assets/fonts/IntegralCF/IntegralCF-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
 
-// Satoshi
+// Inter
 
 @font-face {
-  font-family: 'Satoshi';
+  font-family: 'Inter';
   src:
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Regular.woff2') format('woff2'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Regular.woff') format('woff'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Regular.ttf') format('truetype');
+    url('../assets/fonts/Inter/Inter-Regular.woff2') format('woff2'),
+    url('../assets/fonts/Inter/Inter-Regular.woff') format('woff'),
+    url('../assets/fonts/Inter/Inter-Regular.ttf') format('truetype');
   font-weight: 400;
-  font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Satoshi';
+  font-family: 'Inter';
   src:
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Italic.woff2') format('woff2'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Italic.woff') format('woff'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Italic.ttf') format('truetype');
+    url('../assets/fonts/Inter/Inter-Italic.woff2') format('woff2'),
+    url('../assets/fonts/Inter/Inter-Italic.woff') format('woff'),
+    url('../assets/fonts/Inter/Inter-Italic.ttf') format('truetype');
   font-weight: 400;
-  font-display: swap;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'Satoshi';
+  font-family: 'Inter';
   src:
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Medium.woff2') format('woff2'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Medium.woff') format('woff'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Medium.ttf') format('truetype');
+    url('../assets/fonts/Inter/Inter-Medium.woff2') format('woff2'),
+    url('../assets/fonts/Inter/Inter-Medium.woff') format('woff'),
+    url('../assets/fonts/Inter/Inter-Medium.ttf') format('truetype');
   font-weight: 500;
-  font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Satoshi';
+  font-family: 'Inter';
   src:
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-MediumItalic.woff2') format('woff2'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-MediumItalic.woff') format('woff'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-MediumItalic.ttf') format('truetype');
+    url('../assets/fonts/Inter/Inter-MediumItalic.woff2') format('woff2'),
+    url('../assets/fonts/Inter/Inter-MediumItalic.woff') format('woff'),
+    url('../assets/fonts/Inter/Inter-MediumItalic.ttf') format('truetype');
   font-weight: 500;
-  font-display: swap;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'Satoshi';
+  font-family: 'Inter';
   src:
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Bold.woff2') format('woff2'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Bold.woff') format('woff'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-Bold.ttf') format('truetype');
+    url('../assets/fonts/Inter/Inter-Bold.woff2') format('woff2'),
+    url('../assets/fonts/Inter/Inter-Bold.woff') format('woff'),
+    url('../assets/fonts/Inter/Inter-Bold.ttf') format('truetype');
   font-weight: 700;
-  font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Satoshi';
+  font-family: 'Inter';
   src:
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-BoldItalic.woff2') format('woff2'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-BoldItalic.woff') format('woff'),
-    url('../assets/fonts/Satoshi/Fonts/Satoshi-BoldItalic.ttf') format('truetype');
+    url('../assets/fonts/Inter/Inter-BoldItalic.woff2') format('woff2'),
+    url('../assets/fonts/Inter/Inter-BoldItalic.woff') format('woff'),
+    url('../assets/fonts/Inter/Inter-BoldItalic.ttf') format('truetype');
   font-weight: 700;
-  font-display: swap;
   font-style: italic;
 }
