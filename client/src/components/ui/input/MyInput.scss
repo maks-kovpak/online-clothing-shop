@@ -1,0 +1,24 @@
+@import '@/styles/_variables';
+
+.sc-input-affix-wrapper {
+  background-color: $input-bg-color;
+  border-radius: 3.875rem;
+  padding: 0.75rem 1rem;
+
+  .sc-input-prefix {
+    margin-right: 0.75rem;
+  }
+
+  .sc-input {
+    background-color: transparent;
+    color: $main-text-color;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.4);
+    }
+  }
+}

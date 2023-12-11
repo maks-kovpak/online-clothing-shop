@@ -1,10 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import logo from '../../assets/img/logo.svg';
-import { MyDropdown } from '../ui/dropdown/MyDropdown';
+import logo from '@/assets/img/logo.svg';
+import MyDropdown from '../ui/dropdown/MyDropdown';
 import './PageHeader.scss';
 import type { MenuProps } from 'antd';
 import { useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import MyInput from '../ui/input/MyInput';
+import SearchIcon from '@/assets/icons/search.svg?react';
 
 export type HeaderConfig = Array<{
   label: string;
@@ -21,11 +23,11 @@ const PageHeader = () => {
         label: t('SHOP'),
         items: [
           {
-            key: '1',
+            key: uuidv4(),
             label: <a href="">{t('SHOP_MEN')}</a>,
           },
           {
-            key: '2',
+            key: uuidv4(),
             label: <a href="">{t('SHOP_WOMEN')}</a>,
           },
         ],
@@ -65,6 +67,8 @@ const PageHeader = () => {
           )}
         </ul>
       </nav>
+
+      <MyInput type="search" prefix={<SearchIcon />} />
     </header>
   );
 };

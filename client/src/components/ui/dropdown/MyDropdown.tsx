@@ -3,7 +3,7 @@ import { Dropdown, Space } from 'antd';
 import { FC, ReactNode } from 'react';
 import './MyDropdown.scss';
 
-export const MyDropdown: FC<{
+const MyDropdown: FC<{
   children: ReactNode;
   items: MenuProps['items'];
   menu?: Omit<MenuProps, 'items'>;
@@ -24,3 +24,5 @@ export const MyDropdown: FC<{
     </Dropdown>
   );
 };
+
+export default MyDropdown;

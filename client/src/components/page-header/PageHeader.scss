@@ -6,16 +6,22 @@ header {
   display: flex;
   align-items: center;
   gap: 2.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   .navbar > ul {
     list-style: none;
     display: flex;
     gap: 1.5rem;
 
-    color: black;
+    color: $main-text-color;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    text-wrap: nowrap;
+
+    a {
+      color: $main-text-color;
+    }
   }
 }
