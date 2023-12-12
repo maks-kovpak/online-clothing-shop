@@ -10,10 +10,10 @@ await i18n
   .init({
     lng: 'en',
     fallbackLng: 'en',
-    debug: true,
+    debug: import.meta.env.VITE_DEBUG === 'true',
     detection: {
-      order: ['queryString', 'cookie'],
-      caches: ['cookie'],
+      order: ['queryString', 'localStorage'],
+      caches: ['localStorage'],
     },
     interpolation: {
       escapeValue: false,

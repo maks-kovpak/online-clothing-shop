@@ -1,12 +1,19 @@
 import { useTranslation } from 'react-i18next';
-import logo from '@/assets/img/logo.svg';
-import MyDropdown from '../ui/dropdown/MyDropdown';
-import './PageHeader.scss';
-import type { MenuProps } from 'antd';
+import { Flex, Select, type MenuProps } from 'antd';
 import { useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { LANGUAGES } from '../../constants';
+
+import MyDropdown from '../ui/dropdown/MyDropdown';
 import MyInput from '../ui/input/MyInput';
+
+import logo from '@/assets/img/logo.svg';
 import SearchIcon from '@/assets/icons/search.svg?react';
+import CartIcon from '@/assets/icons/cart.svg?react';
+import UserAccountIcon from '@/assets/icons/user-account.svg?react';
+import ArrowDownIcon from '@/assets/icons/arrow-down.svg?react';
+
+import './PageHeader.scss';
 
 export type HeaderConfig = Array<{
   label: string;
@@ -15,7 +22,7 @@ export type HeaderConfig = Array<{
 }>;
 
 const PageHeader = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const config: HeaderConfig = useMemo(
     () => [
@@ -68,7 +75,20 @@ const PageHeader = () => {
         </ul>
       </nav>
 
-      <MyInput type="search" prefix={<SearchIcon />} />
+      <MyInput type="search" prefix={<SearchIcon />} placeholder={t('SEARCH_PLACEHOLDER')} />
+
+      <Flex gap={14} align="center">
+        <Select
+          defaultValue={i18n.language}
+          style={{ width: 150 }}
+          onChange={(val) => i18n.changeLanguage(val)}
+          options={LANGUAGES.map((lang) => ({ value: lang.code, label: lang.title }))}
+          suffixIcon={<ArrowDownIcon />}
+        />
+
+        <CartIcon />
+        <UserAccountIcon />
+      </Flex>
     </header>
   );
 };
