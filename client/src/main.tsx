@@ -10,6 +10,11 @@ import { ConfigProvider, ThemeConfig } from 'antd';
 
 const router = createBrowserRouter(routes);
 
+const colors = {
+  dark: 'rgba(0, 0, 0, 0.4)',
+  darkTransparent: 'rgba(0, 0, 0, 0.05)',
+};
+
 const config: ThemeConfig = {
   token: {
     fontFamily: "'Inter', sans-serif",
@@ -18,8 +23,14 @@ const config: ThemeConfig = {
   components: {
     Input: {
       activeBorderColor: 'black',
-      hoverBorderColor: 'rgba(0, 0, 0, 0.4)',
-      controlOutline: 'rgba(0, 0, 0, 0.05)',
+      hoverBorderColor: colors.dark,
+      controlOutline: colors.darkTransparent,
+    },
+    Select: {
+      colorPrimaryHover: colors.dark,
+      colorPrimary: colors.dark,
+      controlOutline: colors.darkTransparent,
+      optionSelectedBg: colors.darkTransparent,
     },
   },
 };

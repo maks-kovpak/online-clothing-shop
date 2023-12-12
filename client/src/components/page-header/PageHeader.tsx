@@ -1,17 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { Flex, Select, type MenuProps } from 'antd';
+import { Flex, type MenuProps } from 'antd';
 import { useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { LANGUAGES } from '../../constants';
 
 import MyDropdown from '../ui/dropdown/MyDropdown';
 import MyInput from '../ui/input/MyInput';
+import MySelect from '../ui/select/MySelect';
 
 import logo from '@/assets/img/logo.svg';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import CartIcon from '@/assets/icons/cart.svg?react';
 import UserAccountIcon from '@/assets/icons/user-account.svg?react';
-import ArrowDownIcon from '@/assets/icons/arrow-down.svg?react';
 
 import './PageHeader.scss';
 
@@ -78,12 +78,11 @@ const PageHeader = () => {
       <MyInput type="search" prefix={<SearchIcon />} placeholder={t('SEARCH_PLACEHOLDER')} />
 
       <Flex gap={14} align="center">
-        <Select
+        <MySelect
           defaultValue={i18n.language}
           style={{ width: 150 }}
           onChange={(val) => i18n.changeLanguage(val)}
           options={LANGUAGES.map((lang) => ({ value: lang.code, label: lang.title }))}
-          suffixIcon={<ArrowDownIcon />}
         />
 
         <CartIcon />
