@@ -3,8 +3,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import routes from './routes';
-import './i18n.ts';
+import routes from './resources/routes.tsx';
+import './resources/i18n.ts';
 import './styles/index.scss';
 import { ConfigProvider, ThemeConfig } from 'antd';
 

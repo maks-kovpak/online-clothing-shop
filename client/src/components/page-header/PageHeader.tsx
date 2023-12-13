@@ -2,11 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { Flex, type MenuProps } from 'antd';
 import { useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { LANGUAGES } from '../../constants';
+import { LANGUAGES } from '../../resources/constants';
 
-import MyDropdown from '../ui/dropdown/MyDropdown';
-import MyInput from '../ui/input/MyInput';
-import MySelect from '../ui/select/MySelect';
+import { Dropdown, Input, Select } from '../ui';
 
 import logo from '@/assets/img/logo.svg';
 import SearchIcon from '@/assets/icons/search.svg?react';
@@ -68,17 +66,17 @@ const PageHeader = () => {
               </li>
             ) : (
               <li key={uuidv4()}>
-                <MyDropdown items={item.items}>{item.label}</MyDropdown>
+                <Dropdown items={item.items}>{item.label}</Dropdown>
               </li>
             )
           )}
         </ul>
       </nav>
 
-      <MyInput type="search" prefix={<SearchIcon />} placeholder={t('SEARCH_PLACEHOLDER')} />
+      <Input type="search" prefix={<SearchIcon />} placeholder={t('SEARCH_PLACEHOLDER')} />
 
       <Flex gap={14} align="center">
-        <MySelect
+        <Select
           defaultValue={i18n.language}
           style={{ width: 150 }}
           onChange={(val) => i18n.changeLanguage(val)}

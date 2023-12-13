@@ -1,5 +1,5 @@
 import { Navigate, RouteObject } from 'react-router-dom';
-import App from './App.tsx';
+import App from '../App.tsx';
 
 const routes: Array<RouteObject> = [
   {
