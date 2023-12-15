@@ -1,4 +1,4 @@
-import PageHeader from './components/page-header/PageHeader.tsx';
+import PageHeader from './components/PageHeader';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {

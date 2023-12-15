@@ -11,7 +11,7 @@ import SearchIcon from '@/assets/icons/search.svg?react';
 import CartIcon from '@/assets/icons/cart.svg?react';
 import UserAccountIcon from '@/assets/icons/user-account.svg?react';
 
-import './PageHeader.scss';
+import './index.scss';
 
 export type HeaderConfig = Array<{
   label: string;
@@ -73,7 +73,7 @@ const PageHeader = () => {
         </ul>
       </nav>
 
-      <Input type="search" prefix={<SearchIcon />} placeholder={t('SEARCH_PLACEHOLDER')} />
+      <Input prefix={<SearchIcon />} placeholder={t('SEARCH_PLACEHOLDER')} />
 
       <Flex gap={14} align="center">
         <Select
