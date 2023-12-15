@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { Flex, type MenuProps } from 'antd';
 import { useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { LANGUAGES } from '../../resources/constants';
+import { LANGUAGES } from '@/lib/constants';
 
-import { Dropdown, Input, Select } from '../ui';
+import { Dropdown, Input, Select } from '@/ui';
 
 import logo from '@/assets/img/logo.svg';
 import SearchIcon from '@/assets/icons/search.svg?react';
@@ -79,7 +79,7 @@ const PageHeader = () => {
         <Select
           defaultValue={i18n.language}
           style={{ width: 150 }}
-          onChange={(val) => i18n.changeLanguage(val)}
+          onChange={(val: string) => i18n.changeLanguage(val)}
           options={LANGUAGES.map((lang) => ({ value: lang.code, label: lang.title }))}
         />
 

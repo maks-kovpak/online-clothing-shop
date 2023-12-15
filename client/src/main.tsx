@@ -3,10 +3,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import routes from './resources/routes.tsx';
-import './resources/i18n.ts';
-import './styles/index.scss';
 import { ConfigProvider, ThemeConfig } from 'antd';
+
+import routes from '@/lib/routes';
+import '@/lib/i18n';
+
+import '@/assets/styles/index.scss';
 
 const router = createBrowserRouter(routes);
 
