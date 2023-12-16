@@ -8,29 +8,6 @@ header {
   gap: 2.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-  .navbar {
-    @media screen and (max-width: $xl) {
-      display: none;
-    }
-
-    & > ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-
-      color: $main-text-color;
-      font-size: 1rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      text-wrap: nowrap;
-
-      a {
-        color: $main-text-color;
-      }
-    }
-  }
-
   @media screen and (max-width: $lg) {
     padding: 1.25rem 1rem;
   }

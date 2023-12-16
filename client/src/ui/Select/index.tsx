@@ -1,6 +1,5 @@
 import { Select as AntSelect, type SelectProps } from 'antd';
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg?react';
-import './index.scss';
 
 const Select = (props: Omit<SelectProps, 'suffixIcon'>) => {
   return <AntSelect {...props} suffixIcon={<ArrowDownIcon />} />;
