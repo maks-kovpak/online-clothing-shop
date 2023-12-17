@@ -7,6 +7,10 @@
     "client",
     "server"
   ],
+  "scripts": {
+    "client:dev": "yarn workspace client run dev",
+    "server:dev": "yarn workspace server run dev"
+  },
   "repository": "https://github.com/maks-kovpak/online-clothing-shop.git",
   "author": "Maksym Kovpak <kovpak.maksym@gmail.com>",
   "license": "MIT"

@@ -11,4 +11,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  cacheDir: '../node_modules/.vite',
 });
