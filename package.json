@@ -1,0 +1,13 @@
+{
+  "name": "online-clothing-shop",
+  "version": "0.0.0",
+  "description": "A modern and user-friendly online clothing shop built with React and Express.js",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "repository": "https://github.com/maks-kovpak/online-clothing-shop.git",
+  "author": "Maksym Kovpak <kovpak.maksym@gmail.com>",
+  "license": "MIT"
+}
