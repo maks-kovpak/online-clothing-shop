@@ -8,7 +8,33 @@ header {
   gap: 2.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
+  .hamburger-menu-btn {
+    display: none;
+    min-width: 24px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: $xl) {
+    .hamburger-menu-btn {
+      display: block;
+      scale: 1.4;
+    }
+  }
+
   @media screen and (max-width: $lg) {
     padding: 1.25rem 1rem;
+    gap: 1rem;
+
+    .hamburger-menu-btn {
+      display: block;
+      scale: 1;
+    }
+
+    & > img {
+      scale: 0.7;
+    }
   }
 }

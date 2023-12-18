@@ -1,0 +1,13 @@
+.sc-drawer-header {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+
+  .sc-drawer-header-title {
+    flex: unset;
+  }
+
+  .sc-drawer-extra {
+    display: flex;
+    align-items: center;
+  }
+}
