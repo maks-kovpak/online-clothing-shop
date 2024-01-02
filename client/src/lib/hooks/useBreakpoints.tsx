@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
-export type BreakpointsContext<T extends object> = Record<keyof T, { below: boolean; above: boolean }>;
+export type BreakpointsContext<T extends object> = Readonly<{
+  [x in keyof T]: { below: boolean; above: boolean };
+}>;
 
 /**
  * A custom React hook that returns an object representing the current
@@ -16,12 +18,12 @@ export type BreakpointsContext<T extends object> = Record<keyof T, { below: bool
  * const mediaQuery = useBreakpoints({ tablet: 768 });
  * useEffect(() => console.log(mediaQuery.tablet.below), [mediaQuery]);
  */
-const useBreakpoints = (breakpoints: Record<string, number>): BreakpointsContext<typeof breakpoints> => {
-  const [ctx, setCtx] = useState<BreakpointsContext<typeof breakpoints>>(
+const useBreakpoints = <T extends object>(breakpoints: T): BreakpointsContext<T> => {
+  const [ctx, setCtx] = useState<BreakpointsContext<T>>(
     Object.entries(breakpoints).reduce((accumulator, [key, value]) => {
       const matches = window.matchMedia(`(max-width: ${value}px)`).matches;
       return { ...accumulator, [key]: { below: matches, above: !matches } };
-    }, {})
+    }, {} as BreakpointsContext<T>)
   );
 
   useEffect(() => {

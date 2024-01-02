@@ -4,6 +4,10 @@
 
   .sc-drawer-header-title {
     flex: unset;
+
+    .sc-drawer-close {
+      margin: 0;
+    }
   }
 
   .sc-drawer-extra {
