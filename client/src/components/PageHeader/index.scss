@@ -7,6 +7,7 @@ header {
   align-items: center;
   gap: 2.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: $navbar-height;
 
   .hamburger-menu-btn {
     display: none;
@@ -15,6 +16,10 @@ header {
     &:hover {
       cursor: pointer;
     }
+  }
+
+  .search-mobile {
+    display: none;
   }
 
   @media screen and (max-width: $xxl) {
@@ -40,6 +45,27 @@ header {
 
     & > img {
       scale: 0.7;
+    }
+  }
+
+  @media screen and (max-width: $md) {
+    .lang-select {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: $sm) {
+    .sc-input-affix-wrapper {
+      display: none;
+    }
+
+    .search-mobile {
+      display: block;
+    }
+
+    .header-icons {
+      flex-grow: 1;
+      justify-content: end;
     }
   }
 }

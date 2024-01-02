@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 import logo from '@/assets/img/logo.svg';
 import './index.scss';
+import LanguageSelect from '../LanguageSelect';
 
 const NavDrawer: FC<{
   opened: boolean;
@@ -25,7 +26,6 @@ const NavDrawer: FC<{
       extra={<img src={logo} alt="SHOP.CO" />}
     >
       <Menu
-        style={{ width: 256 }}
         mode="inline"
         items={config.map((item) => ({
           label: <NavLink to={item.link ?? '/'}>{item.label}</NavLink>,
@@ -33,6 +33,7 @@ const NavDrawer: FC<{
           children: item.items,
         }))}
       />
+      <LanguageSelect width="100%" />
     </Drawer>
   );
 };
