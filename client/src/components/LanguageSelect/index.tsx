@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 
 const LanguageSelect: FC<{ width?: CSSProperties['width'] }> = ({ width }) => {
   const { i18n } = useTranslation();
-  console.log(width);
 
   return (
     <Select

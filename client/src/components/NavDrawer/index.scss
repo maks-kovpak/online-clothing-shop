@@ -29,6 +29,22 @@
     .sc-menu-sub {
       background: transparent !important;
     }
+
+    .sc-menu-submenu-title,
+    .sc-menu-title-content > * {
+      color: $main-text-color !important;
+    }
+
+    .sc-menu-item,
+    .sc-menu-submenu-title {
+      transition: font-weight 100ms ease;
+    }
+
+    .sc-menu-item:hover,
+    .sc-menu-submenu-title:hover {
+      background: transparent !important;
+      font-weight: 700;
+    }
   }
 
   .lang-select {

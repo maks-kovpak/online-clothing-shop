@@ -5,10 +5,12 @@ import useNavbarConfig from '@/lib/hooks/useNavbarConfig';
 import navbarConfig from '../Navbar/config';
 import { v4 as uuidv4 } from 'uuid';
 import { NavLink } from 'react-router-dom';
+import LanguageSelect from '../LanguageSelect';
 
 import logo from '@/assets/img/logo.svg';
+import ArrowDownIcon from '@/assets/icons/arrow-down.svg?react';
+
 import './index.scss';
-import LanguageSelect from '../LanguageSelect';
 
 const NavDrawer: FC<{
   opened: boolean;
@@ -32,6 +34,8 @@ const NavDrawer: FC<{
           key: uuidv4(),
           children: item.items,
         }))}
+        inlineIndent={0}
+        expandIcon={<ArrowDownIcon style={{ width: 16 }} />}
       />
       <LanguageSelect width="100%" />
     </Drawer>
