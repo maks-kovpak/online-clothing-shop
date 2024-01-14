@@ -1,12 +1,20 @@
-// Integral CF
+// Gunterz
 
 @font-face {
-  font-family: 'Integral CF';
+  font-family: 'Gunterz';
   src:
-    url('../fonts/IntegralCF/IntegralCF-Bold.woff2') format('woff2'),
-    url('../fonts/IntegralCF/IntegralCF-Bold.woff') format('woff'),
-    url('../fonts/IntegralCF/IntegralCF-Bold.ttf') format('truetype');
+    url('../fonts/Gunterz/Gunterz-Bold.otf') format('opentype'),
+    url('../fonts/Gunterz/Gunterz-Bold.ttf') format('truetype');
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gunterz';
+  src:
+    url('../fonts/Gunterz/Gunterz-Black.otf') format('opentype'),
+    url('../fonts/Gunterz/Gunterz-Black.ttf') format('truetype');
+  font-weight: 900;
   font-style: normal;
 }
 

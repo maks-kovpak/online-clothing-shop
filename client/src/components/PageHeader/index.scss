@@ -30,6 +30,10 @@ header {
       display: block;
       scale: 1.4;
     }
+
+    .sc-input-affix-wrapper {
+      padding: 0.5rem 1rem;
+    }
   }
 
   @media screen and (max-width: $lg) {
@@ -42,7 +46,7 @@ header {
     }
 
     & > img {
-      scale: 0.7;
+      width: 115px;
     }
   }
 
@@ -53,6 +57,12 @@ header {
   }
 
   @media screen and (max-width: $sm) {
+    height: $navbar-height-mobile;
+
+    & > img {
+      width: 100px;
+    }
+
     .sc-input-affix-wrapper {
       display: none;
     }

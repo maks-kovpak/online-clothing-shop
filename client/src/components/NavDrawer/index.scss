@@ -3,6 +3,7 @@
 .sc-drawer-header {
   flex-direction: row-reverse;
   justify-content: space-between;
+  padding: 2rem 1.5rem !important;
 
   .sc-drawer-header-title {
     flex: unset;
@@ -15,6 +16,10 @@
   .sc-drawer-extra {
     display: flex;
     align-items: center;
+  }
+
+  @media screen and (max-width: $sm) {
+    padding: 1.5rem 1.5rem !important;
   }
 }
 

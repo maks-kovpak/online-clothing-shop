@@ -1,9 +1,15 @@
 @import '@/assets/styles/_variables.module';
 
 .hero-banner {
+  background: $banner-bg-color;
+  height: calc(100vh - $navbar-height);
+  position: relative;
+  padding: 6.25rem;
+
   .banner-image img {
-    height: calc(100vh - $navbar-height);
+    height: 100%;
     position: absolute;
     right: 0;
+    top: 0;
   }
 }

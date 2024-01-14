@@ -3,10 +3,11 @@
 $main-bg-color: white;
 $main-text-color: black;
 $input-bg-color: #f0f0f0;
+$banner-bg-color: #f2f0f1;
 
 // Fonts
 
-$title-font: 'Integral CF', fantasy;
+$title-font: 'Gunterz', fantasy;
 $main-font: 'Inter', sans-serif;
 
 // Breakpoints
@@ -21,6 +22,7 @@ $xxl: 1400px;
 // Other
 
 $navbar-height: 90px;
+$navbar-height-mobile: 64px;
 
 // Export
 
@@ -40,4 +42,5 @@ $navbar-height: 90px;
   xxl: $xxl;
 
   navbarHeight: $navbar-height;
+  navbarHeightMobile: $navbar-height-mobile;
 }
