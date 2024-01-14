@@ -1,7 +1,7 @@
-@import '@/assets/styles/_variables';
+@import '@/assets/styles/_variables.module';
 
 .navbar {
-  @media screen and (max-width: $xl) {
+  @media screen and (max-width: $xxl) {
     display: none;
   }
 
@@ -15,7 +15,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    text-wrap: nowrap;
+    white-space: nowrap;
 
     a {
       color: $main-text-color;

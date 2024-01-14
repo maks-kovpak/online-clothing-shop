@@ -1,4 +1,4 @@
-@import '@/assets/styles/_variables';
+@import '@/assets/styles/_variables.module';
 
 header {
   background: $main-bg-color;
@@ -25,9 +25,7 @@ header {
   @media screen and (max-width: $xxl) {
     padding-left: 3.25rem;
     padding-right: 3.25rem;
-  }
 
-  @media screen and (max-width: $xl) {
     .hamburger-menu-btn {
       display: block;
       scale: 1.4;

@@ -26,7 +26,7 @@ export type InitialNavbarConfig = Array<{
 const useNavbarConfig = (initialConfig: InitialNavbarConfig): NavbarConfig => {
   const { t } = useTranslation();
 
-  const config: NavbarConfig = useMemo(() => {
+  return useMemo(() => {
     return initialConfig.map((element) => ({
       ...element,
       label: t(element.label),
@@ -36,8 +36,6 @@ const useNavbarConfig = (initialConfig: InitialNavbarConfig): NavbarConfig => {
       })),
     }));
   }, [initialConfig, t]);
-
-  return config;
 };
 
 export default useNavbarConfig;

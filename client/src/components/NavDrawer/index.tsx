@@ -10,13 +10,14 @@ import LanguageSelect from '../LanguageSelect';
 import logo from '@/assets/img/logo.svg';
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg?react';
 
+import vars from '@/assets/styles/_variables.module.scss';
 import './index.scss';
 
 const NavDrawer: FC<{
   opened: boolean;
   setOpened: Dispatch<SetStateAction<boolean>>;
 }> = ({ opened, setOpened }) => {
-  const mediaQuery = useBreakpoints({ tablet: 576 });
+  const mediaQuery = useBreakpoints({ tablet: vars.sm });
   const config = useNavbarConfig(navbarConfig);
 
   return (

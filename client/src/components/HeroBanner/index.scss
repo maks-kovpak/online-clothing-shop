@@ -1,0 +1,9 @@
+@import '@/assets/styles/_variables.module';
+
+.hero-banner {
+  .banner-image img {
+    height: calc(100vh - $navbar-height);
+    position: absolute;
+    right: 0;
+  }
+}

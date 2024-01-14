@@ -1,0 +1,43 @@
+// Colors
+
+$main-bg-color: white;
+$main-text-color: black;
+$input-bg-color: #f0f0f0;
+
+// Fonts
+
+$title-font: 'Integral CF', fantasy;
+$main-font: 'Inter', sans-serif;
+
+// Breakpoints
+
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
+// Other
+
+$navbar-height: 90px;
+
+// Export
+
+:export {
+  mainBgColor: $main-bg-color;
+  mainTextColor: $main-text-color;
+  inputBgColor: $input-bg-color;
+
+  titleFont: $title-font;
+  mainFont: $main-font;
+
+  xs: $xs;
+  sm: $sm;
+  md: $md;
+  lg: $lg;
+  xl: $xl;
+  xxl: $xxl;
+
+  navbarHeight: $navbar-height;
+}
