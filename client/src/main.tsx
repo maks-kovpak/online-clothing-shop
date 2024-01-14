@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
+import { HelmetProvider } from 'react-helmet-async';
 
 import routes from '@/lib/routes';
 import config from '@/lib/theme';
@@ -16,7 +17,9 @@ const router = createBrowserRouter(routes);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ConfigProvider theme={config} prefixCls="sc">
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </ConfigProvider>
   </React.StrictMode>
 );

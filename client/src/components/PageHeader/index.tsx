@@ -27,7 +27,7 @@ const PageHeader = () => {
         <img src={logo} alt="SHOP.CO" />
 
         <Navbar />
-        <Input prefix={<SearchIcon fillOpacity={0.4} />} placeholder={t('SEARCH_PLACEHOLDER')} />
+        <Input prefix={<SearchIcon fillOpacity={0.4} />} placeholder={t('SEARCH_PLACEHOLDER')} name="search" />
 
         <Flex gap={14} align="center" className="header-icons">
           <LanguageSelect />
