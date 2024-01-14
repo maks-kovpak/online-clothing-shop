@@ -4,6 +4,8 @@ $main-bg-color: white;
 $main-text-color: black;
 $input-bg-color: #f0f0f0;
 $banner-bg-color: #f2f0f1;
+$dark-color: rgba(0, 0, 0, 0.4);
+$dark-transparent-color: rgba(0, 0, 0, 0.05);
 
 // Fonts
 
@@ -30,6 +32,8 @@ $navbar-height-mobile: 64px;
   mainBgColor: $main-bg-color;
   mainTextColor: $main-text-color;
   inputBgColor: $input-bg-color;
+  darkColor: $dark-color;
+  darkTransparentColor: $dark-transparent-color;
 
   titleFont: $title-font;
   mainFont: $main-font;
