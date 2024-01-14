@@ -1,6 +1,6 @@
 import { Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import bannerImage from '@/assets/img/main/main-bnr-image.png';
+import bannerImage from '@/assets/img/main/main-bnr-image.webp';
 
 import './index.scss';
 
