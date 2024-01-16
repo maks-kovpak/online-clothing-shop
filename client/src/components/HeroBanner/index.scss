@@ -14,4 +14,8 @@
     user-select: none;
     z-index: 0;
   }
+
+  @media screen and (max-width: $sm) {
+    height: calc(100vh - $navbar-height-mobile);
+  }
 }

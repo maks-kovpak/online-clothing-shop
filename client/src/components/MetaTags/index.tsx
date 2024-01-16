@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import SearchEngineOptimization from './SearchEngineOptimization';
+import SEO from './SEO';
 import OpenGraph from './OpenGraph';
 
 export type MetaTagsProps = {
@@ -11,7 +11,7 @@ export type MetaTagsProps = {
 const MetaTags: FC<MetaTagsProps> = ({ title, description, imagePath }) => {
   return (
     <>
-      <SearchEngineOptimization title={title} description={description} />
+      <SEO title={title} description={description} />
       <OpenGraph title={title} description={description} imagePath={imagePath} />
     </>
   );

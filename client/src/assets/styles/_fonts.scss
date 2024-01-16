@@ -5,8 +5,10 @@
   src:
     url('../fonts/Gunterz/Gunterz-Bold.otf') format('opentype'),
     url('../fonts/Gunterz/Gunterz-Bold.ttf') format('truetype');
+
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -14,8 +16,10 @@
   src:
     url('../fonts/Gunterz/Gunterz-Black.otf') format('opentype'),
     url('../fonts/Gunterz/Gunterz-Black.ttf') format('truetype');
+
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 
 // Inter
@@ -26,8 +30,10 @@
     url('../fonts/Inter/Inter-Regular.woff2') format('woff2'),
     url('../fonts/Inter/Inter-Regular.woff') format('woff'),
     url('../fonts/Inter/Inter-Regular.ttf') format('truetype');
+
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -36,8 +42,10 @@
     url('../fonts/Inter/Inter-Italic.woff2') format('woff2'),
     url('../fonts/Inter/Inter-Italic.woff') format('woff'),
     url('../fonts/Inter/Inter-Italic.ttf') format('truetype');
+
   font-weight: 400;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -46,8 +54,10 @@
     url('../fonts/Inter/Inter-Medium.woff2') format('woff2'),
     url('../fonts/Inter/Inter-Medium.woff') format('woff'),
     url('../fonts/Inter/Inter-Medium.ttf') format('truetype');
+
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -56,8 +66,10 @@
     url('../fonts/Inter/Inter-MediumItalic.woff2') format('woff2'),
     url('../fonts/Inter/Inter-MediumItalic.woff') format('woff'),
     url('../fonts/Inter/Inter-MediumItalic.ttf') format('truetype');
+
   font-weight: 500;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -66,8 +78,10 @@
     url('../fonts/Inter/Inter-Bold.woff2') format('woff2'),
     url('../fonts/Inter/Inter-Bold.woff') format('woff'),
     url('../fonts/Inter/Inter-Bold.ttf') format('truetype');
+
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -76,6 +90,8 @@
     url('../fonts/Inter/Inter-BoldItalic.woff2') format('woff2'),
     url('../fonts/Inter/Inter-BoldItalic.woff') format('woff'),
     url('../fonts/Inter/Inter-BoldItalic.ttf') format('truetype');
+
   font-weight: 700;
   font-style: italic;
+  font-display: swap;
 }
