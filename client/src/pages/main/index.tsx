@@ -9,7 +9,7 @@ const MainPage = () => {
         description="Find clothes that matches your styles"
         imagePath="/opengraph/og-image-main.webp"
       />
-      
+
       <HeroBanner />
     </main>
   );
