@@ -2,9 +2,9 @@ name: Check frontend build
 
 on:
   push:
-    branches: ['main']
+    branches: [ 'main' ]
   pull_request:
-    branches: ['main']
+    branches: [ 'main' ]
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [ 16.x, 18.x ]
 
     steps:
       - uses: actions/checkout@v3
@@ -21,7 +21,10 @@ jobs:
         run: yarn install
 
       - name: Check Prettier formatting
-        run: yarn prettier . --check
+        run: yarn prettier ./client --check
+
+      - name: Check Eslint
+        run: yarn workspace client lint
 
       - name: Build production bundle
         run: yarn workspace client build
