@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
 import type { FC } from 'react';
-import type { MetaTagsProps } from '@/components/MetaTags';
+import type { MetaTagsProps } from '@/components/features/MetaTags';
 
 const SEO: FC<Omit<MetaTagsProps, 'imagePath'>> = ({ title, description }) => {
   const { i18n } = useTranslation();

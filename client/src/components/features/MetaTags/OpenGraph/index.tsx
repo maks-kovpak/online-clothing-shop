@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { LANGUAGES } from '@/lib/constants';
 import type { FC } from 'react';
-import type { MetaTagsProps } from '@/components/MetaTags';
+import type { MetaTagsProps } from '@/components/features/MetaTags';
 
 const OpenGraph: FC<MetaTagsProps> = ({ title, description, imagePath }) => {
   return (

@@ -2,10 +2,10 @@ import { Drawer, Menu } from 'antd';
 import type { Dispatch, FC, SetStateAction } from 'react';
 import useBreakpoints from '@/lib/hooks/useBreakpoints';
 import useNavbarConfig from '@/lib/hooks/useNavbarConfig';
-import navbarConfig from '../Navbar/config';
+import navbarConfig from '@/components/layout/Navbar/config';
 import { v4 as uuidv4 } from 'uuid';
 import { NavLink } from 'react-router-dom';
-import LanguageSelect from '../LanguageSelect';
+import LanguageSelect from '@/components/features/LanguageSelect';
 
 import logo from '@/assets/img/logo.svg';
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg?react';

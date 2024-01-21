@@ -4,7 +4,7 @@ import { Flex } from 'antd';
 
 import Navbar from '../Navbar';
 import NavDrawer from '../NavDrawer';
-import LanguageSelect from '../LanguageSelect';
+import LanguageSelect from '../../features/LanguageSelect';
 import { Input } from '@/ui';
 
 import logo from '@/assets/img/logo.svg';

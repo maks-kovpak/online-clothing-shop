@@ -1,5 +1,5 @@
-import HeroBanner from '@/components/HeroBanner';
-import MetaTags from '@/components/MetaTags';
+import HeroBanner from '@/components/features/HeroBanner';
+import MetaTags from '@/components/features/MetaTags';
 
 const MainPage = () => {
   return (
