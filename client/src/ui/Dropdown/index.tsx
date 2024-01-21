@@ -1,15 +1,16 @@
-import type { DropdownProps, MenuProps } from 'antd';
+import type { DropdownProps as AntDropdownProps, MenuProps } from 'antd';
 import { Dropdown as AntDropdown, Space } from 'antd';
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg?react';
 import './index.scss';
 
-const Dropdown: FC<{
+type DropdownProps = AntDropdownProps & {
   children: ReactNode;
   items: MenuProps['items'];
   menu?: Omit<MenuProps, 'items'>;
-  props?: Omit<DropdownProps, 'menu' | 'placement' | 'arrow'>;
-}> = ({ children, items, menu, ...props }) => {
+};
+
+const Dropdown: FC<DropdownProps> = ({ children, items, menu, ...props }) => {
   return (
     <AntDropdown menu={{ items, ...menu }} placement="bottom" arrow={{ pointAtCenter: true }} {...props}>
       <Space>

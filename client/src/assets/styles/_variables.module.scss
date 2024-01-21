@@ -1,5 +1,8 @@
 // Colors
 
+$primary-black-color: black;
+$primary-white-color: white;
+
 $main-bg-color: white;
 $main-text-color: black;
 $input-bg-color: #f0f0f0;
@@ -14,7 +17,7 @@ $main-font: 'Inter', system-ui, sans-serif;
 
 // Breakpoints
 
-$xs: 0;
+$xs: 0px;
 $sm: 576px;
 $md: 768px;
 $lg: 992px;
@@ -29,6 +32,8 @@ $navbar-height-mobile: 64px;
 // Export
 
 :export {
+  primaryBlackColor: $primary-black-color;
+  primaryWhiteColor: $primary-white-color;
   mainBgColor: $main-bg-color;
   mainTextColor: $main-text-color;
   inputBgColor: $input-bg-color;

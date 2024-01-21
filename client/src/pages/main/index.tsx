@@ -5,7 +5,7 @@ const MainPage = () => {
   return (
     <main>
       <MetaTags
-        title="Shop.co"
+        title="SHOP.CO | Clothes for you"
         description="Find clothes that matches your styles"
         imagePath="/opengraph/og-image-main.webp"
       />
