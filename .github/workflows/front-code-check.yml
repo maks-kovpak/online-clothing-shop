@@ -1,0 +1,24 @@
+name: Check frontend build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run install
+      run: yarn install
+    
+    - name: Build production bundle
+      run: yarn workspace client build
