@@ -15,9 +15,14 @@ $dark-transparent-color: rgba(0, 0, 0, 0.05);
 $title-font: 'Gunterz', system-ui, sans-serif;
 $main-font: 'Inter', system-ui, sans-serif;
 
+// Font sizes (viewport width: min - 390px, max - 1440px)
+// https://clamp.font-size.app/
+
+$font-size-lg: clamp(1.625rem, 1.1607rem + 1.9048vw, 2.875rem); // 26px -> 46px
+
 // Breakpoints
 
-$xs: 0px;
+$xs: 375px;
 $sm: 576px;
 $md: 768px;
 $lg: 992px;
@@ -42,6 +47,8 @@ $navbar-height-mobile: 64px;
 
   titleFont: $title-font;
   mainFont: $main-font;
+
+  fontSizeLg: $font-size-lg;
 
   xs: $xs;
   sm: $sm;
