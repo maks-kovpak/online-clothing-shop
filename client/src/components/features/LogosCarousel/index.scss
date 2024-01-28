@@ -4,7 +4,21 @@
   background: $primary-black-color;
 }
 
-.rfm-marquee .rfm-child:not(:last-child),
-.rfm-marquee .rfm-child:not(:first-child) {
-  margin: 10px 3rem;
+.rfm-marquee .rfm-child {
+  margin: 2.75rem 3.375rem;
+}
+
+@media screen and (max-width: $xl) {
+  .rfm-marquee .rfm-child {
+    margin: 1.25rem 2.5rem;
+  }
+}
+
+@media screen and (max-width: $md) {
+  .rfm-marquee .rfm-child {
+    margin: 1.5rem;
+  }
+  .rfm-marquee .rfm-child img {
+    height: 25px;
+  }
 }

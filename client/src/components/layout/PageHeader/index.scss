@@ -2,78 +2,83 @@
 
 header {
   background: $main-bg-color;
-  padding: 1.5rem 6.25rem;
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  height: $navbar-height;
 
-  .hamburger-menu-btn {
-    display: none;
-    min-width: 24px;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .search-mobile {
-    display: none;
-  }
-
-  @media screen and (max-width: $xxl) {
-    padding-left: 3.25rem;
-    padding-right: 3.25rem;
+  .header-inner {
+    max-width: $content-max-width;
+    margin: auto;
+    padding: 1.5rem 6.25rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    height: $navbar-height;
 
     .hamburger-menu-btn {
-      display: block;
-      scale: 1.4;
-    }
-
-    .sc-input-affix-wrapper {
-      padding: 0.5rem 1rem;
-    }
-  }
-
-  @media screen and (max-width: $lg) {
-    padding: 1.25rem 1rem;
-    gap: 1rem;
-
-    .hamburger-menu-btn {
-      display: block;
-      scale: 1;
-    }
-
-    & > img {
-      width: 115px;
-    }
-  }
-
-  @media screen and (max-width: $md) {
-    .lang-select {
       display: none;
-    }
-  }
+      min-width: 24px;
 
-  @media screen and (max-width: $sm) {
-    height: $navbar-height-mobile;
-
-    & > img {
-      width: 100px;
-    }
-
-    .sc-input-affix-wrapper {
-      display: none;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .search-mobile {
-      display: block;
+      display: none;
     }
 
-    .header-icons {
-      flex-grow: 1;
-      justify-content: end;
+    @media screen and (max-width: $xxl) {
+      padding-left: 3.25rem;
+      padding-right: 3.25rem;
+
+      .hamburger-menu-btn {
+        display: block;
+        scale: 1.4;
+      }
+
+      .sc-input-affix-wrapper {
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    @media screen and (max-width: $lg) {
+      padding: 1.25rem 1rem;
+      gap: 1rem;
+
+      .hamburger-menu-btn {
+        display: block;
+        scale: 1;
+      }
+
+      & > img {
+        width: 115px;
+      }
+    }
+
+    @media screen and (max-width: $md) {
+      .lang-select {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: $sm) {
+      height: $navbar-height-mobile;
+
+      & > img {
+        width: 100px;
+      }
+
+      .sc-input-affix-wrapper {
+        display: none;
+      }
+
+      .search-mobile {
+        display: block;
+      }
+
+      .header-icons {
+        flex-grow: 1;
+        justify-content: end;
+      }
     }
   }
 }

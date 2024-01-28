@@ -22,20 +22,22 @@ const PageHeader = () => {
   return (
     <>
       <header>
-        <HamburgerMenuButton className="hamburger-menu-btn" onClick={() => setOpenedDrawer(true)} />
+        <div className="header-inner">
+          <HamburgerMenuButton className="hamburger-menu-btn" onClick={() => setOpenedDrawer(true)} />
 
-        <img src={logo} alt="SHOP.CO" />
+          <img src={logo} alt="SHOP.CO" />
 
-        <Navbar />
-        <Input prefix={<SearchIcon fillOpacity={0.4} />} placeholder={t('SEARCH_PLACEHOLDER')} name="search" />
+          <Navbar />
+          <Input prefix={<SearchIcon fillOpacity={0.4} />} placeholder={t('SEARCH_PLACEHOLDER')} name="search" />
 
-        <Flex gap={14} align="center" className="header-icons">
-          <LanguageSelect />
-          <SearchIcon className="search-mobile" />
+          <Flex gap={14} align="center" className="header-icons">
+            <LanguageSelect />
+            <SearchIcon className="search-mobile" />
 
-          <CartIcon />
-          <UserAccountIcon />
-        </Flex>
+            <CartIcon />
+            <UserAccountIcon />
+          </Flex>
+        </div>
       </header>
 
       <NavDrawer opened={openedDrawer} setOpened={setOpenedDrawer} />

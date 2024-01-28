@@ -77,6 +77,10 @@
     }
   }
 
+  @media screen and (min-height: $sm) and (min-width: $lg) {
+    height: calc(100vh - $navbar-height);
+  }
+
   @media screen and (min-width: $lg) {
     max-height: 500px;
   }
@@ -87,10 +91,6 @@
 
   @media screen and (min-width: $xxl) {
     max-height: 750px;
-  }
-
-  @media screen and (min-height: $md) and (min-width: $lg) {
-    height: calc(100vh - $navbar-height);
   }
 
   @media screen and (max-width: $xxl) {
