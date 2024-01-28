@@ -1,6 +1,9 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import { configDotenv } from 'dotenv';
+
+configDotenv();
 
 const app = express();
 
@@ -13,4 +16,6 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(3000, () => console.log('Started server on http://localhost:3000'));
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`Started server on http://localhost:${port}`));

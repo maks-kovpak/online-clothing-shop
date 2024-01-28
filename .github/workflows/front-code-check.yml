@@ -3,6 +3,7 @@ name: Check frontend build
 on:
   push:
     branches: [ 'main' ]
+
   pull_request:
     branches: [ 'main' ]
 
@@ -22,6 +23,9 @@ jobs:
 
       - name: Check Prettier formatting
         run: yarn prettier ./client --check
+
+      - name: Check dependencies versions
+        run: yarn syncpack lint
 
       - name: Check Eslint
         run: yarn workspace client lint
