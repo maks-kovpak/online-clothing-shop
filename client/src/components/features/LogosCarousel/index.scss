@@ -1,0 +1,10 @@
+@import '@/assets/styles/_variables.module';
+
+.rfm-marquee-container {
+  background: $primary-black-color;
+}
+
+.rfm-marquee .rfm-child:not(:last-child),
+.rfm-marquee .rfm-child:not(:first-child) {
+  margin: 10px 3rem;
+}

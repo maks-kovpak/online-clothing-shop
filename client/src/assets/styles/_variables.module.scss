@@ -34,6 +34,8 @@ $xxl: 1400px;
 $navbar-height: 90px;
 $navbar-height-mobile: 64px;
 
+$content-max-width: 2000px;
+
 // Export
 
 :export {
@@ -59,4 +61,5 @@ $navbar-height-mobile: 64px;
 
   navbarHeight: $navbar-height;
   navbarHeightMobile: $navbar-height-mobile;
+  contentMaxWidth: $content-max-width;
 }

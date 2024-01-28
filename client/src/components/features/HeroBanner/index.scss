@@ -1,10 +1,15 @@
 @import '@/assets/styles/_variables.module';
 
+.banner-wrapper {
+  background: $banner-bg-color;
+}
+
 .hero-banner {
   --spacing: 6.25rem;
 
-  background: $banner-bg-color;
-  height: calc(100vh - $navbar-height);
+  overflow: hidden;
+  max-width: $content-max-width;
+  margin: auto;
   position: relative;
   display: flex;
   gap: 2rem;
@@ -67,7 +72,25 @@
     img {
       user-select: none;
       width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
+  }
+
+  @media screen and (min-width: $lg) {
+    max-height: 500px;
+  }
+
+  @media screen and (min-width: $xl) {
+    max-height: 600px;
+  }
+
+  @media screen and (min-width: $xxl) {
+    max-height: 750px;
+  }
+
+  @media screen and (min-height: $md) and (min-width: $lg) {
+    height: calc(100vh - $navbar-height);
   }
 
   @media screen and (max-width: $xxl) {
