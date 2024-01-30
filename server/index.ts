@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 
 /* Configurations */
 
@@ -26,7 +26,7 @@ app.use('/static', express.static(path.join(__dirname, 'public/static')));
 
 /* Mongo DB */
 
-const clientOptions = {
+const clientOptions: ConnectOptions = {
   serverApi: {
     version: '1',
     strict: true,
@@ -37,7 +37,7 @@ const clientOptions = {
 async function main() {
   try {
     // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
-    await mongoose.connect(process.env.MONGO_URI, clientOptions);
+    await mongoose.connect(process.env.MONGO_URI!, clientOptions);
     await mongoose.connection.db.admin().command({ ping: 1 });
     console.log('Pinged your deployment. You successfully connected to MongoDB!');
   } finally {
