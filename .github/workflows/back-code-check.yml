@@ -21,6 +21,9 @@ jobs:
       - name: Run install
         run: yarn install
 
+      - name: Check dependencies versions
+        run: yarn syncpack lint
+
       - name: Check Prettier formatting
         run: yarn prettier ./server --check
 
