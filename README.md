@@ -32,36 +32,36 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/maks-kovpak/online-clothing-shop.git
-    ```
+   ```bash
+   git clone https://github.com/maks-kovpak/online-clothing-shop.git
+   ```
 
 2. Navigate to the project directory and install dependencies:
 
-    ```bash
-    cd online-clothing-shop
-    yarn install
-    ```
+   ```bash
+   cd online-clothing-shop
+   yarn install
+   ```
 
 3. Configure environment variables:
 
-    - Create a `.env` file in both the `client` and `server` directores
-    - Copy the content of the `dist.env` file to your local `.env` file (in each directory)
-    - Set custom values for some variables
+   - Create a `.env` file in both the `client` and `server` directores
+   - Copy the content of the `dist.env` file to your local `.env` file (in each directory)
+   - Set custom values for some variables
 
 4. Start the development servers:
 
-    - For the client:
+   - For the client:
 
-        ```bash
-        yarn client:dev
-        ```
+     ```bash
+     yarn client:dev
+     ```
 
-    - For the server:
+   - For the server:
 
-        ```bash
-        yarn server:dev
-        ```
+     ```bash
+     yarn server:dev
+     ```
 
 5. Visit [http://localhost:5173](http://localhost:5173) in your browser to access the application.
 
