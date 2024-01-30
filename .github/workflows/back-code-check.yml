@@ -1,4 +1,4 @@
-name: Frontend code checking
+name: Backend code checking
 
 on:
   push:
@@ -22,13 +22,7 @@ jobs:
         run: yarn install
 
       - name: Check Prettier formatting
-        run: yarn prettier ./client --check
-
-      - name: Check dependencies versions
-        run: yarn syncpack lint
-
-      - name: Check Eslint
-        run: yarn workspace client lint
+        run: yarn prettier ./server --check
 
       - name: Build production bundle
-        run: yarn workspace client build
+        run: yarn workspace server build
