@@ -45,8 +45,9 @@ Before you begin, ensure you have the following installed:
 
 3. Configure environment variables:
 
-   - Create a `.env` file in both the `client` and `server` directores
-   - Copy the content of the `dist.env` file to your local `.env` file (in each directory)
+   - Create a `.env` file in both the `client` and `server` directores.
+   - In the client folder, the environment variables are exposed in the `vite-env.d.ts` file
+   - For the server folder, copy the content of the `dist.env` file to your local `.env` file
    - Set custom values for some variables
 
 4. Start the development servers:
