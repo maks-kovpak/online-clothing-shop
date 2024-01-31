@@ -24,7 +24,7 @@ jobs:
       - name: Check Prettier formatting
         run: yarn prettier ./client --check
 
-      - name: Check Eslint
+      - name: Check ESLint
         run: yarn workspace client lint
 
       - name: Build production bundle

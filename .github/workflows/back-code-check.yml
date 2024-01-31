@@ -27,5 +27,8 @@ jobs:
       - name: Check Prettier formatting
         run: yarn prettier ./server --check
 
+      - name: Check ESLint
+        run: yarn workspace server lint
+
       - name: Build production bundle
         run: yarn workspace server build
