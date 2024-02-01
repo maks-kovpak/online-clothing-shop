@@ -1,6 +1,6 @@
-import HeroBanner from '@/components/features/HeroBanner';
 import MetaTags from '@/components/features/MetaTags';
-import LogosCarousel from '@/components/features/LogosCarousel';
+import HeroBanner from './containers/HeroBanner';
+import LogosCarousel from './containers/LogosCarousel';
 
 const MainPage = () => {
   return (
