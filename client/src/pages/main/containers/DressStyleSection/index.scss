@@ -1,0 +1,85 @@
+@import '@/assets/styles/_variables.module';
+
+.dress-style {
+  background: $input-bg-color;
+  border-radius: 40px;
+  padding: 4.375rem 4rem;
+  margin-top: $primary-section-margin-lg;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 3rem;
+  }
+
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    border-radius: 20px;
+
+    .dress-style-card {
+      display: block;
+      height: 290px;
+      width: 50%;
+      overflow: hidden;
+      flex-grow: 1;
+      border-radius: 20px;
+      position: relative;
+      background-color: $primary-white-color;
+      text-decoration: none;
+      color: $primary-black-color;
+      transition:
+        transform 300ms ease,
+        box-shadow 300ms ease;
+
+      &:first-child,
+      &:last-child {
+        flex-grow: 0;
+        width: 40%;
+      }
+
+      &:hover {
+        transform: scale(1.01);
+        box-shadow: 0 0 15px rgba(171, 171, 171, 0.6);
+      }
+
+      h3 {
+        position: absolute;
+        top: 1.563rem;
+        left: 2.25rem;
+        font-family: $main-font !important;
+        font-weight: 700;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  @media screen and (max-width: $lg) {
+    padding: 3rem 2rem;
+  }
+
+  @media screen and (max-width: $md) {
+    margin-top: $primary-section-margin-sm;
+    border-radius: 20px;
+    padding: 2.5rem 1.5rem;
+
+    h2 {
+      margin-bottom: 1.75rem;
+    }
+
+    .cards-container {
+      flex-direction: column;
+
+      .dress-style-card {
+        width: 100% !important;
+        height: auto;
+        aspect-ratio: 1.8 / 1;
+      }
+    }
+  }
+}

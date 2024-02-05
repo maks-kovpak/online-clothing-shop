@@ -17,6 +17,12 @@ body {
   background-color: $main-bg-color;
 }
 
+.primary-section {
+  width: 85%;
+  margin: auto auto $primary-section-margin-lg;
+  max-width: $content-max-width;
+}
+
 a {
   text-decoration: none;
 }
@@ -31,5 +37,42 @@ h6 {
 }
 
 h1 {
-  font-size: $font-size-lg !important;
+  font-size: $font-size-1 !important;
+}
+
+h2 {
+  font-size: $font-size-2 !important;
+}
+
+h3 {
+  font-size: $font-size-3 !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media screen and (max-width: $xl) {
+  .primary-section {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: $md) {
+  .primary-section {
+    width: 95%;
+    margin-bottom: $primary-section-margin-sm;
+  }
 }

@@ -18,7 +18,9 @@ $main-font: 'Inter', system-ui, sans-serif;
 // Font sizes (viewport width: min - 390px, max - 1440px)
 // https://clamp.font-size.app/
 
-$font-size-lg: clamp(1.625rem, 1.1607rem + 1.9048vw, 2.875rem); // 26px -> 46px
+$font-size-1: clamp(1.625rem, 1.1607rem + 1.9048vw, 2.875rem); // 26px -> 46px
+$font-size-2: clamp(1.5rem, 1.2214rem + 1.1429vw, 2.25rem); // 24px -> 36px
+$font-size-3: clamp(1.3125rem, 1.0571rem + 1.0476vw, 2rem); // 21px -> 32px
 
 // Breakpoints
 
@@ -33,10 +35,11 @@ $xxl: 1400px;
 
 $navbar-height: 90px;
 $navbar-height-mobile: 64px;
-
 $content-max-width: 2000px;
+$primary-section-margin-lg: 80px;
+$primary-section-margin-sm: 50px;
 
-// Export
+// Export (only needed variables)
 
 :export {
   primaryBlackColor: $primary-black-color;
@@ -50,16 +53,10 @@ $content-max-width: 2000px;
   titleFont: $title-font;
   mainFont: $main-font;
 
-  fontSizeLg: $font-size-lg;
-
   xs: $xs;
   sm: $sm;
   md: $md;
   lg: $lg;
   xl: $xl;
   xxl: $xxl;
-
-  navbarHeight: $navbar-height;
-  navbarHeightMobile: $navbar-height-mobile;
-  contentMaxWidth: $content-max-width;
 }
