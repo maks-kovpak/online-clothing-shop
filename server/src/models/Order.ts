@@ -1,9 +1,18 @@
 import mongoose, { Schema, Types } from 'mongoose';
-import { OrderStatus } from './types.js';
+import { OrderStatus } from '../lib/types/models.js';
 
-const OrdersSchema = new Schema(
+export interface IOrder {
+  clientId: Types.ObjectId;
+  address: string;
+  status: OrderStatus;
+  amount: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const OrdersSchema = new Schema<IOrder>(
   {
-    clientId: { type: Types.ObjectId, ref: 'User', required: true },
+    clientId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     address: { type: String, required: true },
     status: { type: String, required: true, enum: Object.values(OrderStatus) },
     amount: { type: Number, required: true, min: 0 },
@@ -11,6 +20,6 @@ const OrdersSchema = new Schema(
   { timestamps: true }
 );
 
-const Order = mongoose.model('FavoriteList', OrdersSchema);
+const Order = mongoose.model<IOrder>('FavoriteList', OrdersSchema);
 
 export default Order;

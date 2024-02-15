@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { NextFunction, Request, Response } from 'express';
 import { Error } from 'mongoose';
 import User from '../models/User.js';
-import ApiError from '../lib/ApiError.js';
+import ApiError from '../lib/errors/ApiError.js';
 
 export default class UserController {
   static async register(req: Request, res: Response, next: NextFunction) {

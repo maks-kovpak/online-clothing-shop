@@ -1,6 +1,15 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, Types } from 'mongoose';
 
-const CommentsSchema = new Schema(
+export interface IComment {
+  productId: Types.ObjectId;
+  userId: Types.ObjectId;
+  rating: number;
+  text: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const CommentsSchema = new Schema<IComment>(
   {
     productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
@@ -10,6 +19,6 @@ const CommentsSchema = new Schema(
   { timestamps: true }
 );
 
-const Comments = mongoose.model('OrderItems', CommentsSchema);
+const Comments = mongoose.model<IComment>('OrderItems', CommentsSchema);
 
 export default Comments;

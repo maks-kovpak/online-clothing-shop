@@ -1,7 +1,15 @@
-import mongoose, { Schema } from 'mongoose';
-import { ClothingSize } from './types.js';
+import mongoose, { Schema, Types } from 'mongoose';
+import { ClothingSize } from '../lib/types/models.js';
 
-const ProductOptionsSchema = new Schema({
+export interface IProductOptions {
+  productId: Types.ObjectId;
+  color: string;
+  size: ClothingSize;
+  isAvailable: boolean;
+  images: string[];
+}
+
+const ProductOptionsSchema = new Schema<IProductOptions>({
   productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
   color: { type: String, required: true, match: /^#?([a-f0-9]{6}|[a-f0-9]{3})$/ },
   size: { type: String, required: true, enum: Object.values(ClothingSize) },
@@ -9,6 +17,6 @@ const ProductOptionsSchema = new Schema({
   images: [{ type: String }],
 });
 
-const ProductOptionsList = mongoose.model('FavoriteList', ProductOptionsSchema);
+const ProductOptionsList = mongoose.model<IProductOptions>('FavoriteList', ProductOptionsSchema);
 
 export default ProductOptionsList;

@@ -1,7 +1,19 @@
 import mongoose, { Schema } from 'mongoose';
-import { ClothingSize, ClothingStyle, ClothingType } from './types.js';
+import { ClothingSize, ClothingStyle, ClothingType } from '../lib/types/models.js';
 
-const ProductSchema = new Schema({
+export interface IProduct {
+  name: string;
+  colors: string[];
+  type: ClothingType;
+  sizes: ClothingSize[];
+  price: number;
+  style: ClothingStyle;
+  discount?: number;
+  articleNumber: string;
+  public: boolean;
+}
+
+const ProductSchema = new Schema<IProduct>({
   name: { type: String, required: true },
   colors: [{ type: String, required: true, match: /^#?([a-f0-9]{6}|[a-f0-9]{3})$/ }],
   type: { type: String, required: true, enum: Object.values(ClothingType) },
@@ -13,6 +25,6 @@ const ProductSchema = new Schema({
   public: { type: Boolean, required: true },
 });
 
-const Product = mongoose.model('Product', ProductSchema);
+const Product = mongoose.model<IProduct>('Product', ProductSchema);
 
 export default Product;

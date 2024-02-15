@@ -1,7 +1,18 @@
-import mongoose, { Schema } from 'mongoose';
-import { UserRole } from './types.js';
+import mongoose, { Schema, Types } from 'mongoose';
+import { UserRole } from '../lib/types/models.js';
 
-const UserSchema = new Schema(
+export interface IUser {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  role: UserRole;
+  favoritesList: Types.ObjectId[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const UserSchema = new Schema<IUser>(
   {
     name: { type: String, required: true },
     username: { type: String, required: true, unique: true, match: /^[a-zA-Z-]+$/ },
@@ -13,6 +24,6 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model<IUser>('User', UserSchema);
 
 export default User;
