@@ -6,6 +6,8 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import mongoose, { ConnectOptions } from 'mongoose';
+import mainRouter from './routes/index.js';
+import errorHandler from './middlewares/errorHandler.js';
 
 /* Configurations */
 
@@ -23,6 +25,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
 app.use(cors());
 app.use('/static', express.static(path.join(__dirname, 'public/static')));
+app.use(errorHandler);
 
 /* Mongo DB */
 
@@ -40,9 +43,9 @@ async function main() {
     await mongoose.connect(process.env.MONGO_URI!, clientOptions);
     await mongoose.connection.db.admin().command({ ping: 1 });
     console.log('Pinged your deployment. You successfully connected to MongoDB!');
-  } finally {
-    // Ensures that the client will close when you finish/error
+  } catch (error) {
     await mongoose.disconnect();
+    console.dir(error);
   }
 }
 
@@ -50,8 +53,10 @@ async function main() {
 
 const PORT = process.env.PORT || 3000;
 
+app.use('/api/v1', mainRouter);
+
 function start() {
   app.listen(PORT, () => console.log(`Started server on http://localhost:${PORT}`));
 }
 
-main().then(start).catch(console.dir);
+main().then(start);
