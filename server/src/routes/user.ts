@@ -4,11 +4,7 @@ import UserController from '../controllers/UserController.js';
 const userRouter = Router();
 
 /* Get */
-userRouter.get('/', UserController.getAll);
-userRouter.get('/:id', UserController.getOne);
-
-/* Post */
-userRouter.post('/', UserController.register);
+userRouter.get('/:id', UserController.get);
 
 /* Delete */
 userRouter.delete('/:id', UserController.delete);
