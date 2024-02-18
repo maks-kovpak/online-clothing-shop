@@ -33,6 +33,7 @@ app.use(errorHandler); // Error handling middleware
 /* Mongo DB */
 
 const clientOptions: ConnectOptions = {
+  dbName: 'shopco',
   serverApi: {
     version: '1',
     strict: true,

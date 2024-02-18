@@ -9,7 +9,7 @@ const AuthController = {
   register: async (req: RequestWithBody<OmitId<IUser>>, res: Response<{ message: string }>, next: NextFunction) => {
     try {
       const salt = await bcrypt.genSalt();
-      const passwordHash = bcrypt.hash(req.body.password, salt);
+      const passwordHash = await bcrypt.hash(req.body.password, salt);
 
       const createdUser = await User.create({ ...req.body, password: passwordHash });
       await createdUser.save();

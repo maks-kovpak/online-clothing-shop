@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 import ApiError from '../lib/errors/ApiError.js';
 
-async function verifyToken(req: Request<unknown, unknown, { user: boolean }>, res: Response, next: NextFunction) {
+async function verifyToken(req: Request, res: Response, next: NextFunction) {
   try {
     let token = req.header('Authorization');
 
@@ -17,7 +17,7 @@ async function verifyToken(req: Request<unknown, unknown, { user: boolean }>, re
     req.user = jwt.verify(token, process.env.JWT_SECRET as string);
     next();
   } catch (err) {
-    ApiError.internal((err as Error).message);
+    next(ApiError.internal((err as Error).message));
   }
 }
 
