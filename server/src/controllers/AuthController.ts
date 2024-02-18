@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import ApiError from '../lib/errors/ApiError.js';
 import User, { type IUser } from '../models/User.js';
 import type { NextFunction, Response } from 'express';
-import type { OmitId, PartialBy, RequestWithBody } from '../lib/types/utils.js';
+import type { OmitId, PartialBy } from '../lib/types/utils.js';
 
 const AuthController = {
   register: async (req: RequestWithBody<OmitId<IUser>>, res: Response<{ message: string }>, next: NextFunction) => {

@@ -14,8 +14,6 @@ async function verifyToken(req: Request<unknown, unknown, { user: boolean }>, re
       token = token.slice(7, token.length).trimStart();
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     req.user = jwt.verify(token, process.env.JWT_SECRET as string);
     next();
   } catch (err) {
