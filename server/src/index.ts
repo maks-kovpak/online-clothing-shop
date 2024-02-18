@@ -24,8 +24,11 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
 app.use(cors());
+
 app.use('/static', express.static(path.join(__dirname, 'public/static')));
-app.use(errorHandler);
+app.use('/api', mainRouter);
+
+app.use(errorHandler); // Error handling middleware
 
 /* Mongo DB */
 
@@ -52,8 +55,6 @@ async function main() {
 /* Start the server */
 
 const PORT = process.env.PORT || 3000;
-
-app.use('/api/v1', mainRouter);
 
 function start() {
   app.listen(PORT, () => console.log(`Started server on http://localhost:${PORT}`));
