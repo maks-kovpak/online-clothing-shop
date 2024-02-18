@@ -29,15 +29,13 @@ const AuthController = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        next(ApiError.badRequest('User does not exist'));
-        return;
+        return next(ApiError.badRequest('User does not exist'));
       }
 
-      const isMatch = bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        next(ApiError.badRequest('Invalid credentials'));
-        return;
+        return next(ApiError.badRequest('Invalid credentials'));
       }
 
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string);

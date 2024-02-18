@@ -2,6 +2,7 @@ import mongoose, { Schema, Types } from 'mongoose';
 import { OrderStatus } from '../lib/types/models.js';
 
 export interface IOrder {
+  _id: Types.ObjectId;
   clientId: Types.ObjectId;
   address: string;
   status: OrderStatus;

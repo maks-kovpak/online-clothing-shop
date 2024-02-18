@@ -1,6 +1,7 @@
 import mongoose, { Schema, Types } from 'mongoose';
 
 export interface IOrderItems {
+  _id: Types.ObjectId;
   productOptionId: Types.ObjectId;
   orderId: Types.ObjectId;
   count: number;

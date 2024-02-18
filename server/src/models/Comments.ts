@@ -1,6 +1,7 @@
 import mongoose, { Schema, Types } from 'mongoose';
 
 export interface IComment {
+  _id: Types.ObjectId;
   productId: Types.ObjectId;
   userId: Types.ObjectId;
   rating: number;

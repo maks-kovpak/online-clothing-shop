@@ -1,7 +1,8 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, Types } from 'mongoose';
 import { ClothingSize, ClothingStyle, ClothingType } from '../lib/types/models.js';
 
 export interface IProduct {
+  _id: Types.ObjectId;
   name: string;
   colors: string[];
   type: ClothingType;

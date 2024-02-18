@@ -2,6 +2,7 @@ import mongoose, { Schema, Types } from 'mongoose';
 import { ClothingSize } from '../lib/types/models.js';
 
 export interface IProductOptions {
+  _id: Types.ObjectId;
   productId: Types.ObjectId;
   color: string;
   size: ClothingSize;
