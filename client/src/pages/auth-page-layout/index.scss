@@ -1,0 +1,41 @@
+@use 'sass:color';
+@import '@/assets/styles/_variables.module';
+
+.user-auth-section {
+  display: flex;
+  height: calc(100vh - $navbar-height);
+  position: relative;
+
+  .bnr-image {
+    width: 50%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .auth-form {
+    position: relative;
+    width: 50%;
+    display: flex;
+    align-items: center;
+
+    .inner {
+      width: 80%;
+      margin: auto;
+      border-radius: 10px;
+      border: 1px solid color.change($primary-black-color, $alpha: 0.1);
+      padding: 2rem;
+
+      .form-text {
+        margin-bottom: 3rem;
+
+        h2 {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

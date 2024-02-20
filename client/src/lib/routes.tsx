@@ -2,6 +2,8 @@ import { Navigate, RouteObject } from 'react-router-dom';
 import App from '../App.tsx';
 import paths from './paths.ts';
 import MainPage from '@/pages/main/index.tsx';
+import SignUpPage from '@/pages/signup';
+import LoginPage from '@/pages/login';
 
 const routes: Array<RouteObject> = [
   {
@@ -11,6 +13,14 @@ const routes: Array<RouteObject> = [
       {
         path: paths.main,
         element: <MainPage />,
+      },
+      {
+        path: paths.signUp,
+        element: <SignUpPage />,
+      },
+      {
+        path: paths.login,
+        element: <LoginPage />,
       },
       {
         path: paths.other,

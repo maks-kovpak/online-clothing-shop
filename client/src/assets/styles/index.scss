@@ -27,13 +27,15 @@ a {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: $title-font !important;
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-family: $title-font !important;
+  }
+
+  h#{$i}.secondary {
+    font-family: $main-font !important;
+    font-weight: 900;
+  }
 }
 
 h1 {

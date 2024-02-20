@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flex } from 'antd';
+import { NavLink } from 'react-router-dom';
 
 import Navbar from '../Navbar';
 import NavDrawer from '../NavDrawer';
 import LanguageSelect from '../../features/LanguageSelect';
 import { Input } from '@/ui';
+import paths from '@/lib/paths';
 
 import logo from '@/assets/img/logo.svg';
 import SearchIcon from '@/assets/icons/search.svg?react';
@@ -25,7 +27,9 @@ const PageHeader = () => {
         <div className="header-inner">
           <HamburgerMenuButton className="hamburger-menu-btn" onClick={() => setOpenedDrawer(true)} />
 
-          <img src={logo} alt="SHOP.CO" />
+          <NavLink to={paths.main}>
+            <img src={logo} alt="SHOP.CO" />
+          </NavLink>
 
           <Navbar />
           <Input prefix={<SearchIcon fillOpacity={0.4} />} placeholder={t('SEARCH_PLACEHOLDER')} name="search" />

@@ -29,6 +29,11 @@ header {
       display: none;
     }
 
+    @media screen and (min-width: 2300px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
     @media screen and (max-width: $xxl) {
       padding-left: 3.25rem;
       padding-right: 3.25rem;
