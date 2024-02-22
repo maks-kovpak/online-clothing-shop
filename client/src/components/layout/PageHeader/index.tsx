@@ -32,7 +32,13 @@ const PageHeader = () => {
           </NavLink>
 
           <Navbar />
-          <Input prefix={<SearchIcon fillOpacity={0.4} />} placeholder={t('SEARCH_PLACEHOLDER')} name="search" />
+          
+          <Input
+            className="gray-input"
+            prefix={<SearchIcon fillOpacity={0.4} />}
+            placeholder={t('SEARCH_PLACEHOLDER')}
+            name="search"
+          />
 
           <Flex gap={14} align="center" className="header-icons">
             <LanguageSelect />

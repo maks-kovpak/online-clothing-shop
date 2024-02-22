@@ -1,5 +1,6 @@
-import AuthPageLayout from '@/pages/auth-page-layout';
+import AuthPageLayout from '@/components/features/AuthPageLayout';
 import { Form, Typography } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Input } from '@/ui';
 
 const LoginForm = () => {
@@ -13,8 +14,29 @@ const LoginForm = () => {
       </div>
 
       <Form layout="vertical" autoComplete="off">
-        <Form.Item name="email" validateFirst rules={[{ type: 'email', message: 'Email is not valid' }]}>
-          <Input placeholder="Your email" size="large" />
+        <Form.Item
+          name="email"
+          rules={[
+            { type: 'email', message: 'Email is not valid' },
+            { required: true, message: 'Email is required' },
+          ]}
+          validateFirst
+        >
+          <Input placeholder="Your email" />
+        </Form.Item>
+
+        <Form.Item
+          name="password"
+          rules={[
+            { type: 'regexp', pattern: /fg/, message: 'Password does not match' },
+            { required: true, message: 'Password is required' },
+          ]}
+          validateFirst
+        >
+          <Input.Password
+            placeholder="Password"
+            iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+          />
         </Form.Item>
       </Form>
     </>

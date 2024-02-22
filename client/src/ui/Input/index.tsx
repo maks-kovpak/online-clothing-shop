@@ -5,4 +5,6 @@ const Input = (props: InputProps) => {
   return <AntInput {...props} />;
 };
 
+Input.Password = AntInput.Password;
+
 export default Input;

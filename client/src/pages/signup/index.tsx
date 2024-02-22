@@ -1,4 +1,4 @@
-import AuthPageLayout from '@/pages/auth-page-layout';
+import AuthPageLayout from '@/components/features/AuthPageLayout';
 
 const SignUpPage = () => {
   return <AuthPageLayout pageTitle={''} pageDescription={''} form={<></>} />;
