@@ -6,7 +6,7 @@ const paths = {
   sales: '/sales',
   newArrivals: '/new-arrivals',
   brands: '/brands',
-  signUp: '/signup',
+  signup: '/signup',
   login: '/login',
 } as const;
 

@@ -45,7 +45,10 @@ const PageHeader = () => {
             <SearchIcon className="search-mobile" />
 
             <CartIcon />
-            <UserAccountIcon />
+
+            <NavLink to={paths.signup} title={t('SIGN_UP')} style={{ display: 'flex' }}>
+              <UserAccountIcon />
+            </NavLink>
           </Flex>
         </div>
       </header>

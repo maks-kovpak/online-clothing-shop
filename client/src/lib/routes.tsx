@@ -15,7 +15,7 @@ const routes: Array<RouteObject> = [
         element: <MainPage />,
       },
       {
-        path: paths.signUp,
+        path: paths.signup,
         element: <SignUpPage />,
       },
       {
