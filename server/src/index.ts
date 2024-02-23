@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import mongoose, { ConnectOptions } from 'mongoose';
 import mainRouter from './routes/index.js';
 import errorHandler from './middlewares/errorHandler.js';
+import { initAdmin } from './admin/index.js';
 
 /* Configurations */
 
@@ -18,17 +19,26 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.json({ limit: '30mb' }));
-app.use(express.urlencoded({ limit: '30mb', extended: true }));
-app.use(helmet());
+// Middlewares
+app.use(helmet({ contentSecurityPolicy: false })); // TODO: change CSP settings
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
 app.use(cors());
 
+// Initialize AdminJS
+const { admin, router } = await initAdmin();
+app.use(admin.options.rootPath, router);
+
+// Body Parser
+app.use(express.json({ limit: '30mb' }));
+app.use(express.urlencoded({ limit: '30mb', extended: true }));
+
+// Routes
 app.use('/static', express.static(path.join(__dirname, 'public/static')));
 app.use('/api', mainRouter);
 
-app.use(errorHandler); // Error handling middleware
+// Error handling middleware
+app.use(errorHandler);
 
 /* Mongo DB */
 
