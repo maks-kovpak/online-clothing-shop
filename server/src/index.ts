@@ -20,7 +20,7 @@ dotenv.config();
 const app = express();
 
 // Middlewares
-app.use(helmet({ contentSecurityPolicy: false })); // TODO: change CSP settings
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
 app.use(cors());

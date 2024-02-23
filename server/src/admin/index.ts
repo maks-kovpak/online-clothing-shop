@@ -11,6 +11,10 @@ const options: AdminJSOptions = {
   rootPath: '/admin',
   resources: [],
   databases: [],
+  branding: {
+    companyName: 'Admin Panel | SHOP.CO',
+    withMadeWithLove: false,
+  },
 };
 
 const adminAuthProvider = new DefaultAuthProvider({
