@@ -3,12 +3,12 @@ import User, { type IUser } from '../models/User.js';
 import type { NextFunction, Request, Response } from 'express';
 
 const UserController = {
-  get: async (req: Request<{ id: string }>, res: Response<IUser | null>, next: NextFunction) => {
+  get: async (req: Request<{ id: string }>, res: Response<IUser>, next: NextFunction) => {
     try {
       const user = await User.findById(req.params.id);
 
       if (!user) next(ApiError.notFound('User not found'));
-      res.status(200).json(user);
+      res.status(200).json(user!);
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }

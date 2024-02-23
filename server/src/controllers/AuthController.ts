@@ -38,7 +38,7 @@ const AuthController = {
         return next(ApiError.badRequest('Invalid credentials'));
       }
 
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string);
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
       const userCopy: PartialBy<IUser, 'password'> = user;
       delete userCopy.password;
