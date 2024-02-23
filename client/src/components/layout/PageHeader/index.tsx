@@ -32,7 +32,7 @@ const PageHeader = () => {
           </NavLink>
 
           <Navbar />
-          
+
           <Input
             className="gray-input"
             prefix={<SearchIcon fillOpacity={0.4} />}
