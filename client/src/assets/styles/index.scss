@@ -1,6 +1,8 @@
 @import '@/assets/styles/_fonts';
 @import '@/assets/styles/_variables.module';
 
+/* Global styles */
+
 *,
 *::before,
 *::after {
@@ -25,7 +27,18 @@ body {
 
 a {
   text-decoration: none;
+  color: $primary-black-color;
+
+  &.underlined-link {
+    text-decoration: underline !important;
+  }
+
+  &:hover {
+    color: $link-hover-color;
+  }
 }
+
+/* Titles */
 
 @for $i from 1 through 6 {
   h#{$i} {
@@ -50,6 +63,8 @@ h3 {
   font-size: $font-size-3 !important;
 }
 
+/* Scrollbar */
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -65,6 +80,8 @@ h3 {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Media queries */
 
 @media screen and (max-width: $xl) {
   .primary-section {

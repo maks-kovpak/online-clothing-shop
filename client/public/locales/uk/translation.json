@@ -23,6 +23,8 @@
   "SIGNUP_PAGE_TITLE": "Реєстрація",
   "SIGNUP_PAGE_DESCRIPTION": "Зареєструйтеся на нашому сайті",
   "SIGNUP_FORM_TITLE": "Створити акаунт",
+  "ALREADY_HAVE_ACCOUNT": "Вже маєте акаунт?",
+  "SIGN_UP_WITH_GOOGLE": "Увійти за допомогою Google",
   "LOG_IN": "Увійти",
   "LOGIN_PAGE_TITLE": "Вхід",
   "LOGIN_PAGE_DESCRIPTION": "Увійдіть до свого облікового запису",

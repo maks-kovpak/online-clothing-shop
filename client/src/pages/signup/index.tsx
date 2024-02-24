@@ -4,10 +4,12 @@ import { Flex, Form, Typography } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Button, Input } from '@/ui';
 import { useTranslation } from 'react-i18next';
-import signupBannerImage from '@/assets/img/signup-page/page-bnr.webp';
 import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import paths from '@/lib/paths.ts';
+
+import GoogleLogo from '@/assets/icons/google.svg?react';
+import signupBannerImage from '@/assets/img/signup-page/page-bnr.webp';
 
 const SignupForm = () => {
   const { t } = useTranslation();
@@ -65,11 +67,25 @@ const SignupForm = () => {
             {t('SIGN_UP')}
           </Button>
         </Form.Item>
+
+        <Form.Item>
+          <Button
+            type="default"
+            size="large"
+            icon={<GoogleLogo width={24} height={24} />}
+            style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+            onClick={() => {}}
+          >
+            {t('SIGN_UP_WITH_GOOGLE')}
+          </Button>
+        </Form.Item>
       </Form>
 
       <Flex justify="space-between" gap="1rem" style={{ width: 'fit-content', margin: 'auto' }}>
-        <p>Already have account?</p>
-        <NavLink to={paths.login}>Log in</NavLink>
+        <p>{t('ALREADY_HAVE_ACCOUNT')}</p>
+        <NavLink to={paths.login} className="underlined-link">
+          {t('LOG_IN')}
+        </NavLink>
       </Flex>
     </>
   );

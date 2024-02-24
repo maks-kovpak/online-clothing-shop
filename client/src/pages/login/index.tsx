@@ -52,7 +52,9 @@ const LoginForm = () => {
           </Button>
         </Form.Item>
 
-        <NavLink to={''}>{t('FORGOT_PASSWORD')}</NavLink>
+        <NavLink to={''} className="underlined-link">
+          {t('FORGOT_PASSWORD')}
+        </NavLink>
       </Form>
     </>
   );
