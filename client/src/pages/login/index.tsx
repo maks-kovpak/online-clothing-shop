@@ -4,38 +4,44 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Button, Input } from '@/ui';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
-const validationRules: { email: FormRule[]; password: FormRule[] } = {
-  email: [
-    { type: 'email', message: 'Email is not valid' },
-    { required: true, message: 'Email is required' },
-  ],
-  password: [
-    { pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/g, message: 'Password is not valid' },
-    { required: true, message: 'Password is required' },
-  ],
-};
+import loginBannerImage from '@/assets/img/login-page/page-bnr.webp';
+import { useMemo } from 'react';
 
 const LoginForm = () => {
   const { t } = useTranslation();
+
+  const validationRules: Record<string, FormRule[]> = useMemo(
+    () => ({
+      email: [
+        { type: 'email', message: t('EMAIL_NOT_VALID') },
+        { required: true, message: t('FIELD_REQUIRED') },
+      ],
+      password: [
+        { pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/g, message: t('PASSWORD_NOT_VALID') },
+        { required: true, message: t('FIELD_REQUIRED') },
+      ],
+    }),
+    [t]
+  );
 
   return (
     <>
       <div className="form-text">
         <Typography.Title level={2} className="secondary">
-          Login to your account
+          {t('LOGIN_FORM_TITLE')}
         </Typography.Title>
-        <p>Enter your details below</p>
+
+        <p>{t('ENTER_YOUR_DETAILS_BELOW')}</p>
       </div>
 
       <Form layout="vertical">
         <Form.Item name="email" rules={validationRules.email} validateFirst>
-          <Input placeholder="Your email" />
+          <Input placeholder={t('YOUR_EMAIL')} />
         </Form.Item>
 
         <Form.Item name="password" rules={validationRules.password} validateFirst>
           <Input.Password
-            placeholder="Password"
+            placeholder={t('YOUR_PASSWORD')}
             iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
           />
         </Form.Item>
@@ -46,14 +52,23 @@ const LoginForm = () => {
           </Button>
         </Form.Item>
 
-        <NavLink to={''}>Forgot password?</NavLink>
+        <NavLink to={''}>{t('FORGOT_PASSWORD')}</NavLink>
       </Form>
     </>
   );
 };
 
 const LoginPage = () => {
-  return <AuthPageLayout pageTitle={'Login'} pageDescription={''} form={<LoginForm />} />;
+  const { t } = useTranslation();
+
+  return (
+    <AuthPageLayout
+      pageTitle={t('LOGIN_PAGE_TITLE')}
+      pageDescription={t('LOGIN_PAGE_DESCRIPTION')}
+      bannerImage={loginBannerImage}
+      form={<LoginForm />}
+    />
+  );
 };
 
 export default LoginPage;

@@ -20,5 +20,20 @@
   "MAIN_PAGE_TITLE": "Одяг для вас",
   "MAIN_PAGE_DESCRIPTION": "Знайдіть одяг, який відповідає вашому стилю",
   "SIGN_UP": "Зареєструватися",
-  "LOG_IN": "Увійти"
+  "SIGNUP_PAGE_TITLE": "Реєстрація",
+  "SIGNUP_PAGE_DESCRIPTION": "Зареєструйтеся на нашому сайті",
+  "SIGNUP_FORM_TITLE": "Створити акаунт",
+  "LOG_IN": "Увійти",
+  "LOGIN_PAGE_TITLE": "Вхід",
+  "LOGIN_PAGE_DESCRIPTION": "Увійдіть до свого облікового запису",
+  "LOGIN_FORM_TITLE": "Увійдіть до свого акаунту",
+  "ENTER_YOUR_DETAILS_BELOW": "Введіть свої дані нижче",
+  "YOUR_NAME": "Ваше ім'я",
+  "YOUR_EMAIL": "Ваш email",
+  "YOUR_PASSWORD": "Ваш пароль",
+  "REPEAT_PASSWORD": "Повторіть пароль",
+  "FORGOT_PASSWORD": "Забули пароль?",
+  "EMAIL_NOT_VALID": "Електронна пошта не є дійсною",
+  "PASSWORD_NOT_VALID": "Введений пароль не валідний",
+  "FIELD_REQUIRED": "Це поле є обов'язковим"
 }

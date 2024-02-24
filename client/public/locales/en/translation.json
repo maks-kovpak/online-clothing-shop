@@ -20,5 +20,20 @@
   "MAIN_PAGE_TITLE": "Clothes for you",
   "MAIN_PAGE_DESCRIPTION": "Find clothes that matches your styles",
   "SIGN_UP": "Sign up",
-  "LOG_IN": "Log in"
+  "SIGNUP_PAGE_TITLE": "Sign Up",
+  "SIGNUP_PAGE_DESCRIPTION": "Register on the website",
+  "SIGNUP_FORM_TITLE": "Create an account",
+  "LOG_IN": "Log in",
+  "LOGIN_PAGE_TITLE": "Log In",
+  "LOGIN_PAGE_DESCRIPTION": "Log in to your account",
+  "LOGIN_FORM_TITLE": "Log in to your account",
+  "ENTER_YOUR_DETAILS_BELOW": "Enter your details below",
+  "YOUR_NAME": "Your name",
+  "YOUR_EMAIL": "Your email",
+  "YOUR_PASSWORD": "Your password",
+  "REPEAT_PASSWORD": "Repeat password",
+  "FORGOT_PASSWORD": "Forgot password?",
+  "EMAIL_NOT_VALID": "Email is not valid",
+  "PASSWORD_NOT_VALID": "Password is not valid",
+  "FIELD_REQUIRED": "This field is required"
 }

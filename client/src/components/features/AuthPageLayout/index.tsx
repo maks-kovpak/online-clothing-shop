@@ -1,6 +1,5 @@
 import type { FC, ReactElement } from 'react';
 import MetaTags from '@/components/features/MetaTags';
-import authBannerImage from '@/assets/img/auth-page/auth-page-bnr.webp';
 import { useTranslation } from 'react-i18next';
 
 import './index.scss';
@@ -8,8 +7,9 @@ import './index.scss';
 const AuthPageLayout: FC<{
   pageTitle: string;
   pageDescription: string;
+  bannerImage: string;
   form: ReactElement;
-}> = ({ pageTitle, pageDescription, form }) => {
+}> = ({ pageTitle, pageDescription, bannerImage, form }) => {
   const { t } = useTranslation();
 
   return (
@@ -23,7 +23,7 @@ const AuthPageLayout: FC<{
       <main>
         <section className="user-auth-section">
           <div className="bnr-image">
-            <img src={authBannerImage} alt="" />
+            <img src={bannerImage} alt="" />
           </div>
 
           <div className="form auth-form">

@@ -2,7 +2,7 @@ import { Navigate, RouteObject } from 'react-router-dom';
 import App from '../App.tsx';
 import paths from './paths.ts';
 import MainPage from '@/pages/main/index.tsx';
-import SignUpPage from '@/pages/signup';
+import SignupPage from '@/pages/signup';
 import LoginPage from '@/pages/login';
 
 const routes: Array<RouteObject> = [
@@ -16,7 +16,7 @@ const routes: Array<RouteObject> = [
       },
       {
         path: paths.signup,
-        element: <SignUpPage />,
+        element: <SignupPage />,
       },
       {
         path: paths.login,

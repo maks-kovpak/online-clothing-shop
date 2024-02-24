@@ -5,9 +5,10 @@
   display: flex;
   height: calc(100vh - $navbar-height);
   position: relative;
+  overflow: hidden;
 
   .bnr-image {
-    width: 50%;
+    width: 40%;
 
     img {
       width: 100%;
@@ -18,16 +19,18 @@
 
   .auth-form {
     position: relative;
-    width: 50%;
+    width: 60%;
     display: flex;
     align-items: center;
+    overflow-y: auto;
 
     .inner {
-      width: 80%;
+      width: 70%;
       margin: auto;
       border-radius: 10px;
       border: 1px solid color.change($primary-black-color, $alpha: 0.1);
       padding: 2rem;
+      background: $primary-white-color;
 
       .form-text {
         margin-bottom: 3rem;
@@ -36,6 +39,34 @@
           font-weight: 600;
         }
       }
+
+      @media screen and (max-width: $xl) {
+        width: 85%;
+      }
+
+      @media screen and (max-width: $sm) {
+        width: 95%;
+      }
+
+      @media screen and (max-width: $xs) {
+        padding: 1.5rem;
+      }
     }
+  }
+
+  @media screen and (max-width: $lg) {
+    .auth-form {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .bnr-image {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: $sm) {
+    height: calc(100vh - $navbar-height-mobile);
   }
 }
