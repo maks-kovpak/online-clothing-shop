@@ -41,6 +41,14 @@
         }
       }
 
+      .submit-button-field {
+        margin-top: 3rem;
+
+        .sc-btn {
+          width: 100%;
+        }
+      }
+
       @media screen and (max-width: $xl) {
         width: 85%;
       }

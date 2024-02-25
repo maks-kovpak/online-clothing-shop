@@ -1,6 +1,6 @@
 import AuthPageLayout from '@/components/features/AuthPageLayout';
 import type { FormRule } from 'antd';
-import { Flex, Form, Typography } from 'antd';
+import { Flex, Form } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Button, Input } from '@/ui';
 import { useTranslation } from 'react-i18next';
@@ -32,14 +32,6 @@ const SignupForm = () => {
 
   return (
     <>
-      <div className="form-text">
-        <Typography.Title level={2} className="secondary">
-          {t('SIGNUP_FORM_TITLE')}
-        </Typography.Title>
-
-        <p>{t('ENTER_YOUR_DETAILS_BELOW')}</p>
-      </div>
-
       <Form layout="vertical">
         <Form.Item name="name" rules={validationRules.name} validateFirst>
           <Input placeholder={t('YOUR_NAME')} />
@@ -87,14 +79,13 @@ const SignupForm = () => {
 };
 
 const SignupPage = () => {
-  const { t } = useTranslation();
-
   return (
     <AuthPageLayout
-      pageTitle={t('SIGNUP_PAGE_TITLE')}
-      pageDescription={t('SIGNUP_PAGE_DESCRIPTION')}
+      pageTitle="SIGNUP_PAGE_TITLE"
+      pageDescription="SIGNUP_PAGE_DESCRIPTION"
       bannerImage={signupBannerImage}
       form={<SignupForm />}
+      formTitle="SIGNUP_FORM_TITLE"
     />
   );
 };
