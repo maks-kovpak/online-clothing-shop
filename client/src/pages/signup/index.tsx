@@ -10,6 +10,7 @@ import paths from '@/lib/paths.ts';
 
 import GoogleLogo from '@/assets/icons/google.svg?react';
 import signupBannerImage from '@/assets/img/signup-page/page-bnr.webp';
+import './index.scss';
 
 const SignupForm = () => {
   const { t } = useTranslation();
@@ -62,26 +63,20 @@ const SignupForm = () => {
           />
         </Form.Item>
 
-        <Form.Item style={{ marginTop: '3rem' }}>
-          <Button type="primary" htmlType="submit" size="large" style={{ width: '100%' }}>
+        <Form.Item className="submit-button-field">
+          <Button type="primary" htmlType="submit" size="large">
             {t('SIGN_UP')}
           </Button>
         </Form.Item>
 
-        <Form.Item>
-          <Button
-            type="default"
-            size="large"
-            icon={<GoogleLogo width={24} height={24} />}
-            style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            onClick={() => {}}
-          >
+        <Form.Item className="google-signup-button-field">
+          <Button type="default" size="large" icon={<GoogleLogo width={24} height={24} />} onClick={() => {}}>
             {t('SIGN_UP_WITH_GOOGLE')}
           </Button>
         </Form.Item>
       </Form>
 
-      <Flex justify="space-between" gap="1rem" style={{ width: 'fit-content', margin: 'auto' }}>
+      <Flex justify="space-between" gap="1rem" className="already-have-account">
         <p>{t('ALREADY_HAVE_ACCOUNT')}</p>
         <NavLink to={paths.login} className="underlined-link">
           {t('LOG_IN')}

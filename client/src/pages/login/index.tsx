@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next';
 import loginBannerImage from '@/assets/img/login-page/page-bnr.webp';
 import { useMemo } from 'react';
 
+import './index.scss';
+
 const LoginForm = () => {
   const { t } = useTranslation();
 
@@ -46,8 +48,8 @@ const LoginForm = () => {
           />
         </Form.Item>
 
-        <Form.Item style={{ marginTop: '3rem' }}>
-          <Button type="primary" htmlType="submit" size="large" style={{ width: '100%' }}>
+        <Form.Item className="submit-button-field">
+          <Button type="primary" htmlType="submit" size="large">
             {t('LOG_IN')}
           </Button>
         </Form.Item>
