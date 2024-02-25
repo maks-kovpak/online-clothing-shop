@@ -4,8 +4,10 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Button, Input } from '@/ui';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import loginBannerImage from '@/assets/img/login-page/page-bnr.webp';
 import { useMemo } from 'react';
+import { PASSWORD_PATTERN } from '@/lib/constants/regex';
+
+import loginBannerImage from '@/assets/img/login-page/page-bnr.webp';
 
 const LoginForm = () => {
   const { t } = useTranslation();
@@ -17,7 +19,7 @@ const LoginForm = () => {
         { required: true, message: t('FIELD_REQUIRED') },
       ],
       password: [
-        { pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/g, message: t('PASSWORD_NOT_VALID') },
+        { pattern: PASSWORD_PATTERN, message: t('PASSWORD_NOT_VALID') },
         { required: true, message: t('FIELD_REQUIRED') },
       ],
     }),
@@ -27,13 +29,14 @@ const LoginForm = () => {
   return (
     <Form layout="vertical">
       <Form.Item name="email" rules={validationRules.email} validateFirst>
-        <Input placeholder={t('YOUR_EMAIL')} />
+        <Input placeholder={t('YOUR_EMAIL')} autoComplete="email" />
       </Form.Item>
 
       <Form.Item name="password" rules={validationRules.password} validateFirst>
         <Input.Password
           placeholder={t('YOUR_PASSWORD')}
           iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+          autoComplete="current-password"
         />
       </Form.Item>
 

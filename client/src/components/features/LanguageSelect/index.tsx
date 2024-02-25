@@ -1,4 +1,4 @@
-import { LANGUAGES } from '@/lib/constants';
+import { LANGUAGES } from '@/lib/constants/languages';
 import { Select } from '@/ui';
 import { CSSProperties, FC } from 'react';
 import { useTranslation } from 'react-i18next';

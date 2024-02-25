@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { LANGUAGES } from '@/lib/constants';
+import { LANGUAGES } from '@/lib/constants/languages';
 import type { FC } from 'react';
 import type { MetaTagsProps } from '@/components/features/MetaTags';
 

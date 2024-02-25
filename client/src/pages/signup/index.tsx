@@ -6,7 +6,8 @@ import { Button, Input } from '@/ui';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
-import paths from '@/lib/paths.ts';
+import paths from '@/lib/paths';
+import { PASSWORD_PATTERN } from '@/lib/constants/regex';
 
 import GoogleLogo from '@/assets/icons/google.svg?react';
 import signupBannerImage from '@/assets/img/signup-page/page-bnr.webp';
@@ -23,7 +24,7 @@ const SignupForm = () => {
         { required: true, message: t('FIELD_REQUIRED') },
       ],
       password: [
-        { pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/g, message: t('PASSWORD_NOT_VALID') },
+        { pattern: PASSWORD_PATTERN, message: t('PASSWORD_NOT_VALID') },
         { required: true, message: t('FIELD_REQUIRED') },
       ],
     }),
@@ -34,17 +35,18 @@ const SignupForm = () => {
     <>
       <Form layout="vertical">
         <Form.Item name="name" rules={validationRules.name} validateFirst>
-          <Input placeholder={t('YOUR_NAME')} />
+          <Input placeholder={t('YOUR_NAME')} autoComplete="name" />
         </Form.Item>
 
         <Form.Item name="email" rules={validationRules.email} validateFirst>
-          <Input placeholder={t('YOUR_EMAIL')} />
+          <Input placeholder={t('YOUR_EMAIL')} autoComplete="email" />
         </Form.Item>
 
         <Form.Item name="password" rules={validationRules.password} validateFirst>
           <Input.Password
             placeholder={t('YOUR_PASSWORD')}
             iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+            autoComplete="new-password"
           />
         </Form.Item>
 
@@ -52,6 +54,7 @@ const SignupForm = () => {
           <Input.Password
             placeholder={t('REPEAT_PASSWORD')}
             iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+            autoComplete="new-password"
           />
         </Form.Item>
 
