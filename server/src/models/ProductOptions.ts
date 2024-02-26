@@ -18,6 +18,6 @@ const ProductOptionsSchema = new Schema<IProductOptions>({
   images: [{ type: String }],
 });
 
-const ProductOptionsList = mongoose.model<IProductOptions>('FavoriteList', ProductOptionsSchema);
+const ProductOptionsList = mongoose.model<IProductOptions>('ProductOptions', ProductOptionsSchema);
 
 export default ProductOptionsList;

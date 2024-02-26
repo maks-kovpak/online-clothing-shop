@@ -20,6 +20,6 @@ const CommentsSchema = new Schema<IComment>(
   { timestamps: true }
 );
 
-const Comments = mongoose.model<IComment>('OrderItems', CommentsSchema);
+const Comments = mongoose.model<IComment>('Comments', CommentsSchema);
 
 export default Comments;

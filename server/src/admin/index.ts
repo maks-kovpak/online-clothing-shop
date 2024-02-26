@@ -1,15 +1,23 @@
-import AdminJS, { type AdminJSOptions, ComponentLoader, DefaultAuthProvider } from 'adminjs';
-import User from '../models/User.js';
+import AdminJS, { ComponentLoader, DefaultAuthProvider } from 'adminjs';
+import type { AdminJSOptions } from 'adminjs';
+import AdminJSExpress from '@adminjs/express';
+import { Database, Resource } from '@adminjs/mongoose';
 import bcrypt from 'bcrypt';
 import { UserRole } from '../lib/types/models.js';
-import AdminJSExpress from '@adminjs/express';
+
+import User from '../models/User.js';
+import Product from '../models/Product.js';
+import ProductOptions from '../models/ProductOptions.js';
+import Order from '../models/Order.js';
+import OrderItems from '../models/OrderItems.js';
+import Comments from '../models/Comments.js';
 
 const componentLoader = new ComponentLoader();
 
 const options: AdminJSOptions = {
   componentLoader,
   rootPath: '/admin',
-  resources: [],
+  resources: [User, Product, ProductOptions, Order, OrderItems, Comments],
   databases: [],
   branding: {
     companyName: 'Admin Panel | SHOP.CO',
@@ -29,6 +37,8 @@ const adminAuthProvider = new DefaultAuthProvider({
 });
 
 export async function initAdmin() {
+  AdminJS.registerAdapter({ Database, Resource });
+
   const admin = new AdminJS(options);
 
   if (process.env.NODE_ENV === 'production') {
