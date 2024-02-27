@@ -13,6 +13,6 @@ const OrderItemsSchema = new Schema<IOrderItem>({
   count: { type: Number, required: true, min: 1 },
 });
 
-const OrderItems = mongoose.model<IOrderItem>('OrderItems', OrderItemsSchema);
+const OrderItems = mongoose.model<IOrderItem>('OrderItems', OrderItemsSchema, 'orderItems');
 
 export default OrderItems;

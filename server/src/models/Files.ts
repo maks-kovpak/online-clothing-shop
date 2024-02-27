@@ -18,6 +18,6 @@ const FilesSchema = new Schema<IFile>(
   { timestamps: true }
 );
 
-const Files = mongoose.model<IFile>('Files', FilesSchema);
+const Files = mongoose.model<IFile>('Files', FilesSchema, 'files');
 
 export default Files;

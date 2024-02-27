@@ -26,6 +26,6 @@ const ProductSchema = new Schema<IProduct>({
   public: { type: Boolean, required: true },
 });
 
-const Product = mongoose.model<IProduct>('Product', ProductSchema);
+const Product = mongoose.model<IProduct>('Product', ProductSchema, 'product');
 
 export default Product;

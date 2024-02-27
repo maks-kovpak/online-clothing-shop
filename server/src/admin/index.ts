@@ -5,7 +5,6 @@ import AdminJSExpress from '@adminjs/express';
 import { Database, Resource } from '@adminjs/mongoose';
 import bcrypt from 'bcrypt';
 import { UserRole } from '../lib/types/models.js';
-import { FilesResource } from './upload.js';
 
 import User from '../models/User.js';
 import Product from '../models/Product.js';
@@ -13,11 +12,13 @@ import ProductOptions from '../models/ProductOptions.js';
 import Order from '../models/Order.js';
 import OrderItems from '../models/OrderItems.js';
 import Comments from '../models/Comments.js';
+import UserResource from './resources/UserResource.js';
+import FilesResource from './resources/FilesResource.js';
 
 const options: AdminJSOptions = {
   componentLoader,
   rootPath: '/admin',
-  resources: [FilesResource, User, Product, ProductOptions, Order, OrderItems, Comments],
+  resources: [FilesResource, UserResource, Product, ProductOptions, Order, OrderItems, Comments],
   branding: {
     companyName: 'Admin Panel | SHOP.CO',
     withMadeWithLove: false,

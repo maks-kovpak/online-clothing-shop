@@ -18,6 +18,6 @@ const ProductOptionsSchema = new Schema<IProductOption>({
   images: [{ type: String }],
 });
 
-const ProductOptions = mongoose.model<IProductOption>('ProductOptions', ProductOptionsSchema);
+const ProductOptions = mongoose.model<IProductOption>('ProductOptions', ProductOptionsSchema, 'productOptions');
 
 export default ProductOptions;

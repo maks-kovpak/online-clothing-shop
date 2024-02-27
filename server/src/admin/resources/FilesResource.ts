@@ -1,8 +1,8 @@
 import uploadFileFeature, { type LocalUploadOptions } from '@adminjs/upload';
 import type { ResourceWithOptions } from 'adminjs';
-import componentLoader from './componentLoader.js';
-import Files from '../models/Files.js';
-import { ALLOWED_MIME_TYPES } from '../lib/constants.js';
+import componentLoader from '../componentLoader.js';
+import Files from '../../models/Files.js';
+import { ALLOWED_MIME_TYPES } from '../../lib/constants.js';
 
 const localProvider: LocalUploadOptions = {
   bucket: 'public/upload',
@@ -11,7 +11,7 @@ const localProvider: LocalUploadOptions = {
   },
 };
 
-export const FilesResource: ResourceWithOptions = {
+const FilesResource: ResourceWithOptions = {
   resource: Files,
   options: {
     properties: {
@@ -34,3 +34,5 @@ export const FilesResource: ResourceWithOptions = {
     }),
   ],
 };
+
+export default FilesResource;
