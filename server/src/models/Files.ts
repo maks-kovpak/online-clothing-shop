@@ -2,6 +2,7 @@ import mongoose, { Schema, Types } from 'mongoose';
 
 export interface IFile {
   _id: Types.ObjectId;
+  key: string;
   bucket: string;
   mimeType: string;
   comment: string | null;
@@ -11,9 +12,10 @@ export interface IFile {
 
 const FilesSchema = new Schema<IFile>(
   {
-    bucket: { type: String, required: true },
-    mimeType: { type: String },
-    comment: { type: String },
+    key: String,
+    bucket: String,
+    mimeType: String,
+    comment: String,
   },
   { timestamps: true }
 );

@@ -16,7 +16,7 @@ const FilesResource: ResourceWithOptions = {
   options: {
     properties: {
       bucket: { type: 'string' },
-      mime: { type: 'string', isArray: true },
+      mime: { type: 'string' },
       comment: { type: 'textarea', isSortable: false },
     },
   },
@@ -25,9 +25,8 @@ const FilesResource: ResourceWithOptions = {
       componentLoader,
       provider: { local: localProvider },
       validation: { mimeTypes: ALLOWED_MIME_TYPES },
-      multiple: true,
       properties: {
-        key: '_id',
+        key: 'key',
         bucket: 'bucket',
         mimeType: 'mimeType',
       },
