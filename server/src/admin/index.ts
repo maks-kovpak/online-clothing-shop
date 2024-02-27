@@ -1,9 +1,11 @@
-import AdminJS, { ComponentLoader, DefaultAuthProvider } from 'adminjs';
+import AdminJS, { DefaultAuthProvider } from 'adminjs';
 import type { AdminJSOptions } from 'adminjs';
+import componentLoader from './componentLoader.js';
 import AdminJSExpress from '@adminjs/express';
 import { Database, Resource } from '@adminjs/mongoose';
 import bcrypt from 'bcrypt';
 import { UserRole } from '../lib/types/models.js';
+import { FilesResource } from './upload.js';
 
 import User from '../models/User.js';
 import Product from '../models/Product.js';
@@ -12,12 +14,10 @@ import Order from '../models/Order.js';
 import OrderItems from '../models/OrderItems.js';
 import Comments from '../models/Comments.js';
 
-const componentLoader = new ComponentLoader();
-
 const options: AdminJSOptions = {
   componentLoader,
   rootPath: '/admin',
-  resources: [User, Product, ProductOptions, Order, OrderItems, Comments],
+  resources: [FilesResource, User, Product, ProductOptions, Order, OrderItems, Comments],
   branding: {
     companyName: 'Admin Panel | SHOP.CO',
     withMadeWithLove: false,

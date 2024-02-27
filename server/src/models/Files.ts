@@ -12,7 +12,7 @@ export interface IFile {
 const FilesSchema = new Schema<IFile>(
   {
     bucket: { type: String, required: true },
-    mimeType: { type: String, required: true },
+    mimeType: { type: String },
     comment: { type: String },
   },
   { timestamps: true }
