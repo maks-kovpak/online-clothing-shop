@@ -18,7 +18,6 @@ const options: AdminJSOptions = {
   componentLoader,
   rootPath: '/admin',
   resources: [User, Product, ProductOptions, Order, OrderItems, Comments],
-  databases: [],
   branding: {
     companyName: 'Admin Panel | SHOP.CO',
     withMadeWithLove: false,
@@ -56,9 +55,14 @@ export async function initAdmin() {
     },
     null,
     {
-      secret: process.env.COOKIE_SECRET,
       saveUninitialized: true,
       resave: true,
+      secret: process.env.COOKIE_SECRET,
+      cookie: {
+        httpOnly: process.env.NODE_ENV === 'production',
+        secure: process.env.NODE_ENV === 'production',
+      },
+      name: 'adminjs',
     }
   );
 

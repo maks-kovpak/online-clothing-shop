@@ -1,7 +1,7 @@
 import mongoose, { Schema, Types } from 'mongoose';
 import { ClothingSize } from '../lib/types/models.js';
 
-export interface IProductOptions {
+export interface IProductOption {
   _id: Types.ObjectId;
   productId: Types.ObjectId;
   color: string;
@@ -10,7 +10,7 @@ export interface IProductOptions {
   images: string[];
 }
 
-const ProductOptionsSchema = new Schema<IProductOptions>({
+const ProductOptionsSchema = new Schema<IProductOption>({
   productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
   color: { type: String, required: true, match: /^#?([a-f0-9]{6}|[a-f0-9]{3})$/ },
   size: { type: String, required: true, enum: Object.values(ClothingSize) },
@@ -18,6 +18,6 @@ const ProductOptionsSchema = new Schema<IProductOptions>({
   images: [{ type: String }],
 });
 
-const ProductOptionsList = mongoose.model<IProductOptions>('ProductOptions', ProductOptionsSchema);
+const ProductOptions = mongoose.model<IProductOption>('ProductOptions', ProductOptionsSchema);
 
-export default ProductOptionsList;
+export default ProductOptions;
