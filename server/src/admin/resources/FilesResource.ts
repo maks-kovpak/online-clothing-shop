@@ -14,6 +14,7 @@ const localProvider: LocalUploadOptions = {
 const FilesResource: ResourceWithOptions = {
   resource: Files,
   options: {
+    titleProperty: 'comment',
     properties: {
       key: { type: 'string', isArray: true },
       bucket: { type: 'string', isArray: true },

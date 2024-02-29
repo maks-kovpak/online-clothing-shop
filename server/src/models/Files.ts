@@ -5,17 +5,17 @@ export interface IFile {
   key: string[];
   bucket: string[];
   mime: string[];
-  comment: string | null;
+  comment: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
 const FilesSchema = new Schema<IFile>(
   {
-    key: [String],
-    bucket: [String],
-    mime: [String],
-    comment: String,
+    key: [{ type: String }],
+    bucket: [{ type: String }],
+    mime: [{ type: String }],
+    comment: { type: String, required: true, unique: true },
   },
   { timestamps: true }
 );
