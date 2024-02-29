@@ -15,20 +15,24 @@ const FilesResource: ResourceWithOptions = {
   resource: Files,
   options: {
     properties: {
-      bucket: { type: 'string' },
-      mime: { type: 'string' },
+      key: { type: 'string', isArray: true },
+      bucket: { type: 'string', isArray: true },
+      mime: { type: 'string', isArray: true },
       comment: { type: 'textarea', isSortable: false },
     },
+    listProperties: ['_id', 'file', 'mime', 'bucket', 'comment', 'createdAt'],
+    editProperties: ['file', 'comment'],
   },
   features: [
     uploadFileFeature({
       componentLoader,
       provider: { local: localProvider },
       validation: { mimeTypes: ALLOWED_MIME_TYPES },
+      multiple: true,
       properties: {
         key: 'key',
         bucket: 'bucket',
-        mimeType: 'mimeType',
+        mimeType: 'mime',
       },
     }),
   ],

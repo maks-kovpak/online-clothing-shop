@@ -52,10 +52,10 @@
   resolved "https://registry.yarnpkg.com/@adminjs/express/-/express-6.1.0.tgz#9f5035e3d6de0b00b9ea741dde354b97c6faed6f"
   integrity sha512-B3yoWGSp8xeqS/geBIKoSnMx46tbYYrbb/EmKD0SqqlVfxtBwgyoTWa6pkxqRc2T4iTMOl84VkMT0axnooAmZA==
 
-"@adminjs/mongoose@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@adminjs/mongoose/-/mongoose-4.0.0.tgz#03028e091efa4f0ce88b3674f299c0bdcdf6364a"
-  integrity sha512-Fi9ipb6g4JnmZQu8ZL+nYSWPSTapBXwrTYYKHN0JNI0meoxAo9KexqPTnGw2TOqMZaNr43GI+jDrSOzLlfC3Kg==
+"@adminjs/mongoose@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@adminjs/mongoose/-/mongoose-4.1.0.tgz#b69020c11fe1dfa0593d82f4d336ea9d43714382"
+  integrity sha512-G8M3eGPoQVchh+w1XGH7bfEGBFAPDLApQYoxkNPpvSCpj1OoBGgWJrX+gb0G0VqZv7ROLFe/2pkLE6yYmaUIzw==
   dependencies:
     escape-regexp "0.0.1"
     lodash "^4.17.21"
