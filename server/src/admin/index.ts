@@ -15,11 +15,22 @@ import Comments from '../models/Comments.js';
 import UserResource from './resources/UserResource.js';
 import FilesResource from './resources/FilesResource.js';
 import ClothingTypes from '../models/ClothingTypes.js';
+import ClothingStyles from '../models/ClothingStyles.js';
 
 const options: AdminJSOptions = {
   componentLoader,
   rootPath: '/admin',
-  resources: [FilesResource, UserResource, Product, ProductOptions, ClothingTypes, Order, OrderItems, Comments],
+  resources: [
+    FilesResource,
+    UserResource,
+    Product,
+    ProductOptions,
+    ClothingTypes,
+    ClothingStyles,
+    Order,
+    OrderItems,
+    Comments,
+  ],
   branding: {
     companyName: 'Admin Panel | SHOP.CO',
     withMadeWithLove: false,

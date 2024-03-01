@@ -15,21 +15,6 @@ export enum ClothingSize {
   FOUR_XL = '4XL',
 }
 
-export enum ClothingType {
-  T_SHIRTS = 'T_SHIRTS',
-  SHORTS = 'SHORTS',
-  SHIRTS = 'SHIRTS',
-  HOODIE = 'HOODIE',
-  JEANS = 'JEANS',
-}
-
-export enum ClothingStyle {
-  CASUAL = 'CASUAL',
-  FORMAL = 'FORMAL',
-  PARTY = 'PARTY',
-  GYM = 'GYM',
-}
-
 export enum OrderStatus {
   PENDING = 'PENDING',
   AWAITING_PAYMENT = 'AWAITING_PAYMENT',

@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types } from 'mongoose';
-import { ClothingSize, ClothingStyle } from '../lib/types/models.js';
+import { ClothingSize } from '../lib/types/models.js';
 
 export interface IProduct {
   _id: Types.ObjectId;
@@ -8,7 +8,7 @@ export interface IProduct {
   type: Types.ObjectId;
   sizes: ClothingSize[];
   price: number;
-  style: ClothingStyle;
+  style: Types.ObjectId;
   discount?: number;
   articleNumber: string;
   public: boolean;
@@ -20,7 +20,7 @@ const ProductSchema = new Schema<IProduct>({
   type: { type: Schema.Types.ObjectId, required: true, ref: 'ClothingTypes' },
   sizes: [{ type: String, required: true, enum: Object.values(ClothingSize) }],
   price: { type: Number, required: true, min: 0 },
-  style: { type: String, required: true, enum: Object.values(ClothingStyle) },
+  style: { type: Schema.Types.ObjectId, required: true, ref: 'ClothingStyles' },
   discount: { type: Number, min: 0, max: 100 },
   articleNumber: { type: String, required: true, minLength: 13 },
   public: { type: Boolean, required: true },
