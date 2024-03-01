@@ -7,7 +7,6 @@ import bcrypt from 'bcrypt';
 import { UserRole } from '../lib/types/models.js';
 
 import User from '../models/User.js';
-import Product from '../models/Product.js';
 import ProductOptions from '../models/ProductOptions.js';
 import Order from '../models/Order.js';
 import OrderItems from '../models/OrderItems.js';
@@ -16,6 +15,7 @@ import UserResource from './resources/UserResource.js';
 import FilesResource from './resources/FilesResource.js';
 import ClothingTypes from '../models/ClothingTypes.js';
 import ClothingStyles from '../models/ClothingStyles.js';
+import ProductResource from './resources/ProductResource.js';
 
 const options: AdminJSOptions = {
   componentLoader,
@@ -23,7 +23,7 @@ const options: AdminJSOptions = {
   resources: [
     FilesResource,
     UserResource,
-    Product,
+    ProductResource,
     ProductOptions,
     ClothingTypes,
     ClothingStyles,
