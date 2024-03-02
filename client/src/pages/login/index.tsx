@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { PASSWORD_PATTERN } from '@/lib/constants/regex';
 import UserApi from '@/lib/api/user';
+import { isFormValid } from '@/lib/utils';
+import useClientReady from '@/lib/hooks/useClientReady';
 
 import loginBannerImage from '@/assets/img/login-page/page-bnr.webp';
 
@@ -18,7 +20,8 @@ type LoginFormValues = {
 
 const LoginForm = () => {
   const { t } = useTranslation();
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<LoginFormValues>();
+  const ready = useClientReady();
 
   const validationRules: Record<string, FormRule[]> = useMemo(
     () => ({
@@ -59,10 +62,12 @@ const LoginForm = () => {
         />
       </Form.Item>
 
-      <Form.Item className="submit-button-field">
-        <Button type="primary" htmlType="submit" size="large">
-          {t('LOG_IN')}
-        </Button>
+      <Form.Item className="submit-button-field" shouldUpdate>
+        {() => (
+          <Button type="primary" htmlType="submit" size="large" disabled={!ready || isFormValid(form)}>
+            {t('LOG_IN')}
+          </Button>
+        )}
       </Form.Item>
 
       <NavLink to={''} className="underlined-link">

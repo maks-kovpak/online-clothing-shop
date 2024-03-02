@@ -17,7 +17,7 @@ export type InitialNavbarConfig = Array<{
 }>;
 
 /**
- * The useNavbarConfig function takes an initial configuration and returns a translated and modified
+ * The `useNavbarConfig` hook takes an initial configuration and returns a translated and modified
  * configuration for a navbar component in a TypeScript React application.
  *
  * @param initialConfig - An array of objects representing the initial configuration of the navbar.
