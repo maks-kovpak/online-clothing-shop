@@ -1,5 +1,6 @@
 import AuthPageLayout from '@/components/features/AuthPageLayout';
-import { Form, type FormRule } from 'antd';
+import type { FormRule } from 'antd';
+import { Form, message } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Button, Input } from '@/ui';
 import { NavLink } from 'react-router-dom';
@@ -18,9 +19,12 @@ type LoginFormValues = {
   [x: string]: unknown;
 };
 
+const messageKey = 'login-status-message';
+
 const LoginForm = () => {
   const { t } = useTranslation();
   const [form] = Form.useForm<LoginFormValues>();
+  const [messageApi, contextHolder] = message.useMessage();
   const ready = useClientReady();
 
   const validationRules: Record<string, FormRule[]> = useMemo(
@@ -39,41 +43,65 @@ const LoginForm = () => {
 
   const onFinish = async (values: LoginFormValues) => {
     try {
+      messageApi.open({
+        key: messageKey,
+        type: 'loading',
+        content: t('LOADING'),
+      });
+
       const response = await UserApi.login({
         email: values.email,
         password: values.password,
       });
 
-      console.log(response.data);
-    } catch {}
+      console.log(response);
+
+      messageApi.open({
+        key: messageKey,
+        type: 'success',
+        content: t('LOGIN_SUCCESSFUL'),
+        duration: 2,
+      });
+    } catch {
+      messageApi.open({
+        key: messageKey,
+        type: 'error',
+        content: t('SOMETHING_WENT_WRONG'),
+        duration: 2,
+      });
+    }
   };
 
   return (
-    <Form form={form} layout="vertical" onFinish={onFinish}>
-      <Form.Item name="email" rules={validationRules.email} validateFirst>
-        <Input placeholder={t('YOUR_EMAIL')} autoComplete="email" />
-      </Form.Item>
+    <>
+      {contextHolder}
 
-      <Form.Item name="password" rules={validationRules.password} validateFirst>
-        <Input.Password
-          placeholder={t('YOUR_PASSWORD')}
-          iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-          autoComplete="current-password"
-        />
-      </Form.Item>
+      <Form form={form} layout="vertical" onFinish={onFinish}>
+        <Form.Item name="email" rules={validationRules.email} validateFirst>
+          <Input placeholder={t('YOUR_EMAIL')} autoComplete="email" />
+        </Form.Item>
 
-      <Form.Item className="submit-button-field" shouldUpdate>
-        {() => (
-          <Button type="primary" htmlType="submit" size="large" disabled={!ready || isFormValid(form)}>
-            {t('LOG_IN')}
-          </Button>
-        )}
-      </Form.Item>
+        <Form.Item name="password" rules={validationRules.password} validateFirst>
+          <Input.Password
+            placeholder={t('YOUR_PASSWORD')}
+            iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+            autoComplete="current-password"
+          />
+        </Form.Item>
 
-      <NavLink to={''} className="underlined-link">
-        {t('FORGOT_PASSWORD')}
-      </NavLink>
-    </Form>
+        <Form.Item className="submit-button-field" shouldUpdate>
+          {() => (
+            <Button type="primary" htmlType="submit" size="large" disabled={!ready || isFormValid(form)}>
+              {t('LOG_IN')}
+            </Button>
+          )}
+        </Form.Item>
+
+        <NavLink to={''} className="underlined-link">
+          {t('FORGOT_PASSWORD')}
+        </NavLink>
+      </Form>
+    </>
   );
 };
 

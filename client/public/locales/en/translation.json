@@ -37,5 +37,8 @@
   "FORGOT_PASSWORD": "Forgot password?",
   "EMAIL_NOT_VALID": "Email is not valid",
   "PASSWORD_NOT_VALID": "The password must be at least 6 characters long without spaces",
-  "FIELD_REQUIRED": "This field is required"
+  "FIELD_REQUIRED": "This field is required",
+  "LOADING": "Loading...",
+  "LOGIN_SUCCESSFUL": "Login was completed successfully!",
+  "SOMETHING_WENT_WRONG": "Something went wrong! Please try again"
 }
