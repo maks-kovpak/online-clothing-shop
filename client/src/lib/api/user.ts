@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { IUser } from 'server/src/models/User';
-import { OmitId, PartialBy } from 'server/src/lib/types/utils';
 import { API_URL } from '@/lib/constants';
+import type { IUser } from '@server/models/User';
+import type { OmitId, PartialBy } from '@server/lib/types/utils';
 
 const UserApi = {
   register: async (user: OmitId<IUser>) => {

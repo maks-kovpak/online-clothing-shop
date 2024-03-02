@@ -6,11 +6,19 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { PASSWORD_PATTERN } from '@/lib/constants/regex';
+import UserApi from '@/lib/api/user';
 
 import loginBannerImage from '@/assets/img/login-page/page-bnr.webp';
 
+type LoginFormValues = {
+  email: string;
+  password: string;
+  [x: string]: unknown;
+};
+
 const LoginForm = () => {
   const { t } = useTranslation();
+  const [form] = Form.useForm();
 
   const validationRules: Record<string, FormRule[]> = useMemo(
     () => ({
@@ -26,8 +34,19 @@ const LoginForm = () => {
     [t]
   );
 
+  const onFinish = async (values: LoginFormValues) => {
+    try {
+      const response = await UserApi.login({
+        email: values.email,
+        password: values.password,
+      });
+
+      console.log(response.data);
+    } catch {}
+  };
+
   return (
-    <Form layout="vertical">
+    <Form form={form} layout="vertical" onFinish={onFinish}>
       <Form.Item name="email" rules={validationRules.email} validateFirst>
         <Input placeholder={t('YOUR_EMAIL')} autoComplete="email" />
       </Form.Item>

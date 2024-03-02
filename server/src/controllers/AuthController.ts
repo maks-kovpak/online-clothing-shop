@@ -40,7 +40,8 @@ const AuthController = {
 
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
-      const userCopy: PartialBy<IUser, 'password'> = user;
+      // Deep copy
+      const userCopy: PartialBy<IUser, 'password'> = JSON.parse(JSON.stringify(user));
       delete userCopy.password;
 
       res.status(200).json({ token, user: userCopy });

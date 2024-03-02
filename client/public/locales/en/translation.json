@@ -36,6 +36,6 @@
   "REPEAT_PASSWORD": "Repeat password",
   "FORGOT_PASSWORD": "Forgot password?",
   "EMAIL_NOT_VALID": "Email is not valid",
-  "PASSWORD_NOT_VALID": "Password is not valid",
+  "PASSWORD_NOT_VALID": "The password must be at least 6 characters long without spaces",
   "FIELD_REQUIRED": "This field is required"
 }
