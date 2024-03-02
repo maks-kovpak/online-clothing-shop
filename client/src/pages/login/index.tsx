@@ -1,6 +1,6 @@
 import AuthPageLayout from '@/components/features/AuthPageLayout';
 import type { FormRule } from 'antd';
-import { Form, message } from 'antd';
+import { Form } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Button, Input } from '@/ui';
 import { NavLink } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { PASSWORD_PATTERN } from '@/lib/constants/regex';
 import UserApi from '@/lib/api/user';
 import { isFormValid } from '@/lib/utils';
 import useClientReady from '@/lib/hooks/useClientReady';
+import useLoadingMessage from '@/lib/hooks/useLoadingMessage';
 
 import loginBannerImage from '@/assets/img/login-page/page-bnr.webp';
 
@@ -19,13 +20,17 @@ type LoginFormValues = {
   [x: string]: unknown;
 };
 
-const messageKey = 'login-status-message';
-
 const LoginForm = () => {
   const { t } = useTranslation();
   const [form] = Form.useForm<LoginFormValues>();
-  const [messageApi, contextHolder] = message.useMessage();
   const ready = useClientReady();
+
+  const { loadAction, contextHolder } = useLoadingMessage({
+    key: 'login-status-message',
+    loadingMessage: t('LOADING'),
+    successMessage: t('LOGIN_SUCCESSFUL'),
+    errorMessage: t('SOMETHING_WENT_WRONG'),
+  });
 
   const validationRules: Record<string, FormRule[]> = useMemo(
     () => ({
@@ -42,34 +47,14 @@ const LoginForm = () => {
   );
 
   const onFinish = async (values: LoginFormValues) => {
-    try {
-      messageApi.open({
-        key: messageKey,
-        type: 'loading',
-        content: t('LOADING'),
-      });
-
+    await loadAction(async () => {
       const response = await UserApi.login({
         email: values.email,
         password: values.password,
       });
 
       console.log(response);
-
-      messageApi.open({
-        key: messageKey,
-        type: 'success',
-        content: t('LOGIN_SUCCESSFUL'),
-        duration: 2,
-      });
-    } catch {
-      messageApi.open({
-        key: messageKey,
-        type: 'error',
-        content: t('SOMETHING_WENT_WRONG'),
-        duration: 2,
-      });
-    }
+    });
   };
 
   return (
