@@ -8,7 +8,7 @@ const UserApi = {
   },
 
   login: async (userData: { email: string; password: string }) => {
-    return await axios.post<{ token: string; user: PartialBy<IUser, 'password'> }>('/auth/login', userData);
+    return await axios.post<{ accessToken: string; user: PartialBy<IUser, 'password'> }>('/auth/login', userData);
   },
 };
 

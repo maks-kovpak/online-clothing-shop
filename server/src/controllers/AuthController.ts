@@ -21,7 +21,7 @@ const AuthController = {
 
   login: async (
     req: RequestWithBody<{ email: string; password: string }>,
-    res: Response<{ token: string; user: Omit<IUser, 'password'> }>,
+    res: Response<{ accessToken: string; user: Omit<IUser, 'password'> }>,
     next: NextFunction
   ) => {
     try {
@@ -38,13 +38,20 @@ const AuthController = {
         return next(ApiError.badRequest('Invalid credentials'));
       }
 
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const accessToken = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5m' });
+      const refreshToken = jwt.sign({ id: user._id }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '15d' });
+
+      res.cookie('jwt-refresh-token', refreshToken, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 15 * 60 * 60 * 1000,
+      });
 
       // Deep copy
       const userCopy: PartialBy<IUser, 'password'> = JSON.parse(JSON.stringify(user));
       delete userCopy.password;
 
-      res.status(200).json({ token, user: userCopy });
+      res.status(200).json({ accessToken, user: userCopy });
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }

@@ -11,10 +11,10 @@ async function verifyToken(req: Request, res: Response, next: NextFunction) {
     }
 
     if (token.startsWith('Bearer')) {
-      token = token.slice(7, token.length).trimStart();
+      token = token.split(' ')[1];
     }
 
-    req.user = jwt.verify(token, process.env.JWT_SECRET as string);
+    req.user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     next();
   } catch (err) {
     next(ApiError.internal((err as Error).message));

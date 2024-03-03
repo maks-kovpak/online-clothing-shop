@@ -5,7 +5,8 @@ declare global {
       PORT?: string;
       CLIENT_URL: string;
       MONGO_URI: string;
-      JWT_SECRET: string;
+      ACCESS_TOKEN_SECRET: string;
+      REFRESH_TOKEN_SECRET: string;
       COOKIE_SECRET: string;
     }
   }

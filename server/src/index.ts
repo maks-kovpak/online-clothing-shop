@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 import cors, { type CorsOptions } from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -23,6 +24,7 @@ const app = express();
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
+app.use(cookieParser());
 
 const corsOptions: CorsOptions = {
   origin: process.env.CLIENT_URL,
