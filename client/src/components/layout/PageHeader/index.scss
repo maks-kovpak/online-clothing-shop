@@ -25,6 +25,12 @@ header {
       }
     }
 
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .sc-input-affix-wrapper {
       height: 42px;
     }
@@ -61,7 +67,7 @@ header {
         scale: 1;
       }
 
-      & > img {
+      .logo img {
         width: 115px;
       }
     }
@@ -75,7 +81,7 @@ header {
     @media screen and (max-width: $sm) {
       height: $navbar-height-mobile;
 
-      & > img {
+      .logo img {
         width: 100px;
       }
 

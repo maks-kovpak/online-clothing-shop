@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import cors from 'cors';
+import cors, { type CorsOptions } from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import mongoose, { ConnectOptions } from 'mongoose';
@@ -23,7 +23,13 @@ const app = express();
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
-app.use(cors());
+
+const corsOptions: CorsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Initialize AdminJS
 const { admin, router } = await initAdmin();

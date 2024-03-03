@@ -27,7 +27,7 @@ const PageHeader = () => {
         <div className="header-inner">
           <HamburgerMenuButton className="hamburger-menu-btn" onClick={() => setOpenedDrawer(true)} />
 
-          <NavLink to={paths.main}>
+          <NavLink to={paths.main} className="logo">
             <img src={logo} alt="SHOP.CO" />
           </NavLink>
 
