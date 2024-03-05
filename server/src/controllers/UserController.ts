@@ -7,7 +7,7 @@ const UserController = {
     try {
       const user = await User.findById(req.params.id);
 
-      if (!user) next(ApiError.notFound('User not found'));
+      if (!user) return next(ApiError.notFound('User not found'));
       res.status(200).json(user!);
     } catch (err) {
       next(ApiError.internal((err as Error).message));

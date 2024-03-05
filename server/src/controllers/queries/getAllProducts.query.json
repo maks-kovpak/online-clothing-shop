@@ -1,0 +1,72 @@
+[
+  {
+    "$lookup": {
+      "from": "productOptions",
+      "localField": "_id",
+      "foreignField": "productId",
+      "as": "options"
+    }
+  },
+  {
+    "$lookup": {
+      "from": "clothingStyles",
+      "localField": "style",
+      "foreignField": "_id",
+      "as": "style"
+    }
+  },
+  {
+    "$lookup": {
+      "from": "clothingTypes",
+      "localField": "type",
+      "foreignField": "_id",
+      "as": "type"
+    }
+  },
+  {
+    "$unwind": "$style"
+  },
+  {
+    "$unwind": "$type"
+  },
+  {
+    "$lookup": {
+      "from": "files",
+      "localField": "options.images",
+      "foreignField": "_id",
+      "as": "imagesFiles"
+    }
+  },
+  {
+    "$project": {
+      "_id": 1,
+      "name": 1,
+      "type": "$type.name",
+      "price": 1,
+      "style": "$style.name",
+      "articleNumber": 1,
+      "public": 1,
+      "options": {
+        "$map": {
+          "input": "$options",
+          "as": "option",
+          "in": {
+            "_id": "$$option._id",
+            "color": "$$option.color",
+            "size": "$$option.size",
+            "isAvailable": "$$option.isAvailable",
+            "images": {
+              "$filter": {
+                "input": "$imagesFiles",
+                "as": "image",
+                "cond": {
+                  "$eq": ["$$image._id", "$$option.images"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]
