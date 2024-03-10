@@ -10,6 +10,8 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import mainRouter from './routes/index.js';
 import errorHandler from './middlewares/errorHandler.js';
 import { initAdmin } from './admin/index.js';
+import passport from 'passport';
+import './middlewares/passport.js';
 
 /* Configurations */
 
@@ -25,6 +27,7 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
 app.use(cookieParser());
+app.use(passport.initialize());
 
 const corsOptions: CorsOptions = {
   origin: process.env.CLIENT_URL,
