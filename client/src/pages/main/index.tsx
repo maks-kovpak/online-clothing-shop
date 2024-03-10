@@ -3,6 +3,7 @@ import HeroBanner from './containers/HeroBanner';
 import LogosCarousel from './containers/LogosCarousel';
 import DressStyleSection from './containers/DressStyleSection';
 import { useTranslation } from 'react-i18next';
+import NewArrivals from '@/pages/main/containers/NewArrivals';
 
 const MainPage = () => {
   const { t } = useTranslation();
@@ -17,6 +18,7 @@ const MainPage = () => {
       <main>
         <HeroBanner />
         <LogosCarousel />
+        <NewArrivals />
         <DressStyleSection />
       </main>
     </>
