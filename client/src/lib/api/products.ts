@@ -1,5 +1,5 @@
 import axios from '@/lib/api/axios';
-import type { FullProduct } from '@server/controllers/ProductController';
+import type { FullProduct } from '@server/lib/types/models';
 
 const ProductsApi = {
   getAll: async () => {

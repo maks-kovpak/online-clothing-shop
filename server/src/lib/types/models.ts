@@ -1,3 +1,15 @@
+import type { IProduct } from '../../models/Product.js';
+import type { IProductOption } from '../../models/ProductOptions.js';
+import type { IFile } from '../../models/Files.js';
+
+/* Types */
+
+export type FullProduct = IProduct & {
+  options: Array<Omit<IProductOption, 'images'> & { images: IFile[] }>;
+};
+
+/* Enums */
+
 export enum UserRole {
   CLIENT = 'CLIENT',
   ADMIN = 'ADMIN',

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FullProduct } from '@server/controllers/ProductController';
+import type { FullProduct } from '@server/lib/types/models';
 import ProductsApi from '@/lib/api/products';
 import ProductsList from '@/components/features/ProductsList';
 
