@@ -9,12 +9,21 @@ import type { OmitId, PartialBy } from '../lib/types/utils.js';
 const AuthController = {
   register: async (req: RequestWithBody<OmitId<IUser>>, res: Response<{ message: string }>, next: NextFunction) => {
     try {
+      const foundUser = await User.findOne({ email: req.body.email });
+
+      if (foundUser) return next(ApiError.conflict('The user already exists'));
+
       const salt = await bcrypt.genSalt();
       const passwordHash = await bcrypt.hash(req.body.password, salt);
 
       const createdUser = await User.create({ ...req.body, password: passwordHash });
       await createdUser.save();
       res.status(201).json({ message: 'A new user has been created' });
+
+      req.login(createdUser, (err) => {
+        if (err) return next(err);
+        res.redirect('/');
+      });
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }
