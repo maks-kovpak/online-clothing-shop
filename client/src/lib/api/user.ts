@@ -1,14 +1,14 @@
 import axios from '@/lib/api/axios';
 import type { IUser } from '@server/models/User';
-import type { OmitId, PartialBy } from '@server/lib/types/utils';
+import type { PartialBy, WithoutTimestamps } from '@server/lib/types/utils';
 
 const UserApi = {
-  register: async (user: OmitId<IUser>) => {
+  register: async (user: WithoutTimestamps<IUser>) => {
     return await axios.post<{ message: string }>('/auth/register', user);
   },
 
   login: async (userData: { email: string; password: string }) => {
-    return await axios.post<{ accessToken: string; user: PartialBy<IUser, 'password'> }>('/auth/login', userData);
+    return await axios.post<{ token: string; user: PartialBy<IUser, 'password'> }>('/auth/login', userData);
   },
 };
 

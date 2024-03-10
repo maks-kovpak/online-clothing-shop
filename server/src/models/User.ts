@@ -8,7 +8,7 @@ export interface IUser {
   email: string;
   password: string;
   role: UserRole;
-  favoritesList: Types.ObjectId[];
+  favoritesList?: Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -20,7 +20,7 @@ const UserSchema = new Schema<IUser>(
     email: { type: String, required: true, unique: true, match: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/ },
     password: { type: String, required: true, minLength: 6 },
     role: { type: String, required: true, enum: Object.values(UserRole) },
-    favoritesList: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+    favoritesList: { type: [Schema.Types.ObjectId], ref: 'Product', default: [] },
   },
   { timestamps: true }
 );

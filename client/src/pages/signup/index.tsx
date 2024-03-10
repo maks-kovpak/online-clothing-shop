@@ -1,20 +1,43 @@
 import AuthPageLayout from '@/components/features/AuthPageLayout';
 import type { FormRule } from 'antd';
 import { Flex, Form } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Button, Input } from '@/ui';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import paths from '@/lib/paths';
+import { isFormValid } from '@/lib/utils';
 import { PASSWORD_PATTERN } from '@/lib/constants/regex';
+import useClientReady from '@/lib/hooks/useClientReady';
+import useLoadingMessage from '@/lib/hooks/useLoadingMessage';
+import UserApi from '@/lib/api/user';
+import { UserRole } from '@server/lib/types/models';
+import { kebabCase } from 'lodash';
 
 import GoogleLogo from '@/assets/icons/google.svg?react';
 import signupBannerImage from '@/assets/img/signup-page/page-bnr.webp';
 import './index.scss';
 
-const SignupForm = () => {
+type RegistrationFormValues = {
+  name: string;
+  email: string;
+  password: string;
+  repeatPassword: string;
+  [x: string]: unknown;
+};
+
+const RegistrationForm = () => {
   const { t } = useTranslation();
+
+  const [form] = Form.useForm<RegistrationFormValues>();
+  const ready = useClientReady();
+
+  const { loadAction, contextHolder } = useLoadingMessage({
+    key: 'signup-status-message',
+    loadingMessage: t('LOADING'),
+    successMessage: t('REGISTRATION_SUCCESSFUL'),
+    errorMessage: t('SOMETHING_WENT_WRONG'),
+  });
 
   const validationRules: Record<string, FormRule[]> = useMemo(
     () => ({
@@ -31,9 +54,23 @@ const SignupForm = () => {
     [t]
   );
 
+  const onFinish = async (values: RegistrationFormValues) => {
+    await loadAction(async () => {
+      await UserApi.register({
+        name: values.name,
+        username: kebabCase(values.name),
+        email: values.email,
+        password: values.password,
+        role: UserRole.CLIENT,
+      });
+    });
+  };
+
   return (
     <>
-      <Form layout="vertical">
+      {contextHolder}
+
+      <Form form={form} layout="vertical" onFinish={onFinish}>
         <Form.Item name="name" rules={validationRules.name} validateFirst>
           <Input placeholder={t('YOUR_NAME')} autoComplete="name" />
         </Form.Item>
@@ -43,25 +80,19 @@ const SignupForm = () => {
         </Form.Item>
 
         <Form.Item name="password" rules={validationRules.password} validateFirst>
-          <Input.Password
-            placeholder={t('YOUR_PASSWORD')}
-            iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-            autoComplete="new-password"
-          />
+          <Input.Password placeholder={t('YOUR_PASSWORD')} autoComplete="new-password" />
         </Form.Item>
 
         <Form.Item name="repeatPassword" rules={validationRules.password} validateFirst>
-          <Input.Password
-            placeholder={t('REPEAT_PASSWORD')}
-            iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-            autoComplete="new-password"
-          />
+          <Input.Password placeholder={t('REPEAT_PASSWORD')} autoComplete="new-password" />
         </Form.Item>
 
-        <Form.Item className="submit-button-field">
-          <Button type="primary" htmlType="submit" size="large">
-            {t('SIGN_UP')}
-          </Button>
+        <Form.Item className="submit-button-field" shouldUpdate>
+          {() => (
+            <Button type="primary" htmlType="submit" size="large" disabled={!ready || isFormValid(form)}>
+              {t('SIGN_UP')}
+            </Button>
+          )}
         </Form.Item>
 
         <Form.Item className="google-signup-button-field">
@@ -87,7 +118,7 @@ const SignupPage = () => {
       pageTitle="SIGNUP_PAGE_TITLE"
       pageDescription="SIGNUP_PAGE_DESCRIPTION"
       bannerImage={signupBannerImage}
-      form={<SignupForm />}
+      form={<RegistrationForm />}
       formTitle="SIGNUP_FORM_TITLE"
     />
   );

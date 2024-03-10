@@ -4,10 +4,14 @@ import passport from 'passport';
 import ApiError from '../lib/errors/ApiError.js';
 import User, { type IUser } from '../models/User.js';
 import type { NextFunction, Response } from 'express';
-import type { OmitId, PartialBy } from '../lib/types/utils.js';
+import type { PartialBy, WithoutTimestamps } from '../lib/types/utils.js';
 
 const AuthController = {
-  register: async (req: RequestWithBody<OmitId<IUser>>, res: Response<{ message: string }>, next: NextFunction) => {
+  register: async (
+    req: RequestWithBody<WithoutTimestamps<IUser>>,
+    res: Response<{ message: string }>,
+    next: NextFunction
+  ) => {
     try {
       const foundUser = await User.findOne({ email: req.body.email });
 

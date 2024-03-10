@@ -1,7 +1,6 @@
 import AuthPageLayout from '@/components/features/AuthPageLayout';
 import type { FormRule } from 'antd';
 import { Form } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Button, Input } from '@/ui';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -48,12 +47,10 @@ const LoginForm = () => {
 
   const onFinish = async (values: LoginFormValues) => {
     await loadAction(async () => {
-      const response = await UserApi.login({
+      await UserApi.login({
         email: values.email,
         password: values.password,
       });
-
-      console.log(response);
     });
   };
 
@@ -67,11 +64,7 @@ const LoginForm = () => {
         </Form.Item>
 
         <Form.Item name="password" rules={validationRules.password} validateFirst>
-          <Input.Password
-            placeholder={t('YOUR_PASSWORD')}
-            iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-            autoComplete="current-password"
-          />
+          <Input.Password placeholder={t('YOUR_PASSWORD')} autoComplete="current-password" />
         </Form.Item>
 
         <Form.Item className="submit-button-field" shouldUpdate>
