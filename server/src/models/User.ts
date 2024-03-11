@@ -16,7 +16,7 @@ export interface IUser {
 const UserSchema = new Schema<IUser>(
   {
     name: { type: String, required: true },
-    username: { type: String, required: true, unique: true, match: /^[a-zA-Z-]+$/ },
+    username: { type: String, required: true, unique: true, match: /[a-z0-9]+(?:-[a-z0-9]+)*/ },
     email: { type: String, required: true, unique: true, match: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/ },
     password: { type: String, required: true, minLength: 6 },
     role: { type: String, required: true, enum: Object.values(UserRole) },

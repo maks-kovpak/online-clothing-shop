@@ -2,7 +2,7 @@ import AuthPageLayout from '@/components/features/AuthPageLayout';
 import type { FormRule } from 'antd';
 import { Form } from 'antd';
 import { Button, Input } from '@/ui';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { PASSWORD_PATTERN } from '@/lib/constants/regex';
@@ -12,6 +12,7 @@ import useClientReady from '@/lib/hooks/useClientReady';
 import useLoadingMessage from '@/lib/hooks/useLoadingMessage';
 
 import loginBannerImage from '@/assets/img/login-page/page-bnr.webp';
+import paths from '@/lib/paths.ts';
 
 type LoginFormValues = {
   email: string;
@@ -23,6 +24,7 @@ const LoginForm = () => {
   const { t } = useTranslation();
   const [form] = Form.useForm<LoginFormValues>();
   const ready = useClientReady();
+  const navigate = useNavigate();
 
   const { loadAction, contextHolder } = useLoadingMessage({
     key: 'login-status-message',
@@ -47,10 +49,15 @@ const LoginForm = () => {
 
   const onFinish = async (values: LoginFormValues) => {
     await loadAction(async () => {
-      await UserApi.login({
+      const response = await UserApi.login({
         email: values.email,
         password: values.password,
       });
+
+      if (response.status == 200) {
+        localStorage.setItem('isAuth', 'true');
+        setTimeout(() => navigate(paths.main), 1000);
+      }
     });
   };
 

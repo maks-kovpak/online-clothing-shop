@@ -4,7 +4,7 @@ import { Flex, Form } from 'antd';
 import { Button, Input } from '@/ui';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import paths from '@/lib/paths';
 import { isFormValid } from '@/lib/utils';
 import { PASSWORD_PATTERN } from '@/lib/constants/regex';
@@ -31,6 +31,7 @@ const RegistrationForm = () => {
 
   const [form] = Form.useForm<RegistrationFormValues>();
   const ready = useClientReady();
+  const navigate = useNavigate();
 
   const { loadAction, contextHolder } = useLoadingMessage({
     key: 'signup-status-message',
@@ -56,13 +57,18 @@ const RegistrationForm = () => {
 
   const onFinish = async (values: RegistrationFormValues) => {
     await loadAction(async () => {
-      await UserApi.register({
+      const response = await UserApi.register({
         name: values.name,
         username: kebabCase(values.name),
         email: values.email,
         password: values.password,
         role: UserRole.CLIENT,
       });
+
+      if (response.status == 201) {
+        localStorage.setItem('isAuth', 'true');
+        setTimeout(() => navigate(paths.main), 1000);
+      }
     });
   };
 
@@ -83,7 +89,22 @@ const RegistrationForm = () => {
           <Input.Password placeholder={t('YOUR_PASSWORD')} autoComplete="new-password" />
         </Form.Item>
 
-        <Form.Item name="repeatPassword" rules={validationRules.password} validateFirst>
+        <Form.Item
+          name="repeatPassword"
+          rules={[
+            ...validationRules.password,
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+
+                return Promise.reject(new Error('The new password do not match!'));
+              },
+            }),
+          ]}
+          validateFirst
+        >
           <Input.Password placeholder={t('REPEAT_PASSWORD')} autoComplete="new-password" />
         </Form.Item>
 
