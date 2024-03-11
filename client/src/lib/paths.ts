@@ -8,6 +8,8 @@ const paths = {
   brands: '/brands',
   signup: '/signup',
   login: '/login',
+  profile: '/profile',
+  cart: '/cart',
 } as const;
 
 export default paths;

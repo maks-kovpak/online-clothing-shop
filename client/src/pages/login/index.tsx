@@ -12,9 +12,9 @@ import UserApi from '@/lib/api/user';
 import { isFormValid } from '@/lib/utils';
 import useClientReady from '@/lib/hooks/useClientReady';
 import useLoadingMessage from '@/lib/hooks/useLoadingMessage';
+import paths from '@/lib/paths';
 
 import loginBannerImage from '@/assets/img/login-page/page-bnr.webp';
-import paths from '@/lib/paths.ts';
 
 type LoginFormValues = {
   email: string;
@@ -59,6 +59,7 @@ const LoginForm = () => {
 
       if (response.status == 200) {
         localStorage.setItem('userId', response.data.user._id.toString());
+        localStorage.setItem('jwt-token', response.data.token);
         updateUser(response.data.user);
         setTimeout(() => navigate(paths.main), 1000);
       }

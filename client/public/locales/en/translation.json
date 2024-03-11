@@ -40,5 +40,7 @@
   "FIELD_REQUIRED": "This field is required",
   "LOADING": "Loading...",
   "LOGIN_SUCCESSFUL": "Login was completed successfully!",
-  "SOMETHING_WENT_WRONG": "Something went wrong! Please try again"
+  "SOMETHING_WENT_WRONG": "Something went wrong! Please try again",
+  "PROFILE": "Profile",
+  "SHOPPING_CART": "Shopping Cart"
 }

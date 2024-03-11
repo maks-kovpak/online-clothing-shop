@@ -70,6 +70,7 @@ const RegistrationForm = () => {
 
       if (response.status == 201) {
         localStorage.setItem('userId', response.data.user._id.toString());
+        localStorage.setItem('jwt-token', response.data.token);
         updateUser(response.data.user);
         setTimeout(() => navigate(paths.main), 1000);
       }

@@ -8,6 +8,8 @@ import NavDrawer from '../NavDrawer';
 import LanguageSelect from '../../features/LanguageSelect';
 import { Input } from '@/ui';
 import paths from '@/lib/paths';
+import { useUnit } from 'effector-react';
+import $userStore from '@/stores/user.store';
 
 import logo from '@/assets/img/logo.svg';
 import SearchIcon from '@/assets/icons/search.svg?react';
@@ -20,6 +22,7 @@ import './index.scss';
 const PageHeader = () => {
   const { t } = useTranslation();
   const [openedDrawer, setOpenedDrawer] = useState<boolean>(false);
+  const user = useUnit($userStore);
 
   return (
     <>
@@ -44,9 +47,17 @@ const PageHeader = () => {
             <LanguageSelect />
             <SearchIcon className="search-mobile" />
 
-            <CartIcon />
+            {user && (
+              <NavLink to={paths.cart} title={t('SHOPPING_CART')} style={{ display: 'flex' }}>
+                <CartIcon />
+              </NavLink>
+            )}
 
-            <NavLink to={paths.signup} title={t('SIGN_UP')} style={{ display: 'flex' }}>
+            <NavLink
+              to={user ? paths.profile : paths.signup}
+              title={user ? t('PROFILE') : t('SIGN_UP')}
+              style={{ display: 'flex' }}
+            >
               <UserAccountIcon />
             </NavLink>
           </Flex>
