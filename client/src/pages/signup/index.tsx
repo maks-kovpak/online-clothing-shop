@@ -13,6 +13,8 @@ import useLoadingMessage from '@/lib/hooks/useLoadingMessage';
 import UserApi from '@/lib/api/user';
 import { UserRole } from '@server/lib/types/models';
 import { kebabCase } from 'lodash';
+import { useUnit } from 'effector-react';
+import { updateUserEvent } from '@/stores/user.store';
 
 import GoogleLogo from '@/assets/icons/google.svg?react';
 import signupBannerImage from '@/assets/img/signup-page/page-bnr.webp';
@@ -32,6 +34,7 @@ const RegistrationForm = () => {
   const [form] = Form.useForm<RegistrationFormValues>();
   const ready = useClientReady();
   const navigate = useNavigate();
+  const updateUser = useUnit(updateUserEvent);
 
   const { loadAction, contextHolder } = useLoadingMessage({
     key: 'signup-status-message',
@@ -66,7 +69,8 @@ const RegistrationForm = () => {
       });
 
       if (response.status == 201) {
-        localStorage.setItem('isAuth', 'true');
+        localStorage.setItem('userId', response.data.user._id.toString());
+        updateUser(response.data.user);
         setTimeout(() => navigate(paths.main), 1000);
       }
     });

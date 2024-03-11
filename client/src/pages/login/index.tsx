@@ -5,6 +5,8 @@ import { Button, Input } from '@/ui';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
+import { useUnit } from 'effector-react';
+import { updateUserEvent } from '@/stores/user.store';
 import { PASSWORD_PATTERN } from '@/lib/constants/regex';
 import UserApi from '@/lib/api/user';
 import { isFormValid } from '@/lib/utils';
@@ -25,6 +27,7 @@ const LoginForm = () => {
   const [form] = Form.useForm<LoginFormValues>();
   const ready = useClientReady();
   const navigate = useNavigate();
+  const updateUser = useUnit(updateUserEvent);
 
   const { loadAction, contextHolder } = useLoadingMessage({
     key: 'login-status-message',
@@ -55,7 +58,8 @@ const LoginForm = () => {
       });
 
       if (response.status == 200) {
-        localStorage.setItem('isAuth', 'true');
+        localStorage.setItem('userId', response.data.user._id.toString());
+        updateUser(response.data.user);
         setTimeout(() => navigate(paths.main), 1000);
       }
     });
