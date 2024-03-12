@@ -10,6 +10,10 @@ class ApiError extends Error {
     return new ApiError(400, message);
   }
 
+  static unauthorized(message: string) {
+    return new ApiError(401, message);
+  }
+
   static forbidden(message: string) {
     return new ApiError(403, message);
   }

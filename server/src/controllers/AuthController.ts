@@ -55,6 +55,10 @@ const AuthController = {
       loginUser(user, req as Request, res, next);
     })(req, res);
   },
+
+  googleCallback: (req: Request, res: Response) => {
+    res.redirect(process.env.CLIENT_URL);
+  },
 };
 
 export default AuthController;

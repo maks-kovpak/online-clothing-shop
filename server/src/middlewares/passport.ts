@@ -4,6 +4,8 @@ import type { IStrategyOptions as LocalOptions } from 'passport-local';
 import { Strategy as LocalStrategy } from 'passport-local';
 import type { StrategyOptionsWithoutRequest as JwtOptions } from 'passport-jwt';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
+import type { StrategyOptions as GoogleStrategyOptions } from 'passport-google-oauth20';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from '../models/User.js';
 import ApiError from '../lib/errors/ApiError.js';
 
@@ -47,6 +49,29 @@ const usePassportAuth = () => {
         return done(null, user);
       } catch (error) {
         return done(error);
+      }
+    })
+  );
+
+  // Google strategy
+  const googleStrategyOptions: GoogleStrategyOptions = {
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: '/api/auth/google/callback',
+    scope: ['profile', 'email'],
+  };
+
+  passport.use(
+    new GoogleStrategy(googleStrategyOptions, async (accessToken, refreshToken, profile, done) => {
+      try {
+        const emailsList = profile.emails?.map((email) => email.value);
+        const user = await User.findOne({ email: { $in: emailsList } });
+
+        if (!user) return done(ApiError.unauthorized('Unauthorized'));
+
+        return done(null, { id: user._id, token: accessToken });
+      } catch (err) {
+        return done(err as Error);
       }
     })
   );

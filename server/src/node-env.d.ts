@@ -7,6 +7,8 @@ declare global {
       MONGO_URI: string;
       JWT_TOKEN_SECRET: string;
       COOKIE_SECRET: string;
+      GOOGLE_CLIENT_ID: string;
+      GOOGLE_CLIENT_SECRET: string;
     }
   }
 }
