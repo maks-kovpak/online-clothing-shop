@@ -10,7 +10,7 @@ const ProductsList: FC<{ products: FullProduct[] }> = ({ products }) => {
       {products.map((product) => (
         <ProductCard
           key={product._id.toString()}
-          image={UPLOAD_URL + product.options[0].images[0].key[0]}
+          image={UPLOAD_URL + product.options[0].images[0]}
           title={product.name}
           rating={5}
           price={product.price}
