@@ -56,17 +56,52 @@
             "size": "$$option.size",
             "isAvailable": "$$option.isAvailable",
             "images": {
-              "$filter": {
-                "input": "$imagesFiles",
-                "as": "image",
-                "cond": {
-                  "$eq": ["$$image._id", "$$option.images"]
-                }
+              "$map": {
+                "input": {
+                  "$filter": {
+                    "input": "$imagesFiles",
+                    "as": "image",
+                    "cond": { "$eq": ["$$image._id", "$$option.images"] }
+                  }
+                },
+                "as": "img",
+                "in": "$$img.key"
               }
             }
           }
         }
       }
+    }
+  },
+  {
+    "$unwind": "$options"
+  },
+  {
+    "$project": {
+      "_id": 1,
+      "name": 1,
+      "type": 1,
+      "price": 1,
+      "style": 1,
+      "articleNumber": 1,
+      "public": 1,
+      "options._id": 1,
+      "options.color": 1,
+      "options.size": 1,
+      "options.isAvailable": 1,
+      "options.images": { "$arrayElemAt": ["$options.images", 0] }
+    }
+  },
+  {
+    "$group": {
+      "_id": "$_id",
+      "name": { "$first": "$name" },
+      "type": { "$first": "$type" },
+      "price": { "$first": "$price" },
+      "style": { "$first": "$style" },
+      "articleNumber": { "$first": "$articleNumber" },
+      "public": { "$first": "$public" },
+      "options": { "$push": "$options" }
     }
   }
 ]
