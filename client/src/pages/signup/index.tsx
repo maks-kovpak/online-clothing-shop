@@ -69,8 +69,6 @@ const RegistrationForm = () => {
       });
 
       if (response.status == 201) {
-        localStorage.setItem('userId', response.data.user._id.toString());
-        localStorage.setItem('jwt-token', response.data.token);
         updateUser(response.data.user);
         setTimeout(() => navigate(paths.main), 1000);
       }
@@ -122,9 +120,11 @@ const RegistrationForm = () => {
         </Form.Item>
 
         <Form.Item className="google-signup-button-field">
-          <Button type="default" size="large" icon={<GoogleLogo width={24} height={24} />} onClick={() => {}}>
-            {t('SIGN_UP_WITH_GOOGLE')}
-          </Button>
+          <NavLink to={import.meta.env.VITE_API_URL + '/api/auth/google'}>
+            <Button type="default" size="large" icon={<GoogleLogo width={24} height={24} />}>
+              {t('SIGN_UP_WITH_GOOGLE')}
+            </Button>
+          </NavLink>
         </Form.Item>
       </Form>
 

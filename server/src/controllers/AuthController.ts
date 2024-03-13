@@ -13,6 +13,9 @@ const loginUser = (user: IUser, req: Request, res: Response, next: NextFunction,
     // Generate a signed son web token with the contents of user object and return it in the response
     const token = jwt.sign({ id: user._id }, process.env.JWT_TOKEN_SECRET);
 
+    res.cookie('jwt-token', token, { secure: true });
+    res.cookie('user-id', user._id.toString(), { secure: true });
+
     // Deep copy
     const userCopy: PartialBy<IUser, 'password'> = JSON.parse(JSON.stringify(user));
     delete userCopy.password;
@@ -57,6 +60,14 @@ const AuthController = {
   },
 
   googleCallback: (req: Request, res: Response) => {
+    if (req.user) {
+      const user = req.user as { id: string };
+      const token = jwt.sign({ id: user.id }, process.env.JWT_TOKEN_SECRET);
+
+      res.cookie('jwt-token', token, { secure: true });
+      res.cookie('user-id', user.id.toString(), { secure: true });
+    }
+
     res.redirect(process.env.CLIENT_URL);
   },
 };

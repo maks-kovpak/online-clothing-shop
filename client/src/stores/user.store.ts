@@ -1,4 +1,5 @@
 import { createEffect, createEvent, createStore } from 'effector';
+import Cookies from 'js-cookie';
 import UserApi from '@/lib/api/user';
 import type { IUser } from '@server/models/User';
 
@@ -7,7 +8,7 @@ export interface IUserStore extends IUser {}
 /* Effects */
 
 export const fetchUserProfileFx = createEffect(async () => {
-  const id = localStorage.getItem('userId');
+  const id = Cookies.get('user-id');
   if (!id) return null;
 
   const response = await UserApi.getProfile(id);

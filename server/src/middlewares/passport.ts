@@ -69,7 +69,7 @@ const usePassportAuth = () => {
 
         if (!user) return done(ApiError.unauthorized('Unauthorized'));
 
-        return done(null, { id: user._id, token: accessToken });
+        return done(null, { id: user._id });
       } catch (err) {
         return done(err as Error);
       }
