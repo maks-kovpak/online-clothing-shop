@@ -1,4 +1,4 @@
-import { ResourceWithOptions } from 'adminjs';
+import type { ResourceWithOptions } from 'adminjs';
 import ProductOptions from '../../models/ProductOptions.js';
 
 const ProductOptionsResource: ResourceWithOptions = {

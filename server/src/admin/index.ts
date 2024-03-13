@@ -11,13 +11,13 @@ import { UserRole } from '../lib/types/models.js';
 import User from '../models/User.js';
 import Order from '../models/Order.js';
 import OrderItems from '../models/OrderItems.js';
-import Comments from '../models/Comments.js';
 import UserResource from './resources/UserResource.js';
 import FilesResource from './resources/FilesResource.js';
 import ProductResource from './resources/ProductResource.js';
 import ProductOptionsResource from './resources/ProductOptionsResource.js';
 import ClothingTypesResource from './resources/ClothingTypesResource.js';
 import ClothingStylesResource from './resources/ClothingStylesResource.js';
+import CommentsResource from './resources/CommentsResource.js';
 
 dotenv.config();
 
@@ -33,7 +33,7 @@ const options: AdminJSOptions = {
     ClothingStylesResource,
     Order,
     OrderItems,
-    Comments,
+    CommentsResource,
   ],
   branding: {
     companyName: 'Admin Panel | SHOP.CO',

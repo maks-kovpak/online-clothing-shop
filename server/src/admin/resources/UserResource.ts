@@ -1,4 +1,4 @@
-import { ResourceWithOptions } from 'adminjs';
+import type { ResourceWithOptions } from 'adminjs';
 import User from '../../models/User.js';
 
 const UserResource: ResourceWithOptions = {
