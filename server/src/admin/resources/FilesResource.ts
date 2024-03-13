@@ -21,7 +21,8 @@ const FilesResource: ResourceWithOptions = {
       mime: { type: 'string', isArray: true },
       comment: { type: 'textarea', isSortable: false },
     },
-    listProperties: ['_id', 'file', 'mime', 'bucket', 'comment', 'createdAt'],
+    listProperties: ['_id', 'file', 'comment', 'createdAt'],
+    showProperties: ['_id', 'key', 'file', 'comment', 'createdAt', 'updatedAt'],
     editProperties: ['file', 'comment'],
   },
   features: [
