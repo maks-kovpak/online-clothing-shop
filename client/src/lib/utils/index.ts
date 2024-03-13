@@ -19,3 +19,14 @@ export const px = (value: number | string): `${number}px` => {
 export const isFormValid = (form: FormInstance) => {
   return !form.isFieldsTouched(true) || Boolean(form.getFieldsError().filter(({ errors }) => errors.length).length);
 };
+
+/**
+ * The `resolve` function takes a base URL and a relative path, and returns the resolved absolute URL.
+ * 
+ * @param url - The base URL to resolve the path against.
+ * @param path - The path that you want to resolve against the base URL.
+ * @returns The resolved URL as a string.
+ */
+export const resolve = (url: string | URL, path: string | URL) => {
+  return new URL(path, url).href;
+};

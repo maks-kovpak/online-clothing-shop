@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import paths from '@/lib/paths';
-import { isFormValid } from '@/lib/utils';
+import { isFormValid, resolve } from '@/lib/utils';
 import { PASSWORD_PATTERN } from '@/lib/constants/regex';
 import useClientReady from '@/lib/hooks/useClientReady';
 import useLoadingMessage from '@/lib/hooks/useLoadingMessage';
@@ -120,7 +120,7 @@ const RegistrationForm = () => {
         </Form.Item>
 
         <Form.Item className="google-signup-button-field">
-          <NavLink to={import.meta.env.VITE_API_URL + '/api/auth/google'}>
+          <NavLink to={resolve(import.meta.env.VITE_API_URL, '/api/auth/google')}>
             <Button type="default" size="large" icon={<GoogleLogo width={24} height={24} />}>
               {t('SIGN_UP_WITH_GOOGLE')}
             </Button>
