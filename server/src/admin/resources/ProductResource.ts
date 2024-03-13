@@ -6,12 +6,7 @@ const ProductResource: ResourceWithOptions = {
   options: {
     titleProperty: 'name',
     listProperties: ['_id', 'name', 'type', 'price', 'style', 'public'],
-    properties: {
-      size: {
-        isSortable: true,
-        isDraggable: true,
-      },
-    },
+    editProperties: ['name', 'type', 'price', 'style', 'discount', 'articleNumber', 'public'],
   },
 };
 

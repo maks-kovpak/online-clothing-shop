@@ -14,10 +14,10 @@ import OrderItems from '../models/OrderItems.js';
 import Comments from '../models/Comments.js';
 import UserResource from './resources/UserResource.js';
 import FilesResource from './resources/FilesResource.js';
-import ClothingTypes from '../models/ClothingTypes.js';
-import ClothingStyles from '../models/ClothingStyles.js';
 import ProductResource from './resources/ProductResource.js';
 import ProductOptionsResource from './resources/ProductOptionsResource.js';
+import ClothingTypesResource from './resources/ClothingTypesResource.js';
+import ClothingStylesResource from './resources/ClothingStylesResource.js';
 
 dotenv.config();
 
@@ -29,8 +29,8 @@ const options: AdminJSOptions = {
     UserResource,
     ProductResource,
     ProductOptionsResource,
-    ClothingTypes,
-    ClothingStyles,
+    ClothingTypesResource,
+    ClothingStylesResource,
     Order,
     OrderItems,
     Comments,
