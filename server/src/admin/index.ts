@@ -7,10 +7,8 @@ import bcrypt from 'bcrypt';
 import url from 'url';
 import dotenv from 'dotenv';
 import { UserRole } from '../lib/types/models.js';
-
 import User from '../models/User.js';
-import Order from '../models/Order.js';
-import OrderItems from '../models/OrderItems.js';
+
 import UserResource from './resources/UserResource.js';
 import FilesResource from './resources/FilesResource.js';
 import ProductResource from './resources/ProductResource.js';
@@ -18,6 +16,7 @@ import ProductOptionsResource from './resources/ProductOptionsResource.js';
 import ClothingTypesResource from './resources/ClothingTypesResource.js';
 import ClothingStylesResource from './resources/ClothingStylesResource.js';
 import CommentsResource from './resources/CommentsResource.js';
+import OrderResource from './resources/OrderResource.js';
 
 dotenv.config();
 
@@ -31,8 +30,7 @@ const options: AdminJSOptions = {
     ProductOptionsResource,
     ClothingTypesResource,
     ClothingStylesResource,
-    Order,
-    OrderItems,
+    OrderResource,
     CommentsResource,
   ],
   branding: {
