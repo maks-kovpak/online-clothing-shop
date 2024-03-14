@@ -65,7 +65,7 @@ const AuthController = {
 
       if (!user.id) {
         const failureUrl = new URL(process.env.CLIENT_URL);
-        failureUrl.searchParams.set('error', 'Unauthorized');
+        failureUrl.searchParams.set('error', 'REGISTER_BEFORE_LOGGING_IN');
 
         return res.redirect(failureUrl.href);
       }

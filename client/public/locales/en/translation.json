@@ -42,5 +42,7 @@
   "LOGIN_SUCCESSFUL": "Login was completed successfully!",
   "SOMETHING_WENT_WRONG": "Something went wrong! Please try again",
   "PROFILE": "Profile",
-  "SHOPPING_CART": "Shopping Cart"
+  "SHOPPING_CART": "Shopping Cart",
+  "REGISTER_BEFORE_LOGGING_IN": "Register before logging in to your account",
+  "REGISTRATION_SUCCESSFUL": "Registration successful"
 }

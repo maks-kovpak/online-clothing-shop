@@ -2,11 +2,13 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import { useUnit } from 'effector-react';
 import { useEffect } from 'react';
 import { message } from 'antd';
+import { useTranslation } from 'react-i18next';
 import PageHeader from '@/components/layout/PageHeader';
 import Loading from '@/components/layout/Loading';
 import { fetchUserProfileFx } from '@/stores/user.store';
 
 const App = () => {
+  const { t } = useTranslation();
   const fetchAuthorizedUser = useUnit(fetchUserProfileFx);
   const [params, setParams] = useSearchParams();
 
@@ -23,7 +25,7 @@ const App = () => {
       message.open({
         key,
         type: 'error',
-        content: errorMessage,
+        content: t(errorMessage),
         duration: 2,
         onClose: () => {
           if (params.has('error', errorMessage)) {
@@ -37,7 +39,7 @@ const App = () => {
     }
 
     return () => message.destroy(key);
-  }, [params, setParams]);
+  }, [params, setParams, t]);
 
   return (
     <Loading>

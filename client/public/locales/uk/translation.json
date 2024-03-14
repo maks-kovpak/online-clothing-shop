@@ -42,5 +42,7 @@
   "LOGIN_SUCCESSFUL": "Вхід було виконано успішно!",
   "SOMETHING_WENT_WRONG": "Щось пішло не так! Спробуйте ще раз",
   "PROFILE": "Профіль",
-  "SHOPPING_CART": "Кошик"
+  "SHOPPING_CART": "Кошик",
+  "REGISTER_BEFORE_LOGGING_IN": "Зареєструйтеся, перш ніж увійти до свого аккаунту",
+  "REGISTRATION_SUCCESSFUL": "Реєстрація пройшла успішно"
 }
