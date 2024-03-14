@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Flex } from 'antd';
+import { Flex, Avatar } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import Navbar from '../Navbar';
@@ -53,13 +53,15 @@ const PageHeader = () => {
               </NavLink>
             )}
 
-            <NavLink
-              to={user ? paths.profile : paths.signup}
-              title={user ? t('PROFILE') : t('SIGN_UP')}
-              style={{ display: 'flex' }}
-            >
-              <UserAccountIcon />
-            </NavLink>
+            {user ? (
+              <NavLink to={paths.profile} title={t('PROFILE')} style={{ display: 'flex' }}>
+                <Avatar style={{ backgroundColor: '#fde3cf', color: '#f56a00' }}>{user.name[0].toUpperCase()}</Avatar>
+              </NavLink>
+            ) : (
+              <NavLink to={paths.signup} title={t('SIGN_UP')} style={{ display: 'flex' }}>
+                <UserAccountIcon />
+              </NavLink>
+            )}
           </Flex>
         </div>
       </header>

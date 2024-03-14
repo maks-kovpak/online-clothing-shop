@@ -1,15 +1,12 @@
-import './index.scss';
 import type { FC, ReactNode } from 'react';
-import { useEffect, useState } from 'react';
+import useClientReady from '@/lib/hooks/useClientReady.tsx';
+
+import './index.scss';
 
 const Loading: FC<{ children: ReactNode }> = ({ children }) => {
-  const [loading, setLoading] = useState<boolean>(true);
+  const ready = useClientReady();
 
-  useEffect(() => {
-    setLoading(false);
-  }, []);
-
-  if (loading) {
+  if (!ready) {
     return (
       <div className="loader-wrapper">
         <div className="loader"></div>
