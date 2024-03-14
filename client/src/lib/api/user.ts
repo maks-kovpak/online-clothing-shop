@@ -14,6 +14,10 @@ const UserApi = {
   getProfile: async (id: string) => {
     return await axios.get<IUser>(`/user/${id}`);
   },
+
+  emailExists: async (email: string) => {
+    return await axios.post<{ exists: boolean }>('/user/exists', { email });
+  },
 };
 
 export default UserApi;

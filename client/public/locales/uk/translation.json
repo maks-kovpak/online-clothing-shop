@@ -44,5 +44,7 @@
   "PROFILE": "Профіль",
   "SHOPPING_CART": "Кошик",
   "REGISTER_BEFORE_LOGGING_IN": "Зареєструйтеся, перш ніж увійти до свого аккаунту",
-  "REGISTRATION_SUCCESSFUL": "Реєстрація пройшла успішно"
+  "REGISTRATION_SUCCESSFUL": "Реєстрація пройшла успішно",
+  "PASSWORDS_DO_NOT_MATCH": "Паролі не збігаються",
+  "EMAIL_ALREADY_EXISTS": "Електронна пошта вже існує"
 }

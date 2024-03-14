@@ -43,19 +43,49 @@ const RegistrationForm = () => {
     errorMessage: t('SOMETHING_WENT_WRONG'),
   });
 
+  const confirmPassword: FormRule = useMemo(
+    () =>
+      ({ getFieldValue }) => ({
+        validator: (_, value) => {
+          if (!value || getFieldValue('password') === value) {
+            return Promise.resolve();
+          }
+
+          return Promise.reject(new Error(t('PASSWORDS_DO_NOT_MATCH')));
+        },
+      }),
+    [t]
+  );
+
+  const checkIfExists: FormRule = useMemo(
+    () => () => ({
+      validator: async (_, value) => {
+        const response = await UserApi.emailExists(value);
+
+        if (!value || !response.data.exists) {
+          return Promise.resolve();
+        }
+
+        return Promise.reject(new Error(t('EMAIL_ALREADY_EXISTS')));
+      },
+    }),
+    [t]
+  );
+
   const validationRules: Record<string, FormRule[]> = useMemo(
     () => ({
       name: [{ required: true, message: t('FIELD_REQUIRED') }],
       email: [
         { type: 'email', message: t('EMAIL_NOT_VALID') },
         { required: true, message: t('FIELD_REQUIRED') },
+        checkIfExists,
       ],
       password: [
         { pattern: PASSWORD_PATTERN, message: t('PASSWORD_NOT_VALID') },
         { required: true, message: t('FIELD_REQUIRED') },
       ],
     }),
-    [t]
+    [checkIfExists, t]
   );
 
   const onFinish = async (values: RegistrationFormValues) => {
@@ -84,7 +114,7 @@ const RegistrationForm = () => {
           <Input placeholder={t('YOUR_NAME')} autoComplete="name" />
         </Form.Item>
 
-        <Form.Item name="email" rules={validationRules.email} validateFirst>
+        <Form.Item name="email" rules={validationRules.email} validateDebounce={1000} validateFirst>
           <Input placeholder={t('YOUR_EMAIL')} autoComplete="email" />
         </Form.Item>
 
@@ -92,22 +122,7 @@ const RegistrationForm = () => {
           <Input.Password placeholder={t('YOUR_PASSWORD')} autoComplete="new-password" />
         </Form.Item>
 
-        <Form.Item
-          name="repeatPassword"
-          rules={[
-            ...validationRules.password,
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-
-                return Promise.reject(new Error('The new password do not match!'));
-              },
-            }),
-          ]}
-          validateFirst
-        >
+        <Form.Item name="repeatPassword" rules={[...validationRules.password, confirmPassword]} validateFirst>
           <Input.Password placeholder={t('REPEAT_PASSWORD')} autoComplete="new-password" />
         </Form.Item>
 

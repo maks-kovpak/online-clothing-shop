@@ -44,5 +44,7 @@
   "PROFILE": "Profile",
   "SHOPPING_CART": "Shopping Cart",
   "REGISTER_BEFORE_LOGGING_IN": "Register before logging in to your account",
-  "REGISTRATION_SUCCESSFUL": "Registration successful"
+  "REGISTRATION_SUCCESSFUL": "Registration successful",
+  "PASSWORDS_DO_NOT_MATCH": "Passwords do not match",
+  "EMAIL_ALREADY_EXISTS": "The email already exists"
 }

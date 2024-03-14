@@ -22,6 +22,17 @@ const UserController = {
       next(ApiError.internal((err as Error).message));
     }
   },
+
+  exists: async (req: RequestWithBody<{ email: string }>, res: Response<{ exists: boolean }>, next: NextFunction) => {
+    try {
+      const user = await User.findOne({ email: req.body.email });
+
+      if (!user) return res.status(200).json({ exists: false });
+      res.status(200).json({ exists: true });
+    } catch (err) {
+      next(ApiError.internal((err as Error).message));
+    }
+  },
 };
 
 export default UserController;
