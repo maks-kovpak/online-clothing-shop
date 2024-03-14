@@ -61,7 +61,15 @@ const AuthController = {
 
   googleCallback: (req: Request, res: Response) => {
     if (req.user) {
-      const user = req.user as { id: string };
+      const user = req.user as { id: string | null };
+
+      if (!user.id) {
+        const failureUrl = new URL(process.env.CLIENT_URL);
+        failureUrl.searchParams.set('error', 'Unauthorized');
+
+        return res.redirect(failureUrl.href);
+      }
+
       const token = jwt.sign({ id: user.id }, process.env.JWT_TOKEN_SECRET);
 
       res.cookie('jwt-token', token, { secure: true });

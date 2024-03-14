@@ -67,11 +67,11 @@ const usePassportAuth = () => {
         const emailsList = profile.emails?.map((email) => email.value);
         const user = await User.findOne({ email: { $in: emailsList } });
 
-        if (!user) return done(ApiError.unauthorized('Unauthorized'));
+        if (!user) throw ApiError.unauthorized('Unauthorized');
 
         return done(null, { id: user._id });
-      } catch (err) {
-        return done(err as Error);
+      } catch {
+        return done(null, { id: null });
       }
     })
   );
