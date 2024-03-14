@@ -5,10 +5,11 @@ export interface IUser {
   _id: Types.ObjectId;
   name: string;
   username: string;
+  profileImage?: string;
   email: string;
   password: string;
   role: UserRole;
-  favoritesList?: Types.ObjectId[];
+  cart?: Array<{ productOptionId: Types.ObjectId; count?: number }>;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -17,10 +18,16 @@ const UserSchema = new Schema<IUser>(
   {
     name: { type: String, required: true },
     username: { type: String, required: true, unique: true, match: /[a-z0-9]+(?:-[a-z0-9]+)*/ },
+    profileImage: { type: String },
     email: { type: String, required: true, unique: true, match: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/ },
     password: { type: String, required: true, minLength: 6 },
     role: { type: String, required: true, enum: Object.values(UserRole) },
-    favoritesList: { type: [Schema.Types.ObjectId], ref: 'Product', default: [] },
+    cart: [
+      {
+        productOptionId: { type: Schema.Types.ObjectId, ref: 'ProductOptions', required: true },
+        count: { type: Number, min: 1, default: 1 },
+      },
+    ],
   },
   { timestamps: true }
 );

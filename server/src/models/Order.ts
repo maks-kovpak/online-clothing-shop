@@ -6,7 +6,7 @@ export interface IOrder {
   clientId: Types.ObjectId;
   address: string;
   status: OrderStatus;
-  items: Array<{ productOptionId: Types.ObjectId; count: number }>;
+  items: Array<{ productOptionId: Types.ObjectId; count?: number }>;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -19,7 +19,7 @@ const OrdersSchema = new Schema<IOrder>(
     items: [
       {
         productOptionId: { type: Schema.Types.ObjectId, ref: 'ProductOptions', required: true },
-        count: { type: Number, required: true, min: 1 },
+        count: { type: Number, min: 1, default: 1 },
       },
     ],
   },
