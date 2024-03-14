@@ -4,28 +4,18 @@ import paths from './paths.ts';
 import MainPage from '@/pages/main/index.tsx';
 import SignupPage from '@/pages/signup';
 import LoginPage from '@/pages/login';
+import ProfilePage from '@/pages/profile';
 
 const routes: Array<RouteObject> = [
   {
     path: paths.main,
     element: <App />,
     children: [
-      {
-        path: paths.main,
-        element: <MainPage />,
-      },
-      {
-        path: paths.signup,
-        element: <SignupPage />,
-      },
-      {
-        path: paths.login,
-        element: <LoginPage />,
-      },
-      {
-        path: paths.other,
-        element: <Navigate to={paths.main} />,
-      },
+      { path: paths.main, element: <MainPage /> },
+      { path: paths.signup, element: <SignupPage /> },
+      { path: paths.login, element: <LoginPage /> },
+      { path: paths.profile, element: <ProfilePage /> },
+      { path: paths.other, element: <Navigate to={paths.main} /> },
     ],
   },
 ];

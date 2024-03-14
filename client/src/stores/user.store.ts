@@ -21,14 +21,14 @@ export const updateUserEvent = createEvent<Partial<IUser>>();
 
 /* Store */
 
-const $userStore = createStore<IUserStore | null>(null);
+const $user = createStore<IUserStore | null>(null);
 
-$userStore.on(fetchUserProfileFx.doneData, (_, fetchedUser) => {
+$user.on(fetchUserProfileFx.doneData, (_, fetchedUser) => {
   return fetchedUser;
 });
 
-$userStore.on(updateUserEvent, (state, newUser) => {
+$user.on(updateUserEvent, (state, newUser) => {
   return state ? { ...state, ...newUser } : (newUser as IUser);
 });
 
-export default $userStore;
+export default $user;

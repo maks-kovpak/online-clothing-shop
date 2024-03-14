@@ -9,7 +9,7 @@ import LanguageSelect from '../../features/LanguageSelect';
 import { Input } from '@/ui';
 import paths from '@/lib/paths';
 import { useUnit } from 'effector-react';
-import $userStore from '@/stores/user.store';
+import $user from '@/stores/user.store';
 
 import logo from '@/assets/img/logo.svg';
 import SearchIcon from '@/assets/icons/search.svg?react';
@@ -22,7 +22,7 @@ import './index.scss';
 const PageHeader = () => {
   const { t } = useTranslation();
   const [openedDrawer, setOpenedDrawer] = useState<boolean>(false);
-  const user = useUnit($userStore);
+  const user = useUnit($user);
 
   return (
     <>
