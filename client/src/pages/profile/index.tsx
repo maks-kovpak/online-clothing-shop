@@ -1,3 +1,5 @@
+import { Flex } from 'antd';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import MetaTags from '@/components/features/MetaTags';
 import UserProfileSidebar from './containers/UserProfileSidebar';
@@ -7,6 +9,7 @@ import './index.scss';
 
 const ProfilePage = () => {
   const { t } = useTranslation();
+  const [title, setTitle] = useState<string | null>(null);
 
   return (
     <>
@@ -18,8 +21,12 @@ const ProfilePage = () => {
 
       <main>
         <section className="primary-section user-profile-form-section">
-          <UserProfileSidebar />
-          <UserProfileForm />
+          <h2>{t(title ?? 'PROFILE')}</h2>
+
+          <Flex gap={32}>
+            <UserProfileSidebar setCurrentTitle={setTitle} />
+            <UserProfileForm />
+          </Flex>
         </section>
       </main>
     </>

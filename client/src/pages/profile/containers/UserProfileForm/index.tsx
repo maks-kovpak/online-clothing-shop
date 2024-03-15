@@ -1,4 +1,4 @@
-import { Form, Skeleton } from 'antd';
+import { Form, Skeleton, Row, Col } from 'antd';
 import { Input, Button } from '@/ui';
 import useClientReady from '@/lib/hooks/useClientReady';
 import { isFormValid } from '@/lib/utils';
@@ -24,13 +24,22 @@ const UserProfileForm = () => {
         <UserProfileFormSkeleton />
       ) : (
         <Form form={form} layout="vertical">
-          <Form.Item name="email" validateFirst initialValue={user?.email}>
-            <Input
-              autoComplete="email"
-              size="middle"
-              variant={readonlyMode ? 'borderless' : 'outlined'}
-              readOnly={readonlyMode}
-            />
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item name="name" initialValue={user?.name} label="Name" validateFirst>
+                <Input autoComplete="name" readOnly={readonlyMode} />
+              </Form.Item>
+            </Col>
+
+            <Col span={12}>
+              <Form.Item name="username" initialValue={user?.username} label="Username" validateFirst>
+                <Input autoComplete="username" readOnly={readonlyMode} prefix={'@'} />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Form.Item name="email" initialValue={user?.email} label="Email" validateFirst>
+            <Input autoComplete="email" readOnly={readonlyMode} />
           </Form.Item>
 
           <Form.Item className="submit-button-field" shouldUpdate>
@@ -38,7 +47,6 @@ const UserProfileForm = () => {
               <Button
                 type="primary"
                 htmlType="submit"
-                size="middle"
                 disabled={!readonlyMode && (!ready || isFormValid(form))}
                 onClick={() => setReadonlyMode(!readonlyMode)}
               >

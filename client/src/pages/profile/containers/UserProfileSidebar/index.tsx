@@ -1,27 +1,28 @@
 import { Menu, type MenuProps } from 'antd';
 import { useMemo } from 'react';
+import type { FC, Dispatch, SetStateAction } from 'react';
 import './index.scss';
 
-const UserProfileSidebar = () => {
+const UserProfileSidebar: FC<{ setCurrentTitle: Dispatch<SetStateAction<string | null>> }> = ({ setCurrentTitle }) => {
   const menuItems: MenuProps['items'] = useMemo(
     () => [
       {
         label: 'Manage My Account',
-        key: 'manage-account',
+        key: 'MANAGE_ACCOUNT',
         type: 'group',
         children: [
-          { label: 'Profile', key: 'profile' },
-          { label: 'Address Book', key: 'address-book' },
-          { label: 'Payment Options', key: 'payment-options' },
+          { label: 'Profile', key: 'PROFILE' },
+          { label: 'Address Book', key: 'ADDRESS_BOOK' },
+          { label: 'Payment Options', key: 'PAYMENT_OPTIONS' },
         ],
       },
       {
         label: 'Manage Orders',
-        key: 'manage-orders',
+        key: 'MANAGE_ORDERS',
         type: 'group',
         children: [
-          { label: 'Orders', key: 'orders' },
-          { label: 'Cancellations', key: 'cancellations' },
+          { label: 'Orders', key: 'ORDERS' },
+          { label: 'Cancellations', key: 'CANCELLATIONS' },
         ],
       },
     ],
@@ -29,7 +30,13 @@ const UserProfileSidebar = () => {
   );
 
   return (
-    <Menu className="user-profile-sidebar" style={{ width: 295 }} items={menuItems} defaultSelectedKeys={['profile']} />
+    <Menu
+      className="user-profile-sidebar"
+      style={{ width: 295 }}
+      items={menuItems}
+      defaultSelectedKeys={['PROFILE']}
+      onSelect={({ key }) => setCurrentTitle(key)}
+    />
   );
 };
 

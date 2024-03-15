@@ -2,6 +2,10 @@
 
 .user-profile-form-section {
   margin-top: $primary-section-margin-lg !important;
-  display: flex;
-  gap: 2rem;
+
+  h2 {
+    font-family: $main-font !important;
+    margin-bottom: 1.25rem;
+    font-weight: 800;
+  }
 }
