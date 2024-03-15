@@ -19,6 +19,7 @@ const config: ThemeConfig = {
       controlOutline: vars.darkTransparentColor,
       optionSelectedBg: vars.darkTransparentColor,
     },
+    Menu: {},
   },
 };
 

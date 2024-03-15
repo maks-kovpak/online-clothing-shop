@@ -1,9 +1,23 @@
-import { useUnit } from 'effector-react/compat';
-import $user from '@/stores/user.store.ts';
+import { useTranslation } from 'react-i18next';
+import MetaTags from '@/components/features/MetaTags';
+import UserProfileForm from './containers/UserProfileForm';
 
 const ProfilePage = () => {
-  const user = useUnit($user);
-  return <main>{JSON.stringify(user)}</main>;
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <MetaTags
+        title={`SHOP.CO | ${t('PROFILE_PAGE_TITLE')}`}
+        description={t('PROFILE_PAGE_DESCRIPTION')}
+        imagePath="/opengraph/og-image-main.webp"
+      />
+
+      <main>
+        <UserProfileForm />
+      </main>
+    </>
+  );
 };
 
 export default ProfilePage;
