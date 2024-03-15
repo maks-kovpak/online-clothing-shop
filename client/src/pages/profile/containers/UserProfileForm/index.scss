@@ -1,5 +1,8 @@
 @import '@/assets/styles/_variables.module';
 
-.user-profile-form-section {
-  margin-top: $primary-section-margin-lg !important;
+.user-profile-form-wrapper {
+  border: 1px solid $grayscale-color-4 !important;
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+  flex-grow: 1;
 }

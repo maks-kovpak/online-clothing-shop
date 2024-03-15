@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import MetaTags from '@/components/features/MetaTags';
+import UserProfileSidebar from './containers/UserProfileSidebar';
 import UserProfileForm from './containers/UserProfileForm';
+
+import './index.scss';
 
 const ProfilePage = () => {
   const { t } = useTranslation();
@@ -14,7 +17,10 @@ const ProfilePage = () => {
       />
 
       <main>
-        <UserProfileForm />
+        <section className="primary-section user-profile-form-section">
+          <UserProfileSidebar />
+          <UserProfileForm />
+        </section>
       </main>
     </>
   );

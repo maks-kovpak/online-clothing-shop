@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "antd": "5.12.1",
+    "antd": "5.15.2",
     "axios": "1.6.7",
     "effector": "23.2.0",
     "effector-react": "23.2.0",
