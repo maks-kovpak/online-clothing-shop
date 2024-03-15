@@ -19,7 +19,11 @@ const config: ThemeConfig = {
       controlOutline: vars.darkTransparentColor,
       optionSelectedBg: vars.darkTransparentColor,
     },
-    Menu: {},
+    Menu: {
+      itemHoverBg: vars.grayscaleColor3,
+      itemActiveBg: vars.grayscaleColor5,
+      itemSelectedBg: vars.grayscaleColor5,
+    },
   },
 };
 

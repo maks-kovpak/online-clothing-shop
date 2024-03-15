@@ -1,0 +1,8 @@
+@import '@/assets/styles/_variables.module';
+
+.user-profile-sidebar {
+  border-inline-end: unset !important;
+  border: 1px solid $grayscale-color-4 !important;
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+}

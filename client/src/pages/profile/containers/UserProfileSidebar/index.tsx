@@ -1,11 +1,12 @@
 import { Menu, type MenuProps } from 'antd';
 import { useMemo } from 'react';
+import './index.scss';
 
-const UserProfileForm = () => {
+const UserProfileSidebar = () => {
   const menuItems: MenuProps['items'] = useMemo(
     () => [
       {
-        label: 'Manage my account',
+        label: 'Manage My Account',
         key: 'manage-account',
         type: 'group',
         children: [
@@ -15,11 +16,11 @@ const UserProfileForm = () => {
         ],
       },
       {
-        label: 'Orders',
-        key: 'orders',
+        label: 'Manage Orders',
+        key: 'manage-orders',
         type: 'group',
         children: [
-          { label: 'Returns', key: 'returns' },
+          { label: 'Orders', key: 'orders' },
           { label: 'Cancellations', key: 'cancellations' },
         ],
       },
@@ -28,12 +29,8 @@ const UserProfileForm = () => {
   );
 
   return (
-    <section className="primary-section">
-      <div>
-        <Menu style={{ width: 256 }} mode="inline" items={menuItems} />
-      </div>
-    </section>
+    <Menu className="user-profile-sidebar" style={{ width: 295 }} items={menuItems} defaultSelectedKeys={['profile']} />
   );
 };
 
-export default UserProfileForm;
+export default UserProfileSidebar;
