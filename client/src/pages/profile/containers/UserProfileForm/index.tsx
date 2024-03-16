@@ -1,5 +1,6 @@
 import { Form, Skeleton, Row, Col } from 'antd';
 import { Input, Button } from '@/ui';
+import UploadImage from '@/components/features/UploadImage';
 import useClientReady from '@/lib/hooks/useClientReady';
 import { isFormValid } from '@/lib/utils';
 import { useUnit } from 'effector-react';
@@ -25,13 +26,14 @@ const UserProfileForm = () => {
       ) : (
         <Form form={form} layout="vertical">
           <Row gutter={16}>
-            <Col span={12}>
+            <Col span={6}>
+              <UploadImage />
+            </Col>
+
+            <Col span={18}>
               <Form.Item name="name" initialValue={user?.name} label="Name" validateFirst>
                 <Input autoComplete="name" readOnly={readonlyMode} />
               </Form.Item>
-            </Col>
-
-            <Col span={12}>
               <Form.Item name="username" initialValue={user?.username} label="Username" validateFirst>
                 <Input autoComplete="username" readOnly={readonlyMode} prefix={'@'} />
               </Form.Item>
