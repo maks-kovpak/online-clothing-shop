@@ -1,12 +1,12 @@
 import { Form, Skeleton, Flex, Badge } from 'antd';
 import { Input, Button } from '@/ui';
 import UploadImage from '@/components/features/UploadImage';
-import useClientReady from '@/lib/hooks/useClientReady';
 import { isFormValid } from '@/lib/utils';
 import { useUnit } from 'effector-react';
 import $user from '@/stores/user.store';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useClientReady, useValidationRules } from '@/lib/hooks';
 import { UserRole } from '@server/lib/types/models';
 
 import './index.scss';
@@ -21,13 +21,14 @@ const UserProfileForm = () => {
   const user = useUnit($user);
   const [readonlyMode, setReadonlyMode] = useState<boolean>(true);
   const { t } = useTranslation();
+  const { rules: validationRules } = useValidationRules();
 
   return (
     <div className="user-profile-form-wrapper">
       {!user ? (
         <UserProfileFormSkeleton />
       ) : (
-        <Form form={form} layout="vertical">
+        <Form form={form} layout="vertical" requiredMark={false}>
           <Flex gap={24}>
             {user.role == UserRole.ADMIN ? (
               <Badge.Ribbon text={t('ADMIN')} color="gold">
@@ -42,17 +43,35 @@ const UserProfileForm = () => {
             )}
 
             <div className="name-fields-container">
-              <Form.Item name="name" initialValue={user.name} label={t('NAME')} validateFirst>
+              <Form.Item
+                name="name"
+                initialValue={user.name}
+                label={t('NAME')}
+                rules={validationRules.requiredField}
+                validateFirst
+              >
                 <Input autoComplete="name" readOnly={readonlyMode} />
               </Form.Item>
 
-              <Form.Item name="username" initialValue={user.username} label={t('USERNAME')} validateFirst>
+              <Form.Item
+                name="username"
+                initialValue={user.username}
+                label={t('USERNAME')}
+                rules={validationRules.username}
+                validateFirst
+              >
                 <Input autoComplete="username" readOnly={readonlyMode} prefix="@" />
               </Form.Item>
             </div>
           </Flex>
 
-          <Form.Item name="email" initialValue={user.email} label={t('EMAIL')} validateFirst>
+          <Form.Item
+            name="email"
+            initialValue={user.email}
+            label={t('EMAIL')}
+            rules={validationRules.email}
+            validateFirst
+          >
             <Input autoComplete="email" readOnly={readonlyMode} />
           </Form.Item>
 

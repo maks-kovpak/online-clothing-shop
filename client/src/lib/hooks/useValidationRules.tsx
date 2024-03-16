@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import type { FormRule } from 'antd';
 import { useTranslation } from 'react-i18next';
 import UserApi from '@/lib/api/user';
-import { PASSWORD_PATTERN } from '@/lib/constants/regex';
+import { PASSWORD_PATTERN, USERNAME_PATTERN } from '@/lib/constants/regex';
 
 /**
  * The `useValidationRules` hook provides validation rules for form fields like
@@ -41,7 +41,7 @@ const useValidationRules = () => {
     [t]
   );
 
-  const rules: Record<'requiredField' | 'email' | 'password', FormRule[]> = useMemo(
+  const rules: Record<'requiredField' | 'email' | 'password' | 'username', FormRule[]> = useMemo(
     () => ({
       requiredField: [{ required: true, message: t('FIELD_REQUIRED') }],
       email: [
@@ -50,6 +50,10 @@ const useValidationRules = () => {
       ],
       password: [
         { pattern: PASSWORD_PATTERN, message: t('PASSWORD_NOT_VALID') },
+        { required: true, message: t('FIELD_REQUIRED') },
+      ],
+      username: [
+        { pattern: USERNAME_PATTERN, message: t('USERNAME_NOT_VALID') },
         { required: true, message: t('FIELD_REQUIRED') },
       ],
     }),
