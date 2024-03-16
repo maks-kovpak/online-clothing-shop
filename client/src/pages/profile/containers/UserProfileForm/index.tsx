@@ -1,4 +1,4 @@
-import { Form, Skeleton, Row, Col, Flex } from 'antd';
+import { Form, Skeleton, Flex, Badge } from 'antd';
 import { Input, Button } from '@/ui';
 import UploadImage from '@/components/features/UploadImage';
 import useClientReady from '@/lib/hooks/useClientReady';
@@ -7,6 +7,7 @@ import { useUnit } from 'effector-react';
 import $user from '@/stores/user.store';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { UserRole } from '@server/lib/types/models';
 
 import './index.scss';
 
@@ -27,12 +28,20 @@ const UserProfileForm = () => {
         <UserProfileFormSkeleton />
       ) : (
         <Form form={form} layout="vertical">
-          <Flex gap={16}>
-            <div style={{ width: 190 }}>
-              <UploadImage defaultImage={user.profileImage} />
-            </div>
+          <Flex gap={24}>
+            {user.role == UserRole.ADMIN ? (
+              <Badge.Ribbon text={t('ADMIN')} color="gold">
+                <div className="upload-image-field">
+                  <UploadImage defaultImage={user.profileImage} />
+                </div>
+              </Badge.Ribbon>
+            ) : (
+              <div className="upload-image-field">
+                <UploadImage defaultImage={user.profileImage} />
+              </div>
+            )}
 
-            <div style={{ flexGrow: 1 }}>
+            <div className="name-fields-container">
               <Form.Item name="name" initialValue={user.name} label={t('NAME')} validateFirst>
                 <Input autoComplete="name" readOnly={readonlyMode} />
               </Form.Item>
@@ -43,20 +52,16 @@ const UserProfileForm = () => {
             </div>
           </Flex>
 
-          <Row>
-            <Col span={24}>
-              <Form.Item name="email" initialValue={user.email} label={t('EMAIL')} validateFirst>
-                <Input autoComplete="email" readOnly={readonlyMode} />
-              </Form.Item>
-            </Col>
-          </Row>
+          <Form.Item name="email" initialValue={user.email} label={t('EMAIL')} validateFirst>
+            <Input autoComplete="email" readOnly={readonlyMode} />
+          </Form.Item>
 
           <Form.Item className="submit-button-field" shouldUpdate style={{ display: 'flex', justifyContent: 'end' }}>
             {() => (
               <Button
                 type="primary"
                 htmlType="submit"
-                disabled={!readonlyMode && (!ready || isFormValid(form))}
+                disabled={!ready || (!readonlyMode && !isFormValid(form))}
                 onClick={() => setReadonlyMode(!readonlyMode)}
               >
                 {t('EDIT_PROFILE')}

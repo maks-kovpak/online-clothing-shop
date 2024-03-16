@@ -6,6 +6,14 @@
   border-radius: 20px;
   flex-grow: 1;
 
+  .upload-image-field {
+    width: 190px;
+  }
+
+  .name-fields-container {
+    flex-grow: 1;
+  }
+
   .sc-input-affix-wrapper .sc-input-prefix {
     margin-right: 0;
   }

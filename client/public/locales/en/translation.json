@@ -61,5 +61,6 @@
   "PAYMENT_OPTIONS": "Payment Options",
   "MANAGE_ORDERS": "Manage Orders",
   "ORDERS": "Orders",
-  "CANCELLATIONS": "Cancellations"
+  "CANCELLATIONS": "Cancellations",
+  "ADMIN": "Admin"
 }

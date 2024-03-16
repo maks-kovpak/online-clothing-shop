@@ -61,5 +61,6 @@
   "PAYMENT_OPTIONS": "Налаштування оплати",
   "MANAGE_ORDERS": "Відстеження замовлень",
   "ORDERS": "Замовлення",
-  "CANCELLATIONS": "Скасовані"
+  "CANCELLATIONS": "Скасовані",
+  "ADMIN": "Адмін"
 }

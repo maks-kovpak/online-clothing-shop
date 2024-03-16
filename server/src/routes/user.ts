@@ -8,6 +8,9 @@ const requireAuth = passport.authenticate('jwt', { session: false });
 /* Get */
 userRouter.get('/:id', requireAuth, UserController.get);
 
+/* Put */
+userRouter.put('/:id', requireAuth, UserController.update);
+
 /* Post */
 userRouter.post('/exists', UserController.exists);
 
