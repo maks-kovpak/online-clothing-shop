@@ -46,5 +46,20 @@
   "REGISTER_BEFORE_LOGGING_IN": "Register before logging in to your account",
   "REGISTRATION_SUCCESSFUL": "Registration successful",
   "PASSWORDS_DO_NOT_MATCH": "Passwords do not match",
-  "EMAIL_ALREADY_EXISTS": "The email already exists"
+  "EMAIL_ALREADY_EXISTS": "The email already exists",
+  "PROFILE_PAGE_TITLE": "User Profile",
+  "PROFILE_PAGE_DESCRIPTION": "Change settings and manage your account",
+  "NAME": "Name",
+  "USERNAME": "Username",
+  "EMAIL": "Email",
+  "EDIT_IMAGE": "Edit image",
+  "OK": "Ok",
+  "CANCEL": "Cancel",
+  "EDIT_PROFILE": "Edit profile",
+  "MANAGE_ACCOUNT": "Manage Account",
+  "ADDRESS_BOOK": "Address Book",
+  "PAYMENT_OPTIONS": "Payment Options",
+  "MANAGE_ORDERS": "Manage Orders",
+  "ORDERS": "Orders",
+  "CANCELLATIONS": "Cancellations"
 }

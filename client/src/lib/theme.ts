@@ -12,6 +12,7 @@ const config: ThemeConfig = {
       activeBorderColor: 'black',
       hoverBorderColor: vars.darkColor,
       controlOutline: vars.darkTransparentColor,
+      colorBorder: vars.inputBorderColor,
     },
     Select: {
       colorPrimaryHover: vars.darkColor,

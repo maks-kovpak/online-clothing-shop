@@ -27,9 +27,9 @@ const beforeUpload = (file: FileType) => {
   return isImage;
 };
 
-const UploadImage: FC = () => {
+const UploadImage: FC<{ defaultImage?: string }> = ({ defaultImage }) => {
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
+  const [imageUrl, setImageUrl] = useState<string | undefined>(defaultImage);
   const { t } = useTranslation();
 
   const handleChange: UploadProps['onChange'] = (info) => {

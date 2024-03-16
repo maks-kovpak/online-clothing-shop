@@ -46,5 +46,20 @@
   "REGISTER_BEFORE_LOGGING_IN": "Зареєструйтеся, перш ніж увійти до свого аккаунту",
   "REGISTRATION_SUCCESSFUL": "Реєстрація пройшла успішно",
   "PASSWORDS_DO_NOT_MATCH": "Паролі не збігаються",
-  "EMAIL_ALREADY_EXISTS": "Електронна пошта вже існує"
+  "EMAIL_ALREADY_EXISTS": "Електронна пошта вже існує",
+  "PROFILE_PAGE_TITLE": "Профіль користувача",
+  "PROFILE_PAGE_DESCRIPTION": "Змінюйте налаштування та керуйте своїм обліковим записом",
+  "NAME": "Ім'я",
+  "USERNAME": "Ім'я користувача",
+  "EMAIL": "Електронна пошта",
+  "EDIT_IMAGE": "Редагувати зображення",
+  "OK": "Гаразд",
+  "CANCEL": "Скасувати",
+  "EDIT_PROFILE": "Редагувати профіль",
+  "MANAGE_ACCOUNT": "Управління акаунтом",
+  "ADDRESS_BOOK": "Збережені адреси",
+  "PAYMENT_OPTIONS": "Налаштування оплати",
+  "MANAGE_ORDERS": "Відстеження замовлень",
+  "ORDERS": "Замовлення",
+  "CANCELLATIONS": "Скасовані"
 }

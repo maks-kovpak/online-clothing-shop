@@ -1,32 +1,36 @@
 import { Menu, type MenuProps } from 'antd';
 import { useMemo } from 'react';
 import type { FC, Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import './index.scss';
 
 const UserProfileSidebar: FC<{ setCurrentTitle: Dispatch<SetStateAction<string | null>> }> = ({ setCurrentTitle }) => {
+  const { t } = useTranslation();
+
   const menuItems: MenuProps['items'] = useMemo(
     () => [
       {
-        label: 'Manage My Account',
+        label: t('MANAGE_ACCOUNT'),
         key: 'MANAGE_ACCOUNT',
         type: 'group',
         children: [
-          { label: 'Profile', key: 'PROFILE' },
-          { label: 'Address Book', key: 'ADDRESS_BOOK' },
-          { label: 'Payment Options', key: 'PAYMENT_OPTIONS' },
+          { label: t('PROFILE'), key: 'PROFILE' },
+          { label: t('ADDRESS_BOOK'), key: 'ADDRESS_BOOK' },
+          { label: t('PAYMENT_OPTIONS'), key: 'PAYMENT_OPTIONS' },
         ],
       },
       {
-        label: 'Manage Orders',
+        label: t('MANAGE_ORDERS'),
         key: 'MANAGE_ORDERS',
         type: 'group',
         children: [
-          { label: 'Orders', key: 'ORDERS' },
-          { label: 'Cancellations', key: 'CANCELLATIONS' },
+          { label: t('ORDERS'), key: 'ORDERS' },
+          { label: t('CANCELLATIONS'), key: 'CANCELLATIONS' },
         ],
       },
     ],
-    []
+    [t]
   );
 
   return (

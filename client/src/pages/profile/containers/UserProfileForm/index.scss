@@ -9,4 +9,14 @@
   .sc-input-affix-wrapper .sc-input-prefix {
     margin-right: 0;
   }
+
+  .sc-form-item-label {
+    padding-bottom: 5px;
+
+    & > * {
+      font-size: 0.875rem !important;
+      line-height: 120% !important;
+      font-weight: 600 !important;
+    }
+  }
 }
