@@ -1,15 +1,11 @@
 import AuthPageLayout from '@/components/features/AuthPageLayout';
-import type { FormRule } from 'antd';
 import { Flex, Form } from 'antd';
 import { Button, Input } from '@/ui';
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import paths from '@/lib/paths';
 import { isFormValid, resolve } from '@/lib/utils';
-import { PASSWORD_PATTERN } from '@/lib/constants/regex';
-import useClientReady from '@/lib/hooks/useClientReady';
-import useLoadingMessage from '@/lib/hooks/useLoadingMessage';
+import { useClientReady, useLoadingMessage, useValidationRules } from '@/lib/hooks';
 import UserApi from '@/lib/api/user';
 import { UserRole } from '@server/lib/types/models';
 import { kebabCase } from 'lodash';
@@ -43,50 +39,7 @@ const RegistrationForm = () => {
     errorMessage: t('SOMETHING_WENT_WRONG'),
   });
 
-  const confirmPassword: FormRule = useMemo(
-    () =>
-      ({ getFieldValue }) => ({
-        validator: (_, value) => {
-          if (!value || getFieldValue('password') === value) {
-            return Promise.resolve();
-          }
-
-          return Promise.reject(new Error(t('PASSWORDS_DO_NOT_MATCH')));
-        },
-      }),
-    [t]
-  );
-
-  const checkIfExists: FormRule = useMemo(
-    () => () => ({
-      validator: async (_, value) => {
-        const response = await UserApi.emailExists(value);
-
-        if (!value || !response.data.exists) {
-          return Promise.resolve();
-        }
-
-        return Promise.reject(new Error(t('EMAIL_ALREADY_EXISTS')));
-      },
-    }),
-    [t]
-  );
-
-  const validationRules: Record<string, FormRule[]> = useMemo(
-    () => ({
-      name: [{ required: true, message: t('FIELD_REQUIRED') }],
-      email: [
-        { type: 'email', message: t('EMAIL_NOT_VALID') },
-        { required: true, message: t('FIELD_REQUIRED') },
-        checkIfExists,
-      ],
-      password: [
-        { pattern: PASSWORD_PATTERN, message: t('PASSWORD_NOT_VALID') },
-        { required: true, message: t('FIELD_REQUIRED') },
-      ],
-    }),
-    [checkIfExists, t]
-  );
+  const { rules: validationRules, confirmPassword, checkIfEmailExists } = useValidationRules();
 
   const onFinish = async (values: RegistrationFormValues) => {
     await loadAction(async () => {
@@ -110,11 +63,16 @@ const RegistrationForm = () => {
       {contextHolder}
 
       <Form form={form} layout="vertical" onFinish={onFinish}>
-        <Form.Item name="name" rules={validationRules.name} validateFirst>
+        <Form.Item name="name" rules={validationRules.requiredField} validateFirst>
           <Input placeholder={t('YOUR_NAME')} autoComplete="name" />
         </Form.Item>
 
-        <Form.Item name="email" rules={validationRules.email} validateDebounce={1000} validateFirst>
+        <Form.Item
+          name="email"
+          rules={[...validationRules.email, checkIfEmailExists]}
+          validateDebounce={1000}
+          validateFirst
+        >
           <Input placeholder={t('YOUR_EMAIL')} autoComplete="email" />
         </Form.Item>
 

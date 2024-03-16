@@ -1,6 +1,7 @@
 import axios from '@/lib/api/axios';
 import type { IUser } from '@server/models/User';
 import type { PartialBy, WithoutTimestamps } from '@server/lib/types/utils';
+import type { UpdateUserPayload } from '@server/controllers/UserController';
 
 const UserApi = {
   register: async (user: WithoutTimestamps<IUser>) => {
@@ -17,6 +18,10 @@ const UserApi = {
 
   emailExists: async (email: string) => {
     return await axios.post<{ exists: boolean }>('/user/exists', { email });
+  },
+
+  update: async (id: string, payload: UpdateUserPayload) => {
+    return await axios.put<{ message: string }>(`/user/${id}`, payload);
   },
 };
 

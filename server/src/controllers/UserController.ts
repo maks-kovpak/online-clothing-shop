@@ -1,10 +1,10 @@
 import ApiError from '../lib/errors/ApiError.js';
 import User, { type IUser } from '../models/User.js';
-import { WithoutTimestamps } from '../lib/types/utils.js';
+import type { WithoutTimestamps } from '../lib/types/utils.js';
 import type { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 
-export type UpdateUserBody = Partial<
+export type UpdateUserPayload = Partial<
   Omit<WithoutTimestamps<IUser>, 'cart' | 'password'> & { password: { old: string; new: string } }
 >;
 
@@ -21,7 +21,7 @@ const UserController = {
   },
 
   update: async (
-    req: Request<{ id: string }, unknown, UpdateUserBody>,
+    req: Request<{ id: string }, unknown, UpdateUserPayload>,
     res: Response<{ message: string }>,
     next: NextFunction
   ) => {
