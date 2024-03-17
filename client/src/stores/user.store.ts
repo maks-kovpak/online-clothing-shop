@@ -18,6 +18,7 @@ export const fetchUserProfileFx = createEffect(async () => {
 /* Events */
 
 export const updateUserEvent = createEvent<Partial<IUser>>();
+export const resetUserEvent = createEvent();
 
 /* Store */
 
@@ -27,8 +28,10 @@ $user.on(fetchUserProfileFx.doneData, (_, fetchedUser) => {
   return fetchedUser;
 });
 
-$user.on(updateUserEvent, (state, newUser) => {
-  return state ? { ...state, ...newUser } : (newUser as IUser);
+$user.on(updateUserEvent, (state, payload) => {
+  return state ? { ...state, ...payload } : (payload as IUser);
 });
+
+$user.reset(resetUserEvent);
 
 export default $user;

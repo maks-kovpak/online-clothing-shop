@@ -65,5 +65,6 @@
   "ADMIN": "Admin",
   "USERNAME_NOT_VALID": "Allowed only letters, numbers and hyphen",
   "HOME": "Home",
-  "WELCOME": "Welcome"
+  "WELCOME": "Welcome",
+  "LOGOUT": "Log out"
 }

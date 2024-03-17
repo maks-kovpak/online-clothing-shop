@@ -1,13 +1,16 @@
 import { Form, Skeleton, Flex, Badge } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import { Input, Button } from '@/ui';
 import UploadImage from '@/components/features/UploadImage';
 import { isFormValid } from '@/lib/utils';
 import { useUnit } from 'effector-react';
-import $user from '@/stores/user.store';
+import $user, { resetUserEvent } from '@/stores/user.store';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useClientReady, useValidationRules } from '@/lib/hooks';
 import { UserRole } from '@server/lib/types/models';
+import UserApi from '@/lib/api/user';
+import paths from '@/lib/paths';
 
 import './index.scss';
 
@@ -18,10 +21,11 @@ const UserProfileFormSkeleton = () => {
 const UserProfileForm = () => {
   const [form] = Form.useForm();
   const ready = useClientReady();
-  const user = useUnit($user);
+  const [user, resetUser] = useUnit([$user, resetUserEvent]);
   const [readonlyMode, setReadonlyMode] = useState<boolean>(true);
   const { t } = useTranslation();
   const { rules: validationRules } = useValidationRules();
+  const navigate = useNavigate();
 
   return (
     <div className="user-profile-form-wrapper">
@@ -75,18 +79,34 @@ const UserProfileForm = () => {
             <Input autoComplete="email" readOnly={readonlyMode} />
           </Form.Item>
 
-          <Form.Item className="submit-button-field" shouldUpdate style={{ display: 'flex', justifyContent: 'end' }}>
-            {() => (
+          <Flex justify="end" gap={16}>
+            <Form.Item className="submit-button-field">
               <Button
                 type="primary"
-                htmlType="submit"
-                disabled={!ready || (!readonlyMode && !isFormValid(form))}
-                onClick={() => setReadonlyMode(!readonlyMode)}
+                onClick={() => {
+                  UserApi.logout();
+                  resetUser();
+                  navigate(paths.main);
+                }}
+                danger={true}
               >
-                {t('EDIT_PROFILE')}
+                {t('LOGOUT')}
               </Button>
-            )}
-          </Form.Item>
+            </Form.Item>
+
+            <Form.Item className="submit-button-field" shouldUpdate>
+              {() => (
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  disabled={!ready || (!readonlyMode && !isFormValid(form))}
+                  onClick={() => setReadonlyMode(!readonlyMode)}
+                >
+                  {t('EDIT_PROFILE')}
+                </Button>
+              )}
+            </Form.Item>
+          </Flex>
         </Form>
       )}
     </div>

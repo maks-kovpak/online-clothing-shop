@@ -1,4 +1,5 @@
 import axios from '@/lib/api/axios';
+import Cookies from 'js-cookie';
 import type { IUser } from '@server/models/User';
 import type { PartialBy, WithoutTimestamps } from '@server/lib/types/utils';
 import type { UpdateUserPayload } from '@server/controllers/UserController';
@@ -10,6 +11,11 @@ const UserApi = {
 
   login: async (userData: { email: string; password: string }) => {
     return await axios.post<{ token: string; user: PartialBy<IUser, 'password'> }>('/auth/login', userData);
+  },
+
+  logout: () => {
+    Cookies.remove('jwt-token');
+    Cookies.remove('user-id');
   },
 
   getProfile: async (id: string) => {
