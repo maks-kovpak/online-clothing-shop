@@ -68,5 +68,6 @@
   "WELCOME": "Welcome",
   "LOGOUT": "Log out",
   "PROFILE_UPDATED_SUCCESSFULLY": "Profile has been successfully updated!",
-  "SAVE": "Save changes"
+  "SAVE": "Save changes",
+  "UPLOAD": "Upload"
 }

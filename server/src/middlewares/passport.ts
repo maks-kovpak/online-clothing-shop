@@ -69,6 +69,13 @@ const usePassportAuth = () => {
 
         if (!user) throw ApiError.unauthorized('Unauthorized');
 
+        // Get the profile image from the Google account if it's not set
+        if (!user?.profileImage && profile._json?.picture) {
+          // '=s96' in the url string - the size of the picture (96px by default)
+          user.profileImage = profile._json.picture.replace(/=s\d+/, '=s190');
+          await user.save();
+        }
+
         return done(null, { id: user._id });
       } catch {
         return done(null, { id: null });

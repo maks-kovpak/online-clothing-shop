@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FC } from 'react';
+import type { FC, Dispatch, SetStateAction } from 'react';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
 import type { GetProp, UploadProps } from 'antd';
@@ -27,9 +27,11 @@ const beforeUpload = (file: FileType) => {
   return isImage;
 };
 
-const UploadImage: FC<{ defaultImage?: string }> = ({ defaultImage }) => {
+const UploadImage: FC<{
+  imageUrl: string | undefined;
+  setImageUrl: Dispatch<SetStateAction<string | undefined>>;
+}> = ({ imageUrl, setImageUrl }) => {
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string | undefined>(defaultImage);
   const { t } = useTranslation();
 
   const handleChange: UploadProps['onChange'] = (info) => {
@@ -39,7 +41,6 @@ const UploadImage: FC<{ defaultImage?: string }> = ({ defaultImage }) => {
     }
 
     if (info.file.status === 'done') {
-      // Get this url from response in real world.
       getBase64(info.file.originFileObj as FileType, (url) => {
         setLoading(false);
         setImageUrl(url);
@@ -50,7 +51,7 @@ const UploadImage: FC<{ defaultImage?: string }> = ({ defaultImage }) => {
   const uploadButton = (
     <button style={{ border: 0, background: 'none' }} type="button">
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
+      <div style={{ marginTop: 8 }}>{t('UPLOAD')}</div>
     </button>
   );
 

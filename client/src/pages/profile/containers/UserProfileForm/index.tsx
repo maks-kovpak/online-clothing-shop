@@ -5,7 +5,7 @@ import UploadImage from '@/components/features/UploadImage';
 import { formNotValid } from '@/lib/utils';
 import { useUnit } from 'effector-react';
 import $user, { resetUserEvent, updateUserEvent } from '@/stores/user.store';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useClientReady, useValidationRules, useLoadingMessage } from '@/lib/hooks';
 import { UserRole } from '@server/lib/types/models';
@@ -33,6 +33,11 @@ const UserProfileForm = () => {
   const { t } = useTranslation();
   const { rules: validationRules } = useValidationRules();
   const navigate = useNavigate();
+  const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    setImageUrl(user?.profileImage);
+  }, [user]);
 
   const { loadAction, contextHolder } = useLoadingMessage({
     key: 'login-status-message',
@@ -64,17 +69,17 @@ const UserProfileForm = () => {
       {!user ? (
         <UserProfileFormSkeleton />
       ) : (
-        <Form form={form} layout="vertical" requiredMark={false} onFinish={onFinish}>
+        <Form form={form} layout="vertical" requiredMark={false} onFinish={onFinish} encType="multipart/form-data">
           <Flex gap={24}>
             {user.role == UserRole.ADMIN ? (
               <Badge.Ribbon text={t('ADMIN')} color="gold">
                 <div className="upload-image-field">
-                  <UploadImage defaultImage={user.profileImage} />
+                  <UploadImage imageUrl={imageUrl} setImageUrl={setImageUrl} />
                 </div>
               </Badge.Ribbon>
             ) : (
               <div className="upload-image-field">
-                <UploadImage defaultImage={user.profileImage} />
+                <UploadImage imageUrl={imageUrl} setImageUrl={setImageUrl} />
               </div>
             )}
 
