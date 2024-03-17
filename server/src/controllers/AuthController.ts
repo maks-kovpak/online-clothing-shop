@@ -4,7 +4,7 @@ import passport from 'passport';
 import ApiError from '../lib/errors/ApiError.js';
 import User, { type IUser } from '../models/User.js';
 import type { NextFunction, Request, Response } from 'express';
-import type { PartialBy, WithoutTimestamps } from '../lib/types/utils.js';
+import type { WithoutTimestamps } from '../lib/types/utils.js';
 
 const cookieMaxAge = 24 * 24 * 60 * 60 * 1000; // 24 days
 
@@ -18,11 +18,7 @@ const loginUser = (user: IUser, req: Request, res: Response, next: NextFunction,
     res.cookie('jwt-token', token, { maxAge: cookieMaxAge });
     res.cookie('user-id', user._id.toString(), { maxAge: cookieMaxAge });
 
-    // Deep copy
-    const userCopy: PartialBy<IUser, 'password'> = JSON.parse(JSON.stringify(user));
-    delete userCopy.password;
-
-    return res.status(status).json({ user: userCopy, token });
+    return res.status(status).json({ user: user, token });
   });
 };
 

@@ -2,12 +2,12 @@ import { Form, Skeleton, Flex, Badge } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { Input, Button } from '@/ui';
 import UploadImage from '@/components/features/UploadImage';
-import { isFormValid } from '@/lib/utils';
+import { formNotValid } from '@/lib/utils';
 import { useUnit } from 'effector-react';
-import $user, { resetUserEvent } from '@/stores/user.store';
+import $user, { resetUserEvent, updateUserEvent } from '@/stores/user.store';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useClientReady, useValidationRules } from '@/lib/hooks';
+import { useClientReady, useValidationRules, useLoadingMessage } from '@/lib/hooks';
 import { UserRole } from '@server/lib/types/models';
 import UserApi from '@/lib/api/user';
 import paths from '@/lib/paths';
@@ -18,21 +18,53 @@ const UserProfileFormSkeleton = () => {
   return <Skeleton paragraph={{ rows: 4 }} avatar active />;
 };
 
+type ProfileFormValues = {
+  name: string;
+  username: string;
+  email: string;
+  [x: string]: unknown;
+};
+
 const UserProfileForm = () => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<ProfileFormValues>();
   const ready = useClientReady();
-  const [user, resetUser] = useUnit([$user, resetUserEvent]);
+  const [user, resetUser, updateUser] = useUnit([$user, resetUserEvent, updateUserEvent]);
   const [readonlyMode, setReadonlyMode] = useState<boolean>(true);
   const { t } = useTranslation();
   const { rules: validationRules } = useValidationRules();
   const navigate = useNavigate();
 
+  const { loadAction, contextHolder } = useLoadingMessage({
+    key: 'login-status-message',
+    loadingMessage: t('LOADING'),
+    successMessage: t('PROFILE_UPDATED_SUCCESSFULLY'),
+    errorMessage: t('SOMETHING_WENT_WRONG'),
+  });
+
+  const onFinish = async (values: ProfileFormValues) => {
+    if (!user) return;
+
+    await loadAction(async () => {
+      const response = await UserApi.update(user._id.toString(), {
+        email: values.email,
+        name: values.name,
+        username: values.username,
+      });
+
+      if (response.status == 200) {
+        updateUser(response.data.user);
+      }
+    });
+  };
+
   return (
     <div className="user-profile-form-wrapper">
+      {contextHolder}
+
       {!user ? (
         <UserProfileFormSkeleton />
       ) : (
-        <Form form={form} layout="vertical" requiredMark={false}>
+        <Form form={form} layout="vertical" requiredMark={false} onFinish={onFinish}>
           <Flex gap={24}>
             {user.role == UserRole.ADMIN ? (
               <Badge.Ribbon text={t('ADMIN')} color="gold">
@@ -80,7 +112,7 @@ const UserProfileForm = () => {
           </Form.Item>
 
           <Flex justify="end" gap={16}>
-            <Form.Item className="submit-button-field">
+            <Form.Item>
               <Button
                 type="primary"
                 onClick={() => {
@@ -98,11 +130,14 @@ const UserProfileForm = () => {
               {() => (
                 <Button
                   type="primary"
-                  htmlType="submit"
-                  disabled={!ready || (!readonlyMode && !isFormValid(form))}
-                  onClick={() => setReadonlyMode(!readonlyMode)}
+                  htmlType="button"
+                  disabled={!ready || formNotValid(form, false)}
+                  onClick={() => {
+                    if (!readonlyMode) form.submit();
+                    setReadonlyMode(!readonlyMode);
+                  }}
                 >
-                  {t('EDIT_PROFILE')}
+                  {!readonlyMode ? t('SAVE') : t('EDIT_PROFILE')}
                 </Button>
               )}
             </Form.Item>

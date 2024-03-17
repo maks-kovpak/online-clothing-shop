@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useUnit } from 'effector-react';
 import { updateUserEvent } from '@/stores/user.store';
 import UserApi from '@/lib/api/user';
-import { isFormValid } from '@/lib/utils';
+import { formNotValid } from '@/lib/utils';
 import { useClientReady, useLoadingMessage, useValidationRules } from '@/lib/hooks';
 import paths from '@/lib/paths';
 
@@ -63,7 +63,7 @@ const LoginForm = () => {
 
         <Form.Item className="submit-button-field" shouldUpdate>
           {() => (
-            <Button type="primary" htmlType="submit" size="large" disabled={!ready || isFormValid(form)}>
+            <Button type="primary" htmlType="submit" size="large" disabled={!ready || formNotValid(form)}>
               {t('LOG_IN')}
             </Button>
           )}

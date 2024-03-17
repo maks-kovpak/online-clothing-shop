@@ -66,5 +66,7 @@
   "USERNAME_NOT_VALID": "Allowed only letters, numbers and hyphen",
   "HOME": "Home",
   "WELCOME": "Welcome",
-  "LOGOUT": "Log out"
+  "LOGOUT": "Log out",
+  "PROFILE_UPDATED_SUCCESSFULLY": "Profile has been successfully updated!",
+  "SAVE": "Save changes"
 }

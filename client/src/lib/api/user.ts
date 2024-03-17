@@ -1,16 +1,16 @@
 import axios from '@/lib/api/axios';
 import Cookies from 'js-cookie';
 import type { IUser } from '@server/models/User';
-import type { PartialBy, WithoutTimestamps } from '@server/lib/types/utils';
+import type { WithoutTimestamps } from '@server/lib/types/utils';
 import type { UpdateUserPayload } from '@server/controllers/UserController';
 
 const UserApi = {
   register: async (user: WithoutTimestamps<IUser>) => {
-    return await axios.post<{ token: string; user: PartialBy<IUser, 'password'> }>('/auth/register', user);
+    return await axios.post<{ token: string; user: IUser }>('/auth/register', user);
   },
 
   login: async (userData: { email: string; password: string }) => {
-    return await axios.post<{ token: string; user: PartialBy<IUser, 'password'> }>('/auth/login', userData);
+    return await axios.post<{ token: string; user: IUser }>('/auth/login', userData);
   },
 
   logout: () => {
@@ -27,7 +27,7 @@ const UserApi = {
   },
 
   update: async (id: string, payload: UpdateUserPayload) => {
-    return await axios.put<{ message: string }>(`/user/${id}`, payload);
+    return await axios.put<{ user: IUser }>(`/user/${id}`, payload);
   },
 };
 

@@ -4,7 +4,7 @@ import { Button, Input } from '@/ui';
 import { useTranslation } from 'react-i18next';
 import { NavLink, useNavigate } from 'react-router-dom';
 import paths from '@/lib/paths';
-import { isFormValid, resolve } from '@/lib/utils';
+import { formNotValid, resolve } from '@/lib/utils';
 import { useClientReady, useLoadingMessage, useValidationRules } from '@/lib/hooks';
 import UserApi from '@/lib/api/user';
 import { UserRole } from '@server/lib/types/models';
@@ -86,7 +86,7 @@ const RegistrationForm = () => {
 
         <Form.Item className="submit-button-field" shouldUpdate>
           {() => (
-            <Button type="primary" htmlType="submit" size="large" disabled={!ready || isFormValid(form)}>
+            <Button type="primary" htmlType="submit" size="large" disabled={!ready || formNotValid(form)}>
               {t('SIGN_UP')}
             </Button>
           )}

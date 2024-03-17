@@ -10,14 +10,19 @@ export const px = (value: number | string): `${number}px` => {
 };
 
 /**
- * Check whether a form is valid by verifying if any fields have been touched
+ * Check whether a form is not valid by verifying if any fields have been touched
  * and if there are any errors in the form fields.
  *
  * @param form - The AntDesign form instance.
+ * @param [invalidIfNotTouched = true] - A boolean flag that determines whether the form
+ * should be considered invalid if any of its fields have not been touched.
  * @returns A boolean value that represent whether the form is valid or not.
  */
-export const isFormValid = (form: FormInstance) => {
-  return !form.isFieldsTouched(true) || Boolean(form.getFieldsError().filter(({ errors }) => errors.length).length);
+export const formNotValid = (form: FormInstance, invalidIfNotTouched: boolean = true) => {
+  return (
+    (invalidIfNotTouched && !form.isFieldsTouched(true)) ||
+    Boolean(form.getFieldsError().filter(({ errors }) => errors.length).length)
+  );
 };
 
 /**

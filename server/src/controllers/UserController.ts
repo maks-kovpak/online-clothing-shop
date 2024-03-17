@@ -22,26 +22,32 @@ const UserController = {
 
   update: async (
     req: Request<{ id: string }, unknown, UpdateUserPayload>,
-    res: Response<{ message: string }>,
+    res: Response<{ user: IUser }>,
     next: NextFunction
   ) => {
     try {
       const user = await User.findById(req.params.id);
       if (!user) return next(ApiError.notFound('User not found'));
 
-      if (req.body.password) {
-        const matches = await bcrypt.compare(req.body.password.old, user.password);
-
-        const salt = await bcrypt.genSalt();
-        const newPassword = await bcrypt.hash(req.body.password.new, salt);
-
-        if (!matches) return next(ApiError.forbidden('The old password does not match the provided one'));
-        await user.updateOne({ ...req.body, password: newPassword });
-      } else {
-        await user.updateOne(req.body);
+      if (!req.body.password) {
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        return res.status(200).json({ user: updatedUser! });
       }
 
-      res.status(200).json({ message: 'The user has been updated successfully' });
+      const matches = await bcrypt.compare(req.body.password.old, user.password);
+
+      const salt = await bcrypt.genSalt();
+      const newPassword = await bcrypt.hash(req.body.password.new, salt);
+
+      if (!matches) return next(ApiError.forbidden('The old password does not match the provided one'));
+
+      const updatedUser = await User.findByIdAndUpdate(
+        req.params.id,
+        { ...req.body, password: newPassword },
+        { new: true }
+      );
+
+      res.status(200).json({ user: updatedUser! });
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }
