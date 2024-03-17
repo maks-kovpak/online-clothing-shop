@@ -1,12 +1,8 @@
+import bcrypt from 'bcrypt';
 import ApiError from '../lib/errors/ApiError.js';
 import User, { type IUser } from '../models/User.js';
-import type { WithoutTimestamps } from '../lib/types/utils.js';
 import type { NextFunction, Request, Response } from 'express';
-import bcrypt from 'bcrypt';
-
-export type UpdateUserPayload = Partial<
-  Omit<WithoutTimestamps<IUser>, 'cart' | 'password'> & { password: { old: string; new: string } }
->;
+import type { UpdateUserPayload } from '../lib/types/models.js';
 
 const UserController = {
   get: async (req: Request<{ id: string }>, res: Response<IUser>, next: NextFunction) => {

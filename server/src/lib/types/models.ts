@@ -1,11 +1,17 @@
 import type { IProduct } from '../../models/Product.js';
 import type { IProductOption } from '../../models/ProductOptions.js';
+import type { WithoutTimestamps } from './utils.js';
+import type { IUser } from '../../models/User.js';
 
 /* Types */
 
 export type FullProduct = IProduct & {
   options: Array<Omit<IProductOption, 'images'> & { images: string[] }>;
 };
+
+export type UpdateUserPayload = Partial<
+  Omit<WithoutTimestamps<IUser>, 'cart' | 'password'> & { password: { old: string; new: string } }
+>;
 
 /* Enums */
 

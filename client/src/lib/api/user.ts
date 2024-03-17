@@ -2,7 +2,7 @@ import axios from '@/lib/api/axios';
 import Cookies from 'js-cookie';
 import type { IUser } from '@server/models/User';
 import type { WithoutTimestamps } from '@server/lib/types/utils';
-import type { UpdateUserPayload } from '@server/controllers/UserController';
+import type { UpdateUserPayload } from '@server/lib/types/models';
 
 const UserApi = {
   register: async (user: WithoutTimestamps<IUser>) => {
