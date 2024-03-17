@@ -24,7 +24,7 @@
   "SIGNUP_PAGE_DESCRIPTION": "Register on the website",
   "SIGNUP_FORM_TITLE": "Create an account",
   "ALREADY_HAVE_ACCOUNT": "Already have account?",
-  "SIGN_UP_WITH_GOOGLE": "Sign up with Google",
+  "SIGN_IN_WITH_GOOGLE": "Sign in with Google",
   "LOG_IN": "Log in",
   "LOGIN_PAGE_TITLE": "Log In",
   "LOGIN_PAGE_DESCRIPTION": "Log in to your account",
@@ -63,5 +63,7 @@
   "ORDERS": "Orders",
   "CANCELLATIONS": "Cancellations",
   "ADMIN": "Admin",
-  "USERNAME_NOT_VALID": "Allowed only letters, numbers and hyphen"
+  "USERNAME_NOT_VALID": "Allowed only letters, numbers and hyphen",
+  "HOME": "Home",
+  "WELCOME": "Welcome"
 }

@@ -95,7 +95,7 @@ const RegistrationForm = () => {
         <Form.Item className="google-signup-button-field">
           <NavLink to={resolve(import.meta.env.VITE_API_URL, '/api/auth/google')}>
             <Button type="default" size="large" icon={<GoogleLogo width={24} height={24} />}>
-              {t('SIGN_UP_WITH_GOOGLE')}
+              {t('SIGN_IN_WITH_GOOGLE')}
             </Button>
           </NavLink>
         </Form.Item>

@@ -10,11 +10,12 @@ const routes: Array<RouteObject> = [
   {
     path: paths.main,
     element: <App />,
+    handle: { crumb: 'HOME' },
     children: [
       { path: paths.main, element: <MainPage /> },
       { path: paths.signup, element: <SignupPage /> },
       { path: paths.login, element: <LoginPage /> },
-      { path: paths.profile, element: <ProfilePage /> },
+      { path: paths.profile, element: <ProfilePage />, handle: { crumb: 'PROFILE' } },
       { path: paths.other, element: <Navigate to={paths.main} /> },
     ],
   },
