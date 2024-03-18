@@ -57,7 +57,7 @@ const PageHeader = () => {
               <Skeleton.Avatar shape="circle" active />
             ) : user ? (
               <NavLink to={paths.profile} title={t('PROFILE')} style={{ display: 'flex' }}>
-                <Avatar style={{ backgroundColor: '#fde3cf', color: '#f56a00' }}>{user.name[0].toUpperCase()}</Avatar>
+                <Avatar src={user.profileImage}>{user.name[0].toUpperCase()}</Avatar>
               </NavLink>
             ) : (
               <NavLink to={paths.signup} title={t('SIGN_UP')} style={{ display: 'flex' }}>
