@@ -69,5 +69,6 @@
   "LOGOUT": "Log out",
   "PROFILE_UPDATED_SUCCESSFULLY": "Profile has been successfully updated!",
   "SAVE": "Save changes",
-  "UPLOAD": "Upload"
+  "UPLOAD": "Upload",
+  "USERNAME_ALREADY_EXISTS": "The email already exists"
 }

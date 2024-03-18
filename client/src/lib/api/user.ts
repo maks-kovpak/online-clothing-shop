@@ -22,8 +22,8 @@ const UserApi = {
     return await axios.get<IUser>(`/user/${id}`);
   },
 
-  emailExists: async (email: string) => {
-    return await axios.post<{ exists: boolean }>('/user/exists', { email });
+  exists: async (fieldName: 'email' | 'username', value: string) => {
+    return await axios.post<{ exists: boolean }>('/user/exists', { fieldName, value });
   },
 
   update: async (id: string, payload: UpdateUserPayload) => {

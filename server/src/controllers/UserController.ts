@@ -58,9 +58,14 @@ const UserController = {
     }
   },
 
-  exists: async (req: RequestWithBody<{ email: string }>, res: Response<{ exists: boolean }>, next: NextFunction) => {
+  exists: async (
+    req: RequestWithBody<{ fieldName: 'email' | 'username'; value: string }>,
+    res: Response<{ exists: boolean }>,
+    next: NextFunction
+  ) => {
     try {
-      const user = await User.findOne({ email: req.body.email });
+      const { fieldName, value } = req.body;
+      const user = await User.findOne(fieldName === 'email' ? { email: value } : { username: value });
 
       if (!user) return res.status(200).json({ exists: false });
       res.status(200).json({ exists: true });

@@ -69,5 +69,6 @@
   "LOGOUT": "Вийти",
   "PROFILE_UPDATED_SUCCESSFULLY": "Профіль успішно оновлено!",
   "SAVE": "Зберегти",
-  "UPLOAD": "Завантажити"
+  "UPLOAD": "Завантажити",
+  "USERNAME_ALREADY_EXISTS": "Таке ім'я користувача вже існує"
 }

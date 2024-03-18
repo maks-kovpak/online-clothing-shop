@@ -43,9 +43,11 @@ const RegistrationForm = () => {
 
   const onFinish = async (values: RegistrationFormValues) => {
     await loadAction(async () => {
+      const randomId = (Math.random() + 1).toString(36).substring(7);
+
       const response = await UserApi.register({
         name: values.name,
-        username: kebabCase(values.name),
+        username: kebabCase(values.name) + '-' + randomId,
         email: values.email,
         password: values.password,
         role: UserRole.CLIENT,

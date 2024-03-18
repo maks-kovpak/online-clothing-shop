@@ -29,13 +29,28 @@ const useValidationRules = () => {
   const checkIfEmailExists: FormRule = useMemo(
     () => () => ({
       validator: async (_, value) => {
-        const response = await UserApi.emailExists(value);
+        const response = await UserApi.exists('email', value);
 
         if (!value || !response.data.exists) {
           return Promise.resolve();
         }
 
         return Promise.reject(new Error(t('EMAIL_ALREADY_EXISTS')));
+      },
+    }),
+    [t]
+  );
+
+  const checkIfUsernameExists: FormRule = useMemo(
+    () => () => ({
+      validator: async (_, value) => {
+        const response = await UserApi.exists('username', value);
+
+        if (!value || !response.data.exists) {
+          return Promise.resolve();
+        }
+
+        return Promise.reject(new Error(t('USERNAME_ALREADY_EXISTS')));
       },
     }),
     [t]
@@ -55,9 +70,10 @@ const useValidationRules = () => {
       username: [
         { pattern: USERNAME_PATTERN, message: t('USERNAME_NOT_VALID') },
         { required: true, message: t('FIELD_REQUIRED') },
+        checkIfUsernameExists,
       ],
     }),
-    [t]
+    [checkIfUsernameExists, t]
   );
 
   return { rules, checkIfEmailExists, confirmPassword };
