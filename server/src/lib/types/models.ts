@@ -7,6 +7,7 @@ import type { IUser } from '../../models/User.js';
 
 export type FullProduct = IProduct & {
   options: Array<Omit<IProductOption, 'images'> & { images: string[] }>;
+  averageRating: number | null;
 };
 
 export type UpdateUserPayload = Partial<

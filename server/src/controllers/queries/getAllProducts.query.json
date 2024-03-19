@@ -38,6 +38,14 @@
     }
   },
   {
+    "$lookup": {
+      "from": "comments",
+      "localField": "_id",
+      "foreignField": "productId",
+      "as": "comments"
+    }
+  },
+  {
     "$project": {
       "_id": 1,
       "name": 1,
@@ -61,7 +69,9 @@
                   "$filter": {
                     "input": "$imagesFiles",
                     "as": "image",
-                    "cond": { "$eq": ["$$image._id", "$$option.images"] }
+                    "cond": {
+                      "$eq": ["$$image._id", "$$option.images"]
+                    }
                   }
                 },
                 "as": "img",
@@ -70,6 +80,9 @@
             }
           }
         }
+      },
+      "averageRating": {
+        "$avg": "$comments.rating"
       }
     }
   },
@@ -89,19 +102,39 @@
       "options.color": 1,
       "options.size": 1,
       "options.isAvailable": 1,
-      "options.images": { "$arrayElemAt": ["$options.images", 0] }
+      "options.images": {
+        "$arrayElemAt": ["$options.images", 0]
+      },
+      "averageRating": 1
     }
   },
   {
     "$group": {
       "_id": "$_id",
-      "name": { "$first": "$name" },
-      "type": { "$first": "$type" },
-      "price": { "$first": "$price" },
-      "style": { "$first": "$style" },
-      "articleNumber": { "$first": "$articleNumber" },
-      "public": { "$first": "$public" },
-      "options": { "$push": "$options" }
+      "name": {
+        "$first": "$name"
+      },
+      "type": {
+        "$first": "$type"
+      },
+      "price": {
+        "$first": "$price"
+      },
+      "style": {
+        "$first": "$style"
+      },
+      "articleNumber": {
+        "$first": "$articleNumber"
+      },
+      "public": {
+        "$first": "$public"
+      },
+      "averageRating": {
+        "$first": "$averageRating"
+      },
+      "options": {
+        "$push": "$options"
+      }
     }
   }
 ]
