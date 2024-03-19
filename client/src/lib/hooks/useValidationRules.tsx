@@ -1,8 +1,10 @@
 import { useMemo } from 'react';
 import type { FormRule } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { useUnit } from 'effector-react';
 import UserApi from '@/lib/api/user';
 import { PASSWORD_PATTERN, USERNAME_PATTERN } from '@/lib/constants/regex';
+import $user from '@/stores/user.store';
 
 /**
  * The `useValidationRules` hook provides validation rules for form fields like
@@ -11,6 +13,7 @@ import { PASSWORD_PATTERN, USERNAME_PATTERN } from '@/lib/constants/regex';
  */
 const useValidationRules = () => {
   const { t } = useTranslation();
+  const user = useUnit($user);
 
   const confirmPassword: FormRule = useMemo(
     () =>
@@ -42,18 +45,23 @@ const useValidationRules = () => {
   );
 
   const checkIfUsernameExists: FormRule = useMemo(
-    () => () => ({
-      validator: async (_, value) => {
-        const response = await UserApi.exists('username', value);
+    () =>
+      ({ isFieldTouched }) => ({
+        validator: async (_, value) => {
+          if (!isFieldTouched('username') || value === user?.username) {
+            return Promise.resolve();
+          }
 
-        if (!value || !response.data.exists) {
-          return Promise.resolve();
-        }
+          const response = await UserApi.exists('username', value);
 
-        return Promise.reject(new Error(t('USERNAME_ALREADY_EXISTS')));
-      },
-    }),
-    [t]
+          if (!value || !response.data.exists) {
+            return Promise.resolve();
+          }
+
+          return Promise.reject(new Error(t('USERNAME_ALREADY_EXISTS')));
+        },
+      }),
+    [t, user]
   );
 
   const rules: Record<'requiredField' | 'email' | 'password' | 'username', FormRule[]> = useMemo(

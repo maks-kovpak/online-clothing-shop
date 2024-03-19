@@ -2,14 +2,20 @@ import { Menu, type MenuProps } from 'antd';
 import { useMemo } from 'react';
 import type { FC, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useUnit } from 'effector-react';
+import { Link } from 'react-router-dom';
+import { resolve } from '@/lib/utils';
+import $user from '@/stores/user.store';
+import { UserRole } from '@server/lib/types/models';
 
 import './index.scss';
 
 const UserProfileSidebar: FC<{ setCurrentTitle: Dispatch<SetStateAction<string | null>> }> = ({ setCurrentTitle }) => {
   const { t } = useTranslation();
+  const user = useUnit($user);
 
-  const menuItems: MenuProps['items'] = useMemo(
-    () => [
+  const menuItems = useMemo(() => {
+    const options: MenuProps['items'] = [
       {
         label: t('MANAGE_ACCOUNT'),
         key: 'MANAGE_ACCOUNT',
@@ -29,9 +35,26 @@ const UserProfileSidebar: FC<{ setCurrentTitle: Dispatch<SetStateAction<string |
           { label: t('CANCELLATIONS'), key: 'CANCELLATIONS' },
         ],
       },
-    ],
-    [t]
-  );
+    ];
+
+    if (user?.role == UserRole.ADMIN) {
+      const adminOptions = {
+        label: t('FOR_ADMIN'),
+        key: 'FOR_ADMIN',
+        type: 'group',
+        children: [
+          {
+            label: <Link to={resolve(import.meta.env.VITE_API_URL, '/admin/')}>{t('ADMIN_PANEL')}</Link>,
+            key: 'ADMIN_PANEL',
+          },
+        ],
+      };
+
+      options.push(adminOptions);
+    }
+
+    return options;
+  }, [t, user]);
 
   return (
     <Menu

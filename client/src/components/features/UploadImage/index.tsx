@@ -17,20 +17,24 @@ const getBase64 = (img: FileType, callback: (url: string) => void) => {
   reader.readAsDataURL(img);
 };
 
-const beforeUpload = (file: FileType) => {
+const beforeUpload = (file: FileType, errorMessage: string) => {
   const isImage = ALLOWED_MIME_TYPES.includes(file.type);
-
-  if (!isImage) {
-    message.error('You can only upload image files!');
-  }
+  if (!isImage) message.error(errorMessage);
 
   return isImage;
 };
 
-const UploadImage: FC<{
-  imageUrl: string | undefined;
-  setImageUrl: Dispatch<SetStateAction<string | undefined>>;
-}> = ({ imageUrl, setImageUrl }) => {
+type RestUploadProps = Omit<
+  UploadProps,
+  'name' | 'listType' | 'className' | 'showUploadList' | 'beforeUpload' | 'onChange'
+>;
+
+const UploadImage: FC<
+  RestUploadProps & {
+    imageUrl: string | undefined;
+    setImageUrl: Dispatch<SetStateAction<string | undefined>>;
+  }
+> = ({ imageUrl, setImageUrl, ...props }) => {
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
 
@@ -62,10 +66,11 @@ const UploadImage: FC<{
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        beforeUpload={beforeUpload}
+        beforeUpload={(file) => beforeUpload(file, t('UPLOAD_ONLY_IMAGES'))}
         onChange={handleChange}
+        {...props}
       >
-        {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+        {imageUrl ? <img src={imageUrl} alt="" style={{ width: '100%' }} /> : uploadButton}
       </Upload>
     </ImgCrop>
   );

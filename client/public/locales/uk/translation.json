@@ -70,5 +70,8 @@
   "PROFILE_UPDATED_SUCCESSFULLY": "Профіль успішно оновлено!",
   "SAVE": "Зберегти",
   "UPLOAD": "Завантажити",
-  "USERNAME_ALREADY_EXISTS": "Таке ім'я користувача вже існує"
+  "USERNAME_ALREADY_EXISTS": "Таке ім'я користувача вже існує",
+  "UPLOAD_ONLY_IMAGES": "Ви можете завантажувати тільки зображення",
+  "FOR_ADMIN": "Адміністратору",
+  "ADMIN_PANEL": "Адмін-панель"
 }

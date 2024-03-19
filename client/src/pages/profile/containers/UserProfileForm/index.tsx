@@ -74,12 +74,12 @@ const UserProfileForm = () => {
             {user.role == UserRole.ADMIN ? (
               <Badge.Ribbon text={t('ADMIN')} color="gold">
                 <div className="upload-image-field">
-                  <UploadImage imageUrl={imageUrl} setImageUrl={setImageUrl} />
+                  <UploadImage imageUrl={imageUrl} setImageUrl={setImageUrl} disabled={readonlyMode} />
                 </div>
               </Badge.Ribbon>
             ) : (
               <div className="upload-image-field">
-                <UploadImage imageUrl={imageUrl} setImageUrl={setImageUrl} />
+                <UploadImage imageUrl={imageUrl} setImageUrl={setImageUrl} disabled={readonlyMode} />
               </div>
             )}
 

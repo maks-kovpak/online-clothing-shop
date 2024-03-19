@@ -70,5 +70,8 @@
   "PROFILE_UPDATED_SUCCESSFULLY": "Profile has been successfully updated!",
   "SAVE": "Save changes",
   "UPLOAD": "Upload",
-  "USERNAME_ALREADY_EXISTS": "The email already exists"
+  "USERNAME_ALREADY_EXISTS": "The email already exists",
+  "UPLOAD_ONLY_IMAGES": "You can only upload image files",
+  "FOR_ADMIN": "For Administrator",
+  "ADMIN_PANEL": "Admin Panel"
 }
