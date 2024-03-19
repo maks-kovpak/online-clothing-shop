@@ -7,3 +7,5 @@ export const ALLOWED_MIME_TYPES = [
   'image/svg+xml',
   'image/webp',
 ];
+
+export const AVATARS_IMAGES_PATH = '/upload/avatars/';

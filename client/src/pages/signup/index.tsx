@@ -21,7 +21,6 @@ type RegistrationFormValues = {
   email: string;
   password: string;
   repeatPassword: string;
-  [x: string]: unknown;
 };
 
 const RegistrationForm = () => {

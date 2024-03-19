@@ -11,7 +11,7 @@ export type FullProduct = IProduct & {
 };
 
 export type UpdateUserPayload = Partial<
-  Omit<WithoutTimestamps<IUser>, 'cart' | 'password'> & { password: { old: string; new: string } }
+  Omit<WithoutTimestamps<IUser>, 'cart' | 'password' | 'profileImage'> & { oldPassword: string; newPassword: string }
 >;
 
 /* Enums */

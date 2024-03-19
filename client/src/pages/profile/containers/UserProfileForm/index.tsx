@@ -1,14 +1,15 @@
 import { Form, Skeleton, Flex, Badge } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { Input, Button } from '@/ui';
-import UploadImage from '@/components/features/UploadImage';
-import { formNotValid } from '@/lib/utils';
+import UploadImage, { type FileType } from '@/components/features/UploadImage';
+import { formNotValid, resolve } from '@/lib/utils';
 import { useUnit } from 'effector-react';
 import $user, { resetUserEvent, updateUserEvent } from '@/stores/user.store';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useClientReady, useValidationRules, useLoadingMessage } from '@/lib/hooks';
 import { UserRole } from '@server/lib/types/models';
+import { AVATARS_IMAGES_PATH } from '@server/lib/constants';
 import UserApi from '@/lib/api/user';
 import paths from '@/lib/paths';
 
@@ -22,7 +23,6 @@ type ProfileFormValues = {
   name: string;
   username: string;
   email: string;
-  [x: string]: unknown;
 };
 
 const UserProfileForm = () => {
@@ -34,6 +34,7 @@ const UserProfileForm = () => {
   const { rules: validationRules } = useValidationRules();
   const navigate = useNavigate();
   const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
+  const [file, setFile] = useState<FileType | undefined>(undefined);
 
   useEffect(() => {
     setImageUrl(user?.profileImage);
@@ -49,18 +50,36 @@ const UserProfileForm = () => {
   const onFinish = async (values: ProfileFormValues) => {
     if (!user) return;
 
+    const formData = new FormData();
+    Object.entries(values).forEach(([key, value]) => formData.append(key, value));
+
+    if (file) {
+      formData.append('avatar', file);
+    }
+
     await loadAction(async () => {
-      const response = await UserApi.update(user._id.toString(), {
-        email: values.email,
-        name: values.name,
-        username: values.username,
-      });
+      const response = await UserApi.update(user._id.toString(), formData);
 
       if (response.status == 200) {
         updateUser(response.data.user);
       }
     });
   };
+
+  const uploadImageField = (
+    <div className="upload-image-field">
+      <UploadImage
+        name="avatar"
+        className="avatar-uploader"
+        imageUrl={
+          imageUrl?.startsWith(AVATARS_IMAGES_PATH) ? resolve(import.meta.env.VITE_API_URL, imageUrl) : imageUrl
+        }
+        setImageUrl={setImageUrl}
+        disabled={readonlyMode}
+        setFile={setFile}
+      />
+    </div>
+  );
 
   return (
     <div className="user-profile-form-wrapper">
@@ -73,14 +92,10 @@ const UserProfileForm = () => {
           <Flex gap={24}>
             {user.role == UserRole.ADMIN ? (
               <Badge.Ribbon text={t('ADMIN')} color="gold">
-                <div className="upload-image-field">
-                  <UploadImage imageUrl={imageUrl} setImageUrl={setImageUrl} disabled={readonlyMode} />
-                </div>
+                {uploadImageField}
               </Badge.Ribbon>
             ) : (
-              <div className="upload-image-field">
-                <UploadImage imageUrl={imageUrl} setImageUrl={setImageUrl} disabled={readonlyMode} />
-              </div>
+              uploadImageField
             )}
 
             <div className="name-fields-container">

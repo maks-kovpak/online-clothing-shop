@@ -15,7 +15,6 @@ import loginBannerImage from '@/assets/img/login-page/page-bnr.webp';
 type LoginFormValues = {
   email: string;
   password: string;
-  [x: string]: unknown;
 };
 
 const LoginForm = () => {

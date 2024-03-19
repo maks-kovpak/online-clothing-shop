@@ -3,6 +3,7 @@ import ApiError from '../lib/errors/ApiError.js';
 import User, { type IUser } from '../models/User.js';
 import type { NextFunction, Request, Response } from 'express';
 import type { UpdateUserPayload } from '../lib/types/models.js';
+import { AVATARS_IMAGES_PATH } from '../lib/constants.js';
 
 const UserController = {
   get: async (req: Request<{ id: string }>, res: Response<IUser>, next: NextFunction) => {
@@ -25,21 +26,27 @@ const UserController = {
       const user = await User.findById(req.params.id);
       if (!user) return next(ApiError.notFound('User not found'));
 
-      if (!req.body.password) {
-        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const { oldPassword, newPassword } = req.body;
+
+      const resultBody = req.file ? { ...req.body, profileImage: AVATARS_IMAGES_PATH + req.file.filename } : req.body;
+
+      if (!oldPassword || !newPassword) {
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, resultBody, { new: true });
         return res.status(200).json({ user: updatedUser! });
       }
 
-      const matches = await bcrypt.compare(req.body.password.old, user.password);
+      // Update password
+      const matches = await bcrypt.compare(oldPassword, user.password);
 
       const salt = await bcrypt.genSalt();
-      const newPassword = await bcrypt.hash(req.body.password.new, salt);
+      const generatedPassword = await bcrypt.hash(newPassword, salt);
 
       if (!matches) return next(ApiError.forbidden('The old password does not match the provided one'));
 
+      // Write changes to the database
       const updatedUser = await User.findByIdAndUpdate(
         req.params.id,
-        { ...req.body, password: newPassword },
+        { ...resultBody, password: generatedPassword },
         { new: true }
       );
 

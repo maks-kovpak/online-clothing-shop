@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 import './index.scss';
 
-type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
+export type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 const getBase64 = (img: FileType, callback: (url: string) => void) => {
   const reader = new FileReader();
@@ -24,17 +24,17 @@ const beforeUpload = (file: FileType, errorMessage: string) => {
   return isImage;
 };
 
-type RestUploadProps = Omit<
-  UploadProps,
-  'name' | 'listType' | 'className' | 'showUploadList' | 'beforeUpload' | 'onChange'
->;
+type OmitProps = 'listType' | 'showUploadList' | 'action' | 'beforeUpload' | 'onChange';
+
+type RestUploadProps = Omit<UploadProps, OmitProps>;
 
 const UploadImage: FC<
   RestUploadProps & {
     imageUrl: string | undefined;
     setImageUrl: Dispatch<SetStateAction<string | undefined>>;
+    setFile?: Dispatch<SetStateAction<FileType | undefined>>;
   }
-> = ({ imageUrl, setImageUrl, ...props }) => {
+> = ({ imageUrl, setImageUrl, setFile, ...props }) => {
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
 
@@ -45,6 +45,10 @@ const UploadImage: FC<
     }
 
     if (info.file.status === 'done') {
+      if (setFile) {
+        setFile(info.file.originFileObj as FileType);
+      }
+
       getBase64(info.file.originFileObj as FileType, (url) => {
         setLoading(false);
         setImageUrl(url);
@@ -62,10 +66,9 @@ const UploadImage: FC<
   return (
     <ImgCrop modalTitle={t('EDIT_IMAGE')} modalOk={t('OK')} modalCancel={t('CANCEL')} rotationSlider>
       <Upload
-        name="avatar"
         listType="picture-card"
-        className="avatar-uploader"
         showUploadList={false}
+        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
         beforeUpload={(file) => beforeUpload(file, t('UPLOAD_ONLY_IMAGES'))}
         onChange={handleChange}
         {...props}

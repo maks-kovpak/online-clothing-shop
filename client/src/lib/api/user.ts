@@ -2,7 +2,6 @@ import axios from '@/lib/api/axios';
 import Cookies from 'js-cookie';
 import type { IUser } from '@server/models/User';
 import type { WithoutTimestamps } from '@server/lib/types/utils';
-import type { UpdateUserPayload } from '@server/lib/types/models';
 
 const UserApi = {
   register: async (user: WithoutTimestamps<IUser>) => {
@@ -26,8 +25,12 @@ const UserApi = {
     return await axios.post<{ exists: boolean }>('/user/exists', { fieldName, value });
   },
 
-  update: async (id: string, payload: UpdateUserPayload) => {
-    return await axios.put<{ user: IUser }>(`/user/${id}`, payload);
+  update: async (id: string, payload: FormData) => {
+    return await axios.put<{ user: IUser }>(`/user/${id}`, payload, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   },
 };
 
