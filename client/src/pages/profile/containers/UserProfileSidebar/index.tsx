@@ -1,5 +1,5 @@
 import { Menu, type MenuProps } from 'antd';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { FC, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUnit } from 'effector-react';
@@ -7,16 +7,19 @@ import { Link } from 'react-router-dom';
 import { resolve } from '@/lib/utils';
 import $user from '@/stores/user.store';
 import { UserRole } from '@server/lib/types/models';
-import { Drawer, Button } from '@/ui';
+import { Drawer } from '@/ui';
 import { useBreakpoints } from '@/lib/hooks';
 
 import vars from '@/assets/styles/_variables.module.scss';
 import './index.scss';
 
-const UserProfileSidebar: FC<{ setCurrentTitle: Dispatch<SetStateAction<string | null>> }> = ({ setCurrentTitle }) => {
+const UserProfileSidebar: FC<{
+  setCurrentTitle: Dispatch<SetStateAction<string | null>>;
+  drawerOpened: boolean;
+  setDrawerOpened: Dispatch<SetStateAction<boolean>>;
+}> = ({ setCurrentTitle, drawerOpened, setDrawerOpened }) => {
   const { t } = useTranslation();
   const user = useUnit($user);
-  const [open, setOpen] = useState(false);
   const { laptop } = useBreakpoints({ laptop: vars.lg });
 
   const menuItems = useMemo(() => {
@@ -71,14 +74,9 @@ const UserProfileSidebar: FC<{ setCurrentTitle: Dispatch<SetStateAction<string |
   );
 
   return laptop.below ? (
-    <>
-      <Button type="primary" onClick={() => setOpen(true)}>
-        Open
-      </Button>
-      <Drawer onClose={() => setOpen(false)} open={open} placement="left">
-        {baseMenu}
-      </Drawer>
-    </>
+    <Drawer onClose={() => setDrawerOpened(false)} open={drawerOpened} placement="left">
+      {baseMenu}
+    </Drawer>
   ) : (
     baseMenu
   );

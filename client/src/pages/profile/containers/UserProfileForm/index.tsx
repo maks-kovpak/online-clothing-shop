@@ -86,7 +86,7 @@ const UserProfileForm = () => {
         <UserProfileFormSkeleton />
       ) : (
         <Form form={form} layout="vertical" requiredMark={false} onFinish={onFinish} encType="multipart/form-data">
-          <Flex gap={24}>
+          <Flex gap={24} className="profile-image-container">
             {user.role == UserRole.ADMIN ? (
               <Badge.Ribbon text={t('ADMIN')} color="gold">
                 {uploadImageField}

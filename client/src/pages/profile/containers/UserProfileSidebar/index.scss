@@ -7,7 +7,7 @@
   border-radius: 20px;
   min-width: 295px;
 
-  @media (max-width: $lg) {
+  @media screen and (max-width: $lg) {
     min-width: unset;
     padding: 0;
     border: none !important;

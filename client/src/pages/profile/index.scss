@@ -1,10 +1,31 @@
 @import '@/assets/styles/_variables.module';
 
+.welcome-user {
+  line-height: 1.5;
+
+  @media screen and (max-width: $sm) {
+    display: none;
+  }
+}
+
 .user-profile-form-section {
-  h2 {
-    font-family: $main-font !important;
+  .section-title {
     margin-bottom: 1.25rem;
-    font-weight: 800;
+
+    h2 {
+      font-family: $main-font !important;
+      font-weight: 800;
+    }
+
+    .underlined-link {
+      text-wrap: nowrap;
+    }
+
+    @media screen and (min-width: $lg) {
+      .underlined-link {
+        display: none;
+      }
+    }
   }
 
   .sc-menu {

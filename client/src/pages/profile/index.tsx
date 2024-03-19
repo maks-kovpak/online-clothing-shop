@@ -2,6 +2,7 @@ import { Flex } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUnit } from 'effector-react';
+import { Link } from 'react-router-dom';
 import MetaTags from '@/components/features/MetaTags';
 import UserProfileSidebar from './containers/UserProfileSidebar';
 import UserProfileForm from './containers/UserProfileForm';
@@ -13,6 +14,7 @@ import './index.scss';
 const ProfilePage = () => {
   const { t } = useTranslation();
   const [title, setTitle] = useState<string | null>(null);
+  const [drawerOpened, setDrawerOpened] = useState<boolean>(false);
   const user = useUnit($user);
 
   return (
@@ -25,10 +27,10 @@ const ProfilePage = () => {
 
       <main>
         <section className="primary-section" style={{ marginTop: '2rem' }}>
-          <Flex justify="space-between">
+          <Flex justify="space-between" wrap="wrap" gap="0.5rem">
             <Breadcrumbs />
             {user && (
-              <p>
+              <p className="welcome-user">
                 {t('WELCOME')}, <span style={{ fontWeight: 600 }}>{user?.name}</span>
               </p>
             )}
@@ -36,10 +38,19 @@ const ProfilePage = () => {
         </section>
 
         <section className="primary-section user-profile-form-section">
-          <h2>{t(title ?? 'PROFILE')}</h2>
+          <Flex gap={32} justify="space-between" align="center" className="section-title">
+            <h2>{t(title ?? 'PROFILE')}</h2>
+            <Link className="underlined-link" to="" onClick={() => setDrawerOpened(true)}>
+              {t('GO_TO')}
+            </Link>
+          </Flex>
 
           <Flex gap={32}>
-            <UserProfileSidebar setCurrentTitle={setTitle} />
+            <UserProfileSidebar
+              setCurrentTitle={setTitle}
+              drawerOpened={drawerOpened}
+              setDrawerOpened={setDrawerOpened}
+            />
             <UserProfileForm />
           </Flex>
         </section>

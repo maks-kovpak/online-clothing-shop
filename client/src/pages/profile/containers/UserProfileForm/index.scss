@@ -6,6 +6,7 @@
   border-radius: 20px;
   flex-grow: 1;
 
+  .sc-ribbon-wrapper,
   .upload-image-field {
     width: 190px;
   }
@@ -26,6 +27,23 @@
       font-size: 0.875rem !important;
       line-height: 120% !important;
       font-weight: 600 !important;
+    }
+  }
+
+  @media screen and (max-width: $sm) {
+    .profile-image-container {
+      flex-direction: column;
+      align-items: center;
+
+      .sc-ribbon-wrapper,
+      .upload-image-field {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .name-fields-container {
+        width: 100%;
+      }
     }
   }
 }

@@ -22,8 +22,8 @@ const config: ThemeConfig = {
     },
     Menu: {
       itemHoverBg: vars.grayscaleColor3,
-      itemActiveBg: vars.grayscaleColor5,
-      itemSelectedBg: vars.grayscaleColor5,
+      itemActiveBg: vars.grayscaleColor4,
+      itemSelectedBg: vars.grayscaleColor4,
     },
   },
 };
