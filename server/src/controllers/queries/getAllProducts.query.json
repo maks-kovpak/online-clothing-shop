@@ -51,6 +51,7 @@
       "name": 1,
       "type": "$type.name",
       "price": 1,
+      "discount": 1,
       "style": "$style.name",
       "articleNumber": 1,
       "public": 1,
@@ -95,6 +96,7 @@
       "name": 1,
       "type": 1,
       "price": 1,
+      "discount": 1,
       "style": 1,
       "articleNumber": 1,
       "public": 1,
@@ -119,6 +121,9 @@
       },
       "price": {
         "$first": "$price"
+      },
+      "discount": {
+        "$first": "$discount"
       },
       "style": {
         "$first": "$style"

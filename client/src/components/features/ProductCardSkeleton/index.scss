@@ -1,0 +1,13 @@
+.product-card-skeleton {
+  & > .sc-skeleton-element:first-child {
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .sc-skeleton-image {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 3 / 4;
+    border-radius: 20px !important;
+  }
+}

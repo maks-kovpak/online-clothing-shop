@@ -11,7 +11,7 @@ const NewArrivals = () => {
   }, []);
 
   return (
-    <section className="primary-section">
+    <section className="primary-section section-top-margin">
       <ProductsList products={products} />
     </section>
   );

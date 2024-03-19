@@ -25,6 +25,10 @@ body {
   max-width: $content-max-width;
 }
 
+.section-top-margin {
+  margin-top: $primary-section-margin-lg;
+}
+
 a {
   text-decoration: none;
   color: $primary-black-color;
@@ -93,5 +97,9 @@ h3 {
   .primary-section {
     width: 95%;
     margin-bottom: $primary-section-margin-sm;
+  }
+
+  .section-top-margin {
+    margin-top: $primary-section-margin-sm;
   }
 }

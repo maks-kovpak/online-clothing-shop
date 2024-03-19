@@ -1,6 +1,55 @@
+@import '@/assets/styles/_variables.module';
+
 .product-card {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    border-radius: 20px;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+
+  .product-info {
+    h3 {
+      font-size: 1rem !important;
+      font-family: $main-font !important;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    .rating-value {
+      color: $grayscale-color-8;
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+
+    .price,
+    .old-price {
+      font-weight: 500;
+      font-size: 1.25rem;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: $grayscale-color-6;
+    }
+
+    .sc-tag-red {
+      border: none !important;
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #ff3333;
+      background-color: rgba(255, 51, 51, 0.1);
+    }
+  }
 
   .sc-card-body {
     flex-grow: 1;
