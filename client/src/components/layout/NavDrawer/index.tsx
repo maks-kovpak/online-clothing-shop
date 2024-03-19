@@ -1,33 +1,23 @@
-import { Drawer, Menu } from 'antd';
+import { Menu } from 'antd';
+import { Drawer } from '@/ui';
 import type { Dispatch, FC, SetStateAction } from 'react';
-import useBreakpoints from '@/lib/hooks/useBreakpoints';
 import useNavbarConfig from '@/lib/hooks/useNavbarConfig';
 import navbarConfig from '@/components/layout/Navbar/config';
 import { v4 as uuidv4 } from 'uuid';
 import { NavLink } from 'react-router-dom';
 import LanguageSelect from '@/components/features/LanguageSelect';
 
-import logo from '@/assets/img/logo.svg';
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg?react';
-
-import vars from '@/assets/styles/_variables.module.scss';
 import './index.scss';
 
 const NavDrawer: FC<{
   opened: boolean;
   setOpened: Dispatch<SetStateAction<boolean>>;
 }> = ({ opened, setOpened }) => {
-  const mediaQuery = useBreakpoints({ tablet: vars.sm });
   const config = useNavbarConfig(navbarConfig);
 
   return (
-    <Drawer
-      placement="left"
-      width={mediaQuery.tablet.below ? '100%' : 400}
-      open={opened}
-      onClose={() => setOpened(false)}
-      extra={<img src={logo} alt="SHOP.CO" />}
-    >
+    <Drawer className="nav-drawer" placement="left" open={opened} onClose={() => setOpened(false)}>
       <Menu
         mode="inline"
         items={config.map((item) => ({

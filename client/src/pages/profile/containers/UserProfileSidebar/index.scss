@@ -5,4 +5,12 @@
   border: 1px solid $grayscale-color-4 !important;
   padding: 1.25rem 1.5rem;
   border-radius: 20px;
+  min-width: 295px;
+
+  @media (max-width: $lg) {
+    min-width: unset;
+    padding: 0;
+    border: none !important;
+    border-radius: 0;
+  }
 }
