@@ -26,6 +26,7 @@
     "react-helmet-async": "2.0.4",
     "react-i18next": "14.0.1",
     "react-router-dom": "6.20.1",
+    "swiper": "11.0.7",
     "uuid": "9.0.1"
   },
   "devDependencies": {
@@ -35,6 +36,7 @@
     "@types/react": "~18.2.37",
     "@types/react-dom": "~18.2.15",
     "@types/react-helmet-async": "~1.0.3",
+    "@types/swiper": "~6.0.0",
     "@types/uuid": "~9.0.7",
     "@vitejs/plugin-react": "~4.2.0",
     "eslint-plugin-react-hooks": "~4.6.0",

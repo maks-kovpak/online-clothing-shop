@@ -3,12 +3,13 @@ import type { NextFunction, Request, Response } from 'express';
 import { Types } from 'mongoose';
 import Product from '../models/Product.js';
 import type { FullProduct, AllProductsQueryParams } from '../lib/types/models.js';
+import { getQueryParamValue } from '../lib/utils.js';
 import allProductsQuery from './queries/getAllProducts.query.json' assert { type: 'json' };
 
 const ProductController = {
   getAll: async (req: RequestWithQuery<AllProductsQueryParams>, res: Response<FullProduct[]>, next: NextFunction) => {
     try {
-      let aggregation = Product.aggregate<FullProduct>([...allProductsQuery]);
+      let aggregation = Product.aggregate<FullProduct>(allProductsQuery);
 
       for (const [key, value] of Object.entries(req.query)) {
         switch (key) {
@@ -28,15 +29,12 @@ const ProductController = {
             break;
           }
 
+          case 'sortOrder': {
+            break; // Only makes sense if the `sortBy` parameter is present
+          }
+
           default: {
-            let parsedValue;
-
-            try {
-              parsedValue = JSON.parse(value);
-            } catch {
-              parsedValue = value;
-            }
-
+            const parsedValue = getQueryParamValue(value);
             aggregation = aggregation.match({ [key]: parsedValue });
           }
         }
