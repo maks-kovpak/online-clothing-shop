@@ -11,8 +11,6 @@ export enum ClothingSize {
   L = 'L',
   XL = 'XL',
   XXL = 'XXL',
-  THREE_XL = '3XL',
-  FOUR_XL = '4XL',
 }
 
 export enum Gender {

@@ -1,9 +1,10 @@
 import axios from '@/lib/api/axios';
-import type { FullProduct } from '@server/lib/types/models';
+import type { AllProductsQueryParams, FullProduct } from '@server/lib/types/models';
 
 const ProductsApi = {
-  getAll: async () => {
-    return await axios.get<FullProduct[]>('/products');
+  getAll: async (filters?: AllProductsQueryParams) => {
+    const searchParams = new URLSearchParams(filters).toString();
+    return await axios.get<FullProduct[]>(`/products?${searchParams}`);
   },
 };
 

@@ -108,9 +108,7 @@
       "options.color": 1,
       "options.size": 1,
       "options.isAvailable": 1,
-      "options.images": {
-        "$arrayElemAt": ["$options.images", 0]
-      },
+      "options.images": { "$arrayElemAt": ["$options.images", 0] },
       "averageRating": 1,
       "createdAt": 1,
       "updatedAt": 1
@@ -119,42 +117,18 @@
   {
     "$group": {
       "_id": "$_id",
-      "name": {
-        "$first": "$name"
-      },
-      "type": {
-        "$first": "$type"
-      },
-      "price": {
-        "$first": "$price"
-      },
-      "discount": {
-        "$first": "$discount"
-      },
-      "style": {
-        "$first": "$style"
-      },
-      "articleNumber": {
-        "$first": "$articleNumber"
-      },
-      "public": {
-        "$first": "$public"
-      },
-      "gender": {
-        "$first": "$gender"
-      },
-      "averageRating": {
-        "$first": "$averageRating"
-      },
-      "options": {
-        "$push": "$options"
-      },
-      "createdAt": {
-        "$first": "$createdAt"
-      },
-      "updatedAt": {
-        "$first": "$updatedAt"
-      }
+      "name": { "$first": "$name" },
+      "type": { "$first": "$type" },
+      "price": { "$first": "$price" },
+      "discount": { "$first": "$discount" },
+      "style": { "$first": "$style" },
+      "articleNumber": { "$first": "$articleNumber" },
+      "public": { "$first": "$public" },
+      "gender": { "$first": "$gender" },
+      "averageRating": { "$first": "$averageRating" },
+      "options": { "$push": "$options" },
+      "createdAt": { "$first": "$createdAt" },
+      "updatedAt": { "$first": "$updatedAt" }
     }
   }
 ]
