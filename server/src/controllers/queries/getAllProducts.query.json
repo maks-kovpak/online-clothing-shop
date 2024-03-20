@@ -84,7 +84,9 @@
       },
       "averageRating": {
         "$avg": "$comments.rating"
-      }
+      },
+      "createdAt": 1,
+      "updatedAt": 1
     }
   },
   {
@@ -107,7 +109,9 @@
       "options.images": {
         "$arrayElemAt": ["$options.images", 0]
       },
-      "averageRating": 1
+      "averageRating": 1,
+      "createdAt": 1,
+      "updatedAt": 1
     }
   },
   {
@@ -139,6 +143,12 @@
       },
       "options": {
         "$push": "$options"
+      },
+      "createdAt": {
+        "$first": "$createdAt"
+      },
+      "updatedAt": {
+        "$first": "$updatedAt"
       }
     }
   }

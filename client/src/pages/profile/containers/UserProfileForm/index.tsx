@@ -8,7 +8,7 @@ import $user, { resetUserEvent, updateUserEvent } from '@/stores/user.store';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useClientReady, useValidationRules, useLoadingMessage } from '@/lib/hooks';
-import { UserRole } from '@server/lib/types/models';
+import { UserRole } from '@server/lib/enums';
 import UserApi from '@/lib/api/user';
 import paths from '@/lib/paths';
 

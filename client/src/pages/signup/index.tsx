@@ -7,7 +7,7 @@ import paths from '@/lib/paths';
 import { formNotValid, resolve } from '@/lib/utils';
 import { useClientReady, useLoadingMessage, useValidationRules } from '@/lib/hooks';
 import UserApi from '@/lib/api/user';
-import { UserRole } from '@server/lib/types/models';
+import { UserRole } from '@server/lib/enums';
 import { kebabCase } from 'lodash';
 import { useUnit } from 'effector-react';
 import { updateUserEvent } from '@/stores/user.store';

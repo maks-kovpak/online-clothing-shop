@@ -6,7 +6,7 @@ import { useUnit } from 'effector-react';
 import { Link } from 'react-router-dom';
 import { resolve } from '@/lib/utils';
 import $user from '@/stores/user.store';
-import { UserRole } from '@server/lib/types/models';
+import { UserRole } from '@server/lib/enums';
 import { Drawer } from '@/ui';
 import { useBreakpoints } from '@/lib/hooks';
 

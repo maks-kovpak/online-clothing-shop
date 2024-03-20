@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types } from 'mongoose';
-import { OrderStatus } from '../lib/types/models.js';
+import { OrderStatus } from '../lib/enums.js';
 
 export interface IOrder {
   _id: Types.ObjectId;

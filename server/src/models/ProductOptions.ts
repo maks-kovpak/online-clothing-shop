@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types } from 'mongoose';
-import { ClothingSize } from '../lib/types/models.js';
+import { ClothingSize } from '../lib/enums.js';
 
 export interface IProductOption {
   _id: Types.ObjectId;

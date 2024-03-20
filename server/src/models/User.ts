@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types } from 'mongoose';
-import { UserRole } from '../lib/types/models.js';
+import { UserRole } from '../lib/enums.js';
 
 export interface IUser {
   _id: Types.ObjectId;

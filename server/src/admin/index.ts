@@ -6,7 +6,7 @@ import { Database, Resource } from '@adminjs/mongoose';
 import bcrypt from 'bcrypt';
 import url from 'url';
 import dotenv from 'dotenv';
-import { UserRole } from '../lib/types/models.js';
+import { UserRole } from '../lib/enums.js';
 import User from '../models/User.js';
 
 import UserResource from './resources/UserResource.js';
