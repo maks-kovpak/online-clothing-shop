@@ -16,6 +16,7 @@ const routes: Array<RouteObject> = [
       { path: paths.signup, element: <SignupPage /> },
       { path: paths.login, element: <LoginPage /> },
       { path: paths.profile, element: <ProfilePage />, handle: { crumb: 'PROFILE' } },
+      { path: paths.productDetails, element: <></> },
       { path: paths.other, element: <Navigate to={paths.main} /> },
     ],
   },

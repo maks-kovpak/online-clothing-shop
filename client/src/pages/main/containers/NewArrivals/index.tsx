@@ -17,6 +17,7 @@ const NewArrivals = () => {
       sortBy: 'createdAt',
       sortOrder: 'descending',
       limit: '4',
+      public: 'true',
     }).then((response) => setProducts(response.data));
   }, []);
 

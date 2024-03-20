@@ -11,7 +11,6 @@ const config: InitialNavbarConfig = [
   },
   { label: 'ON_SALES', link: paths.sales },
   { label: 'NEW_ARRIVALS', link: paths.newArrivals },
-  { label: 'BRANDS', link: paths.brands },
 ];
 
 export default config;
