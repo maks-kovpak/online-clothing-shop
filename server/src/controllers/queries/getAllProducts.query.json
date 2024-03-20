@@ -55,6 +55,7 @@
       "style": "$style.name",
       "articleNumber": 1,
       "public": 1,
+      "gender": 1,
       "options": {
         "$map": {
           "input": "$options",
@@ -102,6 +103,7 @@
       "style": 1,
       "articleNumber": 1,
       "public": 1,
+      "gender": 1,
       "options._id": 1,
       "options.color": 1,
       "options.size": 1,
@@ -137,6 +139,9 @@
       },
       "public": {
         "$first": "$public"
+      },
+      "gender": {
+        "$first": "$gender"
       },
       "averageRating": {
         "$first": "$averageRating"

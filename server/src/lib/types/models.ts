@@ -15,7 +15,7 @@ export type UpdateUserPayload = Partial<
 
 export type SortOrderValue = Exclude<SortOrder, 1 | -1>;
 
-export type AllProductsQueryParams = {
+export type AllProductsQueryParams = Record<string, string> & {
   limit?: string;
   sortBy?: keyof FullProduct;
   sortOrder?: SortOrderValue;

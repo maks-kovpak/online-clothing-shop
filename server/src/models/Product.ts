@@ -1,4 +1,5 @@
 import mongoose, { Schema, Types } from 'mongoose';
+import { Gender } from '../lib/enums.js';
 
 export interface IProduct {
   _id: Types.ObjectId;
@@ -9,6 +10,7 @@ export interface IProduct {
   discount?: number;
   articleNumber: string;
   public: boolean;
+  gender: Gender;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -22,10 +24,9 @@ const ProductSchema = new Schema<IProduct>(
     discount: { type: Number, min: 0, max: 100 },
     articleNumber: { type: String, required: true, minLength: 13 },
     public: { type: Boolean, required: true },
+    gender: { type: String, required: true, enum: Object.values(Gender) },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 const Product = mongoose.model<IProduct>('Product', ProductSchema, 'product');

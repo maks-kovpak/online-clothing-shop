@@ -15,6 +15,11 @@ export enum ClothingSize {
   FOUR_XL = '4XL',
 }
 
+export enum Gender {
+  MAN = 'MAN',
+  WOMAN = 'WOMAN',
+}
+
 export enum OrderStatus {
   PENDING = 'PENDING',
   AWAITING_PAYMENT = 'AWAITING_PAYMENT',

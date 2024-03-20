@@ -9,21 +9,42 @@ const ProductController = {
   getAll: async (req: RequestWithQuery<AllProductsQueryParams>, res: Response<FullProduct[]>, next: NextFunction) => {
     try {
       let aggregation = Product.aggregate<FullProduct>([...allProductsQuery]);
-      const { sortBy, sortOrder } = req.query;
-      const limit = req.query.limit && parseInt(req.query.limit);
 
-      if (limit) {
-        aggregation = aggregation.limit(limit);
-      }
+      for (const [key, value] of Object.entries(req.query)) {
+        switch (key) {
+          case 'limit': {
+            const limit = parseInt(value);
 
-      if (sortBy) {
-        aggregation = aggregation.sort(sortOrder ? { [sortBy]: sortOrder } : sortBy);
+            if (!Number.isNaN(limit)) {
+              aggregation = aggregation.limit(limit);
+            }
+
+            break;
+          }
+
+          case 'sortBy': {
+            const { sortOrder } = req.query;
+            aggregation = aggregation.sort(sortOrder ? { [value]: sortOrder } : value);
+            break;
+          }
+
+          default: {
+            let parsedValue;
+
+            try {
+              parsedValue = JSON.parse(value);
+            } catch {
+              parsedValue = value;
+            }
+
+            aggregation = aggregation.match({ [key]: parsedValue });
+          }
+        }
       }
 
       const products = await aggregation.exec();
 
       res.status(200).json(products);
-      req.query.limit;
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }
