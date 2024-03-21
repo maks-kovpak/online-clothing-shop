@@ -2,45 +2,15 @@ import ApiError from '../lib/errors/ApiError.js';
 import type { NextFunction, Request, Response } from 'express';
 import { Types } from 'mongoose';
 import Product from '../models/Product.js';
-import type { FullProduct, AllProductsQueryParams } from '../lib/types/models.js';
-import { getQueryParamValue } from '../lib/utils.js';
+import type { FullProduct, FiltersQueryParams } from '../lib/types/models.js';
+import { filterByQuery } from '../lib/utils.js';
 import allProductsQuery from './queries/getAllProducts.query.json' assert { type: 'json' };
 
 const ProductController = {
-  getAll: async (req: RequestWithQuery<AllProductsQueryParams>, res: Response<FullProduct[]>, next: NextFunction) => {
+  getAll: async (req: RequestWithQuery<FiltersQueryParams>, res: Response<FullProduct[]>, next: NextFunction) => {
     try {
-      let aggregation = Product.aggregate<FullProduct>(allProductsQuery);
-
-      for (const [key, value] of Object.entries(req.query)) {
-        switch (key) {
-          case 'limit': {
-            const limit = parseInt(value);
-
-            if (!Number.isNaN(limit)) {
-              aggregation = aggregation.limit(limit);
-            }
-
-            break;
-          }
-
-          case 'sortBy': {
-            const { sortOrder } = req.query;
-            aggregation = aggregation.sort(sortOrder ? { [value]: sortOrder } : value);
-            break;
-          }
-
-          case 'sortOrder': {
-            break; // Only makes sense if the `sortBy` parameter is present
-          }
-
-          default: {
-            const parsedValue = getQueryParamValue(value);
-            aggregation = aggregation.match({ [key]: parsedValue });
-          }
-        }
-      }
-
-      const products = await aggregation.exec();
+      const aggregation = Product.aggregate<FullProduct>(allProductsQuery);
+      const products = await filterByQuery(req.query, aggregation).exec();
 
       res.status(200).json(products);
     } catch (err) {

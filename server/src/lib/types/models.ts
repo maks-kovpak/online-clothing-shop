@@ -3,6 +3,7 @@ import type { IProduct } from '../../models/Product.js';
 import type { IProductOption } from '../../models/ProductOptions.js';
 import type { WithoutTimestamps } from './utils.js';
 import type { IUser } from '../../models/User.js';
+import type { IComment } from '../../models/Comments.js';
 
 export type FullProduct = IProduct & {
   options: Array<Omit<IProductOption, 'images'> & { images: string[] }>;
@@ -15,8 +16,10 @@ export type UpdateUserPayload = Partial<
 
 export type SortOrderValue = Exclude<SortOrder, 1 | -1>;
 
-export type AllProductsQueryParams = Record<string, string> & {
+export type FiltersQueryParams = Record<string, string> & {
   limit?: string;
   sortBy?: keyof FullProduct;
   sortOrder?: SortOrderValue;
 };
+
+export type FullComment = Omit<IComment, 'productId' | 'userId'> & { author: string };
