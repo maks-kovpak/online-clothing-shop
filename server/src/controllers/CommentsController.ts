@@ -7,7 +7,11 @@ import { filterByQuery } from '../lib/utils.js';
 import allCommentsQuery from './queries/getAllComments.query.json' assert { type: 'json' };
 
 const CommentsController = {
-  getAll: async (req: RequestWithQuery<FiltersQueryParams>, res: Response<FullComment[]>, next: NextFunction) => {
+  getAll: async (
+    req: RequestWithQuery<FiltersQueryParams<FullComment>>,
+    res: Response<FullComment[]>,
+    next: NextFunction
+  ) => {
     try {
       const aggregation = Comments.aggregate<FullComment>(allCommentsQuery);
       const comments = await filterByQuery(req.query, aggregation).exec();

@@ -7,7 +7,11 @@ import { filterByQuery } from '../lib/utils.js';
 import allProductsQuery from './queries/getAllProducts.query.json' assert { type: 'json' };
 
 const ProductController = {
-  getAll: async (req: RequestWithQuery<FiltersQueryParams>, res: Response<FullProduct[]>, next: NextFunction) => {
+  getAll: async (
+    req: RequestWithQuery<FiltersQueryParams<FullProduct>>,
+    res: Response<FullProduct[]>,
+    next: NextFunction
+  ) => {
     try {
       const aggregation = Product.aggregate<FullProduct>(allProductsQuery);
       const products = await filterByQuery(req.query, aggregation).exec();

@@ -25,11 +25,11 @@ export const getQueryParamValue = (value: string) => {
  * @param aggregation - An instance of Mongoose aggregation object.
  * @returns An aggregation with applied filters.
  */
-export const filterByQuery = <T extends object>(query: FiltersQueryParams, aggregation: Aggregate<T>) => {
+export const filterByQuery = <T extends object>(query: FiltersQueryParams<T>, aggregation: Aggregate<T[]>) => {
   for (const [key, value] of Object.entries(query)) {
     switch (key) {
       case 'limit': {
-        const limit = parseInt(value);
+        const limit = parseInt(value as string);
 
         if (!Number.isNaN(limit)) {
           aggregation = aggregation.limit(limit);
@@ -40,7 +40,7 @@ export const filterByQuery = <T extends object>(query: FiltersQueryParams, aggre
 
       case 'sortBy': {
         const { sortOrder } = query;
-        aggregation = aggregation.sort(sortOrder ? { [value]: sortOrder } : value);
+        aggregation = aggregation.sort(sortOrder ? { [value]: sortOrder } : (value as string));
         break;
       }
 
@@ -49,7 +49,7 @@ export const filterByQuery = <T extends object>(query: FiltersQueryParams, aggre
       }
 
       default: {
-        const parsedValue = getQueryParamValue(value);
+        const parsedValue = getQueryParamValue(value as string);
         aggregation = aggregation.match({ [key]: parsedValue });
       }
     }

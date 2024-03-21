@@ -1,8 +1,8 @@
 import axios from '@/lib/api/axios';
 import type { FullComment, FiltersQueryParams } from '@server/lib/types/models';
 
-const ProductsApi = {
-  getAll: async (filters?: FiltersQueryParams) => {
+const CommentsApi = {
+  getAll: async (filters?: FiltersQueryParams<FullComment>) => {
     const searchParams = new URLSearchParams(filters).toString();
     return await axios.get<FullComment[]>(`/comments?${searchParams}`);
   },
@@ -12,4 +12,4 @@ const ProductsApi = {
   },
 };
 
-export default ProductsApi;
+export default CommentsApi;
