@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { FullProduct } from '@server/lib/types/models';
 import ProductsApi from '@/lib/api/products';
-import ProductsList from '@/components/features/ProductsList';
+import ProductsCarousel from '@/components/features/ProductsCarousel';
 import { Button } from '@/ui';
 import { Flex, Divider } from 'antd';
 
@@ -23,10 +23,10 @@ const NewArrivals = () => {
 
   return (
     <section className="primary-section section-top-margin new-arrivals-section">
-      <ProductsList products={products} />
+      <ProductsCarousel products={products} />
 
       <Flex justify="center" style={{ marginBottom: '4rem' }}>
-        <Button size="large" style={{ minWidth: 150 }}>
+        <Button size="large" style={{ minWidth: 180 }}>
           {t('VIEW_ALL')}
         </Button>
       </Flex>

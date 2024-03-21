@@ -73,5 +73,6 @@
   "UPLOAD_ONLY_IMAGES": "You can only upload image files",
   "FOR_ADMIN": "For Administrator",
   "ADMIN_PANEL": "Admin Panel",
-  "GO_TO": "Go to..."
+  "GO_TO": "Go to...",
+  "VIEW_ALL": "View all"
 }
