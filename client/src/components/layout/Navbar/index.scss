@@ -2,7 +2,8 @@
 
 .navbar {
   @media screen and (max-width: $xxl) {
-    display: none;
+    visibility: hidden;
+    position: absolute;
   }
 
   .sc-menu-horizontal {
