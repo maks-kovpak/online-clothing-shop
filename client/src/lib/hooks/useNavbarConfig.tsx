@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import type { MenuProps } from 'antd';
@@ -8,29 +8,21 @@ import paths from '@/lib/paths';
 export type NavbarConfig = Array<{
   label: string;
   link?: string;
-  items?: MenuProps['items'];
-}>;
-
-export type InitialNavbarConfig = Array<{
-  label: string;
-  link?: string;
-  items?: Array<{ label: string; link: string }>;
+  children?: NavbarConfig;
 }>;
 
 /**
- * The `useNavbarConfig` hook takes an initial configuration and returns a translated and modified
- * configuration for a navbar component in a TypeScript React application.
- *
- * @returns The translated and modified `NavbarConfig` object.
+ * The `useNavbarConfig` hook generates a configuration for a navigation menu.
+ * @returns The translated and modified navbar config.
  */
-const useNavbarConfig = (): NavbarConfig => {
+const useNavbarConfig = (): MenuProps['items'] => {
   const { t } = useTranslation();
 
-  const initialConfig: InitialNavbarConfig = useMemo(
+  const initialConfig: NavbarConfig = useMemo(
     () => [
       {
         label: 'SHOP',
-        items: [
+        children: [
           { label: 'SHOP_MEN', link: paths.shopMen },
           { label: 'SHOP_WOMEN', link: paths.shopWomen },
         ],
@@ -41,16 +33,18 @@ const useNavbarConfig = (): NavbarConfig => {
     []
   );
 
-  return useMemo(() => {
-    return initialConfig.map((element) => ({
-      ...element,
-      label: t(element.label),
-      items: element.items?.map((item) => ({
+  const modify = useCallback(
+    (config: NavbarConfig): MenuProps['items'] => {
+      return config.map((item) => ({
         key: uuidv4(),
-        label: <NavLink to={item.link}>{t(item.label)}</NavLink>,
-      })),
-    }));
-  }, [initialConfig, t]);
+        label: <NavLink to={item.link ?? paths.main}>{t(item.label)}</NavLink>,
+        children: item?.children && modify(item.children),
+      }));
+    },
+    [t]
+  );
+
+  return modify(initialConfig);
 };
 
 export default useNavbarConfig;

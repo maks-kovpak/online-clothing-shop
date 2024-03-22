@@ -5,16 +5,11 @@
     display: none;
   }
 
-  & > ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-
+  .sc-menu-horizontal {
+    border-bottom: none;
+    line-height: 30px;
     color: $main-text-color;
-    font-size: 1rem;
-    font-style: normal;
     font-weight: 400;
-    line-height: normal;
     white-space: nowrap;
   }
 }
