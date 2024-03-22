@@ -7,8 +7,12 @@
   "author": "Maksym Kovpak <kovpak.maksym@gmail.com>",
   "repository": "https://github.com/maks-kovpak/online-clothing-shop.git",
   "scripts": {
-    "client:dev": "yarn workspace client run dev",
-    "server:dev": "yarn workspace server run dev"
+    "build": "concurrently \"yarn workspace client build\" \"yarn workspace server build\"",
+    "client:dev": "yarn workspace client dev",
+    "client:prod": "yarn workspace client preview",
+    "lint": "concurrently \"yarn workspace client lint\" \"yarn workspace server lint\"",
+    "server:dev": "yarn workspace server dev",
+    "server:prod": "yarn workspace server start"
   },
   "workspaces": [
     "client",

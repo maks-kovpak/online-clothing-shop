@@ -31,8 +31,14 @@ app.use(cookieParser());
 usePassportAuth();
 app.use(passport.initialize());
 
+const ALLOWED_HOSTS = process.env?.ALLOWED_HOSTS
+  ? process.env.ALLOWED_HOSTS.split(',')
+      .map((host) => host.trim())
+      .filter((s) => s)
+  : [];
+
 const corsOptions: CorsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: [process.env.CLIENT_URL, ...ALLOWED_HOSTS],
   credentials: true,
 };
 
