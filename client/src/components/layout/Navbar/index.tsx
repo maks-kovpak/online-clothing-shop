@@ -1,12 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Dropdown } from '@/ui';
-import useNavbarConfig from '@/lib/hooks/useNavbarConfig';
-import navbarConfig from './config';
+import { useNavbarConfig } from '@/lib/hooks';
 
 import './index.scss';
 
 const Navbar = () => {
-  const config = useNavbarConfig(navbarConfig);
+  const config = useNavbarConfig();
 
   return (
     <nav className="navbar">

@@ -1,4 +1,4 @@
-import AuthPageLayout from '@/components/features/AuthPageLayout';
+import AuthPageLayout from '@/components/layout/AuthPageLayout';
 import { Flex, Form } from 'antd';
 import { Button, Input } from '@/ui';
 import { useTranslation } from 'react-i18next';

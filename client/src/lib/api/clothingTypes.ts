@@ -5,7 +5,7 @@ import type { IClothingType } from '@server/models/ClothingTypes';
 const ClothingTypesApi = {
   getAll: async (filters?: ClothingTypesQueryParams) => {
     const searchParams = new URLSearchParams(filters).toString();
-    return await axios.get<IClothingType[]>(`/products?${searchParams}`);
+    return await axios.get<IClothingType[]>(`/clothing-types?${searchParams}`);
   },
 };
 

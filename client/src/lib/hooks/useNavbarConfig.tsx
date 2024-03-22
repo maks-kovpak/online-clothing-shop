@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import type { MenuProps } from 'antd';
 import { NavLink } from 'react-router-dom';
+import paths from '@/lib/paths';
 
 export type NavbarConfig = Array<{
   label: string;
@@ -20,11 +21,25 @@ export type InitialNavbarConfig = Array<{
  * The `useNavbarConfig` hook takes an initial configuration and returns a translated and modified
  * configuration for a navbar component in a TypeScript React application.
  *
- * @param initialConfig - An array of objects representing the initial configuration of the navbar.
  * @returns The translated and modified `NavbarConfig` object.
  */
-const useNavbarConfig = (initialConfig: InitialNavbarConfig): NavbarConfig => {
+const useNavbarConfig = (): NavbarConfig => {
   const { t } = useTranslation();
+
+  const initialConfig: InitialNavbarConfig = useMemo(
+    () => [
+      {
+        label: 'SHOP',
+        items: [
+          { label: 'SHOP_MEN', link: paths.shopMen },
+          { label: 'SHOP_WOMEN', link: paths.shopWomen },
+        ],
+      },
+      { label: 'ON_SALES', link: paths.sales },
+      { label: 'NEW_ARRIVALS', link: paths.newArrivals },
+    ],
+    []
+  );
 
   return useMemo(() => {
     return initialConfig.map((element) => ({

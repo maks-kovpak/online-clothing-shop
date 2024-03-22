@@ -1,6 +1,7 @@
 const paths = {
   main: '/',
   other: '*',
+  shop: '/shop',
   shopMen: '/shop/men',
   shopWomen: '/shop/women',
   sales: '/sales',

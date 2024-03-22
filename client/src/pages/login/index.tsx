@@ -1,4 +1,4 @@
-import AuthPageLayout from '@/components/features/AuthPageLayout';
+import AuthPageLayout from '@/components/layout/AuthPageLayout';
 import { Form } from 'antd';
 import { Button, Input } from '@/ui';
 import { NavLink, useNavigate } from 'react-router-dom';
