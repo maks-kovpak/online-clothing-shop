@@ -16,6 +16,7 @@ export enum ClothingSize {
 export enum Gender {
   MAN = 'MAN',
   WOMAN = 'WOMAN',
+  UNISEX = 'UNISEX',
 }
 
 export enum OrderStatus {
