@@ -1,7 +1,7 @@
 import { createEffect, createEvent, createStore } from 'effector';
 import Cookies from 'js-cookie';
+import join from 'url-join';
 import UserApi from '@/lib/api/user';
-import { resolve } from '@/lib/utils';
 import type { IUser } from '@server/models/User';
 
 export type UserStoreType = IUser | null;
@@ -10,7 +10,7 @@ export type UserStoreType = IUser | null;
 
 const withUpdatedProfileImage = (state: UserStoreType) => {
   if (state && state?.profileImage) {
-    return { ...state, profileImage: resolve(import.meta.env.VITE_API_URL, state.profileImage) };
+    return { ...state, profileImage: join(import.meta.env.VITE_API_URL, state.profileImage) };
   }
 
   return state;

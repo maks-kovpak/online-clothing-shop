@@ -4,7 +4,7 @@ import type { FC, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUnit } from 'effector-react';
 import { Link } from 'react-router-dom';
-import { resolve } from '@/lib/utils';
+import join from 'url-join';
 import $user from '@/stores/user.store';
 import { UserRole } from '@server/lib/enums';
 import { Drawer } from '@/ui';
@@ -52,7 +52,7 @@ const UserProfileSidebar: FC<{
         type: 'group',
         children: [
           {
-            label: <Link to={resolve(import.meta.env.VITE_API_URL, '/admin/')}>{t('ADMIN_PANEL')}</Link>,
+            label: <Link to={join(import.meta.env.VITE_API_URL, '/admin/')}>{t('ADMIN_PANEL')}</Link>,
             key: 'ADMIN_PANEL',
           },
         ],

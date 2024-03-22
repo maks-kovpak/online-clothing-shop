@@ -3,8 +3,9 @@ import { Flex, Form } from 'antd';
 import { Button, Input } from '@/ui';
 import { useTranslation } from 'react-i18next';
 import { NavLink, useNavigate } from 'react-router-dom';
+import join from 'url-join';
 import paths from '@/lib/paths';
-import { formNotValid, resolve } from '@/lib/utils';
+import { formNotValid } from '@/lib/utils';
 import { useClientReady, useLoadingMessage, useValidationRules } from '@/lib/hooks';
 import UserApi from '@/lib/api/user';
 import { UserRole } from '@server/lib/enums';
@@ -94,7 +95,7 @@ const RegistrationForm = () => {
         </Form.Item>
 
         <Form.Item className="google-signup-button-field">
-          <NavLink to={resolve(import.meta.env.VITE_API_URL, '/api/auth/google')}>
+          <NavLink to={join(import.meta.env.VITE_API_URL, '/api/auth/google')}>
             <Button type="default" size="large" icon={<GoogleLogo width={24} height={24} />}>
               {t('SIGN_IN_WITH_GOOGLE')}
             </Button>

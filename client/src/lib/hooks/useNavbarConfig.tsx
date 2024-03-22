@@ -7,6 +7,7 @@ import paths from '@/lib/paths';
 import type { IClothingType } from '@server/models/ClothingTypes';
 import { Gender } from '@server/lib/enums';
 import ClothingTypesApi from '@/lib/api/clothingTypes';
+import join from 'url-join';
 
 export type NavbarConfig = Array<{
   label: string;
@@ -19,7 +20,7 @@ const getClothingTypesItems = (types: IClothingType[], baseUrl: string, gender: 
     .filter((type) => type.gender === gender || type.gender === Gender.UNISEX)
     .map((item) => ({
       label: item.name,
-      link: baseUrl + `?type=${item.name}`,
+      link: join(baseUrl, item.slug),
     }));
 };
 
