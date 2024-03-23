@@ -12,6 +12,8 @@ $dark-color: rgba(0, 0, 0, 0.4);
 $dark-transparent-color: rgba(0, 0, 0, 0.05);
 $link-hover-color: #4d4d4d;
 
+$rating-stars-color: #ffc633;
+
 // Grayscale
 
 $grayscale-color-1: #fafafa;
@@ -36,6 +38,9 @@ $main-font: 'Inter', system-ui, sans-serif;
 $font-size-1: clamp(1.625rem, 1.1607rem + 1.9048vw, 2.875rem); // 26px -> 46px
 $font-size-2: clamp(1.5rem, 1.2214rem + 1.1429vw, 2.25rem); // 24px -> 36px
 $font-size-3: clamp(1.3125rem, 1.0571rem + 1.0476vw, 2rem); // 21px -> 32px
+$font-size-4: clamp(1rem, 0.9071rem + 0.381vw, 1.25rem); // 16px -> 20px
+
+$font-size-body-1: clamp(0.875rem, 0.8286rem + 0.1905vw, 1rem); // 14px -> 16px
 
 // Breakpoints
 

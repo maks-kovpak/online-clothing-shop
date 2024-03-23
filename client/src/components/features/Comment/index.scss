@@ -1,0 +1,28 @@
+@import '@/assets/styles/_variables.module';
+
+.comment {
+  border-radius: 20px;
+  padding: 1.75rem 2rem;
+  border: 1px solid $grayscale-color-4;
+
+  .comment-text {
+    color: $grayscale-color-7;
+    font-weight: 500;
+    line-height: 140%;
+    font-size: $font-size-body-1;
+  }
+
+  h4 {
+    margin-bottom: 0.75rem;
+    font-weight: 700 !important;
+  }
+
+  .sc-rate {
+    color: $rating-stars-color;
+    margin-bottom: 0.9375rem;
+
+    .sc-rate-star:not(:last-child) {
+      margin-right: 6px;
+    }
+  }
+}
