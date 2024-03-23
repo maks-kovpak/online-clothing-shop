@@ -12,12 +12,19 @@
     font-size: $font-size-body-1;
   }
 
-  h4 {
+  .author {
     margin-bottom: 0.75rem;
-    font-weight: 700 !important;
+
+    h4 {
+      font-weight: 700 !important;
+    }
   }
 
   .sc-rate {
     margin-bottom: 0.9375rem;
+  }
+
+  @media screen and (max-width: $sm) {
+    padding: 1.25rem 1.5rem;
   }
 }

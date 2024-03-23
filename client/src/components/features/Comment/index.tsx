@@ -11,7 +11,7 @@ const Comment: FC<{ comment: FullComment }> = ({ comment }) => {
     <div className="comment">
       <Rate defaultValue={comment.rating} disabled />
 
-      <Flex gap="0.375rem">
+      <Flex gap="0.375rem" align="center" className="author">
         <h4 className="secondary">{comment.author}</h4>
         <ApprovedIcon />
       </Flex>

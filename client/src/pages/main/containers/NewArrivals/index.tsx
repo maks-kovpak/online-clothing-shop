@@ -23,6 +23,8 @@ const NewArrivals = () => {
 
   return (
     <section className="primary-section section-top-margin new-arrivals-section">
+      <h2>{t('NEW_ARRIVALS')}</h2>
+
       <ProductsCarousel products={products} />
 
       <Flex justify="center" style={{ marginBottom: '4rem' }}>

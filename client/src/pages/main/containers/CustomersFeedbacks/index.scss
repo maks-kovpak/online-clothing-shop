@@ -1,4 +1,16 @@
+@import '@/assets/styles/_variables.module';
+
 .customer-feedbacks-section {
+  .section-title {
+    margin-bottom: 2rem;
+
+    .left-arrow,
+    .right-arrow {
+      display: flex;
+      align-items: center;
+    }
+  }
+
   .comments-carousel .swiper-wrapper {
     align-items: stretch;
 
@@ -8,6 +20,12 @@
 
     .comment {
       height: 100%;
+    }
+  }
+
+  @media screen and (max-width: $sm) {
+    .carousel-arrows {
+      display: none;
     }
   }
 }

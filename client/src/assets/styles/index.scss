@@ -17,17 +17,35 @@
 body {
   font-family: $main-font;
   background-color: $main-bg-color;
+  overflow-x: hidden;
 }
+
+/* Sections */
 
 .primary-section {
   width: 85%;
   margin: auto auto $primary-section-margin-lg;
   max-width: $content-max-width;
+
+  @media screen and (max-width: $xl) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: $md) {
+    width: 95%;
+    margin-bottom: $primary-section-margin-sm;
+  }
 }
 
 .section-top-margin {
   margin-top: $primary-section-margin-lg;
+
+  @media screen and (max-width: $md) {
+    margin-top: $primary-section-margin-sm;
+  }
 }
+
+/* Link */
 
 a {
   text-decoration: none;
@@ -87,23 +105,4 @@ h4 {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
-}
-
-/* Media queries */
-
-@media screen and (max-width: $xl) {
-  .primary-section {
-    width: 90%;
-  }
-}
-
-@media screen and (max-width: $md) {
-  .primary-section {
-    width: 95%;
-    margin-bottom: $primary-section-margin-sm;
-  }
-
-  .section-top-margin {
-    margin-top: $primary-section-margin-sm;
-  }
 }
