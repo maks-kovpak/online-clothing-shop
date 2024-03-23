@@ -1,9 +1,10 @@
 import { Helmet } from 'react-helmet-async';
+import join from 'url-join';
 import { LANGUAGES } from '@/lib/constants/languages';
 import type { FC } from 'react';
 import type { MetaTagsProps } from '@/components/features/MetaTags';
 
-const OpenGraph: FC<MetaTagsProps> = ({ title, description, imagePath }) => {
+const OpenGraph: FC<Required<MetaTagsProps>> = ({ title, description, imagePath }) => {
   return (
     <Helmet>
       <meta property="og:title" content={title} />
@@ -11,7 +12,7 @@ const OpenGraph: FC<MetaTagsProps> = ({ title, description, imagePath }) => {
       <meta property="og:site_name" content="Shop.co" />
       <meta property="og:url" content={window.location.href} />
       <meta property="og:image" content={imagePath} />
-      <meta property="og:image:secure_url" content={new URL(imagePath, window.location.href).href} />
+      <meta property="og:image:secure_url" content={join(window.location.origin, imagePath)} />
       <meta property="og:image:type" content="image/webp" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />

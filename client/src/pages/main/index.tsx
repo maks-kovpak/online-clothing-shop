@@ -10,11 +10,7 @@ const MainPage = () => {
   const { t } = useTranslation();
   return (
     <>
-      <MetaTags
-        title={`SHOP.CO | ${t('MAIN_PAGE_TITLE')}`}
-        description={t('MAIN_PAGE_DESCRIPTION')}
-        imagePath="/opengraph/og-image-main.webp"
-      />
+      <MetaTags title={`SHOP.CO | ${t('MAIN_PAGE_TITLE')}`} description={t('MAIN_PAGE_DESCRIPTION')} />
 
       <main>
         <HeroBanner />

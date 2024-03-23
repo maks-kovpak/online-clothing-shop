@@ -19,11 +19,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <MetaTags
-        title={`SHOP.CO | ${t('PROFILE_PAGE_TITLE')}`}
-        description={t('PROFILE_PAGE_DESCRIPTION')}
-        imagePath="/opengraph/og-image-main.webp"
-      />
+      <MetaTags title={`SHOP.CO | ${t('PROFILE_PAGE_TITLE')}`} description={t('PROFILE_PAGE_DESCRIPTION')} />
 
       <main>
         <section className="primary-section" style={{ marginTop: '2rem' }}>

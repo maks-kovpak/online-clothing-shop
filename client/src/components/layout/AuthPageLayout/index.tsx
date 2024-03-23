@@ -16,11 +16,7 @@ const AuthPageLayout: FC<{
 
   return (
     <>
-      <MetaTags
-        title={`${t(pageTitle)} | SHOP.CO`}
-        description={t(pageDescription)}
-        imagePath="/opengraph/og-image-main.webp"
-      />
+      <MetaTags title={`${t(pageTitle)} | SHOP.CO`} description={t(pageDescription)} />
 
       <main>
         <section className="user-auth-section">
