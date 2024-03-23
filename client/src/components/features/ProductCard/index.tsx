@@ -1,4 +1,5 @@
-import { Rate, Flex, Tag } from 'antd';
+import { Flex, Tag } from 'antd';
+import { Rate } from '@/ui';
 import { type FC, useMemo, Suspense } from 'react';
 import { FullProduct } from '@server/lib/types/models';
 import { UPLOAD_URL } from '@/lib/constants';

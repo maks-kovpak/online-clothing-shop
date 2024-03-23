@@ -14,6 +14,7 @@ const CustomersFeedbacks = () => {
     CommentsApi.getAll({
       sortBy: 'createdAt',
       sortOrder: 'descending',
+      limit: '12',
     }).then((response) => setComments(response.data));
   }, []);
 

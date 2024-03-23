@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import type { FullComment } from '@server/lib/types/models';
-import { Flex, Rate } from 'antd';
+import { Flex } from 'antd';
+import { Rate } from '@/ui';
 
 import ApprovedIcon from '@/assets/icons/approved.svg?react';
 import './index.scss';

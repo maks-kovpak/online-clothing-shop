@@ -1,0 +1,9 @@
+@import '@/assets/styles/_variables.module';
+
+.sc-rate {
+  color: $rating-stars-color;
+
+  .sc-rate-star:not(:last-child) {
+    margin-inline-end: 6px;
+  }
+}
