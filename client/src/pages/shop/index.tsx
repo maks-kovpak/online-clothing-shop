@@ -19,6 +19,7 @@ const ShopPage = () => {
     queryFn: async () => {
       const response = await ProductsApi.getAll({
         gender: gender.toUpperCase(),
+        sortBy: 'createdAt',
       });
 
       return response.data;
