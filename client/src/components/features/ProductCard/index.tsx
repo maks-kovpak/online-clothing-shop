@@ -6,14 +6,13 @@ import { UPLOAD_URL } from '@/lib/constants';
 import ProductCardSkeleton from '../ProductCardSkeleton';
 import { Link } from 'react-router-dom';
 import paths from '@/lib/paths';
+import join from 'url-join';
 
 import './index.scss';
 
-const ProductCard: FC<{
-  product: FullProduct;
-}> = ({ product }) => {
+const ProductCard: FC<{ product: FullProduct }> = ({ product }) => {
   const imageUrl = useMemo(() => {
-    return UPLOAD_URL + product.options[0].images[0];
+    return join(UPLOAD_URL, product.options[0].images[0]);
   }, [product.options]);
 
   return (
