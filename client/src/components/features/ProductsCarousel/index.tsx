@@ -31,7 +31,7 @@ const swiperOptions: SwiperOptions = {
 
 const ProductsCarouselSkeleton = () => {
   return (
-    <Swiper className="products-carousel-skeleton" {...swiperOptions}>
+    <Swiper className="products-carousel" {...swiperOptions}>
       {Array.from({ length: 4 }, (_, idx) => (
         <SwiperSlide key={idx}>
           <ProductCardSkeleton />
@@ -42,7 +42,7 @@ const ProductsCarouselSkeleton = () => {
 };
 
 const ProductsCarousel: FC<{ products: FullProduct[] | undefined; pending?: boolean }> = ({ products, pending }) => {
-  if (pending || products === undefined) return <ProductsCarouselSkeleton />;
+  if (pending || !products) return <ProductsCarouselSkeleton />;
 
   return (
     <Swiper className="products-carousel" {...swiperOptions}>

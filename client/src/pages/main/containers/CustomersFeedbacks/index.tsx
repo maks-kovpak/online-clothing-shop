@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Flex } from 'antd';
+import { Flex, Skeleton } from 'antd';
 import { Button } from '@/ui';
 import CommentsApi from '@/lib/api/comments';
-import type { FullComment } from '@server/lib/types/models';
 import Comment from '@/components/features/Comment';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Virtual } from 'swiper/modules';
 import type { SwiperOptions } from 'swiper/types';
+import { useQuery } from '@tanstack/react-query';
 
 import ArrowIcon from '@/assets/icons/arrow.svg?react';
 
@@ -32,18 +31,34 @@ const swiperOptions: SwiperOptions = {
   autoplay: { delay: 3000 },
 };
 
+const CommentsCarouselSkeleton = () => {
+  return (
+    <Swiper className="comments-carousel" {...swiperOptions}>
+      {Array.from({ length: 3 }, (_, idx) => (
+        <SwiperSlide key={idx}>
+          <Skeleton className="comment" paragraph={{ rows: 4 }} active />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+};
+
 const CustomersFeedbacks = () => {
-  const [comments, setComments] = useState<FullComment[]>([]);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    CommentsApi.getAll({
-      sortBy: 'createdAt',
-      sortOrder: 'descending',
-      limit: '12',
-      rating: '5',
-    }).then((response) => setComments(response.data));
-  }, []);
+  const { isPending, data: comments } = useQuery({
+    queryKey: ['customersFeedbacks'],
+    queryFn: async () => {
+      const response = await CommentsApi.getAll({
+        sortBy: 'createdAt',
+        sortOrder: 'descending',
+        limit: '12',
+        rating: '5',
+      });
+
+      return response.data;
+    },
+  });
 
   return (
     <section className="primary-section customer-feedbacks-section">
@@ -61,13 +76,17 @@ const CustomersFeedbacks = () => {
         </Flex>
       </Flex>
 
-      <Swiper className="comments-carousel" {...swiperOptions}>
-        {comments.map((item) => (
-          <SwiperSlide key={item._id.toString()}>
-            <Comment comment={item} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {isPending || !comments ? (
+        <CommentsCarouselSkeleton />
+      ) : (
+        <Swiper className="comments-carousel" {...swiperOptions}>
+          {comments.map((item) => (
+            <SwiperSlide key={item._id.toString()}>
+              <Comment comment={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </section>
   );
 };

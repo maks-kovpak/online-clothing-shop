@@ -1,6 +1,7 @@
 import { Flex, Divider } from 'antd';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { v4 as uuidv4 } from 'uuid';
 
 import TwitterIcon from '@/assets/icons/twitter.svg?react';
 import FacebookIcon from '@/assets/icons/facebook.svg?react';
@@ -76,11 +77,13 @@ const PageFooter = () => {
 
           <Flex gap="3rem 7rem" wrap="wrap">
             {footerConfig.map((row) => (
-              <Flex className="footer-menu-item" gap="1.5rem" vertical>
+              <Flex className="footer-menu-item" key={uuidv4()} gap="1.5rem" vertical>
                 <h4 className="secondary">{t(row.category)}</h4>
 
                 {row.items.map((item) => (
-                  <Link to={item.link ?? ''}>{t(item.title)}</Link>
+                  <Link to={item.link ?? ''} key={uuidv4()}>
+                    {t(item.title)}
+                  </Link>
                 ))}
               </Flex>
             ))}
