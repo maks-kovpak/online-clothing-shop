@@ -15,7 +15,13 @@ const NavDrawer: FC<{
 
   return (
     <Drawer className="nav-drawer" placement="left" open={opened} onClose={() => setOpened(false)}>
-      <Menu mode="inline" items={config} inlineIndent={0} expandIcon={<ArrowDownIcon style={{ width: 16 }} />} />
+      <Menu
+        mode="inline"
+        items={config}
+        inlineIndent={0}
+        expandIcon={<ArrowDownIcon style={{ width: 16 }} />}
+        onClick={() => setOpened(false)}
+      />
       <LanguageSelect width="100%" />
     </Drawer>
   );

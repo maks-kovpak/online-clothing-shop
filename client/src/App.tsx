@@ -1,4 +1,4 @@
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
 import { useUnit } from 'effector-react';
 import { useEffect } from 'react';
 import { message } from 'antd';
@@ -13,6 +13,11 @@ const App = () => {
   const fetchAuthorizedUser = useUnit(fetchUserProfileFx);
   const [params, setParams] = useSearchParams();
 
+  // Scroll to top when the location has been changed
+  const { pathname } = useLocation();
+  useEffect(() => window.scrollTo(0, 0), [pathname]);
+
+  // Get the authorized user data
   useEffect(() => {
     fetchAuthorizedUser();
   }, [fetchAuthorizedUser]);

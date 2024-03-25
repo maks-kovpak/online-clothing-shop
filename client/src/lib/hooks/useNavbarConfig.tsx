@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import type { MenuProps } from 'antd';
@@ -8,6 +8,7 @@ import type { IClothingType } from '@server/models/ClothingTypes';
 import { Gender } from '@server/lib/enums';
 import ClothingTypesApi from '@/lib/api/clothingTypes';
 import join from 'url-join';
+import { useQuery } from '@tanstack/react-query';
 
 export type NavbarConfig = Array<{
   label: string;
@@ -15,7 +16,9 @@ export type NavbarConfig = Array<{
   children?: NavbarConfig;
 }>;
 
-const getClothingTypesItems = (types: IClothingType[], baseUrl: string, gender: Gender) => {
+const getClothingTypesItems = (types: IClothingType[] | undefined, baseUrl: string, gender: Gender) => {
+  if (!types) return [];
+
   return types
     .filter((type) => type.gender === gender || type.gender === Gender.UNISEX)
     .map((item) => ({
@@ -30,13 +33,14 @@ const getClothingTypesItems = (types: IClothingType[], baseUrl: string, gender: 
  */
 const useNavbarConfig = (): MenuProps['items'] => {
   const { t } = useTranslation();
-  const [clothingTypes, setClothingTypes] = useState<IClothingType[]>([]);
 
-  useEffect(() => {
-    ClothingTypesApi.getAll().then((response) => {
-      setClothingTypes(response.data);
-    });
-  }, []);
+  const { data: clothingTypes } = useQuery({
+    queryKey: ['clothingTypes'],
+    queryFn: async () => {
+      const response = await ClothingTypesApi.getAll();
+      return response.data;
+    },
+  });
 
   const initialConfig: NavbarConfig = useMemo(
     () => [

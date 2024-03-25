@@ -2,8 +2,18 @@
 
 .sc-result {
   padding: 10rem 2rem;
+  min-height: calc(100vh - $navbar-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .sc-result-image {
+    margin: 0 auto !important;
+  }
 
   @media screen and (max-width: $sm) {
     padding: 5rem 1rem;
+    min-height: calc(100vh - $navbar-height-mobile);
   }
 }
