@@ -1,0 +1,58 @@
+@import '@/assets/styles/_variables.module';
+
+footer {
+  background-color: $input-bg-color;
+
+  .footer-inner {
+    padding: 3.125rem 6.25rem;
+    max-width: $content-max-width;
+    margin: auto;
+
+    .main-footer-info {
+      width: 400px;
+      min-width: 400px;
+
+      img {
+        margin-bottom: 1.563rem;
+      }
+
+      p {
+        color: $grayscale-color-8;
+      }
+
+      .social-media-icon {
+        width: 28px;
+        height: 28px;
+        background-color: $primary-white-color;
+        border: 1px solid $grayscale-color-5;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 200ms ease;
+
+        &:hover {
+          background-color: $primary-black-color;
+
+          path {
+            fill: $primary-white-color !important;
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: 2300px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    @media screen and (max-width: $xxl) {
+      padding-left: 3.25rem;
+      padding-right: 3.25rem;
+    }
+
+    @media screen and (max-width: $lg) {
+      padding: 1.25rem 1rem;
+    }
+  }
+}

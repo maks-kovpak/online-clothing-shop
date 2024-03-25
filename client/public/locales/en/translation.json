@@ -83,5 +83,21 @@
   "OUR_HAPPY_CUSTOMERS": "Our happy customers",
   "BACK_HOME": "Back Home",
   "NOT_FOUND_PAGE_TITLE": "Not Found",
-  "NOT_FOUND_PAGE_DESCRIPTION": "Sorry, the page you visited does not exist"
+  "NOT_FOUND_PAGE_DESCRIPTION": "Sorry, the page you visited does not exist",
+  "FOOTER_DESCRIPTION": "We have clothes that suits your style and which you’re proud to wear. From women to men.",
+  "COMPANY": "Company",
+  "ABOUT": "About",
+  "FEATURES": "Features",
+  "WORKS": "Works",
+  "CAREER": "Career",
+  "HELP": "Help",
+  "CUSTOMER_SUPORT": "Customer Support",
+  "DELIVERY_DETAILS": "Delivery Details",
+  "TERMS_AND_CONDITIONS": "Terms & Conditions",
+  "PRIVACY_POLICY": "Privacy Policy",
+  "FAQ": "FAQ",
+  "ACCOUNT": "Account",
+  "MANAGE_DELIVERIES": "Manage Deliveries",
+  "ORDERS_FOOTER": "Orders",
+  "PAYMENT": "Payment"
 }

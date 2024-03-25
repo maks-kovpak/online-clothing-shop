@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { message } from 'antd';
 import { useTranslation } from 'react-i18next';
 import PageHeader from '@/components/layout/PageHeader';
+import PageFooter from '@/components/layout/PageFooter';
 import Loading from '@/components/layout/Loading';
 import { fetchUserProfileFx } from '@/stores/user.store';
 
@@ -45,6 +46,7 @@ const App = () => {
     <Loading>
       <PageHeader />
       <Outlet />
+      <PageFooter />
     </Loading>
   );
 };
