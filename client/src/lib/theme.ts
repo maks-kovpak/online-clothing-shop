@@ -9,7 +9,7 @@ const config: ThemeConfig = {
   },
   components: {
     Input: {
-      activeBorderColor: 'black',
+      activeBorderColor: vars.primaryBlackColor,
       hoverBorderColor: vars.darkColor,
       controlOutline: vars.darkTransparentColor,
       colorBorder: vars.inputBorderColor,

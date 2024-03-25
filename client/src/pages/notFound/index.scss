@@ -1,0 +1,9 @@
+@import '@/assets/styles/_variables.module';
+
+.sc-result {
+  padding: 10rem 2rem;
+
+  @media screen and (max-width: $sm) {
+    padding: 5rem 1rem;
+  }
+}

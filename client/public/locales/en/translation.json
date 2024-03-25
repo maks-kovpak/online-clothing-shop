@@ -80,5 +80,8 @@
   "SHIRTS": "Shirts",
   "HOODIE": "Hoodie",
   "JEANS": "Jeans",
-  "OUR_HAPPY_CUSTOMERS": "Our happy customers"
+  "OUR_HAPPY_CUSTOMERS": "Our happy customers",
+  "BACK_HOME": "Back Home",
+  "NOT_FOUND_PAGE_TITLE": "Not Found",
+  "NOT_FOUND_PAGE_DESCRIPTION": "Sorry, the page you visited does not exist"
 }

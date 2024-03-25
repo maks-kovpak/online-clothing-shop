@@ -1,10 +1,11 @@
-import { Navigate, RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 import App from '../App.tsx';
 import paths from './paths.ts';
 import MainPage from '@/pages/main/index.tsx';
 import SignupPage from '@/pages/signup';
 import LoginPage from '@/pages/login';
 import ProfilePage from '@/pages/profile';
+import NotFoundPage from '@/pages/notFound';
 
 const routes: Array<RouteObject> = [
   {
@@ -17,7 +18,7 @@ const routes: Array<RouteObject> = [
       { path: paths.login, element: <LoginPage /> },
       { path: paths.profile, element: <ProfilePage />, handle: { crumb: 'PROFILE' } },
       { path: paths.productDetails, element: <></> },
-      { path: paths.other, element: <Navigate to={paths.main} /> },
+      { path: paths.other, element: <NotFoundPage /> },
     ],
   },
 ];
