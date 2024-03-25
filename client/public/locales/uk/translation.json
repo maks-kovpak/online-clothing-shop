@@ -99,5 +99,6 @@
   "ACCOUNT": "Акаунт",
   "MANAGE_DELIVERIES": "Керування доставкою",
   "ORDERS_FOOTER": "Замовлення",
-  "PAYMENT": "Оплата"
+  "PAYMENT": "Оплата",
+  "ALL_RIGHTS_RESERVED": "Shop.co {{ year }}. © Всі права захищені"
 }

@@ -99,5 +99,6 @@
   "ACCOUNT": "Account",
   "MANAGE_DELIVERIES": "Manage Deliveries",
   "ORDERS_FOOTER": "Orders",
-  "PAYMENT": "Payment"
+  "PAYMENT": "Payment",
+  "ALL_RIGHTS_RESERVED": "Shop.co {{ year }}. © All Rights Reserved"
 }

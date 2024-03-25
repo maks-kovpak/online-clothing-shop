@@ -1,5 +1,4 @@
 import { Flex, Divider } from 'antd';
-import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -7,54 +6,50 @@ import TwitterIcon from '@/assets/icons/twitter.svg?react';
 import FacebookIcon from '@/assets/icons/facebook.svg?react';
 import InstagramIcon from '@/assets/icons/instagram.svg?react';
 import GitHubIcon from '@/assets/icons/github.svg?react';
+
+import VisaBadgeIcon from '@/assets/icons/visa-badge.svg?react';
+import MastercardBadgeIcon from '@/assets/icons/mastercard-badge.svg?react';
+import PayPalBadgeIcon from '@/assets/icons/paypal-badge.svg?react';
+import ApplePayBadgeIcon from '@/assets/icons/apple-pay-badge.svg?react';
+import GooglePayBadgeIcon from '@/assets/icons/google-pay-badge.svg?react';
+
 import logo from '@/assets/img/logo.svg';
 
 import './index.scss';
 
 type FooterConfig = Array<{
   category: string;
-  items: Array<{ title: string; link: string }>;
+  items: Array<{ title: string; link?: string }>;
 }>;
+
+const footerConfig: FooterConfig = [
+  {
+    category: 'COMPANY',
+    items: [{ title: 'ABOUT' }, { title: 'FEATURES' }, { title: 'WORKS' }, { title: 'CAREER' }],
+  },
+  {
+    category: 'HELP',
+    items: [
+      { title: 'CUSTOMER_SUPORT' },
+      { title: 'DELIVERY_DETAILS' },
+      { title: 'TERMS_AND_CONDITIONS' },
+      { title: 'PRIVACY_POLICY' },
+    ],
+  },
+  {
+    category: 'FAQ',
+    items: [{ title: 'ACCOUNT' }, { title: 'MANAGE_DELIVERIES' }, { title: 'ORDERS' }, { title: 'PAYMENT' }],
+  },
+];
 
 const PageFooter = () => {
   const { t } = useTranslation();
-  const footerConfig: FooterConfig = useMemo(
-    () => [
-      {
-        category: 'COMPANY',
-        items: [
-          { title: 'ABOUT', link: '' },
-          { title: 'FEATURES', link: '' },
-          { title: 'WORKS', link: '' },
-          { title: 'CAREER', link: '' },
-        ],
-      },
-      {
-        category: 'HELP',
-        items: [
-          { title: 'CUSTOMER_SUPORT', link: '' },
-          { title: 'DELIVERY_DETAILS', link: '' },
-          { title: 'TERMS_AND_CONDITIONS', link: '' },
-          { title: 'PRIVACY_POLICY', link: '' },
-        ],
-      },
-      {
-        category: 'FAQ',
-        items: [
-          { title: 'ACCOUNT', link: '' },
-          { title: 'MANAGE_DELIVERIES', link: '' },
-          { title: 'ORDERS', link: '' },
-          { title: 'PAYMENT', link: '' },
-        ],
-      },
-    ],
-    []
-  );
+
   return (
     <footer>
       <div className="footer-inner">
-        <Flex justify="space-between" gap={120}>
-          <Flex className="main-footer-info" justify="space-between" vertical>
+        <Flex justify="space-between" gap="7.5rem" className="footer-menu">
+          <Flex className="main-footer-info" justify="space-between" gap="1.25rem" vertical>
             <div>
               <img src={logo} alt="SHOP.CO" />
               <p>{t('FOOTER_DESCRIPTION')}</p>
@@ -79,13 +74,13 @@ const PageFooter = () => {
             </Flex>
           </Flex>
 
-          <Flex gap="7rem">
+          <Flex gap="3rem 7rem" wrap="wrap">
             {footerConfig.map((row) => (
-              <Flex gap="1.625rem" vertical>
+              <Flex className="footer-menu-item" gap="1.5rem" vertical>
                 <h4 className="secondary">{t(row.category)}</h4>
 
                 {row.items.map((item) => (
-                  <p>{t(item.title)}</p>
+                  <Link to={item.link ?? ''}>{t(item.title)}</Link>
                 ))}
               </Flex>
             ))}
@@ -93,6 +88,18 @@ const PageFooter = () => {
         </Flex>
 
         <Divider />
+
+        <Flex className="additional-info" justify="space-between">
+          <p style={{ marginTop: 5 }}>{t('ALL_RIGHTS_RESERVED', { year: new Date().getFullYear() })}</p>
+
+          <div className="payment-options">
+            <VisaBadgeIcon />
+            <MastercardBadgeIcon />
+            <PayPalBadgeIcon />
+            <ApplePayBadgeIcon />
+            <GooglePayBadgeIcon />
+          </div>
+        </Flex>
       </div>
     </footer>
   );
