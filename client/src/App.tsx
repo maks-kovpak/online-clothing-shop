@@ -12,9 +12,9 @@ const App = () => {
   const { t } = useTranslation();
   const fetchAuthorizedUser = useUnit(fetchUserProfileFx);
   const [params, setParams] = useSearchParams();
+  const { pathname } = useLocation();
 
   // Scroll to top when the location has been changed
-  const { pathname } = useLocation();
   useEffect(() => window.scrollTo(0, 0), [pathname]);
 
   // Get the authorized user data

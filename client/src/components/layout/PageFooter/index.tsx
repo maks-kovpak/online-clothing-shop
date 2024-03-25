@@ -57,19 +57,19 @@ const PageFooter = () => {
             </div>
 
             <Flex className="social-media" gap="0.75rem">
-              <Link to="https://twitter.com/" target="_blank" className="social-media-icon">
+              <Link to="https://twitter.com/" target="_blank" className="social-media-icon" aria-label="Twitter">
                 <TwitterIcon />
               </Link>
 
-              <Link to="https://www.facebook.com/" target="_blank" className="social-media-icon">
+              <Link to="https://facebook.com/" target="_blank" className="social-media-icon" aria-label="Facebook">
                 <FacebookIcon />
               </Link>
 
-              <Link to="https://www.instagram.com/" target="_blank" className="social-media-icon">
+              <Link to="https://instagram.com/" target="_blank" className="social-media-icon" aria-label="Instagram">
                 <InstagramIcon />
               </Link>
 
-              <Link to="https://github.com/" target="_blank" className="social-media-icon">
+              <Link to="https://github.com/" target="_blank" className="social-media-icon" aria-label="GitHub">
                 <GitHubIcon />
               </Link>
             </Flex>
