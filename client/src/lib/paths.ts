@@ -1,8 +1,7 @@
 const paths = {
   main: '/',
   other: '*',
-  shopMen: '/shop/men',
-  shopWomen: '/shop/women',
+  shop: '/shop/:gender/:type?',
   sales: '/sales',
   newArrivals: '/new-arrivals',
   signup: '/signup',

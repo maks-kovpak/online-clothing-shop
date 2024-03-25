@@ -24,7 +24,7 @@ const ProductSchema = new Schema<IProduct>(
     discount: { type: Number, min: 0, max: 100 },
     articleNumber: { type: String, required: true, minLength: 13 },
     public: { type: Boolean, required: true },
-    gender: { type: String, required: true, enum: Object.values(Gender) },
+    gender: { type: String, required: true, enum: [Gender.MAN, Gender.WOMAN] },
   },
   { timestamps: true }
 );

@@ -4,7 +4,7 @@ import { type FC, useMemo, Suspense } from 'react';
 import { FullProduct } from '@server/lib/types/models';
 import { UPLOAD_URL } from '@/lib/constants';
 import ProductCardSkeleton from '../ProductCardSkeleton';
-import { Link } from 'react-router-dom';
+import { Link, generatePath } from 'react-router-dom';
 import paths from '@/lib/paths';
 import join from 'url-join';
 
@@ -17,7 +17,7 @@ const ProductCard: FC<{ product: FullProduct }> = ({ product }) => {
 
   return (
     <Suspense fallback={<ProductCardSkeleton />}>
-      <Link to={paths.productDetails.replace(':id', product._id.toString())}>
+      <Link to={generatePath(paths.productDetails, { id: product._id.toString() })}>
         <div className="product-card">
           <img src={imageUrl} alt={product.name} />
 

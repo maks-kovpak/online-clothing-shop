@@ -6,6 +6,7 @@ import SignupPage from '@/pages/signup';
 import LoginPage from '@/pages/login';
 import ProfilePage from '@/pages/profile';
 import NotFoundPage from '@/pages/notFound';
+import ShopPage from '@/pages/shop';
 
 const routes: Array<RouteObject> = [
   {
@@ -17,7 +18,7 @@ const routes: Array<RouteObject> = [
       { path: paths.signup, element: <SignupPage /> },
       { path: paths.login, element: <LoginPage /> },
       { path: paths.profile, element: <ProfilePage />, handle: { crumb: 'PROFILE' } },
-      { path: paths.productDetails, element: <></> },
+      { path: paths.shop, element: <ShopPage />, handle: { crumb: 'SHOP' } },
       { path: paths.other, element: <NotFoundPage /> },
     ],
   },

@@ -4,7 +4,7 @@ import { Button } from '@/ui';
 import CommentsApi from '@/lib/api/comments';
 import Comment from '@/components/features/Comment';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, Virtual } from 'swiper/modules';
+import { Autoplay, Navigation, A11y } from 'swiper/modules';
 import type { SwiperOptions } from 'swiper/types';
 import { useQuery } from '@tanstack/react-query';
 
@@ -21,7 +21,7 @@ const swiperOptions: SwiperOptions = {
     prevEl: '.left-arrow',
     nextEl: '.right-arrow',
   },
-  modules: [Autoplay, Navigation, Virtual],
+  modules: [Autoplay, Navigation, A11y],
   breakpoints: {
     992: { slidesPerView: 3 },
     576: { slidesPerView: 2 },

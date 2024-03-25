@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import type { MenuProps } from 'antd';
-import { NavLink } from 'react-router-dom';
+import { NavLink, generatePath } from 'react-router-dom';
 import paths from '@/lib/paths';
 import type { IClothingType } from '@server/models/ClothingTypes';
 import { Gender } from '@server/lib/enums';
@@ -27,6 +27,9 @@ const getClothingTypesItems = (types: IClothingType[] | undefined, baseUrl: stri
     }));
 };
 
+const shopMan = generatePath(paths.shop, { gender: Gender.MAN.toLowerCase(), type: null });
+const shopWoman = generatePath(paths.shop, { gender: Gender.WOMAN.toLowerCase(), type: null });
+
 /**
  * The `useNavbarConfig` hook generates a configuration for a navigation menu.
  * @returns The translated and modified navbar config.
@@ -49,13 +52,13 @@ const useNavbarConfig = (): MenuProps['items'] => {
         children: [
           {
             label: 'SHOP_MEN',
-            link: paths.shopMen,
-            children: getClothingTypesItems(clothingTypes, paths.shopMen, Gender.MAN),
+            link: shopMan,
+            children: getClothingTypesItems(clothingTypes, shopMan, Gender.MAN),
           },
           {
             label: 'SHOP_WOMEN',
-            link: paths.shopWomen,
-            children: getClothingTypesItems(clothingTypes, paths.shopWomen, Gender.WOMAN),
+            link: shopWoman,
+            children: getClothingTypesItems(clothingTypes, shopWoman, Gender.WOMAN),
           },
         ],
       },
