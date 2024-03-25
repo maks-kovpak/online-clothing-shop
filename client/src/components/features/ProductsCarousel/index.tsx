@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import type { SwiperOptions } from 'swiper/types';
 
 import 'swiper/css';
+import ProductCardSkeleton from '@/components/features/ProductCardSkeleton';
 
 const swiperOptions: SwiperOptions = {
   spaceBetween: 16,
@@ -28,7 +29,21 @@ const swiperOptions: SwiperOptions = {
   },
 };
 
-const ProductsCarousel: FC<{ products: FullProduct[] }> = ({ products }) => {
+const ProductsCarouselSkeleton = () => {
+  return (
+    <Swiper className="products-carousel-skeleton" {...swiperOptions}>
+      {Array.from({ length: 4 }, (_, idx) => (
+        <SwiperSlide key={idx}>
+          <ProductCardSkeleton />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+};
+
+const ProductsCarousel: FC<{ products: FullProduct[] | undefined; pending?: boolean }> = ({ products, pending }) => {
+  if (pending || products === undefined) return <ProductsCarouselSkeleton />;
+
   return (
     <Swiper className="products-carousel" {...swiperOptions}>
       {products.map((product) => (
