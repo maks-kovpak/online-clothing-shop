@@ -4,7 +4,7 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 import './index.scss';
 
-const Input: FC<{ props: InputProps }> & {
+const Input: FC<InputProps> & {
   Password: typeof AntInput.Password;
 } = (props) => {
   return <AntInput {...props} />;
