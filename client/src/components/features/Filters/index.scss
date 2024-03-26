@@ -6,4 +6,10 @@
   border: 1px solid $grayscale-color-4;
   max-width: 295px;
   width: 295px;
+
+  .sc-collapse-header,
+  .sc-collapse-content-box {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }

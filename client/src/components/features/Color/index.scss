@@ -1,0 +1,13 @@
+@import '@/assets/styles/_variables.module';
+
+.color {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &.checked {
+    outline: 2px solid $grayscale-color-10;
+    outline-offset: 2px;
+  }
+}
