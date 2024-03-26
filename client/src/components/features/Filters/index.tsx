@@ -30,8 +30,8 @@ const Filters: FC<{ maxPrice?: number }> = ({ maxPrice = 50000 }) => {
         label: 'COLORS',
         children: (
           <Flex gap="0.875rem" wrap="wrap">
-            {colors.map((color) => (
-              <Color value={color} />
+            {colors.map((color, idx) => (
+              <Color value={color} key={idx} />
             ))}
           </Flex>
         ),
@@ -44,7 +44,7 @@ const Filters: FC<{ maxPrice?: number }> = ({ maxPrice = 50000 }) => {
     <aside className="filters-sidebar">
       <h2 className="secondary">Filters</h2>
       <Divider />
-      <Collapse items={items} bordered={false} defaultActiveKey={['price']} expandIconPosition="end" ghost />
+      <Collapse items={items} bordered={false} defaultActiveKey={['price', 'colors']} expandIconPosition="end" ghost />
     </aside>
   );
 };

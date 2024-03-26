@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom';
-import App from '../App.tsx';
-import paths from './paths.ts';
-import MainPage from '@/pages/main/index.tsx';
+import paths from './paths';
+import App from '../App';
+import MainPage from '@/pages/main';
 import SignupPage from '@/pages/signup';
 import LoginPage from '@/pages/login';
 import ProfilePage from '@/pages/profile';
