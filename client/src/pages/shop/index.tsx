@@ -6,6 +6,8 @@ import { useLocation, useParams } from 'react-router-dom';
 import NotFoundPage from '@/pages/notFound';
 import ProductsList from '@/components/features/ProductsList';
 import Breadcrumbs from '@/components/features/Breadcrumbs';
+import { Flex } from 'antd';
+import Filters from '@/components/features/Filters';
 
 type PageQueryParams = {
   gender: Lowercase<Gender.MAN> | Lowercase<Gender.WOMAN>;
@@ -53,7 +55,10 @@ const ShopPage = () => {
       </section>
 
       <section className="primary-section">
-        <ProductsList products={products} pending={isPending} />
+        <Flex gap="1.25rem">
+          <Filters />
+          <ProductsList products={products} pending={isPending} />
+        </Flex>
       </section>
     </>
   );
