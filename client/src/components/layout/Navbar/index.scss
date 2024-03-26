@@ -1,9 +1,17 @@
 @import '@/assets/styles/_variables.module';
 
 .navbar {
+  flex-direction: row;
+
   @media screen and (max-width: $xxl) {
+    // Note: The AntDesign navbar does not work when we use `display: none`.
+
     visibility: hidden;
     position: absolute;
+
+    .sc-menu {
+      flex-direction: column;
+    }
   }
 
   .sc-menu-horizontal {

@@ -1,10 +1,11 @@
 import ProductsApi from '@/lib/api/products';
 import { Gender } from '@server/lib/enums';
+import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation, useParams } from 'react-router-dom';
 import NotFoundPage from '@/pages/notFound';
 import ProductsList from '@/components/features/ProductsList';
-import { useEffect } from 'react';
+import Breadcrumbs from '@/components/features/Breadcrumbs';
 
 type PageQueryParams = {
   gender: Lowercase<Gender.MAN> | Lowercase<Gender.WOMAN>;
@@ -17,7 +18,11 @@ const ShopPage = () => {
   const { gender, type } = useParams() as PageQueryParams;
   const pathname = useLocation();
 
-  const { data: products, refetch: refetchProducts } = useQuery({
+  const {
+    data: products,
+    refetch: refetchProducts,
+    isPending,
+  } = useQuery({
     queryKey: ['shop'],
     queryFn: async () => {
       const filters: Parameters<typeof ProductsApi.getAll>[0] = {
@@ -29,7 +34,6 @@ const ShopPage = () => {
       if (type) filters['type.slug'] = type;
 
       const response = await ProductsApi.getAll(filters);
-
       return response.data;
     },
   });
@@ -42,9 +46,17 @@ const ShopPage = () => {
     return <NotFoundPage />;
   }
 
-  if (!products) return 'Loading...';
+  return (
+    <>
+      <section className="primary-section section-top-margin">
+        <Breadcrumbs />
+      </section>
 
-  return <ProductsList products={products} />;
+      <section className="primary-section">
+        <ProductsList products={products} pending={isPending} />
+      </section>
+    </>
+  );
 };
 
 export default ShopPage;
