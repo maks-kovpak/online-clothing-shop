@@ -103,5 +103,7 @@
   "ALL_RIGHTS_RESERVED": "Shop.co {{ year }}. © Всі права захищені",
   "FILTERS": "Фільтри",
   "PRICE": "Ціна",
-  "COLORS": "Колір"
+  "COLORS": "Колір",
+  "DRESS_STYLES": "Стилі одягу",
+  "APPLY_FILTERS": "Застосувати фільтри"
 }

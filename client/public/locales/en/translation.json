@@ -103,5 +103,7 @@
   "ALL_RIGHTS_RESERVED": "Shop.co {{ year }}. © All Rights Reserved",
   "FILTERS": "Filters",
   "PRICE": "Price",
-  "COLORS": "Colors"
+  "COLORS": "Colors",
+  "DRESS_STYLES": "Dress Styles",
+  "APPLY_FILTERS": "Apply filters"
 }
