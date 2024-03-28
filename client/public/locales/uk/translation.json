@@ -100,5 +100,8 @@
   "MANAGE_DELIVERIES": "Керування доставкою",
   "ORDERS_FOOTER": "Замовлення",
   "PAYMENT": "Оплата",
-  "ALL_RIGHTS_RESERVED": "Shop.co {{ year }}. © Всі права захищені"
+  "ALL_RIGHTS_RESERVED": "Shop.co {{ year }}. © Всі права захищені",
+  "FILTERS": "Фільтри",
+  "PRICE": "Ціна",
+  "COLORS": "Колір"
 }

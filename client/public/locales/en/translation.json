@@ -100,5 +100,8 @@
   "MANAGE_DELIVERIES": "Manage Deliveries",
   "ORDERS_FOOTER": "Orders",
   "PAYMENT": "Payment",
-  "ALL_RIGHTS_RESERVED": "Shop.co {{ year }}. © All Rights Reserved"
+  "ALL_RIGHTS_RESERVED": "Shop.co {{ year }}. © All Rights Reserved",
+  "FILTERS": "Filters",
+  "PRICE": "Price",
+  "COLORS": "Colors"
 }

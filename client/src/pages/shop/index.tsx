@@ -1,6 +1,6 @@
 import ProductsApi from '@/lib/api/products';
 import { Gender } from '@server/lib/enums';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation, useParams } from 'react-router-dom';
 import NotFoundPage from '@/pages/notFound';
@@ -44,6 +44,10 @@ const ShopPage = () => {
     refetchProducts();
   }, [refetchProducts, pathname]);
 
+  const maxPrice = useMemo(() => {
+    return products && Math.max(...products.map((product) => product.price));
+  }, [products]);
+
   if (!genderSlugAllowedValues.includes(gender)) {
     return <NotFoundPage />;
   }
@@ -56,7 +60,7 @@ const ShopPage = () => {
 
       <section className="primary-section">
         <Flex gap="1.25rem">
-          <Filters />
+          <Filters maxPrice={maxPrice} />
           <ProductsList products={products} pending={isPending} />
         </Flex>
       </section>
