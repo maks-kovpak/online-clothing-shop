@@ -4,11 +4,11 @@ import join from 'url-join';
 import UserApi from '@/lib/api/user';
 import type { IUser } from '@server/models/User';
 
-export type UserStoreType = IUser | null;
+export type UserStore = IUser | null;
 
 /* Utils */
 
-const withUpdatedProfileImage = (state: UserStoreType) => {
+const withUpdatedProfileImage = (state: UserStore) => {
   if (state && state?.profileImage) {
     return { ...state, profileImage: join(import.meta.env.VITE_API_URL, state.profileImage) };
   }
@@ -33,7 +33,7 @@ export const resetUserEvent = createEvent();
 
 /* Store */
 
-const $user = createStore<UserStoreType>(null);
+const $user = createStore<UserStore>(null);
 
 $user.on(fetchUserProfileFx.doneData, (_, fetchedUser) => {
   return withUpdatedProfileImage(fetchedUser);

@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import type { MenuProps } from 'antd';
@@ -6,9 +6,9 @@ import { NavLink, generatePath } from 'react-router-dom';
 import paths from '@/lib/paths';
 import type { IClothingType } from '@server/models/ClothingTypes';
 import { Gender } from '@server/lib/enums';
-import ClothingTypesApi from '@/lib/api/clothingTypes';
 import join from 'url-join';
-import { useQuery } from '@tanstack/react-query';
+import { useUnit } from 'effector-react';
+import $clothingTypes, { fetchClothingTypesFx } from '@/stores/clothingTypes.store';
 
 export type NavbarConfig = Array<{
   label: string;
@@ -36,14 +36,11 @@ const shopWoman = generatePath(paths.shop, { gender: Gender.WOMAN.toLowerCase(),
  */
 const useNavbarConfig = (): MenuProps['items'] => {
   const { t } = useTranslation();
+  const [clothingTypes, fetchClothingTypes] = useUnit([$clothingTypes, fetchClothingTypesFx]);
 
-  const { data: clothingTypes } = useQuery({
-    queryKey: ['clothingTypes'],
-    queryFn: async () => {
-      const response = await ClothingTypesApi.getAll();
-      return response.data;
-    },
-  });
+  useEffect(() => {
+    fetchClothingTypes();
+  }, [fetchClothingTypes]);
 
   const initialConfig: NavbarConfig = useMemo(
     () => [
