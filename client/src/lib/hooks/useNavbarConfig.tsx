@@ -8,7 +8,7 @@ import type { IClothingType } from '@server/models/ClothingTypes';
 import { Gender } from '@server/lib/enums';
 import join from 'url-join';
 import { useUnit } from 'effector-react';
-import $clothingTypes, { fetchClothingTypesFx } from '@/stores/clothingTypes.store';
+import { $clothingTypes, fetchClothingTypesFx } from '@/stores/clothing.store';
 
 export type NavbarConfig = Array<{
   label: string;
