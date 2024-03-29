@@ -7,7 +7,7 @@ import ChooseStyle from './ChooseStyle';
 
 import './index.scss';
 
-const Filters: FC<{ maxPrice?: number }> = ({ maxPrice = 50000 }) => {
+const Filters: FC<{ maxPrice?: number }> = ({ maxPrice }) => {
   const { t } = useTranslation();
 
   const items: CollapseProps['items'] = useMemo(

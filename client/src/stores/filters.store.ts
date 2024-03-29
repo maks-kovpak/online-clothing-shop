@@ -2,14 +2,14 @@ import { createEvent, createStore } from 'effector';
 import { DEFAULT_MAX_PRICE } from '@/lib/constants';
 
 export type FiltersType = {
-  price?: { from: number; to: number };
-  colors?: string[];
-  styles?: string[];
+  price: { from: number; to: number };
+  colors: string[];
+  styles: string[];
 };
 
 /* Events */
 
-export const updateFiltersEvent = createEvent<FiltersType>();
+export const updateFiltersEvent = createEvent<Partial<FiltersType>>();
 export const resetFiltersEvent = createEvent();
 
 /* Stores */
@@ -25,5 +25,7 @@ $filters.on(updateFiltersEvent, (state, otherFilters) => {
 });
 
 $filters.reset(resetFiltersEvent);
+
+$filters.watch((state) => console.log(state));
 
 export default $filters;

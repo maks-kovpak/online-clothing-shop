@@ -5,7 +5,11 @@ import { clsx } from 'clsx';
 
 import './index.scss';
 
-const Color: FC<{ value: string }> = ({ value }) => {
+const Color: FC<{
+  value: string;
+  onChecked?: (value?: boolean) => void;
+  checkable?: boolean;
+}> = ({ value, onChecked, checkable }) => {
   const color = useMemo(() => new ColorJS(value), [value]);
   const [checked, setChecked] = useState(false);
 
@@ -17,7 +21,22 @@ const Color: FC<{ value: string }> = ({ value }) => {
     [color]
   );
 
-  return <div className={clsx('color', { checked })} style={styles} onClick={() => setChecked(!checked)}></div>;
+  return (
+    <div
+      className={clsx('color', { checked })}
+      style={styles}
+      onClick={() => {
+        if (!checkable) return;
+
+        setChecked(!checked);
+        if (onChecked) onChecked(checked);
+      }}
+    ></div>
+  );
+};
+
+Color.defaultProps = {
+  checkable: true,
 };
 
 export default Color;
