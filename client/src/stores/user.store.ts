@@ -4,7 +4,7 @@ import join from 'url-join';
 import UserApi from '@/lib/api/user';
 import type { IUser } from '@server/models/User';
 
-export type UserStore = IUser | null;
+type UserStore = IUser | null;
 
 /* Utils */
 
