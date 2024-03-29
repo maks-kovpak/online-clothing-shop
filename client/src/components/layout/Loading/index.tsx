@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react';
-import useClientReady from '@/lib/hooks/useClientReady.tsx';
+import useClientReady from '@/lib/hooks/useClientReady';
 
 import './index.scss';
 

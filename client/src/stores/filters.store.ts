@@ -2,7 +2,7 @@ import { createEvent, createStore } from 'effector';
 import { DEFAULT_MAX_PRICE } from '@/lib/constants';
 
 export type FiltersType = {
-  price: { from: number; to: number };
+  price: [number, number];
   colors: string[];
   styles: string[];
 };
@@ -15,7 +15,7 @@ export const resetFiltersEvent = createEvent();
 /* Stores */
 
 const $filters = createStore<FiltersType>({
-  price: { from: 0, to: DEFAULT_MAX_PRICE },
+  price: [0, DEFAULT_MAX_PRICE],
   colors: [],
   styles: [],
 });
