@@ -17,31 +17,29 @@ const ProductCard: FC<{ product: FullProduct }> = ({ product }) => {
 
   return (
     <Suspense fallback={<ProductCardSkeleton />}>
-      <Link to={generatePath(paths.productDetails, { id: product._id.toString() })}>
-        <div className="product-card">
-          <img src={imageUrl} alt={product.name} />
+      <Link className="product-card" to={generatePath(paths.productDetails, { id: product._id.toString() })}>
+        <img src={imageUrl} alt={product.name} />
 
-          <Flex className="product-info" dir="column" gap="0.5rem" vertical>
-            <h3>{product.name}</h3>
+        <Flex className="product-info" dir="column" gap="0.5rem" vertical>
+          <h3>{product.name}</h3>
 
-            <Flex gap="0.5rem" align="center">
-              <Rate defaultValue={product.averageRating ?? 5} disabled />
-              <span className="rating-value">
-                <span style={{ color: 'black' }}>{product.averageRating ?? 5}</span>/5
-              </span>
-            </Flex>
-
-            {product?.discount ? (
-              <Flex gap="0.5rem" align="center">
-                <p className="price">₴{Math.round(product.price * (1 - product.discount / 100))}</p>
-                <p className="old-price">₴{product.price}</p>
-                <Tag color="red">-{product.discount}%</Tag>
-              </Flex>
-            ) : (
-              <p className="price">₴{product.price}</p>
-            )}
+          <Flex gap="0.5rem" align="center">
+            <Rate defaultValue={product.averageRating ?? 5} disabled />
+            <span className="rating-value">
+              <span style={{ color: 'black' }}>{product.averageRating ?? 5}</span>/5
+            </span>
           </Flex>
-        </div>
+
+          {product?.discount ? (
+            <Flex gap="0.5rem" align="center">
+              <p className="price">₴{Math.round(product.price * (1 - product.discount / 100))}</p>
+              <p className="old-price">₴{product.price}</p>
+              <Tag color="red">-{product.discount}%</Tag>
+            </Flex>
+          ) : (
+            <p className="price">₴{product.price}</p>
+          )}
+        </Flex>
       </Link>
     </Suspense>
   );
