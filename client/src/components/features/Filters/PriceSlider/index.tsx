@@ -10,15 +10,15 @@ const PriceSlider = () => {
   const products = useUnit($products);
 
   const maxPrice = useMemo(() => {
-    return products ? Math.max(...products.map((product) => product.price)) : DEFAULT_MAX_PRICE;
+    return products.length ? Math.max(...products.map((product) => product.price)) : DEFAULT_MAX_PRICE;
   }, [products]);
 
   return (
     <Slider
-      value={[0, maxPrice]}
+      defaultValue={[0, maxPrice]}
       min={0}
       max={maxPrice}
-      step={100}
+      step={10}
       onChange={(range) => updateFilters({ price: range as [number, number] })}
       range
     />

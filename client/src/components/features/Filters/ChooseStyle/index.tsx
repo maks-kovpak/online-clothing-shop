@@ -25,8 +25,7 @@ const ChooseStyle = () => {
     <Checkbox.Group
       className="styles-checkboxes"
       options={options}
-      value={options}
-      onChange={(values) => updateFilters({ styles: values })}
+      onChange={(values) => updateFilters({ styles: values as string[] })}
     />
   );
 };
