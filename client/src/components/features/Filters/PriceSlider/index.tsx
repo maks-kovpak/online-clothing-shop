@@ -11,7 +11,7 @@ const PriceSlider: FC<{ maxPrice?: number }> = ({ maxPrice }) => {
     <Slider
       defaultValue={[0, maxPrice ?? DEFAULT_MAX_PRICE]}
       min={0}
-      max={maxPrice}
+      max={maxPrice ?? DEFAULT_MAX_PRICE}
       step={100}
       onChange={(range) => updateFilters({ price: range as [number, number] })}
       range

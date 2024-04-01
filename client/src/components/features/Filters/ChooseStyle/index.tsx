@@ -11,21 +11,21 @@ const ChooseStyle = () => {
   const { t } = useTranslation();
   const [clothingStyles, fetchClothingStyles] = useUnit([$clothingStyles, fetchClothingStylesFx]);
 
-  const options = useMemo(() => {
-    return clothingStyles.map((style) => t(style.name));
-  }, [clothingStyles, t]);
-
   const updateFilters = useUnit(updateFiltersEvent);
 
   useEffect(() => {
     fetchClothingStyles();
   }, [fetchClothingStyles]);
 
+  const options = useMemo(() => {
+    return clothingStyles?.map((style) => t(style.name));
+  }, [clothingStyles, t]);
+
   return (
     <Checkbox.Group
       className="styles-checkboxes"
       options={options}
-      defaultValue={options}
+      value={options}
       onChange={(values) => updateFilters({ styles: values })}
     />
   );

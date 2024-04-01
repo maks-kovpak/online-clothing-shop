@@ -1,6 +1,5 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
@@ -17,13 +16,11 @@ const router = createBrowserRouter(routes);
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ConfigProvider theme={config} prefixCls="sc">
-        <HelmetProvider>
-          <RouterProvider router={router} />
-        </HelmetProvider>
-      </ConfigProvider>
-    </QueryClientProvider>
-  </React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <ConfigProvider theme={config} prefixCls="sc">
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
+    </ConfigProvider>
+  </QueryClientProvider>
 );

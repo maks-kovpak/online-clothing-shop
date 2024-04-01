@@ -28,7 +28,7 @@ const Color: FC<{
       onClick={() => {
         if (!checkable) return;
 
-        if (onChecked) onChecked(checked);
+        if (onChecked) onChecked(!checked);
         setChecked(!checked);
       }}
     ></div>
