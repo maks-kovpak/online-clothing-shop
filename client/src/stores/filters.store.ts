@@ -5,6 +5,7 @@ export type FiltersType = {
   price: [number, number];
   colors: string[];
   styles: string[];
+  sizes: string[];
 };
 
 /* Events */
@@ -18,6 +19,7 @@ const $filters = createStore<FiltersType>({
   price: [0, DEFAULT_MAX_PRICE],
   colors: [],
   styles: [],
+  sizes: [],
 });
 
 $filters.on(updateFiltersEvent, (state, otherFilters) => {
@@ -25,7 +27,5 @@ $filters.on(updateFiltersEvent, (state, otherFilters) => {
 });
 
 $filters.reset(resetFiltersEvent);
-
-$filters.watch((state) => console.log(state));
 
 export default $filters;
