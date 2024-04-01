@@ -1,6 +1,6 @@
 import ProductsApi from '@/lib/api/products';
 import { Gender } from '@server/lib/enums';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation, useParams } from 'react-router-dom';
 import NotFoundPage from '@/pages/notFound';
@@ -8,6 +8,8 @@ import ProductsList from '@/components/features/ProductsList';
 import Breadcrumbs from '@/components/features/Breadcrumbs';
 import { Flex } from 'antd';
 import Filters from '@/components/features/Filters';
+import { useUnit } from 'effector-react';
+import { setProductsEvent } from '@/stores/products.store';
 
 import './index.scss';
 
@@ -21,6 +23,8 @@ const genderSlugAllowedValues = [Gender.MAN.toLowerCase(), Gender.WOMAN.toLowerC
 const ShopPage = () => {
   const { gender, type } = useParams() as PageQueryParams;
   const pathname = useLocation();
+
+  const setProducts = useUnit(setProductsEvent);
 
   const {
     data: products,
@@ -38,6 +42,8 @@ const ShopPage = () => {
       if (type) filters['type.slug'] = type;
 
       const response = await ProductsApi.getAll(filters);
+      setProducts(response.data);
+
       return response.data;
     },
   });
@@ -45,10 +51,6 @@ const ShopPage = () => {
   useEffect(() => {
     refetchProducts();
   }, [refetchProducts, pathname]);
-
-  const maxPrice = useMemo(() => {
-    return products && Math.max(...products.map((product) => product.price));
-  }, [products]);
 
   if (!genderSlugAllowedValues.includes(gender)) {
     return <NotFoundPage />;
@@ -62,7 +64,7 @@ const ShopPage = () => {
 
       <section className="primary-section">
         <Flex gap="1.25rem">
-          <Filters maxPrice={maxPrice} />
+          <Filters />
           <ProductsList products={products} pending={isPending} />
         </Flex>
       </section>

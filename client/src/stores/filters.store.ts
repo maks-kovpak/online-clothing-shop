@@ -13,6 +13,8 @@ export type FiltersType = {
 export const updateFiltersEvent = createEvent<Partial<FiltersType>>();
 export const resetFiltersEvent = createEvent();
 
+export const applyFiltersEvent = createEvent();
+
 /* Stores */
 
 const $filters = createStore<FiltersType>({
@@ -27,5 +29,11 @@ $filters.on(updateFiltersEvent, (state, otherFilters) => {
 });
 
 $filters.reset(resetFiltersEvent);
+
+const $appliedFilters = createStore<FiltersType>($filters.defaultState);
+
+$appliedFilters.on(applyFiltersEvent, () => {
+  return $filters.getState();
+});
 
 export default $filters;

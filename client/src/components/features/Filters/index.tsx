@@ -1,4 +1,4 @@
-import { type FC, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Collapse, CollapseProps } from 'antd';
 import ChooseColor from './ChooseColor';
@@ -8,7 +8,7 @@ import ChooseSize from './ChooseSize';
 
 import './index.scss';
 
-const Filters: FC<{ maxPrice?: number }> = ({ maxPrice }) => {
+const Filters = () => {
   const { t } = useTranslation();
 
   const items: CollapseProps['items'] = useMemo(
@@ -16,7 +16,7 @@ const Filters: FC<{ maxPrice?: number }> = ({ maxPrice }) => {
       {
         key: 'price',
         label: t('PRICE'),
-        children: <PriceSlider maxPrice={maxPrice} />,
+        children: <PriceSlider />,
       },
       {
         key: 'colors',
@@ -34,7 +34,7 @@ const Filters: FC<{ maxPrice?: number }> = ({ maxPrice }) => {
         children: <ChooseSize />,
       },
     ],
-    [maxPrice, t]
+    [t]
   );
 
   return (
