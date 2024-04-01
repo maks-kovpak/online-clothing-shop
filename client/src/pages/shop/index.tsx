@@ -9,6 +9,8 @@ import Breadcrumbs from '@/components/features/Breadcrumbs';
 import { Flex } from 'antd';
 import Filters from '@/components/features/Filters';
 
+import './index.scss';
+
 type PageQueryParams = {
   gender: Lowercase<Gender.MAN> | Lowercase<Gender.WOMAN>;
   type: string;
@@ -54,7 +56,7 @@ const ShopPage = () => {
 
   return (
     <>
-      <section className="primary-section section-top-margin">
+      <section className="primary-section section-top-margin breadcrumbs-section">
         <Breadcrumbs />
       </section>
 

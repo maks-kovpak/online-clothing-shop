@@ -1,0 +1,10 @@
+.choose-size {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+
+  .sc-tag {
+    margin-right: 0;
+    padding: 0.2rem 1rem;
+  }
+}

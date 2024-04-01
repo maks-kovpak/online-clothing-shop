@@ -1,9 +1,10 @@
 import { type FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Collapse, CollapseProps, Divider } from 'antd';
+import { Button, Collapse, CollapseProps } from 'antd';
 import ChooseColor from './ChooseColor';
 import PriceSlider from './PriceSlider';
 import ChooseStyle from './ChooseStyle';
+import ChooseSize from './ChooseSize';
 
 import './index.scss';
 
@@ -27,6 +28,11 @@ const Filters: FC<{ maxPrice?: number }> = ({ maxPrice }) => {
         label: t('DRESS_STYLES'),
         children: <ChooseStyle />,
       },
+      {
+        key: 'size',
+        label: t('SIZE'),
+        children: <ChooseSize />,
+      },
     ],
     [maxPrice, t]
   );
@@ -34,7 +40,7 @@ const Filters: FC<{ maxPrice?: number }> = ({ maxPrice }) => {
   return (
     <aside className="filters-sidebar">
       <h2 className="secondary">{t('FILTERS')}</h2>
-      <Divider />
+
       <Collapse
         items={items}
         bordered={false}
