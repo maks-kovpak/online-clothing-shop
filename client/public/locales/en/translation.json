@@ -106,5 +106,8 @@
   "COLORS": "Colors",
   "DRESS_STYLES": "Dress Styles",
   "APPLY_FILTERS": "Apply filters",
-  "SIZE": "Size"
+  "SIZE": "Size",
+  "SHOP_PAGE_TITLE": "Shop",
+  "SHOP_PAGE_DESCRIPTION": "Choose things that you like",
+  "NO_DATA": "No Data"
 }

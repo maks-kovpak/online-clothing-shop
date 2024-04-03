@@ -4,3 +4,8 @@
   grid-template-columns: repeat(auto-fill, minmax(max(210px, 30%), 1fr));
   flex-grow: 1;
 }
+
+.empty-container {
+  flex-grow: 1;
+  height: 50vh;
+}

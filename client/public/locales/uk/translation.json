@@ -106,5 +106,8 @@
   "COLORS": "Колір",
   "DRESS_STYLES": "Стилі одягу",
   "APPLY_FILTERS": "Застосувати фільтри",
-  "SIZE": "Розмір"
+  "SIZE": "Розмір",
+  "SHOP_PAGE_TITLE": "Магазин",
+  "SHOP_PAGE_DESCRIPTION": "Обирайте речі, які вам подобаються",
+  "NO_DATA": "Немає даних"
 }
