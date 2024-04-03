@@ -13,6 +13,9 @@ import { useUnit } from 'effector-react';
 import { $products, setProductsEvent, setMaxPriceEvent } from '@/stores/products.store';
 import { $appliedFilters } from '@/stores/filters.store';
 import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
+import { findClosestColor } from '@/lib/utils';
+import { FILTER_COlORS } from '@/lib/constants';
 
 import './index.scss';
 
@@ -68,9 +71,30 @@ const ShopPage = () => {
     if (!fetchedProducts) return;
 
     const filteredProducts = fetchedProducts.filter((product) => {
-      const isPriceInRange = product.price >= appliedFilters.price[0] && product.price <= appliedFilters.price[1];
+      // If the product price is between the lowest and the highest values
+      const inPriceRange = product.price >= appliedFilters.price[0] && product.price <= appliedFilters.price[1];
 
-      return isPriceInRange;
+      // If the applied styles array is empty, then choose products with any styles
+      const matchedByStyles = !appliedFilters.styles.length || appliedFilters.styles.includes(product.style);
+
+      // If the all applied sizes are in the product options
+      const productSizes = _.uniq(product.options.reduce<string[]>((acc, item) => [...acc, ...item.size], []));
+      const missingAppliedSizes = _.difference(appliedFilters.sizes, productSizes);
+
+      // If one of the chosen colors is close to the product colors
+      let matchedByColors = appliedFilters.colors.length === 0;
+      const productColors = product.options.map((option) => option.color);
+
+      for (const productColor of productColors) {
+        const nearest = findClosestColor(productColor, FILTER_COlORS);
+
+        if (appliedFilters.colors.includes(nearest)) {
+          matchedByColors = true;
+          break;
+        }
+      }
+
+      return inPriceRange && matchedByStyles && !missingAppliedSizes.length && matchedByColors;
     });
 
     setProducts(filteredProducts);
@@ -91,7 +115,7 @@ const ShopPage = () => {
 
         <section className="primary-section main-section">
           <Flex gap="1.25rem">
-            <Filters className={!products.length ? 'disabled' : ''} />
+            <Filters className={!fetchedProducts?.length ? 'disabled' : ''} />
             <ProductsList products={products} pending={isPending} />
           </Flex>
         </section>
