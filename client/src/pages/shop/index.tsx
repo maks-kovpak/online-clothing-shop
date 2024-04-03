@@ -9,7 +9,8 @@ import Breadcrumbs from '@/components/features/Breadcrumbs';
 import { Flex } from 'antd';
 import Filters from '@/components/features/Filters';
 import { useUnit } from 'effector-react';
-import { setProductsEvent } from '@/stores/products.store';
+import { $products, setProductsEvent, setMaxPriceEvent } from '@/stores/products.store';
+import { $appliedFilters } from '@/stores/filters.store';
 
 import './index.scss';
 
@@ -24,10 +25,11 @@ const ShopPage = () => {
   const { gender, type } = useParams() as PageQueryParams;
   const pathname = useLocation();
 
-  const setProducts = useUnit(setProductsEvent);
+  const [products, setProducts, setMaxPrice] = useUnit([$products, setProductsEvent, setMaxPriceEvent]);
+  const appliedFilters = useUnit($appliedFilters);
 
   const {
-    data: products,
+    data: fetchedProducts,
     refetch: refetchProducts,
     isPending,
   } = useQuery({
@@ -49,8 +51,27 @@ const ShopPage = () => {
   });
 
   useEffect(() => {
+    if (!fetchedProducts) return;
+
+    const maxPrice = Math.max(...fetchedProducts.map((product) => product.price));
+    setMaxPrice(maxPrice);
+  }, [fetchedProducts, setMaxPrice, setProducts]);
+
+  useEffect(() => {
     refetchProducts();
   }, [refetchProducts, pathname]);
+
+  useEffect(() => {
+    if (!fetchedProducts) return;
+
+    const filteredProducts = fetchedProducts.filter((product) => {
+      const isPriceInRange = product.price >= appliedFilters.price[0] && product.price <= appliedFilters.price[1];
+
+      return isPriceInRange;
+    });
+
+    setProducts(filteredProducts);
+  }, [fetchedProducts, setProducts, appliedFilters]);
 
   if (!genderSlugAllowedValues.includes(gender)) {
     return <NotFoundPage />;

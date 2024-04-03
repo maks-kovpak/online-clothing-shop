@@ -1,4 +1,4 @@
-import { createEvent, createStore } from 'effector';
+import { createEvent, createStore, restore } from 'effector';
 import { DEFAULT_MAX_PRICE } from '@/lib/constants';
 
 export type FiltersType = {
@@ -12,10 +12,8 @@ export type FiltersType = {
 
 export const updateFiltersEvent = createEvent<Partial<FiltersType>>();
 export const resetFiltersEvent = createEvent();
-
 export const applyFiltersEvent = createEvent();
-
-export const setFiltersTouched = createEvent<boolean>();
+export const setFiltersTouchedEvent = createEvent<boolean>();
 
 /* Stores */
 
@@ -38,22 +36,18 @@ $appliedFilters.on(applyFiltersEvent, () => {
   return $filters.getState();
 });
 
-export const $filtersTouched = createStore<boolean>(false);
-
-$filtersTouched.on(setFiltersTouched, (_, payload) => {
-  return payload;
-});
+export const $filtersTouched = restore<boolean>(setFiltersTouchedEvent, false);
 
 /* Watching changes */
 
 $filters.watch((state) => {
   if (state !== $filters.defaultState && !$filtersTouched.getState()) {
-    setFiltersTouched(true);
+    setFiltersTouchedEvent(true);
   }
 });
 
 $appliedFilters.watch((state) => {
   if (state !== $appliedFilters.defaultState && $filtersTouched.getState()) {
-    setFiltersTouched(false);
+    setFiltersTouchedEvent(false);
   }
 });

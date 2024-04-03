@@ -1,5 +1,5 @@
 import { $clothingStyles, fetchClothingStylesFx } from '@/stores/clothing.store';
-import { Checkbox } from 'antd';
+import { Checkbox, CheckboxOptionType } from 'antd';
 import { useUnit } from 'effector-react';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,8 +17,11 @@ const ChooseStyle = () => {
     fetchClothingStyles();
   }, [fetchClothingStyles]);
 
-  const options = useMemo(() => {
-    return clothingStyles?.map((style) => t(style.name));
+  const options: CheckboxOptionType[] = useMemo(() => {
+    return clothingStyles?.map((style) => ({
+      value: style.name,
+      label: t(style.name),
+    }));
   }, [clothingStyles, t]);
 
   return (

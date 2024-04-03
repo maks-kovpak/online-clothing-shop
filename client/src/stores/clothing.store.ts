@@ -1,4 +1,4 @@
-import { createEffect, createStore } from 'effector';
+import { createEffect, restore } from 'effector';
 import ClothingTypesApi from '@/lib/api/clothingTypes';
 import ClothingStylesApi from '@/lib/api/clothingStyles';
 import type { IClothingType } from '@server/models/ClothingTypes';
@@ -18,14 +18,6 @@ export const fetchClothingStylesFx = createEffect(async () => {
 
 /* Stores */
 
-export const $clothingTypes = createStore<IClothingType[]>([]);
+export const $clothingTypes = restore<IClothingType[]>(fetchClothingTypesFx.doneData, []);
 
-$clothingTypes.on(fetchClothingTypesFx.doneData, (_, fetchedTypes) => {
-  return fetchedTypes;
-});
-
-export const $clothingStyles = createStore<IClothingStyle[]>([]);
-
-$clothingStyles.on(fetchClothingStylesFx.doneData, (_, fetchedStyles) => {
-  return fetchedStyles;
-});
+export const $clothingStyles = restore<IClothingStyle[]>(fetchClothingStylesFx.doneData, []);
