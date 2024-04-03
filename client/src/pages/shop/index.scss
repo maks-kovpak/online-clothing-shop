@@ -1,3 +1,11 @@
-.breadcrumbs-section {
-  margin-bottom: 2rem !important;
+.shop-page {
+  .breadcrumbs-section {
+    margin-bottom: 2rem !important;
+  }
+
+  .filters-sidebar.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    user-select: none;
+  }
 }

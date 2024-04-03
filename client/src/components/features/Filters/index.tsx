@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Collapse, Flex } from 'antd';
 import type { CollapseProps } from 'antd';
 import { useUnit } from 'effector-react';
 import { $filtersTouched, applyFiltersEvent } from '@/stores/filters.store';
+import clsx from 'clsx';
 
 import ChooseColor from './ChooseColor';
 import PriceSlider from './PriceSlider';
@@ -13,7 +15,7 @@ import ChooseSize from './ChooseSize';
 import FiltersIcon from '@/assets/icons/filters.svg?react';
 import './index.scss';
 
-const Filters = () => {
+const Filters: FC<{ className: string }> = ({ className }) => {
   const { t } = useTranslation();
   const [applyFilters, filtersTouched] = useUnit([applyFiltersEvent, $filtersTouched]);
 
@@ -44,7 +46,7 @@ const Filters = () => {
   );
 
   return (
-    <aside className="filters-sidebar">
+    <aside className={clsx('filters-sidebar', className)}>
       <Flex className="title" align="center" justify="space-between">
         <h2 className="secondary">{t('FILTERS')}</h2>
         <FiltersIcon />
