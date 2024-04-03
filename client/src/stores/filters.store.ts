@@ -15,9 +15,11 @@ export const resetFiltersEvent = createEvent();
 
 export const applyFiltersEvent = createEvent();
 
+export const setFiltersTouched = createEvent<boolean>();
+
 /* Stores */
 
-const $filters = createStore<FiltersType>({
+export const $filters = createStore<FiltersType>({
   price: [0, DEFAULT_MAX_PRICE],
   colors: [],
   styles: [],
@@ -30,10 +32,28 @@ $filters.on(updateFiltersEvent, (state, otherFilters) => {
 
 $filters.reset(resetFiltersEvent);
 
-const $appliedFilters = createStore<FiltersType>($filters.defaultState);
+export const $appliedFilters = createStore<FiltersType>($filters.defaultState);
 
 $appliedFilters.on(applyFiltersEvent, () => {
   return $filters.getState();
 });
 
-export default $filters;
+export const $filtersTouched = createStore<boolean>(false);
+
+$filtersTouched.on(setFiltersTouched, (_, payload) => {
+  return payload;
+});
+
+/* Watching changes */
+
+$filters.watch((state) => {
+  if (state !== $filters.defaultState && !$filtersTouched.getState()) {
+    setFiltersTouched(true);
+  }
+});
+
+$appliedFilters.watch((state) => {
+  if (state !== $appliedFilters.defaultState && $filtersTouched.getState()) {
+    setFiltersTouched(false);
+  }
+});

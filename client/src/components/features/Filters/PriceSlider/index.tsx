@@ -20,6 +20,7 @@ const PriceSlider = () => {
       max={maxPrice}
       step={10}
       onChange={(range) => updateFilters({ price: range as [number, number] })}
+      tooltip={{ formatter: (value) => '₴' + value }}
       range
     />
   );

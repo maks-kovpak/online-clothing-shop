@@ -7,7 +7,7 @@
   max-width: 295px;
   width: 350px;
 
-  h2 {
+  .title {
     margin-bottom: 2rem;
   }
 
@@ -24,6 +24,11 @@
   .sc-collapse-header {
     padding-top: 1.25rem !important;
     padding-bottom: 1.25rem !important;
+
+    .sc-collapse-header-text {
+      font-weight: 600;
+      color: $primary-black-color;
+    }
   }
 
   .sc-collapse-content-box {

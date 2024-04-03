@@ -2,7 +2,7 @@ import { Flex } from 'antd';
 import Color from '@/components/features/Color';
 import { FILTER_COlORS } from '@/lib/constants';
 import { useUnit } from 'effector-react';
-import $filters, { updateFiltersEvent } from '@/stores/filters.store';
+import { $filters, updateFiltersEvent } from '@/stores/filters.store';
 
 const ChooseColor = () => {
   const [filters, updateFilters] = useUnit([$filters, updateFiltersEvent]);
