@@ -11,6 +11,7 @@ export type FullProduct = Omit<IProduct, 'type' | 'style'> & {
   averageRating: number | null;
   type: { name: string; slug: string };
   style: string;
+  initialPrice: number;
 };
 
 export type UpdateUserPayload = Partial<

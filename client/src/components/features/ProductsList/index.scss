@@ -1,8 +1,12 @@
 .products-list {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(max(210px, 30%), 1fr));
+  grid-template-columns: repeat(4, 1fr);
   flex-grow: 1;
+
+  @media screen and (max-width: 1600px) {
+    grid-template-columns: repeat(auto-fill, minmax(max(210px, 30%), 1fr));
+  }
 }
 
 .empty-container {

@@ -32,8 +32,8 @@ const ProductCard: FC<{ product: FullProduct }> = ({ product }) => {
 
           {product?.discount ? (
             <Flex gap="0.5rem" align="center">
-              <p className="price">₴{Math.round(product.price * (1 - product.discount / 100))}</p>
-              <p className="old-price">₴{product.price}</p>
+              <p className="price">₴{product.price}</p>
+              <p className="old-price">₴{product.initialPrice}</p>
               <Tag color="red">-{product.discount}%</Tag>
             </Flex>
           ) : (

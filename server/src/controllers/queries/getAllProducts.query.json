@@ -50,7 +50,15 @@
       "_id": 1,
       "name": 1,
       "type": "$type",
-      "price": 1,
+      "initialPrice": "$price",
+      "price": {
+        "$round": [
+          {
+            "$multiply": ["$price", { "$subtract": [1, { "$divide": ["$discount", 100] }] }]
+          },
+          0
+        ]
+      },
       "discount": 1,
       "style": "$style.name",
       "articleNumber": 1,
@@ -99,6 +107,7 @@
       "name": 1,
       "type.name": 1,
       "type.slug": 1,
+      "initialPrice": 1,
       "price": 1,
       "discount": 1,
       "style": 1,
@@ -120,6 +129,7 @@
       "_id": "$_id",
       "name": { "$first": "$name" },
       "type": { "$first": "$type" },
+      "initialPrice": { "$first": "$initialPrice" },
       "price": { "$first": "$price" },
       "discount": { "$first": "$discount" },
       "style": { "$first": "$style" },
