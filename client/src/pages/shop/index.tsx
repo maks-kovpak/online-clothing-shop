@@ -11,7 +11,7 @@ import { Flex } from 'antd';
 import Filters from '@/components/features/Filters';
 import { useUnit } from 'effector-react';
 import { $products, setProductsEvent, setMaxPriceEvent } from '@/stores/products.store';
-import { $appliedFilters } from '@/stores/filters.store';
+import { $appliedFilters, resetFiltersEvent } from '@/stores/filters.store';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 import { findClosestColor } from '@/lib/utils';
@@ -32,7 +32,7 @@ const ShopPage = () => {
   const pathname = useLocation();
 
   const [products, setProducts, setMaxPrice] = useUnit([$products, setProductsEvent, setMaxPriceEvent]);
-  const appliedFilters = useUnit($appliedFilters);
+  const [appliedFilters, resetFilters] = useUnit([$appliedFilters, resetFiltersEvent]);
 
   const {
     data: fetchedProducts,
@@ -64,8 +64,9 @@ const ShopPage = () => {
   }, [fetchedProducts, setMaxPrice, setProducts]);
 
   useEffect(() => {
+    resetFilters();
     refetchProducts();
-  }, [refetchProducts, pathname]);
+  }, [refetchProducts, pathname, resetFilters]);
 
   useEffect(() => {
     if (!fetchedProducts) return;
