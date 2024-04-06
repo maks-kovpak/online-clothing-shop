@@ -1,16 +1,16 @@
 {
   "name": "online-clothing-shop",
   "description": "A modern and user-friendly online clothing shop built with React and Express.js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "author": "Maksym Kovpak <kovpak.maksym@gmail.com>",
   "repository": "https://github.com/maks-kovpak/online-clothing-shop.git",
   "scripts": {
-    "build": "concurrently \"yarn workspace client build\" \"yarn workspace server build\"",
+    "build": "yarn workspaces run build",
     "client:dev": "yarn workspace client dev",
     "client:prod": "yarn workspace client preview",
-    "lint": "concurrently \"yarn workspace client lint\" \"yarn workspace server lint\"",
+    "lint": "yarn workspaces run lint",
     "server:dev": "yarn workspace server dev",
     "server:prod": "yarn workspace server start"
   },
