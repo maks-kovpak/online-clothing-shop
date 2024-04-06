@@ -2,7 +2,7 @@ name: Backend code checking
 
 on:
   push:
-    branches: [ 'main', 'dev' ]
+    branches: [ 'dev' ]
 
   pull_request:
     branches: [ 'main', 'dev' ]
