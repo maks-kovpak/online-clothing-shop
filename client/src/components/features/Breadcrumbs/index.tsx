@@ -13,16 +13,19 @@ const Breadcrumbs = () => {
   const { t } = useTranslation();
 
   const crumbs = useMemo(() => {
-    return matches
-      .filter((match) => match.handle?.crumb)
-      .map((match) => {
-        const crumb = match.handle!.crumb;
+    const items = [];
 
-        return {
-          title: t(typeof crumb === 'string' ? crumb : crumb(match.data, match.params, t)),
-          href: match.pathname,
-        };
-      });
+    for (const match of matches) {
+      const crumb = match.handle?.crumb;
+      if (!crumb) continue;
+
+      const value = typeof crumb === 'string' ? crumb : crumb(match, t);
+      if (!value) continue;
+
+      items.push({ title: t(value), href: match.pathname });
+    }
+
+    return items;
   }, [matches, t]);
 
   return <Breadcrumb items={crumbs} separator={<ArrowDownIcon />} />;

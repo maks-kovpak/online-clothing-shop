@@ -1,4 +1,5 @@
 import paths from '@/lib/paths';
+import ProductsApi from '@/lib/api/products';
 import App from '@/App';
 
 import MainPage from '@/pages/main';
@@ -11,6 +12,7 @@ import ProductDetailPage from '@/pages/productDetail';
 
 import type { RouteObject } from 'react-router-dom';
 import type { RouteHandlerType } from '@/lib/types';
+import type { FullProduct } from '@server/lib/types/models';
 
 export type CustomRouteObject = Omit<RouteObject, 'handle' | 'children'> & {
   handle?: RouteHandlerType;
@@ -26,14 +28,27 @@ const routes: Array<CustomRouteObject> = [
       { path: paths.main, element: <MainPage /> },
       { path: paths.signup, element: <SignupPage /> },
       { path: paths.login, element: <LoginPage /> },
-      { path: paths.profile, element: <ProfilePage />, handle: { crumb: () => 'PROFILE' } },
+      { path: paths.profile, element: <ProfilePage />, handle: { crumb: 'PROFILE' } },
       {
         path: paths.shop,
-        element: <ShopPage />,
         handle: { crumb: 'SHOP' },
         children: [
-          { path: paths.products, element: <ShopPage />, handle: { crumb: (_, params, t) => t(params?.gender ?? '') } },
-          { path: paths.productDetails, element: <ProductDetailPage />, handle: { crumb: 'PRODUCT' } },
+          {
+            path: paths.productDetails,
+            element: <ProductDetailPage />,
+            loader: async ({ params }) => {
+              if (!params.id) return;
+
+              const response = await ProductsApi.getOne(params.id);
+              return response.data;
+            },
+            handle: { crumb: ({ data }) => (data as FullProduct).name },
+          },
+          {
+            path: paths.products,
+            element: <ShopPage />,
+            handle: { crumb: ({ params }, t) => t(params?.gender?.toUpperCase() + '_COLLECTION' ?? '') },
+          },
         ],
       },
       { path: paths.other, element: <NotFoundPage /> },
