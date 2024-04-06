@@ -10,7 +10,7 @@ const ProductDetailPage = () => {
   const { t } = useTranslation();
   const { id } = useParams();
 
-  const { data: product } = useQuery({
+  const { data: product, isPending } = useQuery({
     queryKey: ['productDetail'],
     queryFn: async () => {
       if (!id) return;
@@ -20,17 +20,19 @@ const ProductDetailPage = () => {
     },
   });
 
-  if (!product) return <NotFoundPage />;
+  if (isPending) return 'Loading...';
+  else if (!product) return <NotFoundPage />;
 
   return (
     <>
       <MetaTags title={`${product.name} | SHOP.CO`} description={t('PRODUCT_DETAILS_PAGE_DESCRIPTION')} />
 
       <main className="product-details-page">
-        <section className="primary-section section-top-margin breadcrumbs-section">
+        <section className="primary-section breadcrumbs-section">
           <Breadcrumbs />
         </section>
-        {JSON.stringify(product)}
+
+        <section className="main-product-info"></section>
       </main>
     </>
   );

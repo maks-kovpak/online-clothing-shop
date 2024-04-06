@@ -2,7 +2,7 @@ const paths = {
   main: '/',
   other: '*',
   shop: '/shop',
-  products: '/shop/:gender/:type?',
+  products: '/shop/:gender?/:type?',
   productDetails: '/shop/product/:id',
   sales: '/sales',
   newArrivals: '/new-arrivals',

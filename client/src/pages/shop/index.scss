@@ -1,11 +1,41 @@
-.shop-page {
-  .breadcrumbs-section {
-    margin-bottom: 2rem !important;
-  }
+@import '@/assets/styles/_variables.module';
 
+main.shop-page {
   .filters-sidebar.disabled {
     pointer-events: none;
     opacity: 0.5;
     user-select: none;
+  }
+}
+
+.filters-drawer,
+.sc-drawer-content-wrapper {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+
+  .sc-drawer-header {
+    padding: 1rem calc(1.5rem + 5px) !important;
+  }
+
+  .sc-drawer-body {
+    padding: 0 !important;
+  }
+
+  .filters-sidebar {
+    max-width: unset !important;
+    border: none;
+    border-radius: 0;
+
+    .title {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: $sm) {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 0;
+    height: calc(100vh - $navbar-height-mobile) !important;
   }
 }

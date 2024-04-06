@@ -14,12 +14,7 @@ import type { RouteObject } from 'react-router-dom';
 import type { RouteHandlerType } from '@/lib/types';
 import type { FullProduct } from '@server/lib/types/models';
 
-export type CustomRouteObject = Omit<RouteObject, 'handle' | 'children'> & {
-  handle?: RouteHandlerType;
-  children?: CustomRouteObject[];
-};
-
-const routes: Array<CustomRouteObject> = [
+const routes: Array<RouteObject> = [
   {
     path: paths.main,
     element: <App />,
@@ -42,12 +37,12 @@ const routes: Array<CustomRouteObject> = [
               const response = await ProductsApi.getOne(params.id);
               return response.data;
             },
-            handle: { crumb: ({ data }) => (data as FullProduct).name },
+            handle: { crumb: ({ data }) => (data as FullProduct).name } as RouteHandlerType,
           },
           {
             path: paths.products,
             element: <ShopPage />,
-            handle: { crumb: ({ params }, t) => t(params?.gender?.toUpperCase() + '_COLLECTION' ?? '') },
+            handle: { crumb: ({ params }, t) => t(params?.gender?.toUpperCase() + '_COLLECTION') } as RouteHandlerType,
           },
         ],
       },
