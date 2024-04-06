@@ -1,14 +1,15 @@
 const paths = {
   main: '/',
   other: '*',
-  shop: '/shop/:gender/:type?',
+  shop: '/shop',
+  products: '/shop/:gender/:type?',
+  productDetails: '/shop/product/:id',
   sales: '/sales',
   newArrivals: '/new-arrivals',
   signup: '/signup',
   login: '/login',
   profile: '/profile',
   cart: '/cart',
-  productDetails: '/shop/:id',
 } as const;
 
 export default paths;
