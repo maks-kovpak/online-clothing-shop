@@ -48,7 +48,7 @@ const Filters: FC<{ className: string }> = ({ className }) => {
   return (
     <aside className={clsx('filters-sidebar', className)}>
       <Flex className="title" align="center" justify="space-between">
-        <h2 className="secondary">{t('FILTERS')}</h2>
+        <h3 className="secondary">{t('FILTERS')}</h3>
         <FiltersIcon />
       </Flex>
 

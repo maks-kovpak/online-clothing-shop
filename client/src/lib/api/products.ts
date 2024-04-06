@@ -6,6 +6,10 @@ const ProductsApi = {
     const searchParams = new URLSearchParams(filters).toString();
     return await axios.get<FullProduct[]>(`/products?${searchParams}`);
   },
+
+  getOne: async (id: string) => {
+    return await axios.get<FullProduct>(`/products/${id}`);
+  },
 };
 
 export default ProductsApi;
