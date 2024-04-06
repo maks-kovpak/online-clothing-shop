@@ -5,10 +5,12 @@
   border-radius: 20px;
   border: 1px solid $grayscale-color-4;
   max-width: 300px;
+  min-width: 300px;
 
   .title {
     margin-bottom: 2rem;
     padding: 0 5px;
+    line-height: 90%;
   }
 
   .sc-collapse-item:not(:last-child) {

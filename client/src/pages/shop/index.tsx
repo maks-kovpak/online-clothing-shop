@@ -7,16 +7,19 @@ import NotFoundPage from '@/pages/notFound';
 import ProductsList from '@/components/features/ProductsList';
 import Breadcrumbs from '@/components/features/Breadcrumbs';
 import MetaTags from '@/components/features/MetaTags';
-import { Drawer, Flex } from 'antd';
+import { Drawer, Flex, Button } from 'antd';
 import Filters from '@/components/features/Filters';
 import { useUnit } from 'effector-react';
 import { $products, setProductsEvent, setMaxPriceEvent } from '@/stores/products.store';
 import { $appliedFilters, resetFiltersEvent } from '@/stores/filters.store';
+import { $clothingTypes } from '@/stores/clothing.store';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 import { findClosestColor } from '@/lib/utils';
 import { FILTER_COlORS } from '@/lib/constants';
 import { useBreakpoints } from '@/lib/hooks';
+
+import FiltersIcon from '@/assets/icons/filters.svg?react';
 
 import vars from '@/assets/styles/_variables.module.scss';
 import './index.scss';
@@ -35,6 +38,7 @@ const ShopPage = () => {
 
   const [products, setProducts, setMaxPrice] = useUnit([$products, setProductsEvent, setMaxPriceEvent]);
   const [appliedFilters, resetFilters] = useUnit([$appliedFilters, resetFiltersEvent]);
+  const clothingTypes = useUnit($clothingTypes);
 
   /* Fetch products */
 
@@ -152,7 +156,19 @@ const ShopPage = () => {
               </Drawer>
             )}
 
-            <ProductsList products={products} pending={isPending} />
+            <div className="products">
+              <Flex className="products-title" justify="space-between" align="center">
+                {type ? (
+                  <h2>{t(clothingTypes.find((item) => item.slug === type)?.name ?? '')}</h2>
+                ) : (
+                  <h2>{t(gender.toUpperCase() + '_COLLECTION')}</h2>
+                )}
+
+                {lg.below && <Button icon={<FiltersIcon width={16} height={16} />} onClick={() => setOpen(!open)} />}
+              </Flex>
+
+              <ProductsList products={products} pending={isPending} />
+            </div>
           </Flex>
         </section>
       </main>

@@ -6,6 +6,27 @@ main.shop-page {
     opacity: 0.5;
     user-select: none;
   }
+
+  .products {
+    width: 100%;
+
+    .products-title {
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .sc-btn {
+      width: 32px !important;
+      height: 32px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      path {
+        fill-opacity: 1;
+      }
+    }
+  }
 }
 
 .filters-drawer,
