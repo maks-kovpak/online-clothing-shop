@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+server/api
 .adminjs
 *.local
 .env
@@ -27,3 +28,4 @@ server/public
 *.njsproj
 *.sln
 *.sw?
+.vercel

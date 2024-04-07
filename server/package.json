@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "yarn tsc",
-    "dev": "concurrently \"yarn tsc --watch\" \"nodemon dist/index.ts\"",
+    "dev": "concurrently \"yarn tsc --watch\" \"nodemon api/index.ts\"",
     "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
-    "start": "node dist/index.js"
+    "start": "node api/index.js"
   },
   "dependencies": {
     "@adminjs/express": "6.1.0",
