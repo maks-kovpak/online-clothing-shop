@@ -1,6 +1,5 @@
 # Dist folder
 dist
-server/api
 
 # AdminJS bundles
 .adminjs

@@ -10,7 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "sourceMap": false,
-    "outDir": "./api",
+    "outDir": "./dist",
     "baseUrl": "./",
     "skipLibCheck": true,
     "resolveJsonModule": true,
