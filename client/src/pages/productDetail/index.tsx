@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import NotFoundPage from '@/pages/notFound';
 import Breadcrumbs from '@/components/features/Breadcrumbs';
+import ProductImagesGallery from './ProductImagesGallery';
 
 const ProductDetailPage = () => {
   const { t } = useTranslation();
@@ -32,7 +33,9 @@ const ProductDetailPage = () => {
           <Breadcrumbs />
         </section>
 
-        <section className="main-product-info"></section>
+        <section className="main-product-info primary-section">
+          <ProductImagesGallery product={product} />
+        </section>
       </main>
     </>
   );
