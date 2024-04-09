@@ -13,10 +13,10 @@ import 'swiper/css/thumbs';
 
 import './index.scss';
 
-const ProductImagesGallery: FC<{ product: FullProduct }> = ({ product }) => {
+const ProductImagesGallery: FC<{ productOption: FullProduct['options'][number] }> = ({ productOption }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
-  const imagesSlides = product.options[0].images.map((image) => (
+  const imagesSlides = productOption.images.map((image) => (
     <SwiperSlide>
       <img src={join(UPLOAD_URL, image)} />
     </SwiperSlide>

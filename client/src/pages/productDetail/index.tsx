@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import NotFoundPage from '@/pages/notFound';
 import Breadcrumbs from '@/components/features/Breadcrumbs';
 import { Flex } from 'antd';
+import { useState } from 'react';
 
 import ProductImagesGallery from './containers/ProductImagesGallery';
 import ProductInfo from './containers/ProductInfo';
@@ -13,6 +14,7 @@ import ProductInfo from './containers/ProductInfo';
 const ProductDetailPage = () => {
   const { t } = useTranslation();
   const { id } = useParams();
+  const [currentOption, setCurrentOption] = useState<number>(0);
 
   const { data: product, isPending } = useQuery({
     queryKey: ['productDetail'],
@@ -38,8 +40,8 @@ const ProductDetailPage = () => {
 
         <section className="main-product-info primary-section">
           <Flex gap="2.5rem">
-            <ProductImagesGallery product={product} />
-            <ProductInfo product={product} />
+            <ProductImagesGallery productOption={product.options[currentOption]} />
+            <ProductInfo product={product} option={currentOption} setOption={setCurrentOption} />
           </Flex>
         </section>
       </main>
