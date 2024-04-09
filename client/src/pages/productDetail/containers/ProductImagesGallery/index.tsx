@@ -62,8 +62,8 @@ export const ProductImagesGallery: FC<{ productOption: FullProduct['options'][nu
 export const ProductImagesGallerySkeleton = () => {
   return (
     <BaseGalleryCarousel>
-      {Array.from<number>({ length: 4 }).map((item) => (
-        <SwiperSlide key={item}>
+      {Array.from({ length: 4 }).map((_, idx) => (
+        <SwiperSlide key={idx}>
           <Skeleton.Image active />
         </SwiperSlide>
       ))}

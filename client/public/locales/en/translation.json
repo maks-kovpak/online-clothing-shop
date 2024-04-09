@@ -111,5 +111,7 @@
   "SIZE": "Size",
   "SHOP_PAGE_TITLE": "Shop",
   "SHOP_PAGE_DESCRIPTION": "Choose things that you like",
-  "NO_DATA": "No Data"
+  "NO_DATA": "No Data",
+  "SELECT_COLOR": "Select Color",
+  "CHOOSE_SIZE": "Choose Size"
 }

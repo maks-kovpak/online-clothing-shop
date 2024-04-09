@@ -23,6 +23,7 @@
   .product-rating {
     margin-bottom: 0.875rem;
   }
+
   .product-price {
     .sc-tag-red {
       padding: 4px 12px;
@@ -32,6 +33,34 @@
     .price,
     .old-price {
       font-size: 1.75rem;
+    }
+  }
+
+  .sc-radio-group {
+    display: flex;
+    gap: 0.5rem;
+
+    .sc-radio-button-wrapper {
+      border-radius: 100px;
+      border: none;
+      background-color: #f0f0f0;
+      color: $grayscale-color-7;
+      font-weight: 500;
+      line-height: 200%;
+      padding: 0 1.5rem;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.sc-radio-button-wrapper-checked {
+        background-color: $primary-black-color;
+        color: $primary-white-color;
+      }
+
+      &::before {
+        display: none;
+      }
     }
   }
 }
