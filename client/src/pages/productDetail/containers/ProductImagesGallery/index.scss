@@ -3,6 +3,13 @@
 .product-images-gallery-carousel {
   height: 530px;
 
+  .sc-skeleton,
+  .sc-skeleton-image {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 10px !important;
+  }
+
   .swiper {
     margin-left: 0;
     margin-right: 0;

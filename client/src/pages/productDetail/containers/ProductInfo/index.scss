@@ -1,0 +1,37 @@
+@import '@/assets/styles/_variables.module';
+
+.section-with-divider {
+  .sc-divider {
+    margin: 1.5rem 0;
+  }
+
+  .sm-title {
+    display: inline-block;
+    color: $grayscale-color-7;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .content {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.detailed-product-info {
+  flex-grow: 1;
+
+  .product-rating {
+    margin-bottom: 0.875rem;
+  }
+  .product-price {
+    .sc-tag-red {
+      padding: 4px 12px;
+      font-size: 1rem;
+    }
+
+    .price,
+    .old-price {
+      font-size: 1.75rem;
+    }
+  }
+}

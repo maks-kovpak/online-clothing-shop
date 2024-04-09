@@ -48,6 +48,7 @@ const routes: Array<RouteObject> = [
       },
       { path: paths.other, element: <NotFoundPage /> },
     ],
+    errorElement: <NotFoundPage />,
   },
 ];
 
