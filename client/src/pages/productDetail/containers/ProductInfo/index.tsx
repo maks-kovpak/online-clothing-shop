@@ -2,13 +2,12 @@ import { Rate } from '@/ui';
 import { Flex, Tag } from 'antd';
 import type { FullProduct } from '@server/lib/types/models';
 import type { Dispatch, FC, SetStateAction } from 'react';
-import Color from '@/components/features/Color';
+import ColorTags from '@/components/features/ColorTags';
 
 const ProductInfo: FC<{
   product: FullProduct;
-  option: number;
   setOption: Dispatch<SetStateAction<number>>;
-}> = ({ product, option, setOption }) => {
+}> = ({ product, setOption }) => {
   return (
     <div className="detailed-product-info">
       <h2>{product.name}</h2>
@@ -30,13 +29,10 @@ const ProductInfo: FC<{
         <p className="price">₴{product.price}</p>
       )}
 
-      <Flex gap="0.5rem">
-        {product.options
-          .filter((option) => option.isAvailable)
-          .map((option, idx) => (
-            <Color value={option.color} onChecked={() => setOption(idx)} />
-          ))}
-      </Flex>
+      <ColorTags
+        items={product.options.filter((option) => option.isAvailable).map((option) => option.color)}
+        onSelect={(_, idx) => setOption(idx)}
+      />
     </div>
   );
 };

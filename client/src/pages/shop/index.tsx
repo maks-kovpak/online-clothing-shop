@@ -53,6 +53,7 @@ const ShopPage = () => {
         gender: gender.toUpperCase(),
         sortBy: 'createdAt',
         sortOrder: 'descending',
+        public: 'true',
       };
 
       if (type) filters['type.slug'] = type;

@@ -41,7 +41,7 @@ const ProductDetailPage = () => {
         <section className="main-product-info primary-section">
           <Flex gap="2.5rem">
             <ProductImagesGallery productOption={product.options[currentOption]} />
-            <ProductInfo product={product} option={currentOption} setOption={setCurrentOption} />
+            <ProductInfo product={product} setOption={setCurrentOption} />
           </Flex>
         </section>
       </main>

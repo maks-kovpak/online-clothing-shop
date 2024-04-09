@@ -17,7 +17,7 @@ const ProductImagesGallery: FC<{ productOption: FullProduct['options'][number] }
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   const imagesSlides = productOption.images.map((image) => (
-    <SwiperSlide>
+    <SwiperSlide key={image}>
       <img src={join(UPLOAD_URL, image)} />
     </SwiperSlide>
   ));
