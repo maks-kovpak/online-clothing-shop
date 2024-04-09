@@ -5,7 +5,7 @@
   flex-grow: 1;
 
   @media screen and (max-width: 1600px) {
-    grid-template-columns: repeat(auto-fill, minmax(max(210px, 30%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(max(200px, 30%), 1fr));
   }
 }
 

@@ -5,7 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import NotFoundPage from '@/pages/notFound';
 import Breadcrumbs from '@/components/features/Breadcrumbs';
-import ProductImagesGallery from './ProductImagesGallery';
+import { Flex } from 'antd';
+
+import ProductImagesGallery from './containers/ProductImagesGallery';
+import ProductInfo from './containers/ProductInfo';
 
 const ProductDetailPage = () => {
   const { t } = useTranslation();
@@ -34,7 +37,10 @@ const ProductDetailPage = () => {
         </section>
 
         <section className="main-product-info primary-section">
-          <ProductImagesGallery product={product} />
+          <Flex gap="2.5rem">
+            <ProductImagesGallery product={product} />
+            <ProductInfo product={product} />
+          </Flex>
         </section>
       </main>
     </>

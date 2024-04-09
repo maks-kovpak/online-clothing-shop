@@ -1,10 +1,11 @@
 import { FC, useState } from 'react';
 import { Flex } from 'antd';
+import { UPLOAD_URL } from '@/lib/constants';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper/types';
 import type { FullProduct } from '@server/lib/types/models';
-import { UPLOAD_URL } from '@/lib/constants';
+import join from 'url-join';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -17,7 +18,7 @@ const ProductImagesGallery: FC<{ product: FullProduct }> = ({ product }) => {
 
   const imagesSlides = product.options[0].images.map((image) => (
     <SwiperSlide>
-      <img src={UPLOAD_URL + image} />
+      <img src={join(UPLOAD_URL, image)} />
     </SwiperSlide>
   ));
 
