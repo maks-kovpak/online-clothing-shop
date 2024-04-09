@@ -20,11 +20,22 @@
 .detailed-product-info {
   flex-grow: 1;
 
+  h2 {
+    line-height: 120%;
+    margin-bottom: 0.875rem;
+  }
+
+  .description {
+    color: $grayscale-color-8;
+  }
+
   .product-rating {
     margin-bottom: 0.875rem;
   }
 
   .product-price {
+    margin-bottom: 0.875rem;
+
     .sc-tag-red {
       padding: 4px 12px;
       font-size: 1rem;
@@ -43,7 +54,7 @@
     .sc-radio-button-wrapper {
       border-radius: 100px;
       border: none;
-      background-color: #f0f0f0;
+      background-color: $input-bg-color;
       color: $grayscale-color-7;
       font-weight: 500;
       line-height: 200%;

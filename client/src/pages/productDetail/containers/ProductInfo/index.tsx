@@ -3,10 +3,9 @@ import type { Dispatch, FC, ReactNode, SetStateAction } from 'react';
 import ColorTags from '@/components/features/ColorTags';
 import ProductPrice from '@/components/features/ProductPrice';
 import ProductRating from '@/components/features/ProductRating';
-import { Divider, Skeleton, Radio } from 'antd';
+import { Divider, Skeleton, Radio, Flex } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
-import { uniq } from 'lodash';
+import { Button, InputNumber } from '@/ui';
 
 import './index.scss';
 
@@ -22,14 +21,11 @@ const SectionWithDivider: FC<{ children: ReactNode; title?: string }> = ({ child
 
 const ProductInfo: FC<{
   product: FullProduct | undefined;
+  option: number;
   setOption: Dispatch<SetStateAction<number>>;
   pending?: boolean;
-}> = ({ product, setOption, pending }) => {
+}> = ({ product, option, setOption, pending }) => {
   const { t } = useTranslation();
-
-  const sizes = useMemo(() => {
-    return uniq(product?.options.map((option) => [...option.size, ...option.size]).flat());
-  }, [product]);
 
   if (pending || !product) {
     return <Skeleton paragraph={{ rows: 4 }} active />;
@@ -40,6 +36,7 @@ const ProductInfo: FC<{
       <h2>{product.name}</h2>
       <ProductRating value={product.averageRating} />
       <ProductPrice value={product.price} oldPrice={product.initialPrice} discount={product.discount} />
+      <p className="description">{product.description}</p>
 
       <SectionWithDivider title={t('SELECT_COLOR')}>
         <ColorTags
@@ -49,13 +46,22 @@ const ProductInfo: FC<{
       </SectionWithDivider>
 
       <SectionWithDivider title={t('CHOOSE_SIZE')}>
-        <Radio.Group defaultValue={sizes.at(0)}>
-          {sizes?.map((size) => (
+        <Radio.Group defaultValue={product.options[option].size[0]}>
+          {product.options[option].size.map((size) => (
             <Radio.Button key={size} value={size}>
               {size}
             </Radio.Button>
           ))}
         </Radio.Group>
+      </SectionWithDivider>
+
+      <SectionWithDivider>
+        <Flex gap="1.25rem">
+          <InputNumber min={0} />
+          <Button type="primary" size="large">
+            {t('ADD_TO_CART')}
+          </Button>
+        </Flex>
       </SectionWithDivider>
     </div>
   );

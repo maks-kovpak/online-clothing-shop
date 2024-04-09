@@ -113,5 +113,6 @@
   "SHOP_PAGE_DESCRIPTION": "Choose things that you like",
   "NO_DATA": "No Data",
   "SELECT_COLOR": "Select Color",
-  "CHOOSE_SIZE": "Choose Size"
+  "CHOOSE_SIZE": "Choose Size",
+  "ADD_TO_CART": "Add to cart"
 }

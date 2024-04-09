@@ -42,7 +42,7 @@ const ProductDetailPage = () => {
               <ProductImagesGallery productOption={product!.options[currentOption]} />
             )}
 
-            <ProductInfo product={product} setOption={setCurrentOption} pending={isPending} />
+            <ProductInfo product={product} option={currentOption} setOption={setCurrentOption} pending={isPending} />
           </Flex>
         </section>
       </main>
