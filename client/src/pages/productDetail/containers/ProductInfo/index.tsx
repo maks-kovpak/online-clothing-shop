@@ -1,8 +1,9 @@
 import { Rate } from '@/ui';
-import { Flex, Tag } from 'antd';
+import { Flex } from 'antd';
 import type { FullProduct } from '@server/lib/types/models';
 import type { Dispatch, FC, SetStateAction } from 'react';
 import ColorTags from '@/components/features/ColorTags';
+import ProductPrice from '@/components/features/ProductPrice';
 
 const ProductInfo: FC<{
   product: FullProduct;
@@ -19,15 +20,7 @@ const ProductInfo: FC<{
         </span>
       </Flex>
 
-      {product?.discount ? (
-        <Flex gap="0.5rem" align="center">
-          <p className="price">₴{product.price}</p>
-          <p className="old-price">₴{product.initialPrice}</p>
-          <Tag color="red">-{product.discount}%</Tag>
-        </Flex>
-      ) : (
-        <p className="price">₴{product.price}</p>
-      )}
+      <ProductPrice value={product.price} oldPrice={product.initialPrice} discount={product.discount} />
 
       <ColorTags
         items={product.options.filter((option) => option.isAvailable).map((option) => option.color)}

@@ -28,27 +28,6 @@
       font-weight: 500;
       font-size: 0.875rem;
     }
-
-    .price,
-    .old-price {
-      font-weight: 500;
-      font-size: 1.25rem;
-    }
-
-    .old-price {
-      text-decoration: line-through;
-      color: $grayscale-color-6;
-    }
-
-    .sc-tag-red {
-      border: none !important;
-      border-radius: 20px;
-      padding: 3px 10px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: $discount-text-color;
-      background-color: $discount-bg-color;
-    }
   }
 
   .sc-card-body {
