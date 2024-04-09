@@ -13,21 +13,13 @@
     margin-bottom: 1rem;
   }
 
-  .product-info {
-    h3 {
-      font-size: 1rem !important;
-      font-family: $main-font !important;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      max-width: 100%;
-    }
-
-    .rating-value {
-      color: $grayscale-color-8;
-      font-weight: 500;
-      font-size: 0.875rem;
-    }
+  .product-info h3 {
+    font-size: 1rem !important;
+    font-family: $main-font !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
   }
 
   .sc-card-body {
