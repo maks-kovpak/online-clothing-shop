@@ -47,6 +47,11 @@
   min-width: 200px;
   height: 50px;
 
+  &.sc-input-textarea-affix-wrapper,
+  &.sc-input-textarea-affix-wrapper textarea {
+    border-radius: 10px;
+  }
+
   &.gray-input {
     background: $input-bg-color;
   }

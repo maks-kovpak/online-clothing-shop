@@ -10,8 +10,6 @@ import { ProductImagesGallery, ProductImagesGallerySkeleton } from './containers
 import ProductInfo from './containers/ProductInfo';
 import ProductReviews from './containers/ProductReviews';
 
-import './index.scss';
-
 const ProductDetailPage = () => {
   const { id } = useParams();
   const [currentOption, setCurrentOption] = useState<number>(0);

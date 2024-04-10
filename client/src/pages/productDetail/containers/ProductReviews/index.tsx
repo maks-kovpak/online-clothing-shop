@@ -1,12 +1,17 @@
 import CommentsApi from '@/lib/api/comments';
 import Comment from '@/components/features/Comment';
-import { Button, Flex, Skeleton } from 'antd';
+import { Button, Flex, Input, Modal, Skeleton } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import type { FC } from 'react';
+import { Rate } from '@/ui';
+
+import './index.scss';
 
 const ProductReviews: FC<{ productId: string | undefined }> = ({ productId }) => {
   const { t } = useTranslation();
+  const [modalOpened, setModalOpened] = useState<boolean>(false);
 
   const { data: comments, isPending } = useQuery({
     queryKey: ['productReviews'],
@@ -23,22 +28,43 @@ const ProductReviews: FC<{ productId: string | undefined }> = ({ productId }) =>
   ));
 
   return (
-    <section className="product-reviews primary-section">
-      <Flex className="reviews-title" justify="space-between">
-        <h3 className="secondary">
-          {t('ALL_REVIEWS')}
-          {comments && <span>({comments.length})</span>}
-        </h3>
+    <>
+      <section className="product-reviews primary-section">
+        <Flex className="reviews-title" justify="space-between">
+          <h3 className="secondary">
+            {t('ALL_REVIEWS')}
+            {comments && <span>({comments.length})</span>}
+          </h3>
 
-        <Button type="primary">{t('WRITE_REVIEW')}</Button>
-      </Flex>
+          <Button type="primary" onClick={() => setModalOpened(true)}>
+            {t('WRITE_REVIEW')}
+          </Button>
+        </Flex>
 
-      <div className="reviews-container">
-        {isPending
-          ? commentsSkeleton
-          : comments!.map((item) => <Comment key={item._id.toString()} comment={item} withPublicationDate />)}
-      </div>
-    </section>
+        <div className="reviews-container">
+          {isPending
+            ? commentsSkeleton
+            : comments!.map((item) => <Comment key={item._id.toString()} comment={item} withPublicationDate />)}
+        </div>
+      </section>
+
+      <Modal
+        className="review-modal"
+        title={t('WRITE_REVIEW')}
+        open={modalOpened}
+        onCancel={() => setModalOpened(false)}
+        cancelText={t('CANCEL')}
+        okText={t('OK')}
+      >
+        <Rate />
+        <Input.TextArea
+          showCount
+          maxLength={300}
+          placeholder={t('WRITE_YOUR_COMMENT_HERE')}
+          style={{ height: 200, resize: 'none' }}
+        ></Input.TextArea>
+      </Modal>
+    </>
   );
 };
 

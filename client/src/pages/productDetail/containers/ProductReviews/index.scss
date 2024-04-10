@@ -1,6 +1,6 @@
 @import '@/assets/styles/_variables.module';
 
-.product-details-page {
+.product-reviews {
   .reviews-title {
     margin-bottom: 2rem;
 
@@ -16,5 +16,15 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
+  }
+}
+
+.review-modal {
+  .sc-modal-body .sc-rate {
+    margin-bottom: 1rem;
+  }
+
+  .sc-modal-footer {
+    margin-top: 2rem !important;
   }
 }
