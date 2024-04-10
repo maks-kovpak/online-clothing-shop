@@ -1,0 +1,20 @@
+@import '@/assets/styles/_variables.module';
+
+.product-details-page {
+  .reviews-title {
+    margin-bottom: 2rem;
+
+    h3 span {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: $grayscale-color-8;
+      display: inline-block;
+      margin-left: 0.5rem;
+    }
+  }
+  .reviews-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}

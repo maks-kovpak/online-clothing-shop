@@ -114,5 +114,7 @@
   "NO_DATA": "No Data",
   "SELECT_COLOR": "Select Color",
   "CHOOSE_SIZE": "Choose Size",
-  "ADD_TO_CART": "Add to cart"
+  "ADD_TO_CART": "Add to cart",
+  "ALL_REVIEWS": "All Reviews",
+  "WRITE_REVIEW": "Write a Reviews"
 }
