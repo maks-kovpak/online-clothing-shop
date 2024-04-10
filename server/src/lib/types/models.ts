@@ -6,6 +6,8 @@ import type { IUser } from '../../models/User.js';
 import type { IComment } from '../../models/Comments.js';
 import type { IClothingType } from '../../models/ClothingTypes.js';
 
+/* Products */
+
 export type FullProduct = Omit<IProduct, 'type' | 'style'> & {
   options: Array<Omit<IProductOption, 'images'> & { images: string[] }>;
   averageRating: number | null;
@@ -14,9 +16,13 @@ export type FullProduct = Omit<IProduct, 'type' | 'style'> & {
   initialPrice: number;
 };
 
+/* User */
+
 export type UpdateUserPayload = Partial<
   Omit<WithoutTimestamps<IUser>, 'cart' | 'password' | 'profileImage'> & { oldPassword: string; newPassword: string }
 >;
+
+/* Filters */
 
 export type SortOrderValue = Exclude<SortOrder, 1 | -1>;
 
@@ -27,6 +33,11 @@ export type FiltersQueryParams<T extends object> = Partial<Record<keyof OmitId<T
     sortOrder?: SortOrderValue;
   };
 
+/* Comments */
+
 export type FullComment = Omit<IComment, 'productId' | 'userId'> & { author: string };
+export type NewCommentRequestBody = { userId: string; rating: number; text: string };
+
+/* Clothing types */
 
 export type ClothingTypesQueryParams = Partial<Record<keyof IClothingType, string>>;
