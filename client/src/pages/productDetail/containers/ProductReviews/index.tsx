@@ -3,17 +3,25 @@ import Comment from '@/components/features/Comment';
 import { Button, Flex, Input, Modal, Skeleton } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import type { FC } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Rate } from '@/ui';
+import { useUnit } from 'effector-react';
+import $user from '@/stores/user.store';
+import type { FC } from 'react';
+import type { NewCommentRequestBody } from '@server/lib/types/models';
 
 import './index.scss';
 
 const ProductReviews: FC<{ productId: string | undefined }> = ({ productId }) => {
   const { t } = useTranslation();
   const [modalOpened, setModalOpened] = useState<boolean>(false);
+  const [confirmLoading, setConfirmLoading] = useState<boolean>(false);
 
-  const { data: comments, isPending } = useQuery({
+  const {
+    data: comments,
+    refetch: refetchComments,
+    isPending,
+  } = useQuery({
     queryKey: ['productReviews'],
     queryFn: async () => {
       if (!productId) return;
@@ -22,6 +30,25 @@ const ProductReviews: FC<{ productId: string | undefined }> = ({ productId }) =>
       return response.data;
     },
   });
+
+  const user = useUnit($user);
+  const userId = useMemo(() => user?._id.toString(), [user]);
+
+  const [newComment, setNewComment] = useState<Omit<NewCommentRequestBody, 'userId'>>({
+    text: '',
+    rating: 1,
+  });
+
+  const addComment = useCallback(async () => {
+    if (!productId || !userId) return;
+
+    setConfirmLoading(true);
+    await CommentsApi.addNewComment(productId, { ...newComment, userId });
+    setConfirmLoading(false);
+
+    setModalOpened(false);
+    refetchComments();
+  }, [newComment, productId, userId, refetchComments]);
 
   const commentsSkeleton = Array.from({ length: 2 }).map((_, idx) => (
     <Skeleton key={idx} className="comment" paragraph={{ rows: 4 }} active />
@@ -52,16 +79,24 @@ const ProductReviews: FC<{ productId: string | undefined }> = ({ productId }) =>
         className="review-modal"
         title={t('WRITE_REVIEW')}
         open={modalOpened}
+        confirmLoading={confirmLoading}
+        onOk={addComment}
         onCancel={() => setModalOpened(false)}
         cancelText={t('CANCEL')}
         okText={t('OK')}
       >
-        <Rate />
+        <Rate
+          defaultValue={1}
+          allowClear={false}
+          onChange={(value) => setNewComment({ ...newComment, rating: value })}
+        />
+
         <Input.TextArea
           showCount
           maxLength={300}
           placeholder={t('WRITE_YOUR_COMMENT_HERE')}
           style={{ height: 200, resize: 'none' }}
+          onChange={(e) => setNewComment({ ...newComment, text: e.target.value })}
         ></Input.TextArea>
       </Modal>
     </>
