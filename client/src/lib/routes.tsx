@@ -42,7 +42,9 @@ const routes: Array<RouteObject> = [
           {
             path: paths.products,
             element: <ShopPage />,
-            handle: { crumb: ({ params }, t) => t(params?.gender?.toUpperCase() + '_COLLECTION') } as RouteHandlerType,
+            handle: {
+              crumb: ({ params }, t) => (params?.gender ? t(params.gender.toUpperCase() + '_COLLECTION') : ''),
+            } as RouteHandlerType,
           },
         ],
       },

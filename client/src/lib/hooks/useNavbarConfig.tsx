@@ -44,6 +44,7 @@ const useNavbarConfig = (): MenuProps['items'] => {
     () => [
       {
         label: 'SHOP',
+        link: paths.shop,
         children: [
           {
             label: 'SHOP_MEN',
