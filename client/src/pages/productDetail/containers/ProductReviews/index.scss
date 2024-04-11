@@ -12,19 +12,35 @@
       margin-left: 0.5rem;
     }
   }
+
   .reviews-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
+
+    @media screen and (max-width: $md) {
+      grid-template-columns: 1fr;
+    }
   }
 }
 
 .review-modal {
-  .sc-modal-body .sc-rate {
-    margin-bottom: 1rem;
+  .sc-modal-body {
+    .sc-rate {
+      margin-bottom: 1rem;
+    }
+
+    .sc-input-data-count {
+      font-size: 0.75rem;
+    }
   }
 
   .sc-modal-footer {
     margin-top: 2rem !important;
+  }
+
+  .unauthorized-user-message {
+    padding: 3rem 1rem 1rem;
+    text-align: center;
   }
 }

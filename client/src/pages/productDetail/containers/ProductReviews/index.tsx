@@ -40,7 +40,10 @@ const ProductReviews: FC<{ productId: string | undefined }> = ({ productId }) =>
   });
 
   const addComment = useCallback(async () => {
-    if (!productId || !userId) return;
+    if (!productId || !userId) {
+      setModalOpened(false);
+      return;
+    }
 
     setConfirmLoading(true);
     await CommentsApi.addNewComment(productId, { ...newComment, userId });
@@ -84,20 +87,29 @@ const ProductReviews: FC<{ productId: string | undefined }> = ({ productId }) =>
         onCancel={() => setModalOpened(false)}
         cancelText={t('CANCEL')}
         okText={t('OK')}
+        cancelButtonProps={{ style: { display: !user ? 'none' : '' } }}
       >
-        <Rate
-          defaultValue={1}
-          allowClear={false}
-          onChange={(value) => setNewComment({ ...newComment, rating: value })}
-        />
+        {!user ? (
+          <Flex className="unauthorized-user-message" justify="center" align="center" vertical>
+            <h4 className="secondary">{t('UNAUTHORIZED_USER_REVIEW_MODAL_TITLE')}</h4>
+          </Flex>
+        ) : (
+          <>
+            <Rate
+              defaultValue={1}
+              allowClear={false}
+              onChange={(value) => setNewComment({ ...newComment, rating: value })}
+            />
 
-        <Input.TextArea
-          showCount
-          maxLength={300}
-          placeholder={t('WRITE_YOUR_COMMENT_HERE')}
-          style={{ height: 200, resize: 'none' }}
-          onChange={(e) => setNewComment({ ...newComment, text: e.target.value })}
-        ></Input.TextArea>
+            <Input.TextArea
+              showCount
+              maxLength={300}
+              placeholder={t('WRITE_YOUR_COMMENT_HERE')}
+              style={{ height: 200, resize: 'none' }}
+              onChange={(e) => setNewComment({ ...newComment, text: e.target.value })}
+            ></Input.TextArea>
+          </>
+        )}
       </Modal>
     </>
   );

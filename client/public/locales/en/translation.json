@@ -117,5 +117,6 @@
   "ADD_TO_CART": "Add to cart",
   "ALL_REVIEWS": "All Reviews",
   "WRITE_REVIEW": "Write a Reviews",
-  "WRITE_YOUR_COMMENT_HERE": "Write your comment here..."
+  "WRITE_YOUR_COMMENT_HERE": "Write your comment here...",
+  "UNAUTHORIZED_USER_REVIEW_MODAL_TITLE": "Only registered users can leave reviews!"
 }
