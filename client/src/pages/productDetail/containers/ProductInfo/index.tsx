@@ -57,7 +57,7 @@ const ProductInfo: FC<{
 
       <SectionWithDivider>
         <Flex gap="1.25rem">
-          <InputNumber min={0} />
+          <InputNumber min={1} initialValue={1} />
           <Button type="primary" size="large">
             {t('ADD_TO_CART')}
           </Button>

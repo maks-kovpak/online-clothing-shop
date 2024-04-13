@@ -21,15 +21,17 @@ const Comment: FC<{
   }, [i18n.language]);
 
   return (
-    <div className="comment">
-      <Rate defaultValue={comment.rating} disabled />
+    <Flex className="comment" justify="space-between" vertical>
+      <div>
+        <Rate defaultValue={comment.rating} disabled />
 
-      <Flex gap="0.375rem" align="center" className="author">
-        <h4 className="secondary">{comment.author}</h4>
-        <ApprovedIcon />
-      </Flex>
+        <Flex gap="0.375rem" align="center" className="author">
+          <h4 className="secondary">{comment.author}</h4>
+          <ApprovedIcon />
+        </Flex>
 
-      <p className="comment-text">{comment.text}</p>
+        <p className="comment-text">{comment.text}</p>
+      </div>
 
       {withPublicationDate && (
         <span className="publication-date">
@@ -40,7 +42,7 @@ const Comment: FC<{
           })}
         </span>
       )}
-    </div>
+    </Flex>
   );
 };
 
