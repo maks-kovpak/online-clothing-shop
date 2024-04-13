@@ -19,7 +19,7 @@ const ProductCard: FC<{ product: FullProduct }> = ({ product }) => {
 
   return (
     <Suspense fallback={<ProductCardSkeleton />}>
-      <Link className="product-card" to={generatePath(paths.productDetails, { id: product._id.toString() })}>
+      <Link className="product-card" to={generatePath(paths.productDetails, { id: product._id })}>
         <img src={imageUrl} alt={product.name} />
 
         <Flex className="product-info" dir="column" gap="0.5rem" vertical>

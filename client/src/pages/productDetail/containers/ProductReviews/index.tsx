@@ -74,7 +74,7 @@ const ProductReviews: FC<{ productId: string | undefined }> = ({ productId }) =>
         <div className="reviews-container">
           {isPending
             ? commentsSkeleton
-            : comments!.map((item) => <Comment key={item._id.toString()} comment={item} withPublicationDate />)}
+            : comments!.map((item) => <Comment key={item._id} comment={item} withPublicationDate />)}
         </div>
       </section>
 

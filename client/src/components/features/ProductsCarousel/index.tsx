@@ -47,7 +47,7 @@ const ProductsCarousel: FC<{ products: FullProduct[] | undefined; pending?: bool
   return (
     <Swiper className="products-carousel" {...swiperOptions}>
       {products.map((product) => (
-        <SwiperSlide key={product._id.toString()}>
+        <SwiperSlide key={product._id}>
           <ProductCard product={product} />
         </SwiperSlide>
       ))}

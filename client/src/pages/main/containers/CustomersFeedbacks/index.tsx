@@ -81,7 +81,7 @@ const CustomersFeedbacks = () => {
       ) : (
         <Swiper className="comments-carousel" {...swiperOptions}>
           {comments.map((item) => (
-            <SwiperSlide key={item._id.toString()}>
+            <SwiperSlide key={item._id}>
               <Comment comment={item} />
             </SwiperSlide>
           ))}

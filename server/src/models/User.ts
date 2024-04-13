@@ -1,6 +1,6 @@
 import mongoose, { Schema, Types } from 'mongoose';
 import { UserRole, ClothingSize } from '../lib/enums.js';
-import { EMAIL_REGEX, USERNAME_REGEX, HEX_COLOR_REGEX } from '../lib/constants.js';
+import { EMAIL_REGEX, USERNAME_REGEX } from '../lib/constants.js';
 
 export interface ICartItem {
   _id: Types.ObjectId;
@@ -36,7 +36,6 @@ const UserSchema = new Schema<IUser>(
         productOptionId: { type: Schema.Types.ObjectId, ref: 'ProductOptions', required: true },
         count: { type: Number, required: true, min: 1 },
         size: { type: String, required: true, enum: Object.values(ClothingSize) },
-        color: { type: String, required: true, match: HEX_COLOR_REGEX },
       },
     ],
   },
