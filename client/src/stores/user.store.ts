@@ -2,9 +2,9 @@ import { createEffect, createEvent, createStore } from 'effector';
 import Cookies from 'js-cookie';
 import join from 'url-join';
 import UserApi from '@/lib/api/user';
-import type { IUser } from '@server/models/User';
+import type { FullUser } from '@server/lib/types/models';
 
-type UserStore = IUser | null;
+type UserStore = FullUser | null;
 
 /* Utils */
 
@@ -28,7 +28,7 @@ export const fetchUserProfileFx = createEffect(async () => {
 
 /* Events */
 
-export const updateUserEvent = createEvent<Partial<IUser>>();
+export const updateUserEvent = createEvent<Partial<FullUser>>();
 export const resetUserEvent = createEvent();
 
 /* Store */
@@ -40,7 +40,7 @@ $user.on(fetchUserProfileFx.doneData, (_, fetchedUser) => {
 });
 
 $user.on(updateUserEvent, (state, payload) => {
-  return withUpdatedProfileImage(state ? { ...state, ...payload } : (payload as IUser));
+  return withUpdatedProfileImage(state ? { ...state, ...payload } : (payload as FullUser));
 });
 
 $user.reset(resetUserEvent);

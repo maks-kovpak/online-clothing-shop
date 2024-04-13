@@ -1,17 +1,17 @@
 import bcrypt from 'bcrypt';
 import ApiError from '../lib/errors/ApiError.js';
-import User, { type IUser } from '../models/User.js';
+import User from '../models/User.js';
 import type { NextFunction, Request, Response } from 'express';
-import type { UpdateUserPayload } from '../lib/types/models.js';
+import type { FullUser, UpdateUserPayload } from '../lib/types/models.js';
 import { AVATARS_IMAGES_PATH } from '../lib/constants.js';
 
 const UserController = {
-  get: async (req: Request<{ id: string }>, res: Response<IUser>, next: NextFunction) => {
+  get: async (req: Request<{ id: string }>, res: Response<FullUser>, next: NextFunction) => {
     try {
       const user = await User.findById(req.params.id);
 
       if (!user) return next(ApiError.notFound('User not found'));
-      res.status(200).json(user!);
+      res.status(200).json(user.toJSON());
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }
@@ -19,7 +19,7 @@ const UserController = {
 
   update: async (
     req: Request<{ id: string }, unknown, UpdateUserPayload>,
-    res: Response<{ user: IUser }>,
+    res: Response<{ user: FullUser }>,
     next: NextFunction
   ) => {
     try {
@@ -32,7 +32,7 @@ const UserController = {
 
       if (!oldPassword || !newPassword) {
         const updatedUser = await User.findByIdAndUpdate(req.params.id, resultBody, { new: true });
-        return res.status(200).json({ user: updatedUser! });
+        return res.status(200).json({ user: updatedUser!.toJSON() });
       }
 
       // Update password
@@ -50,7 +50,7 @@ const UserController = {
         { new: true }
       );
 
-      res.status(200).json({ user: updatedUser! });
+      res.status(200).json({ user: updatedUser!.toJSON() });
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }

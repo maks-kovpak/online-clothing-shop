@@ -32,7 +32,7 @@ const ProductReviews: FC<{ productId: string | undefined }> = ({ productId }) =>
   });
 
   const user = useUnit($user);
-  const userId = useMemo(() => user?._id.toString(), [user]);
+  const userId = useMemo(() => user?._id, [user]);
 
   const [newComment, setNewComment] = useState<Omit<NewCommentRequestBody, 'userId'>>({
     text: '',

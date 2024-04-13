@@ -2,13 +2,14 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import ApiError from '../lib/errors/ApiError.js';
-import User, { type IUser } from '../models/User.js';
+import User from '../models/User.js';
+import type { FullUser } from '../lib/types/models.js';
 import type { NextFunction, Request, Response } from 'express';
 import type { WithoutTimestamps } from '../lib/types/utils.js';
 
 const cookieMaxAge = 24 * 24 * 60 * 60 * 1000; // 24 days
 
-const loginUser = (user: IUser, req: Request, res: Response, next: NextFunction, status: number = 200) => {
+const loginUser = (user: FullUser, req: Request, res: Response, next: NextFunction, status: number = 200) => {
   req.login(user, { session: false }, (err) => {
     if (err) return next(err);
 
@@ -16,7 +17,7 @@ const loginUser = (user: IUser, req: Request, res: Response, next: NextFunction,
     const token = jwt.sign({ id: user._id }, process.env.JWT_TOKEN_SECRET);
 
     res.cookie('jwt-token', token, { maxAge: cookieMaxAge });
-    res.cookie('user-id', user._id.toString(), { maxAge: cookieMaxAge });
+    res.cookie('user-id', user._id, { maxAge: cookieMaxAge });
 
     return res.status(status).json({ user: user, token });
   });
@@ -24,8 +25,8 @@ const loginUser = (user: IUser, req: Request, res: Response, next: NextFunction,
 
 const AuthController = {
   register: async (
-    req: RequestWithBody<WithoutTimestamps<IUser>>,
-    res: Response<{ token: string; user: Omit<IUser, 'password'> }>,
+    req: RequestWithBody<WithoutTimestamps<FullUser>>,
+    res: Response<{ token: string; user: Omit<FullUser, 'password'> }>,
     next: NextFunction
   ) => {
     try {
@@ -39,7 +40,7 @@ const AuthController = {
       const createdUser = await User.create({ ...req.body, password: passwordHash });
       await createdUser.save();
 
-      loginUser(createdUser, req as Request, res, next, 201);
+      loginUser(createdUser.toJSON(), req as Request, res, next, 201);
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }
@@ -47,10 +48,10 @@ const AuthController = {
 
   login: async (
     req: RequestWithBody<{ email: string; password: string }>,
-    res: Response<{ token: string; user: Omit<IUser, 'password'> }>,
+    res: Response<{ token: string; user: Omit<FullUser, 'password'> }>,
     next: NextFunction
   ) => {
-    passport.authenticate('local', { session: false }, (err: Error, user: IUser) => {
+    passport.authenticate('local', { session: false }, (err: Error, user: FullUser) => {
       if (err) return next(err);
       if (!user) return next(ApiError.badRequest('User does not exist'));
       loginUser(user, req as Request, res, next);
