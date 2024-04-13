@@ -2,7 +2,7 @@ import type { SortOrder } from 'mongoose';
 import type { IProduct } from '../../models/Product.js';
 import type { IProductOption } from '../../models/ProductOptions.js';
 import type { OmitId, WithoutTimestamps } from './utils.js';
-import type { IUser } from '../../models/User.js';
+import type { ICartItem, IUser } from '../../models/User.js';
 import type { IComment } from '../../models/Comments.js';
 import type { IClothingType } from '../../models/ClothingTypes.js';
 
@@ -41,3 +41,15 @@ export type NewCommentRequestBody = { userId: string; rating: number; text: stri
 /* Clothing types */
 
 export type ClothingTypesQueryParams = Partial<Record<keyof IClothingType, string>>;
+
+/* Cart */
+
+export type FullCartItem = Omit<ICartItem, 'productOptionId'> & {
+  name: string;
+  initialPrice: number;
+  price: number;
+  discount: number;
+  image: string;
+};
+
+export type Cart = FullCartItem[];
