@@ -30,7 +30,7 @@ const Color: FC<{
 
   return (
     <div
-      className={clsx('color', { checked })}
+      className={clsx('color', { checked, checkable })}
       style={styles}
       onClick={() => {
         if (!checkable) return;

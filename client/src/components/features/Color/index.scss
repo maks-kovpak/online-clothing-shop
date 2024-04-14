@@ -4,7 +4,10 @@
   width: 37px;
   height: 37px;
   border-radius: 50%;
-  cursor: pointer;
+
+  &.checkable {
+    cursor: pointer;
+  }
 
   &.checked {
     outline: 2px solid $grayscale-color-10;

@@ -7,7 +7,7 @@ import MetaTags from '@/components/features/MetaTags';
 import UserProfileSidebar from './containers/UserProfileSidebar';
 import UserProfileForm from './containers/UserProfileForm';
 import Breadcrumbs from '@/components/features/Breadcrumbs';
-import $user from '@/stores/user.store';
+import $user, { fetchUserProfileFx } from '@/stores/user.store';
 import NotFoundPage from '../notFound';
 
 import './index.scss';
@@ -16,16 +16,16 @@ const ProfilePage = () => {
   const { t } = useTranslation();
   const [title, setTitle] = useState<string | null>(null);
   const [drawerOpened, setDrawerOpened] = useState<boolean>(false);
-  const user = useUnit($user);
+  const [user, pending] = useUnit([$user, fetchUserProfileFx.pending]);
 
-  if (!user) return <NotFoundPage />;
+  if (!pending && !user) return <NotFoundPage />;
 
   return (
     <>
       <MetaTags title={`SHOP.CO | ${t('PROFILE_PAGE_TITLE')}`} description={t('PROFILE_PAGE_DESCRIPTION')} />
 
       <main>
-        <section className="primary-section" style={{ marginTop: '2rem' }}>
+        <section className="primary-section breadcrumbs-section">
           <Flex justify="space-between" wrap="wrap" gap="0.5rem">
             <Breadcrumbs />
             {user && (

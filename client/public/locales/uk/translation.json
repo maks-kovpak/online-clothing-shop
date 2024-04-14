@@ -118,5 +118,9 @@
   "ALL_REVIEWS": "Всі відгуки",
   "WRITE_REVIEW": "Написати відгук",
   "WRITE_YOUR_COMMENT_HERE": "Залиште свій коментар тут...",
-  "UNAUTHORIZED_USER_REVIEW_MODAL_TITLE": "Тільки зареєстровані користувачі можуть залишати відгуки!"
+  "UNAUTHORIZED_USER_REVIEW_MODAL_TITLE": "Тільки зареєстровані користувачі можуть залишати відгуки!",
+  "CART": "Кошик",
+  "CART_PAGE_TITLE": "Кошик товарів",
+  "CART_PAGE_DESCRIPTION": "Перегляньте вміст кошика та керуйте вибраними товарами, щоб завершити покупку",
+  "YOUR_CART": "Ваш кошик"
 }
