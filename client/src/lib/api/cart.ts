@@ -7,11 +7,11 @@ const CartApi = {
   },
 
   addNewItem: async (userId: string, payload: CartItemPayload) => {
-    return await axios.patch<{ message: string }>(`/cart/add/${userId}`, payload);
+    return await axios.patch<Cart>(`/cart/add/${userId}`, payload);
   },
 
   removeItem: async (userId: string, payload: CartItemPayload) => {
-    return await axios.patch<{ message: string }>(`/cart/remove/${userId}`, payload);
+    return await axios.patch<Cart>(`/cart/remove/${userId}`, payload);
   },
 
   clearCart: async (userId: string) => {

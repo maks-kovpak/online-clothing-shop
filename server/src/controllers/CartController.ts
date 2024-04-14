@@ -22,12 +22,22 @@ const CartController = {
 
   addNewItem: async (
     req: Request<{ id: string }, unknown, CartItemPayload>,
-    res: Response<{ message: string }>,
+    res: Response<Cart>,
     next: NextFunction
   ) => {
     try {
-      await User.findByIdAndUpdate(req.params.id, { $push: { cart: req.body } });
-      res.status(200).json({ message: 'The user cart has been successfully updated' });
+      const user = await User.findByIdAndUpdate(req.params.id, { $push: { cart: req.body } }, { new: true });
+
+      if (!user) {
+        return res.status(200).json([]);
+      }
+
+      const cart = await User.aggregate<FullCartItem>([
+        { $match: { _id: new Types.ObjectId(user._id) } },
+        ...cartItemsQuery,
+      ]).exec();
+
+      res.status(200).json(cart);
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }
@@ -35,12 +45,22 @@ const CartController = {
 
   removeItem: async (
     req: Request<{ id: string }, unknown, CartItemPayload>,
-    res: Response<{ message: string }>,
+    res: Response<Cart>,
     next: NextFunction
   ) => {
     try {
-      await User.findByIdAndUpdate(req.params.id, { $pull: { cart: req.body } });
-      res.status(200).json({ message: 'The user cart item has been successfully removed' });
+      const user = await User.findByIdAndUpdate(req.params.id, { $pull: { cart: req.body } }, { new: true });
+
+      if (!user) {
+        return res.status(200).json([]);
+      }
+
+      const cart = await User.aggregate<FullCartItem>([
+        { $match: { _id: new Types.ObjectId(user._id) } },
+        ...cartItemsQuery,
+      ]).exec();
+
+      res.status(200).json(cart);
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }

@@ -1,28 +1,45 @@
 import Cookies from 'js-cookie';
 import CartApi from '@/lib/api/cart';
-import { createStore, createEffect, createEvent } from 'effector';
+import { createStore, createEffect } from 'effector';
 import type { Cart, CartItemPayload } from '@server/lib/types/models';
+
+const userId = Cookies.get('user-id');
 
 /* Effects */
 
 export const fetchCartFx = createEffect(async () => {
-  const id = Cookies.get('user-id');
-  if (!id) return null;
+  if (!userId) return null;
 
-  const response = await CartApi.getAll(id);
+  const response = await CartApi.getAll(userId);
   return response.data;
 });
 
-/* Events */
+export const addNewItemFx = createEffect<CartItemPayload, Cart | null>(async (payload) => {
+  if (!userId) return null;
 
-export const addNewItemEvent = createEvent<CartItemPayload>();
-export const removeItem = createEvent<CartItemPayload>();
-export const clearCart = createEvent();
+  const response = await CartApi.addNewItem(userId, payload);
+  return response.data;
+});
+
+export const removeItemFx = createEffect<CartItemPayload, Cart | null>(async (payload) => {
+  if (!userId) return null;
+
+  const response = await CartApi.removeItem(userId, payload);
+  return response.data;
+});
+
+export const clearCartFx = createEffect(async () => {
+  if (!userId) return null;
+
+  await CartApi.clearCart(userId);
+  return [];
+});
 
 /* Stores */
 
 export const $cart = createStore<Cart | null>(null);
 
-$cart.on(fetchCartFx.doneData, (_, fetchedCart) => {
-  return fetchedCart;
-});
+$cart.on(fetchCartFx.doneData, (_, fetchedCart) => fetchedCart);
+$cart.on(addNewItemFx.doneData, (_, fetchedCart) => fetchedCart);
+$cart.on(removeItemFx.doneData, (_, fetchedCart) => fetchedCart);
+$cart.on(clearCartFx.doneData, (_, fetchedCart) => fetchedCart);
