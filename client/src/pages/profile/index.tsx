@@ -8,6 +8,7 @@ import UserProfileSidebar from './containers/UserProfileSidebar';
 import UserProfileForm from './containers/UserProfileForm';
 import Breadcrumbs from '@/components/features/Breadcrumbs';
 import $user from '@/stores/user.store';
+import NotFoundPage from '../notFound';
 
 import './index.scss';
 
@@ -16,6 +17,8 @@ const ProfilePage = () => {
   const [title, setTitle] = useState<string | null>(null);
   const [drawerOpened, setDrawerOpened] = useState<boolean>(false);
   const user = useUnit($user);
+
+  if (!user) return <NotFoundPage />;
 
   return (
     <>

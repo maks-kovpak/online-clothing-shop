@@ -17,7 +17,7 @@ const loginUser = (user: FullUser, req: Request, res: Response, next: NextFuncti
     const token = jwt.sign({ id: user._id }, process.env.JWT_TOKEN_SECRET);
 
     res.cookie('jwt-token', token, { maxAge: cookieMaxAge });
-    res.cookie('user-id', user._id, { maxAge: cookieMaxAge });
+    res.cookie('user-id', user._id.toString(), { maxAge: cookieMaxAge });
 
     return res.status(status).json({ user: user, token });
   });
