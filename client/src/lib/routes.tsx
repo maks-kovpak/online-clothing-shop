@@ -9,6 +9,7 @@ import ProfilePage from '@/pages/profile';
 import NotFoundPage from '@/pages/notFound';
 import ShopPage from '@/pages/shop';
 import ProductDetailPage from '@/pages/productDetail';
+import CartPage from '@/pages/cart';
 
 import type { RouteObject } from 'react-router-dom';
 import type { RouteHandlerType } from '@/lib/types';
@@ -24,6 +25,7 @@ const routes: Array<RouteObject> = [
       { path: paths.signup, element: <SignupPage /> },
       { path: paths.login, element: <LoginPage /> },
       { path: paths.profile, element: <ProfilePage />, handle: { crumb: 'PROFILE' } },
+      { path: paths.cart, element: <CartPage />, handle: { crumb: 'CART' } },
       {
         path: paths.shop,
         handle: { crumb: 'SHOP' },

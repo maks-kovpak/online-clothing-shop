@@ -37,8 +37,9 @@ const useNavbarConfig = (): MenuProps['items'] => {
   const [clothingTypes, fetchClothingTypes] = useUnit([$clothingTypes, fetchClothingTypesFx]);
 
   useEffect(() => {
+    if (clothingTypes.length) return;
     fetchClothingTypes();
-  }, [fetchClothingTypes]);
+  }, [clothingTypes, fetchClothingTypes]);
 
   const initialConfig: NavbarConfig = useMemo(
     () => [

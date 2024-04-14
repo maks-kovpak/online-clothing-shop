@@ -45,6 +45,15 @@ const CartController = {
       next(ApiError.internal((err as Error).message));
     }
   },
+
+  clearCart: async (req: Request<{ id: string }>, res: Response<{ message: string }>, next: NextFunction) => {
+    try {
+      await User.findByIdAndUpdate(req.params.id, { $set: { cart: [] } });
+      res.status(200).json({ message: 'The user cart has been successfully cleared' });
+    } catch (err) {
+      next(ApiError.internal((err as Error).message));
+    }
+  },
 };
 
 export default CartController;

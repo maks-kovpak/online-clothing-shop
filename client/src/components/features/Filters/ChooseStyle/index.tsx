@@ -14,8 +14,9 @@ const ChooseStyle = () => {
   const updateFilters = useUnit(updateFiltersEvent);
 
   useEffect(() => {
+    if (clothingStyles.length) return;
     fetchClothingStyles();
-  }, [fetchClothingStyles]);
+  }, [clothingStyles, fetchClothingStyles]);
 
   const options: CheckboxOptionType[] = useMemo(() => {
     return clothingStyles?.map((style) => ({
