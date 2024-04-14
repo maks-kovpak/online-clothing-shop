@@ -58,3 +58,7 @@ export type FullCartItem = Omit<JsonModel<ICartItem>, 'productOptionId'> & {
 };
 
 export type Cart = FullCartItem[];
+
+export type CartItemPayload = Omit<ICartItem, '_id' | 'productOptionId'> & {
+  productOptionId: string;
+};

@@ -6,7 +6,6 @@ export interface ICartItem {
   _id: Types.ObjectId;
   productOptionId: Types.ObjectId;
   count: number;
-  color: string;
   size: ClothingSize;
 }
 

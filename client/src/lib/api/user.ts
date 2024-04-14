@@ -26,7 +26,7 @@ const UserApi = {
   },
 
   update: async (id: string, payload: FormData) => {
-    return await axios.put<{ user: FullUser }>(`/user/${id}`, payload, {
+    return await axios.patch<{ user: FullUser }>(`/user/${id}`, payload, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
