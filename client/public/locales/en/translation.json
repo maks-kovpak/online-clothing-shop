@@ -123,5 +123,11 @@
   "CART_PAGE_TITLE": "Product Cart",
   "CART_PAGE_DESCRIPTION": "Explore and manage your selected items effortlessly as you prepare to complete your purchase",
   "YOUR_CART": "Your cart",
-  "COLOR": "Color"
+  "COLOR": "Color",
+  "ORDER_SUMMARY": "Order Summary",
+  "SUBTOTAL": "Subtotal",
+  "DISCOUNT": "Discount",
+  "DELIVERY_FEE": "Delivery Fee",
+  "TOTAL": "Total",
+  "COMPLETE_ORDER": "Complete the order"
 }

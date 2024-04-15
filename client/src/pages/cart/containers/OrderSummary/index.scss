@@ -1,0 +1,47 @@
+@import '@/assets/styles/_variables.module';
+
+.order-summary {
+  border: 1px solid $grayscale-color-4;
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  width: 40%;
+  position: sticky;
+  top: calc($navbar-height + 1rem);
+
+  h3 {
+    margin-bottom: 1.5rem;
+  }
+
+  .summary-field {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+
+    &.discount {
+      span:nth-child(2) {
+        color: $discount-text-color;
+      }
+    }
+
+    &.total {
+      font-size: 1.5rem;
+
+      span {
+        color: $primary-black-color !important;
+        font-weight: 600;
+      }
+    }
+
+    span:first-child {
+      color: $grayscale-color-8;
+    }
+
+    span:nth-child(2) {
+      font-weight: 600;
+    }
+  }
+
+  .complete-order-button {
+    width: 100%;
+    margin-top: 1rem !important;
+  }
+}

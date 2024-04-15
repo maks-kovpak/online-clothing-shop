@@ -31,7 +31,7 @@ const CartPage = () => {
         <section className="primary-section cart-section">
           <h2 className="secondary">{t('YOUR_CART')}</h2>
 
-          <Flex>
+          <Flex justify="space-between" align="start" gap="1.25rem">
             <CartItemsList />
             <OrderSummary />
           </Flex>

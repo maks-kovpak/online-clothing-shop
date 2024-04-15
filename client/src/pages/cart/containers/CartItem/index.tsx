@@ -3,7 +3,7 @@ import { Button, Flex, Skeleton } from 'antd';
 import { UPLOAD_URL } from '@/lib/constants';
 import { InputNumber } from '@/ui';
 import { useTranslation } from 'react-i18next';
-import ProductPrice from '../../../../components/features/ProductPrice';
+import ProductPrice from '@/components/features/ProductPrice';
 import type { FullCartItem } from '@server/lib/types/models';
 import type { FC } from 'react';
 
