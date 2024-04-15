@@ -1,10 +1,12 @@
 import { $cart, fetchCartFx } from '@/stores/cart.store';
 import { useUnit } from 'effector-react';
 import { useEffect } from 'react';
+import { Flex } from 'antd';
 import Breadcrumbs from '@/components/features/Breadcrumbs';
 import MetaTags from '@/components/features/MetaTags';
 import { useTranslation } from 'react-i18next';
-import CartItem from '@/components/features/CartItem';
+import CartItemsList from './containers/CartItemsList';
+import OrderSummary from './containers/OrderSummary';
 
 import './index.scss';
 
@@ -28,7 +30,11 @@ const CartPage = () => {
 
         <section className="primary-section cart-section">
           <h2 className="secondary">{t('YOUR_CART')}</h2>
-          <div className="cart-container">{cart?.map((item) => <CartItem key={item._id} item={item} />)}</div>
+
+          <Flex>
+            <CartItemsList />
+            <OrderSummary />
+          </Flex>
         </section>
       </main>
     </>

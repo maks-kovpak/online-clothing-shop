@@ -1,7 +1,12 @@
 .cart-item {
-  img {
+  img,
+  .sc-skeleton-image {
     width: 100px;
     border-radius: 0.625rem;
+  }
+
+  .sc-skeleton-image {
+    height: 100% !important;
   }
 
   .cart-item-body {

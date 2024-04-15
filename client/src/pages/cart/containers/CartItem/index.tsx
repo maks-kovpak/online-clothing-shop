@@ -1,9 +1,9 @@
 import join from 'url-join';
-import { Button, Flex } from 'antd';
+import { Button, Flex, Skeleton } from 'antd';
 import { UPLOAD_URL } from '@/lib/constants';
 import { InputNumber } from '@/ui';
 import { useTranslation } from 'react-i18next';
-import ProductPrice from '../ProductPrice';
+import ProductPrice from '../../../../components/features/ProductPrice';
 import type { FullCartItem } from '@server/lib/types/models';
 import type { FC } from 'react';
 
@@ -11,7 +11,19 @@ import BinIcon from '@/assets/icons/bin.svg?react';
 
 import './index.scss';
 
-const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
+export const CartItemSkeleton = () => {
+  return (
+    <Flex className="cart-item" gap="1rem">
+      <Skeleton.Image active />
+
+      <div className="cart-item-body">
+        <Skeleton paragraph={{ rows: 4 }} active />
+      </div>
+    </Flex>
+  );
+};
+
+export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
   const { t } = useTranslation();
 
   return (
@@ -45,5 +57,3 @@ const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
     </Flex>
   );
 };
-
-export default CartItem;

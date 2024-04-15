@@ -1,0 +1,19 @@
+@import '@/assets/styles/_variables.module';
+
+.cart-container {
+  border: 1px solid $grayscale-color-4;
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  flex-grow: 1;
+
+  .cart-item {
+    &:not(:first-child) {
+      padding-top: 1.25rem;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $grayscale-color-4;
+      padding-bottom: 1.25rem;
+    }
+  }
+}
