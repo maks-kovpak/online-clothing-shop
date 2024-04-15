@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { CSSProperties, FC } from 'react';
 import ColorJS from 'color';
 import { clsx } from 'clsx';
@@ -7,11 +7,18 @@ import './index.scss';
 
 const Color: FC<{
   value: string;
-  onChecked?: (value?: boolean) => void;
+  onChecked?: (value: boolean) => void;
   checkable?: boolean;
-}> = ({ value, onChecked, checkable }) => {
+  isChecked?: boolean;
+}> = ({ value, onChecked, checkable, isChecked }) => {
   const color = useMemo(() => new ColorJS(value), [value]);
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(isChecked ?? false);
+
+  useEffect(() => {
+    if (isChecked !== undefined) {
+      setChecked(isChecked);
+    }
+  }, [isChecked]);
 
   const styles: CSSProperties = useMemo(
     () => ({
@@ -23,13 +30,17 @@ const Color: FC<{
 
   return (
     <div
-      className={clsx('color', { checked })}
+      className={clsx('color', { checked, checkable })}
       style={styles}
       onClick={() => {
         if (!checkable) return;
 
-        if (onChecked) onChecked(!checked);
-        setChecked(!checked);
+        if (isChecked !== undefined && onChecked) {
+          onChecked(isChecked);
+        } else {
+          onChecked && onChecked(!checked);
+          setChecked(!checked);
+        }
       }}
     ></div>
   );

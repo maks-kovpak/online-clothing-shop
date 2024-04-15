@@ -35,7 +35,7 @@ const ProductsList: FC<{
   return (
     <div className="products-list">
       {products.map((product) => (
-        <ProductCard key={product._id.toString()} product={product} />
+        <ProductCard key={product._id} product={product} />
       ))}
     </div>
   );

@@ -30,7 +30,7 @@ main.shop-page {
 }
 
 .filters-drawer,
-.sc-drawer-content-wrapper {
+.sc-drawer-content-wrapper:has(.filters-drawer) {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   overflow: hidden;

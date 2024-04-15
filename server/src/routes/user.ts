@@ -9,8 +9,8 @@ const requireAuth = passport.authenticate('jwt', { session: false });
 /* Get */
 userRouter.get('/:id', requireAuth, UserController.get);
 
-/* Put */
-userRouter.put('/:id', requireAuth, upload.single('avatar'), UserController.update);
+/* Patch */
+userRouter.patch('/:id', requireAuth, upload.single('avatar'), UserController.update);
 
 /* Post */
 userRouter.post('/exists', UserController.exists);

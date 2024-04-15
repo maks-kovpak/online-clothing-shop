@@ -111,5 +111,16 @@
   "SIZE": "Розмір",
   "SHOP_PAGE_TITLE": "Магазин",
   "SHOP_PAGE_DESCRIPTION": "Обирайте речі, які вам подобаються",
-  "NO_DATA": "Немає даних"
+  "NO_DATA": "Немає даних",
+  "SELECT_COLOR": "Оберіть колір",
+  "CHOOSE_SIZE": "Оберіть розмір",
+  "ADD_TO_CART": "Додати до кошика",
+  "ALL_REVIEWS": "Всі відгуки",
+  "WRITE_REVIEW": "Написати відгук",
+  "WRITE_YOUR_COMMENT_HERE": "Залиште свій коментар тут...",
+  "UNAUTHORIZED_USER_REVIEW_MODAL_TITLE": "Тільки зареєстровані користувачі можуть залишати відгуки!",
+  "CART": "Кошик",
+  "CART_PAGE_TITLE": "Кошик товарів",
+  "CART_PAGE_DESCRIPTION": "Перегляньте вміст кошика та керуйте вибраними товарами, щоб завершити покупку",
+  "YOUR_CART": "Ваш кошик"
 }

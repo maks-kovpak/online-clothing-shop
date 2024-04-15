@@ -57,7 +57,7 @@ const UserProfileForm = () => {
     }
 
     await loadAction(async () => {
-      const response = await UserApi.update(user._id.toString(), formData);
+      const response = await UserApi.update(user._id, formData);
 
       if (response.status == 200) {
         updateUser(response.data.user);

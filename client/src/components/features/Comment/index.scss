@@ -5,11 +5,18 @@
   padding: 1.75rem 2rem;
   border: 1px solid $grayscale-color-4;
 
-  .comment-text {
+  .comment-text,
+  .publication-date {
     color: $grayscale-color-7;
     font-weight: 500;
     line-height: 140%;
     font-size: $font-size-body-1;
+  }
+
+  .publication-date {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: $grayscale-color-8;
   }
 
   .author {

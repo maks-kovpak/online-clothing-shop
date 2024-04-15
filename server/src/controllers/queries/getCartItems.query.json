@@ -1,0 +1,80 @@
+[
+  {
+    "$unwind": "$cart"
+  },
+  {
+    "$lookup": {
+      "from": "productOptions",
+      "localField": "cart.productOptionId",
+      "foreignField": "_id",
+      "as": "cart.productOption"
+    }
+  },
+  {
+    "$unwind": "$cart.productOption"
+  },
+  {
+    "$lookup": {
+      "from": "product",
+      "localField": "cart.productOption.productId",
+      "foreignField": "_id",
+      "as": "cart.product"
+    }
+  },
+  {
+    "$unwind": "$cart.product"
+  },
+  {
+    "$lookup": {
+      "from": "files",
+      "localField": "cart.productOption.images",
+      "foreignField": "_id",
+      "as": "cart.product.images"
+    }
+  },
+  {
+    "$group": {
+      "_id": "$_id",
+      "cart": {
+        "$push": "$cart"
+      }
+    }
+  },
+  {
+    "$unwind": "$cart"
+  },
+  {
+    "$project": {
+      "_id": "$cart._id",
+      "count": "$cart.count",
+      "size": "$cart.size",
+      "color": "$cart.productOption.color",
+      "name": "$cart.product.name",
+      "initialPrice": "$cart.product.price",
+      "price": {
+        "$round": [
+          {
+            "$multiply": [
+              "$cart.product.price",
+              {
+                "$subtract": [
+                  1,
+                  {
+                    "$divide": ["$cart.product.discount", 100]
+                  }
+                ]
+              }
+            ]
+          },
+          0
+        ]
+      },
+      "discount": "$cart.product.discount",
+      "image": {
+        "$first": {
+          "$first": "$cart.product.images.key"
+        }
+      }
+    }
+  }
+]

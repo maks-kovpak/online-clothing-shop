@@ -49,6 +49,7 @@
     "$project": {
       "_id": 1,
       "name": 1,
+      "description": 1,
       "type": "$type",
       "initialPrice": "$price",
       "price": {
@@ -105,6 +106,7 @@
     "$project": {
       "_id": 1,
       "name": 1,
+      "description": 1,
       "type.name": 1,
       "type.slug": 1,
       "initialPrice": 1,
@@ -128,6 +130,7 @@
     "$group": {
       "_id": "$_id",
       "name": { "$first": "$name" },
+      "description": { "$first": "$description" },
       "type": { "$first": "$type" },
       "initialPrice": { "$first": "$initialPrice" },
       "price": { "$first": "$price" },

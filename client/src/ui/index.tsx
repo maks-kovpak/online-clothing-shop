@@ -5,3 +5,4 @@ export { default as Button } from './Button';
 export { default as Drawer } from './Drawer';
 export { default as Rate } from './Rate';
 export { default as Tag } from './Tag';
+export { default as InputNumber } from './InputNumber';

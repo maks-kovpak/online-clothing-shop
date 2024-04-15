@@ -1,0 +1,26 @@
+@import '@/assets/styles/_variables.module';
+
+.number-input-wrapper {
+  background-color: $input-bg-color;
+  width: fit-content;
+  border-radius: 100px;
+
+  .sc-btn {
+    font-size: 2rem;
+    line-height: 1;
+    color: $primary-black-color;
+
+    &:hover {
+      color: $grayscale-color-8 !important;
+    }
+  }
+
+  .sc-input {
+    background-color: transparent;
+    border-radius: 0;
+    width: 50px;
+    min-width: unset;
+    text-align: center;
+    font-weight: 600;
+  }
+}

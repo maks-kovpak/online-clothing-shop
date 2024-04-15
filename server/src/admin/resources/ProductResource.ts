@@ -6,7 +6,7 @@ const ProductResource: ResourceWithOptions = {
   options: {
     titleProperty: 'name',
     listProperties: ['_id', 'name', 'type', 'price', 'style', 'public'],
-    editProperties: ['name', 'type', 'price', 'style', 'gender', 'discount', 'articleNumber', 'public'],
+    editProperties: ['name', 'description', 'type', 'price', 'style', 'gender', 'discount', 'articleNumber', 'public'],
   },
 };
 

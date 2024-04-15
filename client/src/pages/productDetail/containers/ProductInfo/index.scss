@@ -1,0 +1,77 @@
+@import '@/assets/styles/_variables.module';
+
+.section-with-divider {
+  .sc-divider {
+    margin: 1.5rem 0;
+  }
+
+  .sm-title {
+    display: inline-block;
+    color: $grayscale-color-7;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .content {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.detailed-product-info {
+  flex-grow: 1;
+
+  h2 {
+    line-height: 120%;
+    margin-bottom: 0.875rem;
+  }
+
+  .description {
+    color: $grayscale-color-8;
+  }
+
+  .product-rating {
+    margin-bottom: 0.875rem;
+  }
+
+  .product-price {
+    margin-bottom: 0.875rem;
+
+    .sc-tag-red {
+      padding: 4px 12px;
+      font-size: 1rem;
+    }
+
+    .price,
+    .old-price {
+      font-size: 1.75rem;
+    }
+  }
+
+  .sc-radio-group {
+    display: flex;
+    gap: 0.5rem;
+
+    .sc-radio-button-wrapper {
+      border-radius: 100px;
+      border: none;
+      background-color: $input-bg-color;
+      color: $grayscale-color-7;
+      font-weight: 500;
+      line-height: 200%;
+      padding: 0 1.5rem;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.sc-radio-button-wrapper-checked {
+        background-color: $primary-black-color;
+        color: $primary-white-color;
+      }
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+}

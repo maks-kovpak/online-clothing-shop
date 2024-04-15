@@ -7,4 +7,7 @@ const commentsRouter = Router();
 commentsRouter.get('/', CommentsController.getAll);
 commentsRouter.get('/:productId', CommentsController.getAllForProduct);
 
+/* Post */
+commentsRouter.post('/:productId', CommentsController.addNewComment);
+
 export default commentsRouter;

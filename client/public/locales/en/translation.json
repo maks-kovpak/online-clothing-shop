@@ -111,5 +111,16 @@
   "SIZE": "Size",
   "SHOP_PAGE_TITLE": "Shop",
   "SHOP_PAGE_DESCRIPTION": "Choose things that you like",
-  "NO_DATA": "No Data"
+  "NO_DATA": "No Data",
+  "SELECT_COLOR": "Select Color",
+  "CHOOSE_SIZE": "Choose Size",
+  "ADD_TO_CART": "Add to cart",
+  "ALL_REVIEWS": "All Reviews",
+  "WRITE_REVIEW": "Write a Reviews",
+  "WRITE_YOUR_COMMENT_HERE": "Write your comment here...",
+  "UNAUTHORIZED_USER_REVIEW_MODAL_TITLE": "Only registered users can leave reviews!",
+  "CART": "Cart",
+  "CART_PAGE_TITLE": "Product Cart",
+  "CART_PAGE_DESCRIPTION": "Explore and manage your selected items effortlessly as you prepare to complete your purchase",
+  "YOUR_CART": "Your cart"
 }

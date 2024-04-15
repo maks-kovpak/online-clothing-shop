@@ -4,6 +4,7 @@ import { Gender } from '../lib/enums.js';
 export interface IProduct {
   _id: Types.ObjectId;
   name: string;
+  description: string;
   type: Types.ObjectId;
   price: number;
   style: Types.ObjectId;
@@ -18,6 +19,7 @@ export interface IProduct {
 const ProductSchema = new Schema<IProduct>(
   {
     name: { type: String, required: true },
+    description: { type: String, required: true },
     type: { type: Schema.Types.ObjectId, required: true, ref: 'ClothingTypes' },
     price: { type: Number, required: true, min: 0 },
     style: { type: Schema.Types.ObjectId, required: true, ref: 'ClothingStyles' },

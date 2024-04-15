@@ -25,8 +25,8 @@ import vars from '@/assets/styles/_variables.module.scss';
 import './index.scss';
 
 type PageQueryParams = {
-  gender: Lowercase<Gender.MAN> | Lowercase<Gender.WOMAN>;
-  type: string;
+  gender?: Lowercase<Gender.MAN> | Lowercase<Gender.WOMAN>;
+  type?: string;
 };
 
 const genderSlugAllowedValues = [Gender.MAN.toLowerCase(), Gender.WOMAN.toLowerCase()];
@@ -50,11 +50,12 @@ const ShopPage = () => {
     queryKey: ['shop'],
     queryFn: async () => {
       const filters: Parameters<typeof ProductsApi.getAll>[0] = {
-        gender: gender.toUpperCase(),
         sortBy: 'createdAt',
         sortOrder: 'descending',
+        public: 'true',
       };
 
+      if (gender) filters['gender'] = gender.toUpperCase();
       if (type) filters['type.slug'] = type;
 
       const response = await ProductsApi.getAll(filters);
@@ -127,7 +128,7 @@ const ShopPage = () => {
 
   /* Render */
 
-  if (!genderSlugAllowedValues.includes(gender)) {
+  if (gender && !genderSlugAllowedValues.includes(gender)) {
     return <NotFoundPage />;
   }
 
@@ -160,8 +161,10 @@ const ShopPage = () => {
               <Flex className="products-title" justify="space-between" align="center">
                 {type ? (
                   <h2>{t(clothingTypes.find((item) => item.slug === type)?.name ?? '')}</h2>
-                ) : (
+                ) : gender ? (
                   <h2>{t(gender.toUpperCase() + '_COLLECTION')}</h2>
+                ) : (
+                  <h2>{t('SHOP')}</h2>
                 )}
 
                 {lg.below && <Button icon={<FiltersIcon width={16} height={16} />} onClick={() => setOpen(!open)} />}

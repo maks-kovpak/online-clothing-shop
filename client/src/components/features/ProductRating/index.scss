@@ -1,0 +1,7 @@
+@import '@/assets/styles/_variables.module';
+
+.product-rating .rating-value {
+  color: $grayscale-color-8;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
