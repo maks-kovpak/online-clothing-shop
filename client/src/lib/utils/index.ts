@@ -28,7 +28,7 @@ export const formNotValid = (form: FormInstance, invalidIfNotTouched: boolean = 
 };
 
 /**
- * The function calculates the color difference between two colors using using Delta E (CIE76).
+ * The function calculates the color difference between two colors using Delta E (CIE76).
  *
  * @param firstColor - The first color for which you want to calculate the color difference.
  * @param secondColor - The second color for which you want to calculate the color difference.
