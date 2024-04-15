@@ -5,7 +5,7 @@ import { InputNumber } from '@/ui';
 import { useTranslation } from 'react-i18next';
 import ProductPrice from '@/components/features/ProductPrice';
 import type { FullCartItem } from '@server/lib/types/models';
-import type { FC } from 'react';
+import { useEffect, useState, type FC } from 'react';
 
 import BinIcon from '@/assets/icons/bin.svg?react';
 
@@ -25,6 +25,17 @@ export const CartItemSkeleton = () => {
 
 export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
   const { t } = useTranslation();
+  const [color, setColor] = useState<string>('');
+
+  useEffect(() => {
+    const fetchColorName = async () => {
+      const response = await fetch(`https://api.color.pizza/v1/?values=${item.color.slice(1)}`);
+      const data = await response.json();
+      setColor(data.paletteTitle);
+    };
+
+    fetchColorName();
+  }, [item.color]);
 
   return (
     <Flex className="cart-item" gap="1rem">
@@ -41,7 +52,7 @@ export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
 
           <Flex align="center" gap="0.5rem">
             <b>{t('COLOR')}:</b>
-            <div className="item-color" style={{ backgroundColor: item.color }}></div>
+            <span className="item-color">{color}</span>
           </Flex>
 
           <span>
