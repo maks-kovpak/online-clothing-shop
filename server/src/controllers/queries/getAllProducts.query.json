@@ -93,7 +93,12 @@
         }
       },
       "averageRating": {
-        "$avg": "$comments.rating"
+        "$round": [
+          {
+            "$avg": "$comments.rating"
+          },
+          1
+        ]
       },
       "createdAt": 1,
       "updatedAt": 1

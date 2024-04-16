@@ -9,7 +9,7 @@ import { Button, InputNumber } from '@/ui';
 import { useEffect, useState } from 'react';
 import { ClothingSize } from '@server/lib/enums';
 import { useUnit } from 'effector-react';
-import { addNewItemFx } from '@/stores/cart.store';
+import { addToCartFx } from '@/stores/cart.store';
 
 import './index.scss';
 
@@ -30,7 +30,7 @@ const ProductInfo: FC<{
   pending?: boolean;
 }> = ({ product, option, setOption, pending }) => {
   const { t } = useTranslation();
-  const [addToCart, addToCartPending] = useUnit([addNewItemFx, addNewItemFx.pending]);
+  const [addToCart, addToCartPending] = useUnit([addToCartFx, addToCartFx.pending]);
   const [size, setSize] = useState<ClothingSize>();
   const [count, setCount] = useState<number>(1);
 

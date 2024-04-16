@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import ProductPrice from '@/components/features/ProductPrice';
 import type { FullCartItem } from '@server/lib/types/models';
 import { useEffect, useState, type FC } from 'react';
+import { useUnit } from 'effector-react';
+import { removeFromCartEvent } from '@/stores/cart.store';
 
 import BinIcon from '@/assets/icons/bin.svg?react';
 
@@ -26,6 +28,7 @@ export const CartItemSkeleton = () => {
 export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
   const { t } = useTranslation();
   const [color, setColor] = useState<string>('');
+  const removeFromCart = useUnit(removeFromCartEvent);
 
   useEffect(() => {
     const fetchColorName = async () => {
@@ -45,7 +48,17 @@ export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
         <div>
           <Flex justify="space-between" align="center">
             <h4 className="secondary">{item.name}</h4>
-            <Button type="link" className="delete-item-button">
+            <Button
+              type="link"
+              className="delete-item-button"
+              onClick={() =>
+                removeFromCart({
+                  productOptionId: item.productOptionId,
+                  size: item.size,
+                  count: item.count,
+                })
+              }
+            >
               <BinIcon />
             </Button>
           </Flex>
