@@ -50,6 +50,7 @@ export type ClothingTypesQueryParams = Partial<Record<keyof IClothingType, strin
 /* Cart */
 
 export type FullCartItem = Omit<JsonModel<ICartItem>, 'productOptionId'> & {
+  productOptionId: string;
   name: string;
   initialPrice: number;
   price: number;
