@@ -14,6 +14,10 @@ const CartApi = {
     return await axios.patch<{ message: string }>(`/cart/remove/${userId}`, payload);
   },
 
+  updateItemCount: async (userId: string, payload: CartItemPayload) => {
+    return await axios.patch<{ message: string }>(`/cart/update/${userId}`, payload);
+  },
+
   clearCart: async (userId: string) => {
     return await axios.delete<{ message: string }>(`/cart/${userId}`);
   },

@@ -24,6 +24,7 @@ export const addToCartFx = createEffect<CartItemPayload, Cart | null>(async (pay
 /* Events */
 
 export const removeFromCartEvent = createEvent<CartItemPayload>();
+export const updateCartItemCountEvent = createEvent<CartItemPayload>();
 export const clearCartEvent = createEvent();
 
 /* Stores */
@@ -43,6 +44,13 @@ $cart.on(removeFromCartEvent, (state, payload) => {
   });
 });
 
+$cart.on(updateCartItemCountEvent, (state, payload) => {
+  if (!state) return null;
+
+  const idx = state.findIndex((item) => item.productOptionId === payload.productOptionId && item.size === payload.size);
+  return state.map((item, i) => (i === idx ? { ...item, count: payload.count } : item));
+});
+
 $cart.on(clearCartEvent, () => []);
 
 /* Watching changes */
@@ -50,6 +58,11 @@ $cart.on(clearCartEvent, () => []);
 removeFromCartEvent.watch(async (payload) => {
   if (!userId) return null;
   await CartApi.removeItem(userId, payload);
+});
+
+updateCartItemCountEvent.watch(async (payload) => {
+  if (!userId) return null;
+  await CartApi.updateItemCount(userId, payload);
 });
 
 clearCartEvent.watch(async () => {

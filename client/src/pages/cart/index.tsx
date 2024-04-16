@@ -4,11 +4,16 @@ import MetaTags from '@/components/features/MetaTags';
 import { useTranslation } from 'react-i18next';
 import CartItemsList from './containers/CartItemsList';
 import OrderSummary from './containers/OrderSummary';
+import { useUnit } from 'effector-react';
+import $user, { fetchUserProfileFx } from '@/stores/user.store';
+import NotFoundPage from '../notFound';
 
 import './index.scss';
-
 const CartPage = () => {
   const { t } = useTranslation();
+  const [user, pending] = useUnit([$user, fetchUserProfileFx.pending]);
+
+  if (!pending && !user) return <NotFoundPage />;
 
   return (
     <>

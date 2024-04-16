@@ -49,8 +49,33 @@ const CartController = {
     next: NextFunction
   ) => {
     try {
-      await User.findByIdAndUpdate(req.params.id, { $pull: { cart: req.body } }, { new: true });
+      await User.findByIdAndUpdate(req.params.id, { $pull: { cart: req.body } });
       res.status(200).json({ message: 'The item has been successfully deleted' });
+    } catch (err) {
+      next(ApiError.internal((err as Error).message));
+    }
+  },
+
+  updateItemCount: async (
+    req: Request<{ id: string }, unknown, CartItemPayload>,
+    res: Response<{ message: string }>,
+    next: NextFunction
+  ) => {
+    try {
+      await User.findOneAndUpdate(
+        {
+          _id: req.params.id,
+          cart: {
+            $elemMatch: {
+              productOptionId: req.body.productOptionId,
+              size: req.body.size,
+            },
+          },
+        },
+        { $set: { 'cart.$.count': req.body.count } }
+      );
+
+      res.status(200).json({ message: 'The item count has been successfully updated' });
     } catch (err) {
       next(ApiError.internal((err as Error).message));
     }

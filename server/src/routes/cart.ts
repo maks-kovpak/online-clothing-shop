@@ -11,6 +11,7 @@ cartRouter.get('/:id', requireAuth, CartController.getAll);
 /* Patch */
 cartRouter.patch('/add/:id/', requireAuth, CartController.addNewItem);
 cartRouter.patch('/remove/:id/', requireAuth, CartController.removeItem);
+cartRouter.patch('/update/:id/', requireAuth, CartController.updateItemCount);
 
 /* Delete */
 cartRouter.delete('/:id', requireAuth, CartController.clearCart);

@@ -13,8 +13,8 @@ const OrderSummary = () => {
   const { t } = useTranslation();
   const cart = useUnit($cart);
 
-  const initialTotalPrice = useMemo(() => sum(cart?.map((item) => item.initialPrice)), [cart]);
-  const currentTotalPrice = useMemo(() => sum(cart?.map((item) => item.price)), [cart]);
+  const initialTotalPrice = useMemo(() => sum(cart?.map((item) => item.initialPrice * item.count)), [cart]);
+  const currentTotalPrice = useMemo(() => sum(cart?.map((item) => item.price * item.count)), [cart]);
 
   return (
     <div className="order-summary">

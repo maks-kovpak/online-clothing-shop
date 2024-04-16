@@ -7,7 +7,7 @@ import ProductPrice from '@/components/features/ProductPrice';
 import type { FullCartItem } from '@server/lib/types/models';
 import { useEffect, useState, type FC } from 'react';
 import { useUnit } from 'effector-react';
-import { removeFromCartEvent } from '@/stores/cart.store';
+import { removeFromCartEvent, updateCartItemCountEvent } from '@/stores/cart.store';
 
 import BinIcon from '@/assets/icons/bin.svg?react';
 
@@ -28,7 +28,7 @@ export const CartItemSkeleton = () => {
 export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
   const { t } = useTranslation();
   const [color, setColor] = useState<string>('');
-  const removeFromCart = useUnit(removeFromCartEvent);
+  const [removeFromCart, updateItemCount] = useUnit([removeFromCartEvent, updateCartItemCountEvent]);
 
   useEffect(() => {
     const fetchColorName = async () => {
@@ -75,7 +75,17 @@ export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
 
         <Flex justify="space-between" align="end">
           <ProductPrice value={item.price} />
-          <InputNumber min={1} initialValue={item.count} />
+          <InputNumber
+            min={1}
+            initialValue={item.count}
+            onChange={(value) =>
+              updateItemCount({
+                productOptionId: item.productOptionId,
+                size: item.size,
+                count: value,
+              })
+            }
+          />
         </Flex>
       </Flex>
     </Flex>
