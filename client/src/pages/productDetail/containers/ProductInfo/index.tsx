@@ -6,6 +6,10 @@ import ProductRating from '@/components/features/ProductRating';
 import { Divider, Skeleton, Radio, Flex } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Button, InputNumber } from '@/ui';
+import { useEffect, useState } from 'react';
+import { ClothingSize } from '@server/lib/enums';
+import { useUnit } from 'effector-react';
+import { addNewItemFx } from '@/stores/cart.store';
 
 import './index.scss';
 
@@ -26,6 +30,14 @@ const ProductInfo: FC<{
   pending?: boolean;
 }> = ({ product, option, setOption, pending }) => {
   const { t } = useTranslation();
+  const [addToCart, addToCartPending] = useUnit([addNewItemFx, addNewItemFx.pending]);
+  const [size, setSize] = useState<ClothingSize>();
+  const [count, setCount] = useState<number>(1);
+
+  useEffect(() => {
+    if (!product) return;
+    setSize(product.options[option].size[0]);
+  }, [option, product]);
 
   if (pending || !product) {
     return <Skeleton paragraph={{ rows: 4 }} active />;
@@ -46,7 +58,7 @@ const ProductInfo: FC<{
       </SectionWithDivider>
 
       <SectionWithDivider title={t('CHOOSE_SIZE')}>
-        <Radio.Group defaultValue={product.options[option].size[0]}>
+        <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
           {product.options[option].size.map((size) => (
             <Radio.Button key={size} value={size}>
               {size}
@@ -57,8 +69,19 @@ const ProductInfo: FC<{
 
       <SectionWithDivider>
         <Flex gap="1.25rem">
-          <InputNumber min={1} initialValue={1} />
-          <Button type="primary" size="large">
+          <InputNumber min={1} initialValue={1} onChange={(val) => setCount(val)} />
+          <Button
+            type="primary"
+            size="large"
+            onClick={() =>
+              addToCart({
+                productOptionId: product.options[option]._id,
+                count: count,
+                size: size!,
+              })
+            }
+            loading={addToCartPending}
+          >
             {t('ADD_TO_CART')}
           </Button>
         </Flex>

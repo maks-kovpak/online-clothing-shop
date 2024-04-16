@@ -26,7 +26,7 @@ const CartController = {
     next: NextFunction
   ) => {
     try {
-      const user = await User.findByIdAndUpdate(req.params.id, { $push: { cart: req.body } }, { new: true });
+      const user = await User.findByIdAndUpdate(req.params.id, { $addToSet: { cart: req.body } }, { new: true });
 
       if (!user) {
         return res.status(200).json([]);
