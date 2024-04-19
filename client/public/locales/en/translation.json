@@ -129,5 +129,6 @@
   "DISCOUNT": "Discount",
   "DELIVERY_FEE": "Delivery Fee",
   "TOTAL": "Total",
-  "COMPLETE_ORDER": "Complete the order"
+  "COMPLETE_ORDER": "Complete the order",
+  "VIEW_IN_CART": "View in the cart"
 }

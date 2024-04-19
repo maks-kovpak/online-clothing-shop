@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import ProductPrice from '@/components/features/ProductPrice';
 import type { FullCartItem } from '@server/lib/types/models';
 import { useEffect, useState, type FC } from 'react';
+import { useUnit } from 'effector-react';
+import { removeFromCartEvent, updateCartItemCountEvent } from '@/stores/cart.store';
 
 import BinIcon from '@/assets/icons/bin.svg?react';
 
@@ -26,6 +28,7 @@ export const CartItemSkeleton = () => {
 export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
   const { t } = useTranslation();
   const [color, setColor] = useState<string>('');
+  const [removeFromCart, updateItemCount] = useUnit([removeFromCartEvent, updateCartItemCountEvent]);
 
   useEffect(() => {
     const fetchColorName = async () => {
@@ -49,7 +52,17 @@ export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
         <div>
           <Flex justify="space-between" align="center">
             <h4 className="secondary">{item.name}</h4>
-            <Button type="link" className="delete-item-button">
+            <Button
+              type="link"
+              className="delete-item-button"
+              onClick={() =>
+                removeFromCart({
+                  productOptionId: item.productOptionId,
+                  size: item.size,
+                  count: item.count,
+                })
+              }
+            >
               <BinIcon />
             </Button>
           </Flex>
@@ -66,7 +79,17 @@ export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
 
         <Flex justify="space-between" align="end">
           <ProductPrice value={item.price} />
-          <InputNumber min={1} initialValue={item.count} />
+          <InputNumber
+            min={1}
+            initialValue={item.count}
+            onChange={(value) =>
+              updateItemCount({
+                productOptionId: item.productOptionId,
+                size: item.size,
+                count: value,
+              })
+            }
+          />
         </Flex>
       </Flex>
     </Flex>
