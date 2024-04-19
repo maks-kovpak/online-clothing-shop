@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import type { FullProduct } from '@server/lib/types/models';
 import ProductCard from '@/components/features/ProductCard';
-import ProductCardSkeleton from '@/components/features/ProductCardSkeleton';
 import { Empty, Flex } from 'antd';
 import { useTranslation } from 'react-i18next';
 
@@ -11,7 +10,7 @@ const ProductsListSkeleton = () => {
   return (
     <div className="products-list">
       {Array.from({ length: 4 }, (_, idx) => (
-        <ProductCardSkeleton key={idx} />
+        <ProductCard.Skeleton key={idx} />
       ))}
     </div>
   );

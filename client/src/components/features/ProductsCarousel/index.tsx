@@ -1,11 +1,10 @@
-import { type FC } from 'react';
-import type { FullProduct } from '@server/lib/types/models';
 import ProductCard from '@/components/features/ProductCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import type { FC } from 'react';
 import type { SwiperOptions } from 'swiper/types';
+import type { FullProduct } from '@server/lib/types/models';
 
 import 'swiper/css';
-import ProductCardSkeleton from '@/components/features/ProductCardSkeleton';
 
 const swiperOptions: SwiperOptions = {
   spaceBetween: 16,
@@ -34,7 +33,7 @@ const ProductsCarouselSkeleton = () => {
     <Swiper className="products-carousel" {...swiperOptions}>
       {Array.from({ length: 4 }, (_, idx) => (
         <SwiperSlide key={idx}>
-          <ProductCardSkeleton />
+          <ProductCard.Skeleton />
         </SwiperSlide>
       ))}
     </Swiper>
