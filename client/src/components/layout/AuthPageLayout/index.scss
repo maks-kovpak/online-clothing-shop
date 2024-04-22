@@ -1,6 +1,10 @@
 @use 'sass:color';
 @import '@/assets/styles/_variables.module';
 
+body:has(.user-auth-section) {
+  overflow: hidden;
+}
+
 .user-auth-section {
   display: flex;
   height: calc(100vh - $navbar-height);

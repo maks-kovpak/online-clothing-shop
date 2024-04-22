@@ -2,6 +2,9 @@ import type { FC, ReactElement } from 'react';
 import MetaTags from '@/components/features/MetaTags';
 import { useTranslation } from 'react-i18next';
 import { Typography } from 'antd';
+import { useUnit } from 'effector-react';
+import $user from '@/stores/user.store';
+import NotFoundPage from '@/pages/notFound';
 
 import './index.scss';
 
@@ -13,6 +16,9 @@ const AuthPageLayout: FC<{
   formTitle?: string;
 }> = ({ pageTitle, pageDescription, bannerImage, form, formTitle }) => {
   const { t } = useTranslation();
+  const user = useUnit($user);
+
+  if (user) return <NotFoundPage />;
 
   return (
     <>

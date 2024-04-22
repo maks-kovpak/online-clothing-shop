@@ -12,6 +12,7 @@ export const UPLOAD_URL = join(import.meta.env.VITE_API_URL, '/upload/');
 
 export const SHOP_MAN = generatePath(paths.products, { gender: Gender.MAN.toLowerCase(), type: null });
 export const SHOP_WOMAN = generatePath(paths.products, { gender: Gender.WOMAN.toLowerCase(), type: null });
+export const PATHS_WITHOUT_FOOTER = [paths.login, paths.signup] as string[];
 
 /* Filters */
 
