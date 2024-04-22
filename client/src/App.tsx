@@ -7,10 +7,12 @@ import PageHeader from '@/components/layout/PageHeader';
 import PageFooter from '@/components/layout/PageFooter';
 import Loading from '@/components/layout/Loading';
 import { fetchUserProfileFx } from '@/stores/user.store';
+import { fetchCartFx } from '@/stores/cart.store';
 
 const App = () => {
   const { t } = useTranslation();
   const fetchAuthorizedUser = useUnit(fetchUserProfileFx);
+  const fetchCart = useUnit(fetchCartFx);
   const [params, setParams] = useSearchParams();
   const { pathname } = useLocation();
 
@@ -21,6 +23,11 @@ const App = () => {
   useEffect(() => {
     fetchAuthorizedUser();
   }, [fetchAuthorizedUser]);
+
+  // Get the user cart
+  useEffect(() => {
+    fetchCart();
+  }, [fetchCart]);
 
   // Handling an error coming from search params
   useEffect(() => {

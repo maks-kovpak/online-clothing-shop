@@ -46,6 +46,7 @@
   {
     "$project": {
       "_id": "$cart._id",
+      "productOptionId": "$cart.productOption._id",
       "count": "$cart.count",
       "size": "$cart.size",
       "color": "$cart.productOption.color",

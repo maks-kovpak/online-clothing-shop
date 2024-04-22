@@ -1,7 +1,7 @@
 {
   "name": "online-clothing-shop",
   "description": "A modern and user-friendly online clothing shop built with React and Express.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "license": "MIT",
   "author": "Maksym Kovpak <kovpak.maksym@gmail.com>",

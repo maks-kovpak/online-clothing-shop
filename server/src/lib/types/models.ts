@@ -9,7 +9,7 @@ import type { IClothingType } from '../../models/ClothingTypes.js';
 /* Products */
 
 export type FullProduct = Omit<JsonModel<IProduct>, 'type' | 'style'> & {
-  options: Array<Omit<IProductOption, 'images'> & { images: string[] }>;
+  options: Array<Omit<JsonModel<IProductOption>, 'images'> & { images: string[] }>;
   averageRating: number | null;
   type: { name: string; slug: string };
   style: string;
@@ -50,6 +50,7 @@ export type ClothingTypesQueryParams = Partial<Record<keyof IClothingType, strin
 /* Cart */
 
 export type FullCartItem = Omit<JsonModel<ICartItem>, 'productOptionId'> & {
+  productOptionId: string;
   name: string;
   initialPrice: number;
   price: number;

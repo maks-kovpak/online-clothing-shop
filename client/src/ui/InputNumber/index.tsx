@@ -1,5 +1,6 @@
 import { Button, Flex, Input } from 'antd';
-import { useState, type ChangeEventHandler, type FC } from 'react';
+import { useState } from 'react';
+import type { FC } from 'react';
 
 import './index.scss';
 
@@ -7,7 +8,7 @@ const InputNumber: FC<{
   initialValue?: number;
   min?: number;
   max?: number;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange?: (value: number) => void;
 }> = ({ initialValue, min, max, onChange }) => {
   const [value, setValue] = useState<number>(initialValue ?? 0);
 
@@ -18,18 +19,20 @@ const InputNumber: FC<{
         onClick={() => {
           if (value === min) return;
           setValue(value - 1);
+          onChange && onChange(value - 1);
         }}
       >
         -
       </Button>
 
-      <Input value={value} onChange={onChange} variant="borderless" readOnly />
+      <Input value={value} variant="borderless" readOnly />
 
       <Button
         type="link"
         onClick={() => {
           if (value === max) return;
           setValue(value + 1);
+          onChange && onChange(value + 1);
         }}
       >
         +

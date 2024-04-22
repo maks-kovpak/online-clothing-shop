@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Flex, Avatar, Skeleton } from 'antd';
+import { Flex, Avatar, Skeleton, Badge } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import Navbar from '../Navbar';
@@ -10,6 +10,7 @@ import { Input } from '@/ui';
 import paths from '@/lib/paths';
 import { useUnit } from 'effector-react';
 import $user, { fetchUserProfileFx } from '@/stores/user.store';
+import { $cart } from '@/stores/cart.store';
 
 import logo from '@/assets/img/logo.svg';
 import SearchIcon from '@/assets/icons/search.svg?react';
@@ -23,6 +24,7 @@ const PageHeader = () => {
   const { t } = useTranslation();
   const [openedDrawer, setOpenedDrawer] = useState<boolean>(false);
   const [user, pending] = useUnit([$user, fetchUserProfileFx.pending]);
+  const cart = useUnit($cart);
 
   return (
     <>
@@ -49,7 +51,9 @@ const PageHeader = () => {
 
             {user && (
               <NavLink to={paths.cart} title={t('SHOPPING_CART')} style={{ display: 'flex' }}>
-                <CartIcon />
+                <Badge size="small" count={cart?.length} offset={[-1, 3]}>
+                  <CartIcon />
+                </Badge>
               </NavLink>
             )}
 

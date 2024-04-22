@@ -1,21 +1,19 @@
-import { $cart, fetchCartFx } from '@/stores/cart.store';
-import { useUnit } from 'effector-react';
-import { useEffect } from 'react';
+import { Flex } from 'antd';
 import Breadcrumbs from '@/components/features/Breadcrumbs';
 import MetaTags from '@/components/features/MetaTags';
 import { useTranslation } from 'react-i18next';
-import CartItem from '@/components/features/CartItem';
+import CartItemsList from './containers/CartItemsList';
+import OrderSummary from './containers/OrderSummary';
+import { useUnit } from 'effector-react';
+import $user, { fetchUserProfileFx } from '@/stores/user.store';
+import NotFoundPage from '../notFound';
 
 import './index.scss';
-
 const CartPage = () => {
   const { t } = useTranslation();
-  const [cart, fetchCart] = useUnit([$cart, fetchCartFx]);
+  const [user, pending] = useUnit([$user, fetchUserProfileFx.pending]);
 
-  useEffect(() => {
-    if (cart) return;
-    fetchCart();
-  }, [cart, fetchCart]);
+  if (!pending && !user) return <NotFoundPage />;
 
   return (
     <>
@@ -28,7 +26,11 @@ const CartPage = () => {
 
         <section className="primary-section cart-section">
           <h2 className="secondary">{t('YOUR_CART')}</h2>
-          <div className="cart-container">{cart?.map((item) => <CartItem key={item._id} item={item} />)}</div>
+
+          <Flex justify="space-between" align="start" gap="1.25rem">
+            <CartItemsList />
+            <OrderSummary />
+          </Flex>
         </section>
       </main>
     </>
