@@ -33,7 +33,11 @@ export const CartItem: FC<{ item: FullCartItem }> = ({ item }) => {
   useEffect(() => {
     const fetchColorName = async () => {
       const response = await fetch(`https://api.color.pizza/v1/?values=${item.color.slice(1)}`);
-      const data = await response.json();
+      const data = (await response.json()) as {
+        paletteTitle: string;
+        [x: string]: unknown;
+      };
+
       setColor(data.paletteTitle);
     };
 

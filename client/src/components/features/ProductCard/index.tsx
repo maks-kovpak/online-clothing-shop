@@ -12,7 +12,11 @@ import ProductRating from '../ProductRating';
 
 import './index.scss';
 
-const ProductCard: FC<{ product: FullProduct }> = ({ product }) => {
+export type ProductCartCompoundedComponent = {
+  Skeleton: typeof ProductCardSkeleton;
+};
+
+const ProductCard: FC<{ product: FullProduct }> & ProductCartCompoundedComponent = ({ product }) => {
   const imageUrl = useMemo(() => {
     return join(UPLOAD_URL, product.options[0].images[0]);
   }, [product.options]);
@@ -31,5 +35,7 @@ const ProductCard: FC<{ product: FullProduct }> = ({ product }) => {
     </Suspense>
   );
 };
+
+ProductCard.Skeleton = ProductCardSkeleton;
 
 export default ProductCard;
